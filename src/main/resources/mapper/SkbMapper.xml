@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.SkbMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.Skb">
+    <constructor>
+      <idArg column="skid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="juid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ybx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rbx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="ylx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rlx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="ybj" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rbj" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sktime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="baid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint1" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint2" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resstr1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resstr2" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    skid, uid, juid, ybx, rbx, ylx, rlx, ybj, rbj, rnum, tnum, sktime, baid, resint1, 
+    resint2, resstr1, resstr2
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from skb
+    where skid = #{skid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from skb
+    where skid = #{skid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.Skb">
+    insert into skb (skid, uid, juid, 
+      ybx, rbx, ylx, rlx, 
+      ybj, rbj, rnum, tnum, 
+      sktime, baid, resint1, 
+      resint2, resstr1, resstr2
+      )
+    values (#{skid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{juid,jdbcType=INTEGER}, 
+      #{ybx,jdbcType=DECIMAL}, #{rbx,jdbcType=DECIMAL}, #{ylx,jdbcType=DECIMAL}, #{rlx,jdbcType=DECIMAL}, 
+      #{ybj,jdbcType=DECIMAL}, #{rbj,jdbcType=DECIMAL}, #{rnum,jdbcType=INTEGER}, #{tnum,jdbcType=INTEGER}, 
+      #{sktime,jdbcType=TIMESTAMP}, #{baid,jdbcType=INTEGER}, #{resint1,jdbcType=INTEGER}, 
+      #{resint2,jdbcType=INTEGER}, #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.Skb">
+    insert into skb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skid != null">
+        skid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="juid != null">
+        juid,
+      </if>
+      <if test="ybx != null">
+        ybx,
+      </if>
+      <if test="rbx != null">
+        rbx,
+      </if>
+      <if test="ylx != null">
+        ylx,
+      </if>
+      <if test="rlx != null">
+        rlx,
+      </if>
+      <if test="ybj != null">
+        ybj,
+      </if>
+      <if test="rbj != null">
+        rbj,
+      </if>
+      <if test="rnum != null">
+        rnum,
+      </if>
+      <if test="tnum != null">
+        tnum,
+      </if>
+      <if test="sktime != null">
+        sktime,
+      </if>
+      <if test="baid != null">
+        baid,
+      </if>
+      <if test="resint1 != null">
+        resint1,
+      </if>
+      <if test="resint2 != null">
+        resint2,
+      </if>
+      <if test="resstr1 != null">
+        resstr1,
+      </if>
+      <if test="resstr2 != null">
+        resstr2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skid != null">
+        #{skid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="juid != null">
+        #{juid,jdbcType=INTEGER},
+      </if>
+      <if test="ybx != null">
+        #{ybx,jdbcType=DECIMAL},
+      </if>
+      <if test="rbx != null">
+        #{rbx,jdbcType=DECIMAL},
+      </if>
+      <if test="ylx != null">
+        #{ylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rlx != null">
+        #{rlx,jdbcType=DECIMAL},
+      </if>
+      <if test="ybj != null">
+        #{ybj,jdbcType=DECIMAL},
+      </if>
+      <if test="rbj != null">
+        #{rbj,jdbcType=DECIMAL},
+      </if>
+      <if test="rnum != null">
+        #{rnum,jdbcType=INTEGER},
+      </if>
+      <if test="tnum != null">
+        #{tnum,jdbcType=INTEGER},
+      </if>
+      <if test="sktime != null">
+        #{sktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baid != null">
+        #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.Skb">
+    update skb
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="juid != null">
+        juid = #{juid,jdbcType=INTEGER},
+      </if>
+      <if test="ybx != null">
+        ybx = #{ybx,jdbcType=DECIMAL},
+      </if>
+      <if test="rbx != null">
+        rbx = #{rbx,jdbcType=DECIMAL},
+      </if>
+      <if test="ylx != null">
+        ylx = #{ylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rlx != null">
+        rlx = #{rlx,jdbcType=DECIMAL},
+      </if>
+      <if test="ybj != null">
+        ybj = #{ybj,jdbcType=DECIMAL},
+      </if>
+      <if test="rbj != null">
+        rbj = #{rbj,jdbcType=DECIMAL},
+      </if>
+      <if test="rnum != null">
+        rnum = #{rnum,jdbcType=INTEGER},
+      </if>
+      <if test="tnum != null">
+        tnum = #{tnum,jdbcType=INTEGER},
+      </if>
+      <if test="sktime != null">
+        sktime = #{sktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baid != null">
+        baid = #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        resint1 = #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        resint2 = #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        resstr1 = #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        resstr2 = #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where skid = #{skid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.Skb">
+    update skb
+    set uid = #{uid,jdbcType=INTEGER},
+      juid = #{juid,jdbcType=INTEGER},
+      ybx = #{ybx,jdbcType=DECIMAL},
+      rbx = #{rbx,jdbcType=DECIMAL},
+      ylx = #{ylx,jdbcType=DECIMAL},
+      rlx = #{rlx,jdbcType=DECIMAL},
+      ybj = #{ybj,jdbcType=DECIMAL},
+      rbj = #{rbj,jdbcType=DECIMAL},
+      rnum = #{rnum,jdbcType=INTEGER},
+      tnum = #{tnum,jdbcType=INTEGER},
+      sktime = #{sktime,jdbcType=TIMESTAMP},
+      baid = #{baid,jdbcType=INTEGER},
+      resint1 = #{resint1,jdbcType=INTEGER},
+      resint2 = #{resint2,jdbcType=INTEGER},
+      resstr1 = #{resstr1,jdbcType=VARCHAR},
+      resstr2 = #{resstr2,jdbcType=VARCHAR}
+    where skid = #{skid,jdbcType=INTEGER}
+  </update>
+</mapper>

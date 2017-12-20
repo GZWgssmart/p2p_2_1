@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.RewardMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.Reward">
+    <constructor>
+      <idArg column="rwid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tmoney" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reward_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    rwid, uid, tmoney, money, status, reward_time
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from reward
+    where rwid = #{rwid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from reward
+    where rwid = #{rwid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.Reward">
+    insert into reward (rwid, uid, tmoney, 
+      money, status, reward_time
+      )
+    values (#{rwid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{tmoney,jdbcType=DECIMAL}, 
+      #{money,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{rewardTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.Reward">
+    insert into reward
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rwid != null">
+        rwid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="tmoney != null">
+        tmoney,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="rewardTime != null">
+        reward_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rwid != null">
+        #{rwid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="tmoney != null">
+        #{tmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardTime != null">
+        #{rewardTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.Reward">
+    update reward
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="tmoney != null">
+        tmoney = #{tmoney,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardTime != null">
+        reward_time = #{rewardTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rwid = #{rwid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.Reward">
+    update reward
+    set uid = #{uid,jdbcType=INTEGER},
+      tmoney = #{tmoney,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      reward_time = #{rewardTime,jdbcType=TIMESTAMP}
+    where rwid = #{rwid,jdbcType=INTEGER}
+  </update>
+</mapper>

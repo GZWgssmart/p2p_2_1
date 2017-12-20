@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.UserTicketMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.UserTicket">
+    <constructor>
+      <idArg column="ukid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="kid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tktime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ukid, uid, kid, tktime
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_ticket
+    where ukid = #{ukid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from user_ticket
+    where ukid = #{ukid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.UserTicket">
+    insert into user_ticket (ukid, uid, kid, 
+      tktime)
+    values (#{ukid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{kid,jdbcType=INTEGER}, 
+      #{tktime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.UserTicket">
+    insert into user_ticket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ukid != null">
+        ukid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="kid != null">
+        kid,
+      </if>
+      <if test="tktime != null">
+        tktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ukid != null">
+        #{ukid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="kid != null">
+        #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="tktime != null">
+        #{tktime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.UserTicket">
+    update user_ticket
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="kid != null">
+        kid = #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="tktime != null">
+        tktime = #{tktime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ukid = #{ukid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.UserTicket">
+    update user_ticket
+    set uid = #{uid,jdbcType=INTEGER},
+      kid = #{kid,jdbcType=INTEGER},
+      tktime = #{tktime,jdbcType=TIMESTAMP}
+    where ukid = #{ukid,jdbcType=INTEGER}
+  </update>
+</mapper>

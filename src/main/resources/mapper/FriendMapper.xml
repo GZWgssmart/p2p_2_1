@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.FriendMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.Friend">
+    <constructor>
+      <idArg column="fid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="furl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fpic" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    fid, furl, fpic
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from friend
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from friend
+    where fid = #{fid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.Friend">
+    insert into friend (fid, furl, fpic
+      )
+    values (#{fid,jdbcType=INTEGER}, #{furl,jdbcType=VARCHAR}, #{fpic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.Friend">
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="furl != null">
+        furl,
+      </if>
+      <if test="fpic != null">
+        fpic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="furl != null">
+        #{furl,jdbcType=VARCHAR},
+      </if>
+      <if test="fpic != null">
+        #{fpic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.Friend">
+    update friend
+    <set>
+      <if test="furl != null">
+        furl = #{furl,jdbcType=VARCHAR},
+      </if>
+      <if test="fpic != null">
+        fpic = #{fpic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.Friend">
+    update friend
+    set furl = #{furl,jdbcType=VARCHAR},
+      fpic = #{fpic,jdbcType=VARCHAR}
+    where fid = #{fid,jdbcType=INTEGER}
+  </update>
+</mapper>

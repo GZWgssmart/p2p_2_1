@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.TzbMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.Tzb">
+    <constructor>
+      <idArg column="tzid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="juid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="money" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="tztime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="nprofit" javaType="java.lang.Float" jdbcType="REAL" />
+      <arg column="cpname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="baid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint1" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint2" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resstr1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resstr2" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    tzid, uid, juid, money, tztime, nprofit, cpname, baid, resint1, resint2, resstr1, 
+    resstr2
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tzb
+    where tzid = #{tzid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from tzb
+    where tzid = #{tzid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.Tzb">
+    insert into tzb (tzid, uid, juid, 
+      money, tztime, nprofit, 
+      cpname, baid, resint1, 
+      resint2, resstr1, resstr2
+      )
+    values (#{tzid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{juid,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{tztime,jdbcType=TIMESTAMP}, #{nprofit,jdbcType=REAL}, 
+      #{cpname,jdbcType=VARCHAR}, #{baid,jdbcType=INTEGER}, #{resint1,jdbcType=INTEGER}, 
+      #{resint2,jdbcType=INTEGER}, #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.Tzb">
+    insert into tzb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tzid != null">
+        tzid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="juid != null">
+        juid,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="tztime != null">
+        tztime,
+      </if>
+      <if test="nprofit != null">
+        nprofit,
+      </if>
+      <if test="cpname != null">
+        cpname,
+      </if>
+      <if test="baid != null">
+        baid,
+      </if>
+      <if test="resint1 != null">
+        resint1,
+      </if>
+      <if test="resint2 != null">
+        resint2,
+      </if>
+      <if test="resstr1 != null">
+        resstr1,
+      </if>
+      <if test="resstr2 != null">
+        resstr2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tzid != null">
+        #{tzid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="juid != null">
+        #{juid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="tztime != null">
+        #{tztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nprofit != null">
+        #{nprofit,jdbcType=REAL},
+      </if>
+      <if test="cpname != null">
+        #{cpname,jdbcType=VARCHAR},
+      </if>
+      <if test="baid != null">
+        #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.Tzb">
+    update tzb
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="juid != null">
+        juid = #{juid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="tztime != null">
+        tztime = #{tztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nprofit != null">
+        nprofit = #{nprofit,jdbcType=REAL},
+      </if>
+      <if test="cpname != null">
+        cpname = #{cpname,jdbcType=VARCHAR},
+      </if>
+      <if test="baid != null">
+        baid = #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        resint1 = #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        resint2 = #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        resstr1 = #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        resstr2 = #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tzid = #{tzid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.Tzb">
+    update tzb
+    set uid = #{uid,jdbcType=INTEGER},
+      juid = #{juid,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      tztime = #{tztime,jdbcType=TIMESTAMP},
+      nprofit = #{nprofit,jdbcType=REAL},
+      cpname = #{cpname,jdbcType=VARCHAR},
+      baid = #{baid,jdbcType=INTEGER},
+      resint1 = #{resint1,jdbcType=INTEGER},
+      resint2 = #{resint2,jdbcType=INTEGER},
+      resstr1 = #{resstr1,jdbcType=VARCHAR},
+      resstr2 = #{resstr2,jdbcType=VARCHAR}
+    where tzid = #{tzid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.HkbMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.Hkb">
+    <constructor>
+      <idArg column="hkid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cpname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tnum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ytime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="rtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="bzname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ybx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rbx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="ylx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rlx" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="ybj" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rbj" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="yfc" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="rfc" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="yucount" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="baid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="yustartime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="huid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint1" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint2" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resstr1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resstr2" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    hkid, uid, rname, cpname, rnum, tnum, ytime, rtime, bzname, ybx, rbx, ylx, rlx, ybj, 
+    rbj, yfc, rfc, yucount, status, baid, yustartime, huid, resint1, resint2, resstr1, 
+    resstr2
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hkb
+    where hkid = #{hkid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from hkb
+    where hkid = #{hkid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.Hkb">
+    insert into hkb (hkid, uid, rname, 
+      cpname, rnum, tnum, 
+      ytime, rtime, bzname, 
+      ybx, rbx, ylx, rlx, 
+      ybj, rbj, yfc, rfc, 
+      yucount, status, baid, 
+      yustartime, huid, resint1, 
+      resint2, resstr1, resstr2
+      )
+    values (#{hkid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, 
+      #{cpname,jdbcType=VARCHAR}, #{rnum,jdbcType=INTEGER}, #{tnum,jdbcType=INTEGER}, 
+      #{ytime,jdbcType=TIMESTAMP}, #{rtime,jdbcType=TIMESTAMP}, #{bzname,jdbcType=VARCHAR}, 
+      #{ybx,jdbcType=DECIMAL}, #{rbx,jdbcType=DECIMAL}, #{ylx,jdbcType=DECIMAL}, #{rlx,jdbcType=DECIMAL}, 
+      #{ybj,jdbcType=DECIMAL}, #{rbj,jdbcType=DECIMAL}, #{yfc,jdbcType=DECIMAL}, #{rfc,jdbcType=DECIMAL}, 
+      #{yucount,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{baid,jdbcType=INTEGER}, 
+      #{yustartime,jdbcType=TIMESTAMP}, #{huid,jdbcType=INTEGER}, #{resint1,jdbcType=INTEGER}, 
+      #{resint2,jdbcType=INTEGER}, #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.Hkb">
+    insert into hkb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hkid != null">
+        hkid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="rname != null">
+        rname,
+      </if>
+      <if test="cpname != null">
+        cpname,
+      </if>
+      <if test="rnum != null">
+        rnum,
+      </if>
+      <if test="tnum != null">
+        tnum,
+      </if>
+      <if test="ytime != null">
+        ytime,
+      </if>
+      <if test="rtime != null">
+        rtime,
+      </if>
+      <if test="bzname != null">
+        bzname,
+      </if>
+      <if test="ybx != null">
+        ybx,
+      </if>
+      <if test="rbx != null">
+        rbx,
+      </if>
+      <if test="ylx != null">
+        ylx,
+      </if>
+      <if test="rlx != null">
+        rlx,
+      </if>
+      <if test="ybj != null">
+        ybj,
+      </if>
+      <if test="rbj != null">
+        rbj,
+      </if>
+      <if test="yfc != null">
+        yfc,
+      </if>
+      <if test="rfc != null">
+        rfc,
+      </if>
+      <if test="yucount != null">
+        yucount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="baid != null">
+        baid,
+      </if>
+      <if test="yustartime != null">
+        yustartime,
+      </if>
+      <if test="huid != null">
+        huid,
+      </if>
+      <if test="resint1 != null">
+        resint1,
+      </if>
+      <if test="resint2 != null">
+        resint2,
+      </if>
+      <if test="resstr1 != null">
+        resstr1,
+      </if>
+      <if test="resstr2 != null">
+        resstr2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hkid != null">
+        #{hkid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="rname != null">
+        #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="cpname != null">
+        #{cpname,jdbcType=VARCHAR},
+      </if>
+      <if test="rnum != null">
+        #{rnum,jdbcType=INTEGER},
+      </if>
+      <if test="tnum != null">
+        #{tnum,jdbcType=INTEGER},
+      </if>
+      <if test="ytime != null">
+        #{ytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rtime != null">
+        #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bzname != null">
+        #{bzname,jdbcType=VARCHAR},
+      </if>
+      <if test="ybx != null">
+        #{ybx,jdbcType=DECIMAL},
+      </if>
+      <if test="rbx != null">
+        #{rbx,jdbcType=DECIMAL},
+      </if>
+      <if test="ylx != null">
+        #{ylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rlx != null">
+        #{rlx,jdbcType=DECIMAL},
+      </if>
+      <if test="ybj != null">
+        #{ybj,jdbcType=DECIMAL},
+      </if>
+      <if test="rbj != null">
+        #{rbj,jdbcType=DECIMAL},
+      </if>
+      <if test="yfc != null">
+        #{yfc,jdbcType=DECIMAL},
+      </if>
+      <if test="rfc != null">
+        #{rfc,jdbcType=DECIMAL},
+      </if>
+      <if test="yucount != null">
+        #{yucount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="baid != null">
+        #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="yustartime != null">
+        #{yustartime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huid != null">
+        #{huid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.Hkb">
+    update hkb
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="rname != null">
+        rname = #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="cpname != null">
+        cpname = #{cpname,jdbcType=VARCHAR},
+      </if>
+      <if test="rnum != null">
+        rnum = #{rnum,jdbcType=INTEGER},
+      </if>
+      <if test="tnum != null">
+        tnum = #{tnum,jdbcType=INTEGER},
+      </if>
+      <if test="ytime != null">
+        ytime = #{ytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rtime != null">
+        rtime = #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bzname != null">
+        bzname = #{bzname,jdbcType=VARCHAR},
+      </if>
+      <if test="ybx != null">
+        ybx = #{ybx,jdbcType=DECIMAL},
+      </if>
+      <if test="rbx != null">
+        rbx = #{rbx,jdbcType=DECIMAL},
+      </if>
+      <if test="ylx != null">
+        ylx = #{ylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rlx != null">
+        rlx = #{rlx,jdbcType=DECIMAL},
+      </if>
+      <if test="ybj != null">
+        ybj = #{ybj,jdbcType=DECIMAL},
+      </if>
+      <if test="rbj != null">
+        rbj = #{rbj,jdbcType=DECIMAL},
+      </if>
+      <if test="yfc != null">
+        yfc = #{yfc,jdbcType=DECIMAL},
+      </if>
+      <if test="rfc != null">
+        rfc = #{rfc,jdbcType=DECIMAL},
+      </if>
+      <if test="yucount != null">
+        yucount = #{yucount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="baid != null">
+        baid = #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="yustartime != null">
+        yustartime = #{yustartime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huid != null">
+        huid = #{huid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        resint1 = #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        resint2 = #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        resstr1 = #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        resstr2 = #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hkid = #{hkid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.Hkb">
+    update hkb
+    set uid = #{uid,jdbcType=INTEGER},
+      rname = #{rname,jdbcType=VARCHAR},
+      cpname = #{cpname,jdbcType=VARCHAR},
+      rnum = #{rnum,jdbcType=INTEGER},
+      tnum = #{tnum,jdbcType=INTEGER},
+      ytime = #{ytime,jdbcType=TIMESTAMP},
+      rtime = #{rtime,jdbcType=TIMESTAMP},
+      bzname = #{bzname,jdbcType=VARCHAR},
+      ybx = #{ybx,jdbcType=DECIMAL},
+      rbx = #{rbx,jdbcType=DECIMAL},
+      ylx = #{ylx,jdbcType=DECIMAL},
+      rlx = #{rlx,jdbcType=DECIMAL},
+      ybj = #{ybj,jdbcType=DECIMAL},
+      rbj = #{rbj,jdbcType=DECIMAL},
+      yfc = #{yfc,jdbcType=DECIMAL},
+      rfc = #{rfc,jdbcType=DECIMAL},
+      yucount = #{yucount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      baid = #{baid,jdbcType=INTEGER},
+      yustartime = #{yustartime,jdbcType=TIMESTAMP},
+      huid = #{huid,jdbcType=INTEGER},
+      resint1 = #{resint1,jdbcType=INTEGER},
+      resint2 = #{resint2,jdbcType=INTEGER},
+      resstr1 = #{resstr1,jdbcType=VARCHAR},
+      resstr2 = #{resstr2,jdbcType=VARCHAR}
+    where hkid = #{hkid,jdbcType=INTEGER}
+  </update>
+</mapper>

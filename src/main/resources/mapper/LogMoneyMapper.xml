@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.LogMoneyMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.LogMoney">
+    <constructor>
+      <idArg column="lmid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="income" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="outlay" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="created_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    lmid, uid, type, income, outlay, created_time
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_money
+    where lmid = #{lmid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from log_money
+    where lmid = #{lmid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.LogMoney">
+    insert into log_money (lmid, uid, type, 
+      income, outlay, created_time
+      )
+    values (#{lmid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{income,jdbcType=DECIMAL}, #{outlay,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.LogMoney">
+    insert into log_money
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lmid != null">
+        lmid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="outlay != null">
+        outlay,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lmid != null">
+        #{lmid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="outlay != null">
+        #{outlay,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.LogMoney">
+    update log_money
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="income != null">
+        income = #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="outlay != null">
+        outlay = #{outlay,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where lmid = #{lmid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.LogMoney">
+    update log_money
+    set uid = #{uid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      income = #{income,jdbcType=DECIMAL},
+      outlay = #{outlay,jdbcType=DECIMAL},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where lmid = #{lmid,jdbcType=INTEGER}
+  </update>
+</mapper>

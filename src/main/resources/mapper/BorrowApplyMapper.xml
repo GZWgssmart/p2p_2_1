@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.BorrowApplyMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.bean.BorrowApply">
+    <constructor>
+      <idArg column="baid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="money" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="bzid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cktime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ckstatus" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="term" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="deadline" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="resint1" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resint2" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resstr1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resstr2" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    baid, rname, money, uid, bzid, cktime, ckstatus, type, term, deadline, resint1, resint2, 
+    resstr1, resstr2
+  </sql>
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from borrowapply
+    where baid = #{baid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from borrowapply
+    where baid = #{baid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.bean.BorrowApply">
+    insert into borrowapply (baid, rname, money, 
+      uid, bzid, cktime, 
+      ckstatus, type, term, 
+      deadline, resint1, resint2, 
+      resstr1, resstr2)
+    values (#{baid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{bzid,jdbcType=INTEGER}, #{cktime,jdbcType=TIMESTAMP}, 
+      #{ckstatus,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{term,jdbcType=INTEGER}, 
+      #{deadline,jdbcType=TIMESTAMP}, #{resint1,jdbcType=INTEGER}, #{resint2,jdbcType=INTEGER}, 
+      #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.bean.BorrowApply">
+    insert into borrowapply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="baid != null">
+        baid,
+      </if>
+      <if test="rname != null">
+        rname,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="bzid != null">
+        bzid,
+      </if>
+      <if test="cktime != null">
+        cktime,
+      </if>
+      <if test="ckstatus != null">
+        ckstatus,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="term != null">
+        term,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="resint1 != null">
+        resint1,
+      </if>
+      <if test="resint2 != null">
+        resint2,
+      </if>
+      <if test="resstr1 != null">
+        resstr1,
+      </if>
+      <if test="resstr2 != null">
+        resstr2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="baid != null">
+        #{baid,jdbcType=INTEGER},
+      </if>
+      <if test="rname != null">
+        #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="bzid != null">
+        #{bzid,jdbcType=INTEGER},
+      </if>
+      <if test="cktime != null">
+        #{cktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ckstatus != null">
+        #{ckstatus,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resint1 != null">
+        #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByIdSelective" parameterType="com.p2p.bean.BorrowApply">
+    update borrowapply
+    <set>
+      <if test="rname != null">
+        rname = #{rname,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="bzid != null">
+        bzid = #{bzid,jdbcType=INTEGER},
+      </if>
+      <if test="cktime != null">
+        cktime = #{cktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ckstatus != null">
+        ckstatus = #{ckstatus,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        term = #{term,jdbcType=INTEGER},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resint1 != null">
+        resint1 = #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        resint2 = #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        resstr1 = #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        resstr2 = #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where baid = #{baid,jdbcType=INTEGER}
+  </update>
+  <update id="updateById" parameterType="com.p2p.bean.BorrowApply">
+    update borrowapply
+    set rname = #{rname,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      bzid = #{bzid,jdbcType=INTEGER},
+      cktime = #{cktime,jdbcType=TIMESTAMP},
+      ckstatus = #{ckstatus,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      term = #{term,jdbcType=INTEGER},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      resint1 = #{resint1,jdbcType=INTEGER},
+      resint2 = #{resint2,jdbcType=INTEGER},
+      resstr1 = #{resstr1,jdbcType=VARCHAR},
+      resstr2 = #{resstr2,jdbcType=VARCHAR}
+    where baid = #{baid,jdbcType=INTEGER}
+  </update>
+</mapper>

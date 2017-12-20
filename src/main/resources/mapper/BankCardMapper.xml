@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao1.BankCardMapper">
+    <resultMap id="BaseResultMap" type="com.p2p.bean.BankCard">
+        <constructor>
+            <idArg column="bcid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="cardno" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="idno" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="bktime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    bcid, uid, cardno, rname, idno, type, status, bktime
+  </sql>
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from bankcard
+        where bcid = #{bcid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from bankcard
+    where bcid = #{bcid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.p2p.bean.BankCard">
+    insert into bankcard (bcid, uid, cardno, 
+      rname, idno, type, 
+      status, bktime)
+    values (#{bcid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{cardno,jdbcType=VARCHAR}, 
+      #{rname,jdbcType=VARCHAR}, #{idno,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{bktime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.p2p.bean.BankCard">
+        insert into bankcard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bcid != null">
+                bcid,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="cardno != null">
+                cardno,
+            </if>
+            <if test="rname != null">
+                rname,
+            </if>
+            <if test="idno != null">
+                idno,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="bktime != null">
+                bktime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bcid != null">
+                #{bcid,jdbcType=INTEGER},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="cardno != null">
+                #{cardno,jdbcType=VARCHAR},
+            </if>
+            <if test="rname != null">
+                #{rname,jdbcType=VARCHAR},
+            </if>
+            <if test="idno != null">
+                #{idno,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="bktime != null">
+                #{bktime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.p2p.bean.BankCard">
+        update bankcard
+        <set>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="cardno != null">
+                cardno = #{cardno,jdbcType=VARCHAR},
+            </if>
+            <if test="rname != null">
+                rname = #{rname,jdbcType=VARCHAR},
+            </if>
+            <if test="idno != null">
+                idno = #{idno,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="bktime != null">
+                bktime = #{bktime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where bcid = #{bcid,jdbcType=INTEGER}
+    </update>
+    <update id="updateById" parameterType="com.p2p.bean.BankCard">
+    update bankcard
+    set uid = #{uid,jdbcType=INTEGER},
+      cardno = #{cardno,jdbcType=VARCHAR},
+      rname = #{rname,jdbcType=VARCHAR},
+      idno = #{idno,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      bktime = #{bktime,jdbcType=TIMESTAMP}
+    where bcid = #{bcid,jdbcType=INTEGER}
+  </update>
+</mapper>

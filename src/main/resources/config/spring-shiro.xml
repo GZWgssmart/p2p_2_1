@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 缓存管理器 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+
+    <!-- 配置权限管理器 -->
+    <!--<bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">-->
+        <!--<property name="dataSource" ref="dataSource"></property>-->
+        <!--&lt;!&ndash; 根据用户邮箱查找用户密码 &ndash;&gt;-->
+        <!--<property name="authenticationQuery" value="select password from t_user where name = ?"></property>-->
+        <!--&lt;!&ndash; 根据用户的邮箱查找用户的角色名称 &ndash;&gt;-->
+        <!--<property name="userRolesQuery" value="select r.name from t_user u, t_user_role ur, t_role r where u.id = ur.user_id and ur.role_id = r.id and u.name = ?" />-->
+        <!--&lt;!&ndash; 根据用户的邮箱查找用户的权限 &ndash;&gt;-->
+        <!--<property name="permissionsQuery" value="select p.permission from t_role r, t_role_permission rp, t_permission p where r.id = rp.role_id and rp.permission_id = p.id and r.name = ?" />-->
+        <!--<property name="permissionsLookupEnabled" value="true" />-->
+    <!--</bean>-->
+    <!--&lt;!&ndash; 配置权限管理器 // TODO 在此配置多个数据源 &ndash;&gt;-->
+    <!--<bean id="jdbcRealm1" class="org.apache.shiro.realm.jdbc.JdbcRealm">-->
+        <!--<property name="dataSource" ref="dataSource"></property>-->
+        <!--&lt;!&ndash; 根据用户邮箱查找用户密码 &ndash;&gt;-->
+        <!--<property name="authenticationQuery" value="select password from t_user where name = ?"></property>-->
+        <!--&lt;!&ndash; 根据用户的邮箱查找用户的角色名称 &ndash;&gt;-->
+        <!--<property name="userRolesQuery" value="select r.name from t_user u, t_user_role ur, t_role r where u.id = ur.user_id and ur.role_id = r.id and u.name = ?" />-->
+        <!--&lt;!&ndash; 根据用户的邮箱查找用户的权限 &ndash;&gt;-->
+        <!--<property name="permissionsQuery" value="select p.permission from t_role r, t_role_permission rp, t_permission p where r.id = rp.role_id and rp.permission_id = p.id and r.name = ?" />-->
+        <!--<property name="permissionsLookupEnabled" value="true" />-->
+    <!--</bean>-->
+    <!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
+        <!--&lt;!&ndash; 我们自定义的realm &ndash;&gt;-->
+        <!--<property name="realms">-->
+            <!--<set>-->
+                <!--<ref bean="jdbcRealm" />-->
+                <!--<ref bean="jdbcRealm1" />-->
+            <!--</set>-->
+        <!--</property>-->
+        <!--&lt;!&ndash; 缓存管理器 &ndash;&gt;-->
+        <!--<property name="cacheManager" ref="cacheManager"/>-->
+
+    <!--</bean>-->
+
+    <!-- shiro过滤器 -->
+    <!--<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
+        <!--&lt;!&ndash; 权限管理器 &ndash;&gt;-->
+        <!--<property name="securityManager" ref="securityManager"/>-->
+        <!--&lt;!&ndash; 登录地址 &ndash;&gt;-->
+        <!--<property name="loginUrl" value="/login.jsp"/>-->
+        <!--&lt;!&ndash; 错误页面 &ndash;&gt;-->
+        <!--<property name="unauthorizedUrl" value="/error.jsp"/>-->
+        <!--&lt;!&ndash; 权限配置 &ndash;&gt;-->
+        <!--<property name="filterChainDefinitions">-->
+            <!--<value>-->
+                <!--/login = anon-->
+                <!--/css/**=anon-->
+                <!--/images/**=anon-->
+                <!--/js/**=anon-->
+            <!--</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>
