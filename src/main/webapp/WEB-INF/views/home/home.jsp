@@ -22,8 +22,6 @@
     <div class="layui-header">
         <div class="layui-logo">P2P_2_1</div>
         <ul class="layui-nav layui-layout-left kit-nav">
-            <li class="layui-nav-item"><a href="javascript:;" id="control">按钮1</a></li>
-            <li class="layui-nav-item"><a href="javascript:;" id="manger">按钮2</a></li>
             <li class="layui-nav-item">
                 <!-- 天气信息-->
                 <div class="weather" pc>
@@ -88,34 +86,58 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><span>文章</span></a>
+                    <a class="" href="javascript:;"><span>公司动态</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/article/allArticle',icon:'&#xe62d;',title:'我的文章',id:'1'}">
-                                <i class="layui-icon">&#xe62d;</i><span>我的文章</span></a>
+                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/#',icon:'&#xe658;',title:'公司动态管理',id:'1'}">
+                                <i class="layui-icon">&#xe658;</i><span>公司动态管理</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" data-url="<%=path %>/article/addArticle" data-icon="&#xe612;" data-title="发表文章" kit-target data-id='2'><i class="layui-icon">&#xe612;</i><span>发表文章</span></a>
+                            <a href="javascript:;" data-url="<%=path %>/#" data-icon="&#xe658;" data-title="添加公司动态" kit-target data-id='2'><i class="layui-icon">&#xe658;</i><span>添加公司动态</span></a>
                         </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="#" data-icon="&#xe628;" data-title="未通过文章" kit-target data-id='3'><i class="layui-icon">&#xe628;</i><span>未通过文章</span></a>
-                        </dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'媒体报道管理',id:'3'}"><i class="layui-icon">&#xe658;</i><span>媒体报道管理</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'添加媒体报道',id:'4'}"><i class="layui-icon">&#xe658;</i><span>添加媒体报道</span></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><span>评论</span></a>
+                    <a href="javascript:;"><span>借款管理</span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'评论记录',id:'4'}"><i class="layui-icon">&#xe658;</i><span>评论记录</span></a></dd>
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'收到评论',id:'5'}"><i class="layui-icon">&#xe658;</i><span>收到评论</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'借款类型',id:'10'}"><i class="layui-icon">&#xe658;</i><span>借款类型</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'借款审核',id:'11'}"><i class="layui-icon">&#xe658;</i><span>借款审核</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'标种',id:'12'}"><i class="layui-icon">&#xe658;</i><span>标种</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'还款方式',id:'13'}"><i class="layui-icon">&#xe658;</i><span>还款方式</span></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><span>浏览记录</span></a>
+                    <a href="javascript:;"><span>认证管理</span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'浏览记录',id:'6'}"><i class="layui-icon">&#xe658;</i><span>浏览记录</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'vip用户',id:'20'}"><i class="layui-icon">&#xe658;</i><span>vip用户</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'认证审核',id:'21'}"><i class="layui-icon">&#xe658;</i><span>认证审核</span></a></dd>
                     </dl>
                 </li>
-
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><span>奖励管理</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'vip用户',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><span>信息管理</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'最新公告',id:'40'}"><i class="layui-icon">&#xe658;</i><span>最新公告</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'站内信',id:'41'}"><i class="layui-icon">&#xe658;</i><span>站内信</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'合作伙伴',id:'42'}"><i class="layui-icon">&#xe658;</i><span>合作伙伴</span></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><span>角色权限</span></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i class="layui-icon">&#xe658;</i><span>后台用户管理</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'权限管理',id:'51'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'添加后台用户',id:'52'}"><i class="layui-icon">&#xe658;</i><span>添加后台用户</span></a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>
@@ -147,27 +169,14 @@
         app.set({
             type: 'iframe'
         }).init();
-        //弹出层
-        $('#control').on('click', function() {
-            layer.open({
-                title: '控制台',
-                maxmin: true,
-                type: 1,
-                content: '各种东西，详情请见：http://layer.layui.com/',
-                area: ['800px', '500px'],
-            });
-        });
-
-        $('#manger').on('click', function() {
-            layer.msg('提示层，可以代替alert');
-        });
-
+        //信息
         $('#info').on('click', function() {
             layer.prompt(function(val, index){
                 layer.msg('得到了'+val);
                 layer.close(index);
             });
         });
+
     });
 
 </script>
