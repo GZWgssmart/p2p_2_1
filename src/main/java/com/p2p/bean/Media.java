@@ -11,6 +11,8 @@ public class Media {
 
     private String title;
 
+    private String summary;
+
     private String content;
 
     private String pic;
@@ -19,13 +21,14 @@ public class Media {
 
     private Date createdTime;
 
-    public Media(Integer mid, String title, String content, String pic, String url, Date createdTime) {
+    public Media(Integer mid, String title, String content, String pic, String url, Date createdTime,String summary) {
         this.mid = mid;
         this.title = title;
         this.content = content;
         this.pic = pic;
         this.url = url;
         this.createdTime = createdTime;
+        this.summary=summary;
     }
 
     public Media() {
@@ -78,5 +81,13 @@ public class Media {
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
