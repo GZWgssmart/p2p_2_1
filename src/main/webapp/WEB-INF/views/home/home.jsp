@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>后台</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="<%=path %>/static/css/app.css" media="all">
+    <link rel="stylesheet" href="<%=path %>/static/css/home/app.css" media="all">
 </head>
 <body>
 <div class="layui-layout layui-layout-admin kit-layout-admin">
@@ -158,7 +158,7 @@
 <script>
     var message;
     layui.config({
-        base: '<%=path %>/static/js/'
+        base: '<%=path %>/static/js/home/'
     }).use(['app', 'message'], function() {
         var app = layui.app,
             $ = layui.jquery,

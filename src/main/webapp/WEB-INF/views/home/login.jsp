@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>登录</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
-    <link rel="stylesheet" href="<%=path %>/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="<%=path %>/static/css/home/login.css" media="all"/>
 </head>
 <body class="beg-login-bg">
 
