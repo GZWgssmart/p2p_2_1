@@ -1,18 +1,14 @@
-package com.p2p.common;
+package com.p2p.enums;
 
-/**
- * Created by 娃娃鱼 on 2017/12/6.
- */
-public enum ControllerEnum {
-    
+public enum ResultEnum {
     SUCCESS(0, "success", "成功"),
     FAIL(1, "fail", "失败");
 
     private int code;
     private String result;
     private String message;
-    
-    ControllerEnum(int code, String result, String message) {
+
+    ResultEnum(int code, String result, String message) {
         this.code = code;
         this.result = result;
         this.message = message;

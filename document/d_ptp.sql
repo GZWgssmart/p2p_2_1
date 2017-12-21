@@ -227,6 +227,7 @@ CREATE TABLE `huser` (
   `rname` varchar(50) NOT NULL,
   `sex` tinyint DEFAULT '0',
   `phone` varchar(15) NOT NULL,
+  `pwd` varchar(300) NOT NULL ,
   `huname` varchar(50) DEFAULT NULL,
   `oid` int(11) NOT NULL DEFAULT '0' COMMENT '所属组ID',
   `oname` varchar(50) NOT NULL DEFAULT '默认分组' COMMENT '组名',

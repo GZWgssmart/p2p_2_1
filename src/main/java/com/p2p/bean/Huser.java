@@ -12,6 +12,8 @@ public class Huser {
 
     private String phone;
 
+    private String pwd;
+
     private String huname;
 
     private Integer oid;
@@ -28,11 +30,12 @@ public class Huser {
 
     private String resstr2;
 
-    public Huser(Integer huid, String rname, Integer sex, String phone, String huname, Integer oid, String oname, String email, Integer resint1, Integer resint2, String resstr1, String resstr2) {
+    public Huser(Integer huid, String rname, Integer sex, String phone, String pwd, String huname, Integer oid, String oname, String email, Integer resint1, Integer resint2, String resstr1, String resstr2) {
         this.huid = huid;
         this.rname = rname;
         this.sex = sex;
         this.phone = phone;
+        this.pwd = pwd;
         this.huname = huname;
         this.oid = oid;
         this.oname = oname;
@@ -77,6 +80,14 @@ public class Huser {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd == null ? null : pwd.trim();
     }
 
     public String getHuname() {

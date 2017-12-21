@@ -7,6 +7,7 @@
       <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sex" javaType="java.lang.Integer" jdbcType="VARCHAR" />
       <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="huname" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="oid" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="oname" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -18,7 +19,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    huid, rname, sex, phone, huname, oid, oname, email, resint1, resint2, resstr1, resstr2
+    huid, rname, sex, phone, pwd, huname, oid, oname, email, resint1, resint2, resstr1, resstr2
   </sql>
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
