@@ -1,4 +1,4 @@
-package com.p2p.controller;
+package com.p2p.controller.views;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by 娃娃鱼 on 2017/12/20.
  */
 @Controller
-@RequestMapping("/test")
-public class testController {
+@RequestMapping("/page/home")
+public class HomeView {
 
     @RequestMapping("loginPage")
     public String login() {
-        return "test/login";
+        return "home/login";
     }
 
     @RequestMapping("homePage")
     public String home() {
-        return "test/home";
+        return "home/home";
     }
 
     @RequestMapping("mainPage")
     public String main() {
-        return "test/main";
+        return "home/main";
     }
 
 }

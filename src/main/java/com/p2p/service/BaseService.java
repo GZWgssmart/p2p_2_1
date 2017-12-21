@@ -16,7 +16,7 @@ public interface BaseService {
     ServerResponse<String> active(Long id, Byte status);
     ServerResponse<String> update(Object obj);
 
-    Object getById(Long id);
+    Object getById(Integer id);
     List<Object> listAll();
     Pager listPager(int pageNo, int pageSize);
 

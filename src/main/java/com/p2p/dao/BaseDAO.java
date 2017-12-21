@@ -20,7 +20,7 @@ public interface BaseDAO {
     void active(Long id, Byte status);
     void update(Object obj);
 
-    Object getById(Long id);
+    Object getById(Integer id);
     List<Object> listAll();
     List<Object> listPager(Pager pager);
     Long count();

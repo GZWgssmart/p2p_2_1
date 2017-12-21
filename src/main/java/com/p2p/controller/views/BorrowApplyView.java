@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/page/borrow_apply")
 public class BorrowApplyView {
 
-    @GetMapping()
+    @GetMapping("page")
     public String borrowApplyPage() {
-        return "";
+        return "user/front_home_model";
     }
 }

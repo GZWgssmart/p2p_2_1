@@ -1,31 +1,36 @@
 package com.p2p.service.impl;
 
+import com.p2p.bean.User;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
-import com.p2p.dao.BorrowApplyMapper;
-import com.p2p.service.BorrowApplyService;
+import com.p2p.dao.UserMapper;
+import com.p2p.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by 7025 on 2017/12/21.
+ * Created by 娃娃鱼 on 2017/12/21.
  */
 @Service
-public class BorrowApplyServiceImpl implements BorrowApplyService {
+public class UserServiceImpl implements UserService{
 
     @Autowired
-    private BorrowApplyMapper borrowApplyMapper;
+    private UserMapper userMapper;
 
+    @Override
+    public User getByPhonePwd(String phone, String upwd) {
+        return userMapper.getByPhonePwd(phone, upwd);
+    }
 
     @Override
     public ServerResponse<String> save(Object obj) {
         try{
-            borrowApplyMapper.save(obj);
+            userMapper.save(obj);
             return ServerResponse.createBySuccess("保存成功");
         }catch (Exception e) {
-            return ServerResponse.createBySuccess("保存失败");
+            return ServerResponse.createByError("保存失败");
         }
     }
 
@@ -46,12 +51,22 @@ public class BorrowApplyServiceImpl implements BorrowApplyService {
 
     @Override
     public ServerResponse<String> update(Object obj) {
-        return null;
+        try{
+            userMapper.update(obj);
+            return ServerResponse.createBySuccess("修改成功");
+        }catch (Exception e) {
+            return ServerResponse.createByError("修改失败");
+        }
     }
 
     @Override
     public Object getById(Integer id) {
-        return null;
+        try{
+            userMapper.getById(id);
+            return ServerResponse.createBySuccess("成功");
+        }catch (Exception e) {
+            return ServerResponse.createByError("失败");
+        }
     }
 
     @Override
