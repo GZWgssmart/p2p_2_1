@@ -1,6 +1,7 @@
 package com.p2p.service;
 
 import com.p2p.common.Pager;
+import com.p2p.common.ServerResponse;
 
 import java.util.List;
 
@@ -9,11 +10,11 @@ import java.util.List;
  */
 public interface BaseService {
 
-    void save(Object obj);
-    void remove(Object obj);
-    void removeById(Long id);
-    void active(Long id, Byte status);
-    void update(Object obj);
+    ServerResponse<String> save(Object obj);
+    ServerResponse<String> remove(Object obj);
+    ServerResponse<String> removeById(Long id);
+    ServerResponse<String> active(Long id, Byte status);
+    ServerResponse<String> update(Object obj);
 
     Object getById(Long id);
     List<Object> listAll();
