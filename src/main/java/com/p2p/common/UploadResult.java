@@ -8,6 +8,11 @@ public class UploadResult {
 
     public UploadResult() {}
 
+    public UploadResult(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
     public UploadResult(int code, String msg, Object data) {
         this.code = code;
         this.msg = msg;

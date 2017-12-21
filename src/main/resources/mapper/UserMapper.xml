@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zc.dao1.UserMapper">
+<mapper namespace="com.p2p.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.p2p.bean.User">
         <constructor>
             <idArg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
@@ -25,14 +25,50 @@
     </resultMap>
     <insert id="save" parameterType="com.p2p.bean.User">
       <![CDATA[
-          insert into t_user(phone, upwd, tzm) values(#{phone}, #{upwd}, #{tzm})
+          insert into t_user(phone, upwd, tzm, face) values(#{phone}, #{upwd}, #{tzm}, 'images/face.jpg')
        ]]>
     </insert>
 
     <select id="getByPhonePwd" resultType="user">
     <![CDATA[
-      select * from t_user where phone = #{phone} and upwd = #{upwd}
+      select *  from t_user where phone = #{phone} and upwd = #{upwd}
      ]]>
     </select>
+
+    <select id="getById" parameterType="integer" resultType="user">
+        <![CDATA[
+          select *  from t_user
+         ]]>
+    </select>
+
+    <update id="update" parameterType="com.p2p.bean.User">
+        <![CDATA[
+          update t_user
+        ]]>
+        <set>
+            <if test="uname != null and uname != ''">
+                uname = #{uname},
+            </if>
+            <if test="zpwd != null and zpwd != ''">
+                zpwd = #{zpwd},
+            </if>
+            <if test="idtype != null and idtype != ''">
+                idtype = #{idtype},
+            </if>
+            <if test="idno != null and idno != ''">
+                idno = #{idno},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="rname != null and rname != ''">
+                rname = #{rname},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
 
 </mapper>

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
             userMapper.save(obj);
             return ServerResponse.createBySuccess("保存成功");
         }catch (Exception e) {
-            return ServerResponse.createBySuccess("保存失败");
+            return ServerResponse.createByError("保存失败");
         }
     }
 
@@ -51,12 +51,22 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ServerResponse<String> update(Object obj) {
-        return null;
+        try{
+            userMapper.update(obj);
+            return ServerResponse.createBySuccess("修改成功");
+        }catch (Exception e) {
+            return ServerResponse.createByError("修改失败");
+        }
     }
 
     @Override
-    public Object getById(Long id) {
-        return null;
+    public Object getById(Integer id) {
+        try{
+            userMapper.getById(id);
+            return ServerResponse.createBySuccess("成功");
+        }catch (Exception e) {
+            return ServerResponse.createByError("失败");
+        }
     }
 
     @Override

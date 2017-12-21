@@ -50,7 +50,7 @@ public class BorrowApplyServiceImpl implements BorrowApplyService {
     }
 
     @Override
-    public Object getById(Long id) {
+    public Object getById(Integer id) {
         return null;
     }
 
