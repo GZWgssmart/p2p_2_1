@@ -2,7 +2,6 @@ package com.p2p.service.impl;
 
 import com.p2p.dao.TxCheckMapper;
 import com.p2p.service.TxCheckService;
-import com.sun.xml.internal.txw2.TXW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
