@@ -89,14 +89,15 @@
                     <a class="" href="javascript:;"><span>公司动态</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/#',icon:'&#xe658;',title:'公司动态管理',id:'1'}">
-                                <i class="layui-icon">&#xe658;</i><span>公司动态管理</span></a>
+                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/article/allArticle',icon:'&#xe62d;',title:'所有报道',id:'1'}">
+                                <i class="layui-icon">&#xe62d;</i><span>所有报道</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" data-url="<%=path %>/#" data-icon="&#xe658;" data-title="添加公司动态" kit-target data-id='2'><i class="layui-icon">&#xe658;</i><span>添加公司动态</span></a>
+                            <a href="javascript:;" data-url="<%=path %>/company/addMediaReportPage" data-icon="&#xe61f;" data-title="添加报道" kit-target data-id='2'>
+                                <i class="layui-icon">&#xe61f;</i><span>添加报道</span></a>
                         </dd>
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'媒体报道管理',id:'3'}"><i class="layui-icon">&#xe658;</i><span>媒体报道管理</span></a></dd>
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'添加媒体报道',id:'4'}"><i class="layui-icon">&#xe658;</i><span>添加媒体报道</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'所有动态',id:'3'}"><i class="layui-icon">&#xe658;</i><span>所有动态</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe61f;',title:'添加动态',id:'4'}"><i class="layui-icon">&#xe61f;</i><span>添加动态</span></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
