@@ -48,9 +48,10 @@ public class MediaServiceImpl implements MediaService{
     }
 
     @Override
-    public Object getById(Long id) {
+    public Object getById(Integer id) {
         return null;
     }
+
 
     @Override
     public List<Object> listAll() {

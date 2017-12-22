@@ -159,7 +159,7 @@
         //提交媒体报道
         form.on('submit(fabu)', function (data) {
             $('#content').value = layedit.getContent(editIndex);
-            $.post('<%=path %>/company/addMediaReport',
+            $.post('<%=path %>/data/company/addMediaReport',
                 $('#addMediaReport').serialize(),
                 function (res) {
                     if (res.message === "success") {
