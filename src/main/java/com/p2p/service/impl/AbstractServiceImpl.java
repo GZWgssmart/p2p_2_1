@@ -2,6 +2,8 @@ package com.p2p.service.impl;
 
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
+import com.p2p.common.ValidationResult;
+import com.p2p.common.ValidationUtils;
 import com.p2p.dao.BaseDAO;
 import com.p2p.service.BaseService;
 
@@ -13,23 +15,26 @@ import java.util.List;
 public abstract class AbstractServiceImpl implements BaseService {
 
     private BaseDAO baseDAO;
+    private ValidationResult validationResult;
 
     @Override
     public ServerResponse<Integer> save(Object obj) {
-        if(baseDAO.save(obj) == 1) {
-            return ServerResponse.createBySuccess("添加成功");
-        } else {
-            return ServerResponse.createByError("添加失败");
+        validationResult = ValidationUtils.validateEntity(obj);
+        if(validationResult.isHasErrors()) {
+            return ServerResponse.createByError(validationResult.getErrorMsg());
         }
+        baseDAO.save(obj);
+        return ServerResponse.createBySuccess("添加成功");
     }
 
     @Override
     public ServerResponse<Integer> remove(Object obj) {
-        if(baseDAO.remove(obj) == 1) {
-            return ServerResponse.createBySuccess("删除成功");
-        } else {
-            return ServerResponse.createByError("删除失败");
+        validationResult = ValidationUtils.validateEntity(obj);
+        if(validationResult.isHasErrors()) {
+            return ServerResponse.createByError(validationResult.getErrorMsg());
         }
+        baseDAO.remove(obj);
+        return ServerResponse.createBySuccess("删除成功");
     }
 
     @Override
@@ -52,11 +57,12 @@ public abstract class AbstractServiceImpl implements BaseService {
 
     @Override
     public ServerResponse<Integer> update(Object obj) {
-        if(baseDAO.update(obj) == 1) {
-            return ServerResponse.createBySuccess("更新成功");
-        } else {
-            return ServerResponse.createByError("更新失败");
+        validationResult = ValidationUtils.validateEntity(obj);
+        if(validationResult.isHasErrors()) {
+            return ServerResponse.createByError(validationResult.getErrorMsg());
         }
+        baseDAO.update(obj);
+        return ServerResponse.createBySuccess("更新成功");
     }
 
     @Override

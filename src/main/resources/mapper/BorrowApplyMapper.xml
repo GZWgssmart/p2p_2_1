@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zc.dao1.BorrowApplyMapper">
+<mapper namespace="com.p2p.dao.BorrowApplyMapper">
   <resultMap id="BaseResultMap" type="com.p2p.bean.BorrowApply">
     <constructor>
       <idArg column="baid" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -33,18 +33,14 @@
     delete from borrowapply
     where baid = #{baid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.BorrowApply">
-    insert into borrowapply (baid, rname, money, 
-      uid, bzid, cktime, 
-      ckstatus, type, term, 
-      deadline, resint1, resint2, 
-      resstr1, resstr2)
-    values (#{baid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
-      #{uid,jdbcType=INTEGER}, #{bzid,jdbcType=INTEGER}, #{cktime,jdbcType=TIMESTAMP}, 
-      #{ckstatus,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{term,jdbcType=INTEGER}, 
-      #{deadline,jdbcType=TIMESTAMP}, #{resint1,jdbcType=INTEGER}, #{resint2,jdbcType=INTEGER}, 
-      #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR})
+
+  <insert id="save" parameterType="com.p2p.bean.BorrowApply">
+    <![CDATA[
+      insert into borrowapply (rname, money, uid, bzid, type, term, deadline)
+      values (#{rname}, #{money},#{uid}, #{bzid},  #{type}, #{term},#{deadline})
+    ]]>
   </insert>
+
   <insert id="insertSelective" parameterType="com.p2p.bean.BorrowApply">
     insert into borrowapply
     <trim prefix="(" suffix=")" suffixOverrides=",">

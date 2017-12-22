@@ -20,4 +20,9 @@ public class BorrowApplyView {
     public String borrowApplyPage() {
         return "user/front_home_model";
     }
+
+    @GetMapping("addPage")
+    public String borrowApplyAdd() {
+        return "user/borrowApply";
+    }
 }
