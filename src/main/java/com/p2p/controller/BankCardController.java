@@ -14,12 +14,12 @@ import java.util.Calendar;
 
 /**
  * Created by Administrator on 2017/12/21.
- *
- * @author Chu Yiming
+ * @author ChuYiming
  */
 @Controller
 @RequestMapping("/bankCard")
 public class BankCardController {
+
     @Autowired
     private BankCardService bankCardService;
 
@@ -31,13 +31,13 @@ public class BankCardController {
 
     @PostMapping("remove/{bcid}")
     @ResponseBody
-    public ServerResponse removeById(@PathVariable("bcid")Long bcid){
+    public ServerResponse removeById(@PathVariable("bcid")Integer bcid){
         return bankCardService.removeById(bcid);
     }
 
     @PostMapping("active/{bcid}/{status}")
     @ResponseBody
-    public ServerResponse activeById(@PathVariable("bcid")Long bcid,@PathVariable("status")Byte status){
+    public ServerResponse activeById(@PathVariable("bcid")Integer bcid,@PathVariable("status")Integer status){
         return bankCardService.active(bcid,status);
     }
 }
