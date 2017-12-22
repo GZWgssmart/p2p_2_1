@@ -17,6 +17,7 @@ public class MediaServiceImpl extends AbstractServiceImpl implements MediaServic
 
     private MediaMapper mediaMapper;
 
+    @Autowired
     public void setMediaMapper(MediaMapper mediaMapper) {
         super.setBaseDAO(mediaMapper);
         this.mediaMapper = mediaMapper;

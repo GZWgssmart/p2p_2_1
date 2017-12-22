@@ -8,4 +8,30 @@
     ]]>
   </insert>
 
+  <select id="listPagerCriteria" resultType="com.p2p.bean.Media">
+    <![CDATA[
+        select m.mid, m.title, m.summary, m.pic, m.url, m.created_time as createdTime from media m
+     ]]>
+    <include refid="common_media" />
+    limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Media">
+    <![CDATA[
+          select count(m.mid) from media m
+    ]]>
+    <include refid="common_media" />
+  </select>
+
+  <sql id="common_media">
+    <if test="media != null and media.title != null and media.title != ''">
+          where m.title like concat('%', #{media.title}, '%')
+    </if>
+    <if test="media != null and media.url != null and media.url != ''">
+      and m.url like concat('%', #{media.url}, '%')
+    </if>
+    <if test="media != null and media.createdTime != null and media.createdTime != ''">
+      and m.created_time <![CDATA[<=]]> #{media.createdTime}
+    </if>
+  </sql>
 </mapper>

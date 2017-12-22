@@ -14,4 +14,9 @@ public class MediaReportView{
         return "company/addMediaReport";
     }
 
+    @RequestMapping("mediaReport")
+    public String mediaReport(){
+        return "company/MediaReport";
+    }
+
 }

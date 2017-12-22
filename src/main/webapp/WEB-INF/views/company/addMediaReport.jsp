@@ -10,6 +10,7 @@
     String path = request.getContextPath();
 %>
 <!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 4.01 Transitional//EN">
 <html>
 <head>
     <meta charset="utf-8">
@@ -51,7 +52,8 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label"></label>
                     <div class="layui-input-block">
-                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="content"></textarea>
+                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                                  id="content"></textarea>
                     </div>
                 </div>
 
@@ -70,7 +72,7 @@
                 </div>
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit="" lay-filter="fabu">立即提交</button>
+                        <button class="layui-btn" lay-submit lay-filter="fabu">立即提交</button>
                     </div>
                 </div>
             </form>
@@ -79,7 +81,6 @@
 </div>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/public.js"></script>
 <script>
     layui.use(['form', 'laytpl', 'layedit', 'upload','laydate'], function () {
 
@@ -150,21 +151,15 @@
         form.on('select(typeId)', function (data) {
             console.log(data.value) //得到被选中的值
         });
-//        $(function () {
-//            $("input[name=summary]").bind('keyup', function () {
-//                $(this).val(cutString($(this).val(), 210));
-//                return;
-//            });
-//        });
         //提交媒体报道
         form.on('submit(fabu)', function (data) {
-            $('#content').value = layedit.getContent(editIndex);
+           $('#content').val(layedit.getContent(editIndex));
             $.post('<%=path %>/data/company/addMediaReport',
                 $('#addMediaReport').serialize(),
                 function (res) {
-                    if (res.message === "success") {
+                    if (res.code === 0) {
                         layer.msg('提交成功', {
-                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
                             location.reload(true);
                         });

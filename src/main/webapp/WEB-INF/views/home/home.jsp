@@ -89,7 +89,7 @@
                     <a class="" href="javascript:;"><span>公司动态</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/article/allArticle',icon:'&#xe62d;',title:'所有报道',id:'1'}">
+                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/page/company/mediaReport',icon:'&#xe62d;',title:'所有报道',id:'1'}">
                                 <i class="layui-icon">&#xe62d;</i><span>所有报道</span></a>
                         </dd>
                         <dd>
