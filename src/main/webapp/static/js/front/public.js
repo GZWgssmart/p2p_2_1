@@ -61,15 +61,6 @@ utils.initPage = function(){
 	    dataType: "html",
 	    success: function (data) {
 	       $('#ajaxFooter').empty().html(data);
-	       $('#ht').click(function(){
-	    	   if(!utils.Storage.getItem('uid')){
-	    		   utils.alert('您还未登录，请先登录！',function(){
-	    			   window.location.href="login.html";
-	    		   })
-	    	   }else{
-	    		   window.location.href="account.html#hetong";
-	    	   }
-	       });
 	       $('.sidebar-top').click(function(){
 	    	   $('body').scrollTop(0);
 	       });
@@ -83,18 +74,18 @@ utils.initPage = function(){
 	       });
 	       //问券调查
 	       $('.wenquan').click(function(){
-	    	   if(!utils.Storage.getItem('uid')){
-	    		   utils.alert('您还未登录，请先登录！',function(){
-	    			   window.location.href=utils.getBasePath()+"login.html";
-	    		   })
-	    	   }else{
-		    	   if(utils.Storage.getItem('surveyCount') && utils.Storage.getItem('surveyCount')>0){
-	    	   	 	utils.alert('您已提交过问卷，谢谢！');
-	    	   	 	return;
-		    	   }
-	    		   window.location.href=utils.getBasePath()+"question.html";
-	    	   }
-	       })
+	    	   // if(!utils.Storage.getItem('uid')){
+	    		//    utils.alert('您还未登录，请先登录！',function(){
+	    		// 	   window.location.href=utils.getBasePath()+"login.html";
+	    		//    })
+	    	   // }else{
+		    	//    if(utils.Storage.getItem('surveyCount') && utils.Storage.getItem('surveyCount')>0){
+	    	   // 	 	utils.alert('您已提交过问卷，谢谢！');
+	    	   // 	 	return;
+		    	//    }
+	    		//    window.location.href=utils.getBasePath()+"question.html";
+	    	   // }
+	       });
     	   //友情链接
     	   $.ajax({
     		    url:'front/queryLinksType2.do',
@@ -112,12 +103,6 @@ utils.initPage = function(){
     		    	}
     		    }
     		});
-
-//	       //客服QQ
-//    	   BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4006062079, selector: 'BizQQWPA'});
-//    	   BizQQWPA.visitor({
-//    			nameAccount: '4006062079'
-//    		});
 	    }
 	});
 	//top初始化
@@ -292,7 +277,7 @@ utils.ajax = function(opt){
 			if(result.error == '9999'){
 				utils.Storage.clear();
 				utils.alert('您还未登录，请先登录',function(){
-					window.location.href=utils.getBasePath()+"login.html";
+					// window.location.href=utils.getBasePath()+"login.html";
 				});
 			}else if(result.error == '8888'){
 				utils.Storage.clear();

@@ -21,8 +21,10 @@
     <%@include file="../master/header.jsp"%>
     <div class="account cl">
         <%@include file="../master/left.jsp"%>
+        <%--信息披露里的左侧边栏--%>
+        <%--<%@include file="../master/aboutLeft.jsp"%>--%>
         <div class="account-right">
-            // 在此处写用户后台模块代码
+            <%-- 在此处写用户后台模块代码--%>
         </div>
     </div>
     <%@include file="../master/footer.jsp"%>
@@ -31,4 +33,9 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <!-- 客服QQ -->
 <script type="text/javascript" src="<%=path %>/static/js/front/account.js"></script>
+<script>
+    $('.sidebar-top').click(function(){
+        $('body').scrollTop(0);
+    });
+</script>
 </html>

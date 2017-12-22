@@ -617,10 +617,10 @@ CREATE TABLE `ticket` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `tx_ckeck`
+-- Table structure for `tx_check`
 -- ----------------------------
-DROP TABLE IF EXISTS `tx_ckeck`;
-CREATE TABLE `tx_ckeck` (
+DROP TABLE IF EXISTS `tx_check`;
+CREATE TABLE `tx_check` (
   `tcid` int(11) NOT NULL AUTO_INCREMENT,
   `txid` int(11) NOT NULL COMMENT '提现id',
   `huid` int(11) NOT NULL COMMENT '审核人id',
