@@ -8,17 +8,17 @@ import java.util.List;
  * Created by 7025 on 2017/12/20.
  */
 public interface BaseDAO {
-    void save(Object obj);
-    void remove(Object obj);
-    void removeById(Long id);
+    int save(Object obj);
+    int remove(Object obj);
+    int removeById(Integer id);
 
     /**
      * 更改状态
      * @param id
      * @param status
      */
-    void active(Long id, Byte status);
-    void update(Object obj);
+    int active(Integer id, Integer status);
+    int update(Object obj);
 
     Object getById(Integer id);
     List<Object> listAll();

@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface BaseService {
 
-    ServerResponse<String> save(Object obj);
-    ServerResponse<String> remove(Object obj);
-    ServerResponse<String> removeById(Long id);
-    ServerResponse<String> active(Long id, Byte status);
-    ServerResponse<String> update(Object obj);
+    ServerResponse<Integer> save(Object obj);
+    ServerResponse<Integer> remove(Object obj);
+    ServerResponse<Integer> removeById(Integer id);
+    ServerResponse<Integer> active(Integer id, Integer status);
+    ServerResponse<Integer> update(Object obj);
 
     Object getById(Integer id);
     List<Object> listAll();

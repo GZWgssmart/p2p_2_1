@@ -14,9 +14,8 @@ import java.util.List;
  * Created by 娃娃鱼 on 2017/12/21.
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends AbstractServiceImpl implements UserService{
 
-    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -24,63 +23,8 @@ public class UserServiceImpl implements UserService{
         return userMapper.getByPhonePwd(phone, upwd);
     }
 
-    @Override
-    public ServerResponse<String> save(Object obj) {
-        try{
-            userMapper.save(obj);
-            return ServerResponse.createBySuccess("保存成功");
-        }catch (Exception e) {
-            return ServerResponse.createByError("保存失败");
-        }
-    }
-
-    @Override
-    public ServerResponse<String> remove(Object obj) {
-        return null;
-    }
-
-    @Override
-    public ServerResponse<String> removeById(Long id) {
-        return null;
-    }
-
-    @Override
-    public ServerResponse<String> active(Long id, Byte status) {
-        return null;
-    }
-
-    @Override
-    public ServerResponse<String> update(Object obj) {
-        try{
-            userMapper.update(obj);
-            return ServerResponse.createBySuccess("修改成功");
-        }catch (Exception e) {
-            return ServerResponse.createByError("修改失败");
-        }
-    }
-
-    @Override
-    public Object getById(Integer id) {
-        try{
-            userMapper.getById(id);
-            return ServerResponse.createBySuccess("成功");
-        }catch (Exception e) {
-            return ServerResponse.createByError("失败");
-        }
-    }
-
-    @Override
-    public List<Object> listAll() {
-        return null;
-    }
-
-    @Override
-    public Pager listPager(int pageNo, int pageSize) {
-        return null;
-    }
-
-    @Override
-    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
-        return null;
+    public void setUserMapper(UserMapper userMapper) {
+        super.setBaseDAO(userMapper);
+        this.userMapper = userMapper;
     }
 }

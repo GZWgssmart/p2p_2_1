@@ -1,5 +1,6 @@
 package com.p2p.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -13,11 +14,11 @@ public class Ticket {
 
     private Integer type;
 
-    private Integer tkmoney;
+    private BigDecimal tkmoney;
 
     private Date tktime;
 
-    public Ticket(Integer kid, String name, Integer type, Integer tkmoney, Date tktime) {
+    public Ticket(Integer kid, String name, Integer type, BigDecimal tkmoney, Date tktime) {
         this.kid = kid;
         this.name = name;
         this.type = type;
@@ -53,11 +54,11 @@ public class Ticket {
         this.type = type;
     }
 
-    public Integer getTkmoney() {
+    public BigDecimal getTkmoney() {
         return tkmoney;
     }
 
-    public void setTkmoney(Integer tkmoney) {
+    public void setTkmoney(BigDecimal tkmoney) {
         this.tkmoney = tkmoney;
     }
 

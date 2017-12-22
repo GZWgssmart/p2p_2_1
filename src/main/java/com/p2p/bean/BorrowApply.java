@@ -1,5 +1,6 @@
 package com.p2p.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ public class BorrowApply {
 
     private String rname;
 
-    private Integer money;
+    private BigDecimal money;
 
     private Integer uid;
 
@@ -35,7 +36,7 @@ public class BorrowApply {
 
     private String resstr2;
 
-    public BorrowApply(Integer baid, String rname, Integer money, Integer uid, Integer bzid, Date cktime, Integer ckstatus, Integer type, Integer term, Date deadline, Integer resint1, Integer resint2, String resstr1, String resstr2) {
+    public BorrowApply(Integer baid, String rname, BigDecimal money, Integer uid, Integer bzid, Date cktime, Integer ckstatus, Integer type, Integer term, Date deadline, Integer resint1, Integer resint2, String resstr1, String resstr2) {
         this.baid = baid;
         this.rname = rname;
         this.money = money;
@@ -72,11 +73,11 @@ public class BorrowApply {
         this.rname = rname == null ? null : rname.trim();
     }
 
-    public Integer getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(BigDecimal money) {
         this.money = money;
     }
 

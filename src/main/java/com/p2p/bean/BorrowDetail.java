@@ -1,4 +1,7 @@
 package com.p2p.bean;
+
+import java.math.BigDecimal;
+
 /**
  * Created by 7025 on 2017/12/19.
  * 对应借款详情
@@ -24,7 +27,7 @@ public class BorrowDetail {
 
     private String guarantee;
 
-    private Integer money;
+    private BigDecimal money;
 
     private Float nprofit;
 
@@ -42,7 +45,7 @@ public class BorrowDetail {
 
     private String resstr2;
 
-    public BorrowDetail(Integer bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdes, String guarantee, Integer money, Float nprofit, String way, String cpname, Integer baid, Integer resint1, Integer resint2, String resstr1, String resstr2) {
+    public BorrowDetail(Integer bdid, String fpic, String ypic, String qpic, String tpic, String mpurpose, String hksource, String suggest, String xmdes, String guarantee, BigDecimal money, Float nprofit, String way, String cpname, Integer baid, Integer resint1, Integer resint2, String resstr1, String resstr2) {
         this.bdid = bdid;
         this.fpic = fpic;
         this.ypic = ypic;
@@ -148,11 +151,11 @@ public class BorrowDetail {
         this.guarantee = guarantee == null ? null : guarantee.trim();
     }
 
-    public Integer getMoney() {
+    public BigDecimal getMoney() {
         return money;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(BigDecimal money) {
         this.money = money;
     }
 
