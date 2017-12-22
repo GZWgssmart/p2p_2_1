@@ -1,6 +1,5 @@
 package com.p2p.common;
 
-import com.animo.common.ValidationResult;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

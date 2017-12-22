@@ -253,7 +253,7 @@
     line-height: 38px;
     padding-left: 20px;
     border: 1px solid #d9d9d9;
-    background-image: url(../images/icon.png);
+    background-image: url(/static/images/icon.png);
     background-repeat: no-repeat;
     background-position: 10px -2215px;
     background-color: #fff;
@@ -698,7 +698,7 @@ p.tips-title b{
     line-height: 32px;
     padding-left: 20px;
     border: 1px solid #d9d9d9;
-    background-image: url(../images/icon.png);
+    background-image: url(/static/images/icon.png);
     background-repeat: no-repeat;
     background-position: 7px -2218px;
     background-color: #fff;

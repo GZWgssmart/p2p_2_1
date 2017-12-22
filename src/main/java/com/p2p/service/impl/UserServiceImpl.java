@@ -23,6 +23,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
         return userMapper.getByPhonePwd(phone, upwd);
     }
 
+    @Autowired
     public void setUserMapper(UserMapper userMapper) {
         super.setBaseDAO(userMapper);
         this.userMapper = userMapper;

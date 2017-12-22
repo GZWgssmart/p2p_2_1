@@ -424,7 +424,7 @@ color: #999;
 /*icon*/
 
 .icon {
-    background-image: url(../images/icon.png);
+    background-image: url(/static/images/icon.png);
     background-repeat: no-repeat;
 }
 
@@ -1029,7 +1029,7 @@ color: #999;
 .top-right .top-list li {
     padding: 0 15px;
     float: right;
-    background: url(../images/icon.png) left top no-repeat;
+    background: url(/static/images/icon.png) left top no-repeat;
 }
 .top-right .top-list li.no{
 	background:none;
@@ -1300,7 +1300,7 @@ color: #999;
 }
 /* 微信 */
 .about_cel_text{font-size:14px;color:#979696;height:26px;line-height:26px; width:190px;}
-.about_cel_text a{width:28px;height:26px;margin-right:20px;margin-right:19px\9;float:left;background:url(../images/icon.png) no-repeat;}
+.about_cel_text a{width:28px;height:26px;margin-right:20px;margin-right:19px\9;float:left;background:url(/static/images/icon.png) no-repeat;}
 .about_cel_text a.about_wb{background-position: left -808px;}
 .about_cel_text a.about_wb:hover{background-position: -28px -808px;}
 .about_cel_text a.about_wx{background-position: left -836px;}
