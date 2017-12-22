@@ -2,6 +2,7 @@ package com.p2p.service.impl;
 
 import com.p2p.dao.LogTxMapper;
 import com.p2p.service.LogTxService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -15,6 +16,7 @@ public class LogTxServiceImpl extends AbstractServiceImpl  implements LogTxServi
      * 提现记录 记录永远保存 不支持删除 不支持修改  允许用户管理了查看记录
      *提现状态 1 yu 0
      */
+    @Autowired
     private LogTxMapper logTxMapper;
 
     public void setLogTxMapper(LogTxMapper logTxMapper){
