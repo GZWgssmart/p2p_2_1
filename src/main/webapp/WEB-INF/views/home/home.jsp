@@ -97,7 +97,7 @@
                                 <i class="layui-icon">&#xe61f;</i><span>添加报道</span></a>
                         </dd>
                         <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'所有动态',id:'3'}"><i class="layui-icon">&#xe658;</i><span>所有动态</span></a></dd>
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe61f;',title:'添加动态',id:'4'}"><i class="layui-icon">&#xe61f;</i><span>添加动态</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'<%=path %>/page/dynamic/addDynamicPage',icon:'&#xe61f;',title:'添加动态',id:'4'}"><i class="layui-icon">&#xe61f;</i><span>添加动态</span></a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

@@ -1,11 +1,14 @@
 package com.p2p.bean;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
 /**
  * Created by 7025 on 2017/12/19.
  * 对应媒体文章
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Media {
     private Integer mid;
 

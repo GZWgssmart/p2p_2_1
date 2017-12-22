@@ -1,15 +1,21 @@
 package com.p2p.bean;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
 /**
  * Created by 7025 on 2017/12/19.
  * 对应公司动态
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Dynamic {
+
     private Integer dyid;
 
     private String title;
+
+    private String summary;
 
     private String content;
 
@@ -67,5 +73,13 @@ public class Dynamic {
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
