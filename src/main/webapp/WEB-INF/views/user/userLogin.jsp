@@ -49,10 +49,7 @@
                         <div class="pull-btn"></div>
                     </div>
                 </div>
-                <button class="btn" type="button" onclick="submit();">登录</button>
-                <div class="forget">
-                    <a href="#">忘记密码</a>
-                </div>
+                <input class="btn" type="button" value="登录" onclick="submitLogin();"/>
             </form>
         </div>
     </div>
@@ -63,85 +60,64 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
-    var pullTest = false, jumpHref = 'account.html';
-    $(function () {
-        utils.initInput();
-        var href = utils.getUrlParam('href');
-        var ev = utils.getUrlParam('ev');
-        var id = utils.getUrlParam('id');
-        if (href) {
-            jumpHref = href + '.html';
-        }
-        if (id) {
-            jumpHref = jumpHref + '?id=' + id;
-        }
-        if (ev) {
-            jumpHref = jumpHref + '&ev=' + ev;
-        }
-        //进度登录条
-        var X = $('.pull-box').offset().left;
-        var Width = $('.pull-box')[0].offsetWidth;
-        var bX = -1;
-        $('.pull-btn').bind('mousedown', function () {
-            $(document).bind('mousemove', function (e) {
-                bX = e.pageX - X;
-                if (bX < 0) {
-                    return;
-                }
-                if ((bX + 45) >= Width) {
-                    $(document).unbind('mousemove');
-                    //验证通过
-                    $('.pull-default').attr('class', 'pull-default-true');
-                    $('.pull-btn').addClass('pull-btn-true');
-                    $('.pull-bg').html('验证通过').css('width', Width - 46 + 'px');
-                    pullTest = true;
-                    return;
-                }
-                $('.pull-btn').css('left', bX + 'px');
-                $('.pull-bg').css('width', bX + 'px');
-            });
-        });
-        $(document).mouseup(function () {
-            $(document).unbind('mousemove');
-            if ((bX + 47) >= Width) {
-                bX = Width - 47;
-                $('.pull-btn').css('left', bX + 'px');
-            } else {
-                $('.pull-btn').animate({left: "-1px"});
-                $('.pull-bg').animate({width: "0px"})
+    var pullTest = false;
+    utils.initInput();
+    //进度登录条
+    var X = $('.pull-box').offset().left;
+    var Width = $('.pull-box')[0].offsetWidth;
+    var bX = -1;
+    $('.pull-btn').bind('mousedown', function () {
+        $(document).bind('mousemove', function (e) {
+            bX = e.pageX - X;
+            if (bX < 0) {
+                return;
             }
-        })
-        //登录
-        $('.btn').bind('click', function () {
-            submit();
-        });
-        $("#password").bind('keyup', function (event) {
-            if (event.keyCode == "13") {
-                submit();
+            if ((bX + 45) >= Width) {
+                $(document).unbind('mousemove');
+                //验证通过
+                $('.pull-default').attr('class', 'pull-default-true');
+                $('.pull-btn').addClass('pull-btn-true');
+                $('.pull-bg').html('验证通过').css('width', Width - 46 + 'px');
+                pullTest = true;
+                return;
             }
-        })
+            $('.pull-btn').css('left', bX + 'px');
+            $('.pull-bg').css('width', bX + 'px');
+        });
     });
-    function submit() {
+    $(document).mouseup(function () {
+        $(document).unbind('mousemove');
+        if ((bX + 47) >= Width) {
+            bX = Width - 47;
+            $('.pull-btn').css('left', bX + 'px');
+        } else {
+            $('.pull-btn').animate({left: "-1px"});
+            $('.pull-bg').animate({width: "0px"})
+        }
+    })
+    //登录
+    function submitLogin() {
         var phone = $('#phone').val();
         var password = $('#password').val();
         if (phone == '') {
             showError('请输入手机号', $('#phone'));
             return;
-        };
+        }
+
         if (password == '') {
             showError('请输入密码', $('#password'));
             return;
-        };
+        }
+
         if (!pullTest) {
             utils.toast('请拖动验证码到正确位置');
             return;
-        };
+        }
+
         $('.btn').addClass('disabled').text('登录中...').unbind('click');
-        utils.ajax({
-            url: '<%=path %>/data/user/login',
-            data: $('#loginForm').serialize(),
-            dataType: 'json',
-            success: function (data) {
+        $.post('<%=path %>/data/user/login',
+            $('#loginForm').serialize(),
+            function (data) {
                 if (data.code == '0') {
                     utils.alert('登录成功！', function () {
                         window.location.href = '<%=path %>/page/borrow_apply/page';
@@ -150,9 +126,10 @@
                     utils.alert(data.message);
                 }
                 $('.btn').text('登录').removeClass('disabled');
-            }
-        })
+            }, 'json'
+        );
     }
+
     //错误提示
     function showError(msg, obj) {
         $('.error-msg').text(msg).addClass('show');
