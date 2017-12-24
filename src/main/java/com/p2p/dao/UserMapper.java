@@ -9,4 +9,6 @@ public interface UserMapper extends BaseDAO {
 
     User getByPhonePwd(@Param("phone") String phone, @Param("upwd") String upwd);
 
+    int getByPhone(String phone);
+
 }

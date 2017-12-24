@@ -35,6 +35,12 @@
      ]]>
     </select>
 
+    <select id="getByPhone" parameterType="string" resultType="int">
+        <![CDATA[
+          select * from t_user where phone = #{phone}
+        ]]>
+    </select>
+
     <select id="getById" parameterType="integer" resultType="user">
         <![CDATA[
           select *  from t_user

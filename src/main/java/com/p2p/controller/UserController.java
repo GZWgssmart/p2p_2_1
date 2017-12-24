@@ -21,12 +21,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("regPhone")
+    @ResponseBody
+    public ServerResponse regPhone(String phone) {
+        System.out.println(phone);
+        return userService.getByPhone(phone);
+    }
+
     @RequestMapping("reg")
     @ResponseBody
     public ServerResponse reg(User user) {
-        String tzm = System.currentTimeMillis() + "";
-        int z = Integer.valueOf(tzm.substring(5, 13));
-        user.setTzm(z);
         user.setUpwd(EncryptUtils.md5(user.getUpwd()));
         return userService.save(user);
     }

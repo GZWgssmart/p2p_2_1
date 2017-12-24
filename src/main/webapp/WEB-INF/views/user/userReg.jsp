@@ -49,7 +49,8 @@
             </div>
             <div class="from">
                 <label for="upwd" class="icon icon-pwd"></label>
-                <input type="password" name="upwd" id="upwd" autocomplete="new-password" placeholder="输入密码" maxlength="18"/>
+                <input type="password" name="upwd" id="upwd" autocomplete="new-password" placeholder="输入密码"
+                       maxlength="18"/>
             </div>
             <div class="from-text">
                 <p class="code icon icon-bottom">推荐码(选填)</p>
@@ -136,23 +137,19 @@
             showError("请输入手机号码", $(obj));
             return;
         }
-        ;
-        var param = {cellPhone: phone};
         utils.ajax({
-            url: 'isExistPhone.do',
-            data: JSON.stringify(param),
+            url: '<%=path %>/data/user/regPhone',
+            data: $('#phone').serialize(),
             dataType: 'json',
             success: function (data) {
-                if (data.error == '0') {
+                if (data.code == '0') {
                     utils.toast('手机号已经注册!');
                     isPhoneRegist = true;
-                } else if (data.error == '3') {
-                    isPhoneRegist = false;
                 } else {
-                    utils.alert(data.msg);
+                    isPhoneRegist = false;
                 }
             }
-        });
+        })
     };
     //错误提示
     function showError(msg, obj) {

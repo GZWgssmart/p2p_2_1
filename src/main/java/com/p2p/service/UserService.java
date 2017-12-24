@@ -1,6 +1,7 @@
 package com.p2p.service;
 
 import com.p2p.bean.User;
+import com.p2p.common.ServerResponse;
 
 /**
  * Created by 娃娃鱼 on 2017/12/21.
@@ -8,5 +9,7 @@ import com.p2p.bean.User;
 public interface UserService extends BaseService {
 
     User getByPhonePwd(String phone, String upwd);
+
+    ServerResponse<Integer> getByPhone(String phone);
 
 }

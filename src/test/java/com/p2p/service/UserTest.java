@@ -26,8 +26,9 @@ public class UserTest extends BaseTest {
 
     @Test
     public void testGetByPhone() {
-        userService.getByPhonePwd("15083562555",EncryptUtils.md5("123456"));
-        userService.getById(1);
+//        userService.getByPhonePwd("15083562555",EncryptUtils.md5("123456"));
+//        userService.getById(1);
+        userService.getByPhone("13500000000");
     }
 
     @Test
