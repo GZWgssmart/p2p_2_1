@@ -23,26 +23,14 @@
     from usermoney
     where umid = #{umid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from usermoney
-    where umid = #{umid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from usermoney where umid = #{umid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.UserMoney">
-    insert into usermoney (umid, uid, zmoney, 
-      kymoney, symoney, tzmoney, 
-      djmoney, dsmoney, jlmoney
-      )
-    values (#{umid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{zmoney,jdbcType=DECIMAL}, 
-      #{kymoney,jdbcType=DECIMAL}, #{symoney,jdbcType=DECIMAL}, #{tzmoney,jdbcType=DECIMAL}, 
-      #{djmoney,jdbcType=DECIMAL}, #{dsmoney,jdbcType=DECIMAL}, #{jlmoney,jdbcType=DECIMAL}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.UserMoney">
+
+  <insert id="save" parameterType="com.p2p.bean.UserMoney">
     insert into usermoney
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="umid != null">
-        umid,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -69,9 +57,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="umid != null">
-        #{umid,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -98,7 +83,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.UserMoney">
+
+  <update id="update" parameterType="com.p2p.bean.UserMoney">
     update usermoney
     <set>
       <if test="uid != null">
@@ -126,18 +112,6 @@
         jlmoney = #{jlmoney,jdbcType=DECIMAL},
       </if>
     </set>
-    where umid = #{umid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.UserMoney">
-    update usermoney
-    set uid = #{uid,jdbcType=INTEGER},
-      zmoney = #{zmoney,jdbcType=DECIMAL},
-      kymoney = #{kymoney,jdbcType=DECIMAL},
-      symoney = #{symoney,jdbcType=DECIMAL},
-      tzmoney = #{tzmoney,jdbcType=DECIMAL},
-      djmoney = #{djmoney,jdbcType=DECIMAL},
-      dsmoney = #{dsmoney,jdbcType=DECIMAL},
-      jlmoney = #{jlmoney,jdbcType=DECIMAL}
     where umid = #{umid,jdbcType=INTEGER}
   </update>
 </mapper>

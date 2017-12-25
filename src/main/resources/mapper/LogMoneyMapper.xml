@@ -20,24 +20,14 @@
     from log_money
     where lmid = #{lmid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from log_money
-    where lmid = #{lmid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from log_money where lmid = #{lmid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.LogMoney">
-    insert into log_money (lmid, uid, type, 
-      income, outlay, created_time
-      )
-    values (#{lmid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
-      #{income,jdbcType=DECIMAL}, #{outlay,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.LogMoney">
+
+  <insert id="save" parameterType="com.p2p.bean.LogMoney">
     insert into log_money
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="lmid != null">
-        lmid,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -55,9 +45,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="lmid != null">
-        #{lmid,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -75,7 +62,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.LogMoney">
+
+  <update id="update" parameterType="com.p2p.bean.LogMoney">
     update log_money
     <set>
       <if test="uid != null">
@@ -94,15 +82,6 @@
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where lmid = #{lmid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.LogMoney">
-    update log_money
-    set uid = #{uid,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
-      income = #{income,jdbcType=DECIMAL},
-      outlay = #{outlay,jdbcType=DECIMAL},
-      created_time = #{createdTime,jdbcType=TIMESTAMP}
     where lmid = #{lmid,jdbcType=INTEGER}
   </update>
 </mapper>

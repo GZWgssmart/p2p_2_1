@@ -29,27 +29,21 @@
     from borrowapply
     where baid = #{baid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from borrowapply
-    where baid = #{baid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from borrowapply where baid = #{baid,jdbcType=INTEGER}
+  </delete>
+
+  <delete id="remove" parameterType="java.lang.Integer">
+    delete from borrowapply where baid = #{baid,jdbcType=INTEGER}
   </delete>
 
   <insert id="save" parameterType="com.p2p.bean.BorrowApply">
     <selectKey keyColumn="baid" keyProperty="baid" resultType="integer" order="AFTER">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    <![CDATA[
-      insert into borrowapply (rname, money, uid, bzid, type, term, deadline)
-      values (#{rname}, #{money},#{uid}, #{bzid},  #{type}, #{term},#{deadline})
-    ]]>
-  </insert>
-
-  <insert id="insertSelective" parameterType="com.p2p.bean.BorrowApply">
     insert into borrowapply
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="baid != null">
-        baid,
-      </if>
       <if test="rname != null">
         rname,
       </if>
@@ -91,9 +85,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="baid != null">
-        #{baid,jdbcType=INTEGER},
-      </if>
       <if test="rname != null">
         #{rname,jdbcType=VARCHAR},
       </if>
@@ -135,7 +126,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.BorrowApply">
+
+  <update id="updateChecked" parameterType="com.p2p.bean.BorrowApply">
+    <![CDATA[
+      update borrowapply set status = #{status},cktime = #{cktime} where baid = #{baid}
+    ]]>
+  </update>
+
+  <update id="update" parameterType="com.p2p.bean.BorrowApply">
     update borrowapply
     <set>
       <if test="rname != null">
@@ -178,23 +176,6 @@
         resstr2 = #{resstr2,jdbcType=VARCHAR},
       </if>
     </set>
-    where baid = #{baid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.BorrowApply">
-    update borrowapply
-    set rname = #{rname,jdbcType=VARCHAR},
-      money = #{money,jdbcType=INTEGER},
-      uid = #{uid,jdbcType=INTEGER},
-      bzid = #{bzid,jdbcType=INTEGER},
-      cktime = #{cktime,jdbcType=TIMESTAMP},
-      ckstatus = #{ckstatus,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
-      term = #{term,jdbcType=INTEGER},
-      deadline = #{deadline,jdbcType=TIMESTAMP},
-      resint1 = #{resint1,jdbcType=INTEGER},
-      resint2 = #{resint2,jdbcType=INTEGER},
-      resstr1 = #{resstr1,jdbcType=VARCHAR},
-      resstr2 = #{resstr2,jdbcType=VARCHAR}
     where baid = #{baid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -32,30 +32,14 @@
     from skb
     where skid = #{skid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from skb
-    where skid = #{skid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from skb where skid = #{skid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Skb">
-    insert into skb (skid, uid, juid, 
-      ybx, rbx, ylx, rlx, 
-      ybj, rbj, rnum, tnum, 
-      sktime, baid, resint1, 
-      resint2, resstr1, resstr2
-      )
-    values (#{skid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{juid,jdbcType=INTEGER}, 
-      #{ybx,jdbcType=DECIMAL}, #{rbx,jdbcType=DECIMAL}, #{ylx,jdbcType=DECIMAL}, #{rlx,jdbcType=DECIMAL}, 
-      #{ybj,jdbcType=DECIMAL}, #{rbj,jdbcType=DECIMAL}, #{rnum,jdbcType=INTEGER}, #{tnum,jdbcType=INTEGER}, 
-      #{sktime,jdbcType=TIMESTAMP}, #{baid,jdbcType=INTEGER}, #{resint1,jdbcType=INTEGER}, 
-      #{resint2,jdbcType=INTEGER}, #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Skb">
+
+  <insert id="save" parameterType="com.p2p.bean.Skb">
     insert into skb
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="skid != null">
-        skid,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -106,9 +90,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="skid != null">
-        #{skid,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -159,7 +140,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Skb">
+
+  <update id="update" parameterType="com.p2p.bean.Skb">
     update skb
     <set>
       <if test="uid != null">
@@ -211,26 +193,6 @@
         resstr2 = #{resstr2,jdbcType=VARCHAR},
       </if>
     </set>
-    where skid = #{skid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Skb">
-    update skb
-    set uid = #{uid,jdbcType=INTEGER},
-      juid = #{juid,jdbcType=INTEGER},
-      ybx = #{ybx,jdbcType=DECIMAL},
-      rbx = #{rbx,jdbcType=DECIMAL},
-      ylx = #{ylx,jdbcType=DECIMAL},
-      rlx = #{rlx,jdbcType=DECIMAL},
-      ybj = #{ybj,jdbcType=DECIMAL},
-      rbj = #{rbj,jdbcType=DECIMAL},
-      rnum = #{rnum,jdbcType=INTEGER},
-      tnum = #{tnum,jdbcType=INTEGER},
-      sktime = #{sktime,jdbcType=TIMESTAMP},
-      baid = #{baid,jdbcType=INTEGER},
-      resint1 = #{resint1,jdbcType=INTEGER},
-      resint2 = #{resint2,jdbcType=INTEGER},
-      resstr1 = #{resstr1,jdbcType=VARCHAR},
-      resstr2 = #{resstr2,jdbcType=VARCHAR}
     where skid = #{skid,jdbcType=INTEGER}
   </update>
 </mapper>
