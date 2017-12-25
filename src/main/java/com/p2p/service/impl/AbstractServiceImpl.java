@@ -23,8 +23,10 @@ public abstract class AbstractServiceImpl implements BaseService {
         if(validationResult.isHasErrors()) {
             return ServerResponse.createByError(validationResult.getErrorMsg());
         }
-        baseDAO.save(obj);
-        return ServerResponse.createBySuccess("添加成功");
+        if(baseDAO.save(obj) == 1) {
+            return ServerResponse.createBySuccess("添加成功");
+        }
+        return ServerResponse.createByError("添加失败");
     }
 
     @Override
@@ -33,8 +35,10 @@ public abstract class AbstractServiceImpl implements BaseService {
         if(validationResult.isHasErrors()) {
             return ServerResponse.createByError(validationResult.getErrorMsg());
         }
-        baseDAO.remove(obj);
-        return ServerResponse.createBySuccess("删除成功");
+        if(baseDAO.remove(obj) == 1) {
+            return ServerResponse.createBySuccess("删除成功");
+        }
+        return ServerResponse.createByError("删除失败");
     }
 
     @Override
@@ -61,8 +65,10 @@ public abstract class AbstractServiceImpl implements BaseService {
         if(validationResult.isHasErrors()) {
             return ServerResponse.createByError(validationResult.getErrorMsg());
         }
-        baseDAO.update(obj);
-        return ServerResponse.createBySuccess("更新成功");
+        if(baseDAO.update(obj) == 1){
+            return ServerResponse.createBySuccess("更新成功");
+        }
+        return ServerResponse.createByError("更新失败");
     }
 
     @Override

@@ -35,6 +35,9 @@
   </delete>
 
   <insert id="save" parameterType="com.p2p.bean.BorrowApply">
+    <selectKey keyColumn="baid" keyProperty="baid" resultType="integer" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     <![CDATA[
       insert into borrowapply (rname, money, uid, bzid, type, term, deadline)
       values (#{rname}, #{money},#{uid}, #{bzid},  #{type}, #{term},#{deadline})

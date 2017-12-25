@@ -14,6 +14,8 @@ public class BorrowApplyTest extends BaseTest {
 
     @Autowired
     private BorrowApplyService borrowApplyService;
+    @Autowired
+    private BorrowDetailService borrowDetailService;
 
     @Test
     public void testSave() {
@@ -26,5 +28,6 @@ public class BorrowApplyTest extends BaseTest {
         borrowApply.setBzid(1);
         borrowApply.setTerm(3);
         borrowApplyService.save(borrowApply);
+        System.out.println(borrowApply.getBaid());
     }
 }
