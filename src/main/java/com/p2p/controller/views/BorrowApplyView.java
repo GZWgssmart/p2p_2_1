@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by 7025 on 2017/12/21.
  */
 @Controller
-@RequestMapping("/page/borrow_apply")
+@RequestMapping("/page/borrowApply")
 public class BorrowApplyView {
 
     @GetMapping("page")
@@ -24,5 +24,10 @@ public class BorrowApplyView {
     @GetMapping("addPage")
     public String borrowApplyAdd() {
         return "user/borrowApply";
+    }
+
+    @GetMapping("management")
+    public String borrowManagement() {
+        return "user/borrowManage";
     }
 }
