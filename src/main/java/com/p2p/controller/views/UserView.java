@@ -25,4 +25,9 @@ public class UserView {
         return "user/account";
     }
 
+    @RequestMapping("safe")
+    public String safe() {
+        return "user/safe";
+    }
+
 }

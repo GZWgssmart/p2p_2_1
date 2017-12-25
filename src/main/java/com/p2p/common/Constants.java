@@ -16,4 +16,9 @@ public class Constants {
      * 最小投资金额
      */
     public static final BigDecimal MIN_TZ = BigDecimal.valueOf(100);
+
+    /**
+     * 盐值
+     */
+    public static final String SALT = "p2p_2_1";
 }
