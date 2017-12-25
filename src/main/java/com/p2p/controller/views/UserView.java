@@ -20,4 +20,9 @@ public class UserView {
         return "user/userLogin";
     }
 
+    @RequestMapping("account")
+    public String account() {
+        return "user/account";
+    }
+
 }

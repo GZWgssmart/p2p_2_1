@@ -10,7 +10,7 @@
     <div class="account-left-nav">
         <div class="navbar icon icon-account">我的账户</div>
         <ul class="sub-nav">
-            <li class=""><a href="https://www.pujinziben.com/account.html#account">账户总览</a></li>
+            <li class=""><a href="<%=path %>/page/user/account">账户总览</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#ipay">充值</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#cash">提现</a></li>
 

@@ -18,7 +18,7 @@
                 <li><a href="https://www.pujinziben.com/about.html#gdbj">关于我们</a></li>
                 <li><a href="https://www.pujinziben.com/help.html">帮助中心</a></li>
                 <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
-                <li id="userName"><a href="https://www.pujinziben.com/account.html" class="user">17607974221</a></li>
+                <li id="userName"><a href="<%=path %>/page/borrow_apply/page" class="user">${user.phone}</a></li>
                 <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
             </ul>
             <div id="qrCodeDiv" style="display: none;">
