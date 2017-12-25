@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class LogMoneyServiceImpl extends AbstractServiceImpl implements LogMoneyService {
 
-    @Autowired
     private LogMoneyMapper logMoneyMapper;
 
+    @Autowired
     public void setLogMoneyMapper(LogMoneyMapper logMoneyMapper) {
         super.setBaseDAO(logMoneyMapper);
         this.logMoneyMapper = logMoneyMapper;

@@ -8,20 +8,21 @@ import org.springframework.stereotype.Service;
 
 /**
  * Created by Administrator on 2017/12/22.
- * @author  ChuYiming
+ *
+ * @author ChuYiming
  */
 @Service
-public class LogTxServiceImpl extends AbstractServiceImpl  implements LogTxService {
+public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxService {
     /**
      * 提现记录 记录永远保存 不支持删除 不支持修改  允许用户管理了查看记录
-     *提现状态 1 yu 0
+     * 提现状态 1 yu 0
      */
-    @Autowired
     private LogTxMapper logTxMapper;
 
-    public void setLogTxMapper(LogTxMapper logTxMapper){
+    @Autowired
+    public void setLogTxMapper(LogTxMapper logTxMapper) {
         super.setBaseDAO(logTxMapper);
-        this.logTxMapper= logTxMapper;
+        this.logTxMapper = logTxMapper;
     }
 
 }

@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 
 /**
  * Created by Administrator on 2017/12/21.
+ *
  * @author ChuYiming
  */
 @Service
 public class BankCardServiceImpl extends AbstractServiceImpl implements BankCardService {
 
-    @Autowired
     private BankCardMapper bankCardMapper;
 
+    @Autowired
     public void setBankCardMapper(BankCardMapper bankCardMapper) {
         super.setBaseDAO(bankCardMapper);
         this.bankCardMapper = bankCardMapper;
