@@ -19,22 +19,14 @@
     from ticket
     where kid = #{kid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from ticket
-    where kid = #{kid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from ticket where kid = #{kid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Ticket">
-    insert into ticket (kid, name, type, 
-      tkmoney, tktime)
-    values (#{kid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{tkmoney,jdbcType=INTEGER}, #{tktime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Ticket">
+
+  <insert id="save" parameterType="com.p2p.bean.Ticket">
     insert into ticket
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="kid != null">
-        kid,
-      </if>
       <if test="name != null">
         name,
       </if>
@@ -49,9 +41,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="kid != null">
-        #{kid,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -66,7 +55,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Ticket">
+
+  <update id="update" parameterType="com.p2p.bean.Ticket">
     update ticket
     <set>
       <if test="name != null">
@@ -82,14 +72,6 @@
         tktime = #{tktime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where kid = #{kid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Ticket">
-    update ticket
-    set name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
-      tkmoney = #{tkmoney,jdbcType=INTEGER},
-      tktime = #{tktime,jdbcType=TIMESTAMP}
     where kid = #{kid,jdbcType=INTEGER}
   </update>
 </mapper>
