@@ -27,28 +27,14 @@
     from tzb
     where tzid = #{tzid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from tzb
-    where tzid = #{tzid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from tzb where tzid = #{tzid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Tzb">
-    insert into tzb (tzid, uid, juid, 
-      money, tztime, nprofit, 
-      cpname, baid, resint1, 
-      resint2, resstr1, resstr2
-      )
-    values (#{tzid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{juid,jdbcType=INTEGER}, 
-      #{money,jdbcType=DECIMAL}, #{tztime,jdbcType=TIMESTAMP}, #{nprofit,jdbcType=REAL}, 
-      #{cpname,jdbcType=VARCHAR}, #{baid,jdbcType=INTEGER}, #{resint1,jdbcType=INTEGER}, 
-      #{resint2,jdbcType=INTEGER}, #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Tzb">
+
+  <insert id="save" parameterType="com.p2p.bean.Tzb">
     insert into tzb
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tzid != null">
-        tzid,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -84,9 +70,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tzid != null">
-        #{tzid,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -122,7 +105,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Tzb">
+
+  <update id="update" parameterType="com.p2p.bean.Tzb">
     update tzb
     <set>
       <if test="uid != null">
@@ -159,21 +143,6 @@
         resstr2 = #{resstr2,jdbcType=VARCHAR},
       </if>
     </set>
-    where tzid = #{tzid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Tzb">
-    update tzb
-    set uid = #{uid,jdbcType=INTEGER},
-      juid = #{juid,jdbcType=INTEGER},
-      money = #{money,jdbcType=DECIMAL},
-      tztime = #{tztime,jdbcType=TIMESTAMP},
-      nprofit = #{nprofit,jdbcType=REAL},
-      cpname = #{cpname,jdbcType=VARCHAR},
-      baid = #{baid,jdbcType=INTEGER},
-      resint1 = #{resint1,jdbcType=INTEGER},
-      resint2 = #{resint2,jdbcType=INTEGER},
-      resstr1 = #{resstr1,jdbcType=VARCHAR},
-      resstr2 = #{resstr2,jdbcType=VARCHAR}
     where tzid = #{tzid,jdbcType=INTEGER}
   </update>
 </mapper>

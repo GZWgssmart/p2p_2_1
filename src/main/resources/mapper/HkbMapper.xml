@@ -42,36 +42,14 @@
     from hkb
     where hkid = #{hkid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from hkb
-    where hkid = #{hkid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from hkb where hkid = #{hkid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Hkb">
-    insert into hkb (hkid, uid, rname, 
-      cpname, rnum, tnum, 
-      ytime, rtime, bzname, 
-      ybx, rbx, ylx, rlx, 
-      ybj, rbj, yfc, rfc, 
-      yucount, status, baid, 
-      yustartime, huid, resint1, 
-      resint2, resstr1, resstr2
-      )
-    values (#{hkid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, 
-      #{cpname,jdbcType=VARCHAR}, #{rnum,jdbcType=INTEGER}, #{tnum,jdbcType=INTEGER}, 
-      #{ytime,jdbcType=TIMESTAMP}, #{rtime,jdbcType=TIMESTAMP}, #{bzname,jdbcType=VARCHAR}, 
-      #{ybx,jdbcType=DECIMAL}, #{rbx,jdbcType=DECIMAL}, #{ylx,jdbcType=DECIMAL}, #{rlx,jdbcType=DECIMAL}, 
-      #{ybj,jdbcType=DECIMAL}, #{rbj,jdbcType=DECIMAL}, #{yfc,jdbcType=DECIMAL}, #{rfc,jdbcType=DECIMAL}, 
-      #{yucount,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{baid,jdbcType=INTEGER}, 
-      #{yustartime,jdbcType=TIMESTAMP}, #{huid,jdbcType=INTEGER}, #{resint1,jdbcType=INTEGER}, 
-      #{resint2,jdbcType=INTEGER}, #{resstr1,jdbcType=VARCHAR}, #{resstr2,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Hkb">
+
+  <insert id="save" parameterType="com.p2p.bean.Hkb">
     insert into hkb
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="hkid != null">
-        hkid,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -149,9 +127,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="hkid != null">
-        #{hkid,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -229,7 +204,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Hkb">
+
+  <update id="update" parameterType="com.p2p.bean.Hkb">
     update hkb
     <set>
       <if test="uid != null">
@@ -308,35 +284,6 @@
         resstr2 = #{resstr2,jdbcType=VARCHAR},
       </if>
     </set>
-    where hkid = #{hkid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Hkb">
-    update hkb
-    set uid = #{uid,jdbcType=INTEGER},
-      rname = #{rname,jdbcType=VARCHAR},
-      cpname = #{cpname,jdbcType=VARCHAR},
-      rnum = #{rnum,jdbcType=INTEGER},
-      tnum = #{tnum,jdbcType=INTEGER},
-      ytime = #{ytime,jdbcType=TIMESTAMP},
-      rtime = #{rtime,jdbcType=TIMESTAMP},
-      bzname = #{bzname,jdbcType=VARCHAR},
-      ybx = #{ybx,jdbcType=DECIMAL},
-      rbx = #{rbx,jdbcType=DECIMAL},
-      ylx = #{ylx,jdbcType=DECIMAL},
-      rlx = #{rlx,jdbcType=DECIMAL},
-      ybj = #{ybj,jdbcType=DECIMAL},
-      rbj = #{rbj,jdbcType=DECIMAL},
-      yfc = #{yfc,jdbcType=DECIMAL},
-      rfc = #{rfc,jdbcType=DECIMAL},
-      yucount = #{yucount,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      baid = #{baid,jdbcType=INTEGER},
-      yustartime = #{yustartime,jdbcType=TIMESTAMP},
-      huid = #{huid,jdbcType=INTEGER},
-      resint1 = #{resint1,jdbcType=INTEGER},
-      resint2 = #{resint2,jdbcType=INTEGER},
-      resstr1 = #{resstr1,jdbcType=VARCHAR},
-      resstr2 = #{resstr2,jdbcType=VARCHAR}
     where hkid = #{hkid,jdbcType=INTEGER}
   </update>
 </mapper>
