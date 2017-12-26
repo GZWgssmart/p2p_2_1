@@ -27,29 +27,29 @@
 
     <div class="account-right">
         <div id="myDebitCard" class="account-content">
-            <div id="card3" class="bank-card_3" onclick="addCard();" style="cursor:pointer;">
+            <div id="card3" class="bank-card_3" onclick="addBankCard();" style="cursor:pointer;">
                 <div class="bank-addCard"><a href="javascript:;">添加银行卡</a></div>
             </div>
         </div>
 
 
-        <div class="layui-container">
-            <div class="layui-row">
-                <div class="layui-col-md8">
-                    <div id="allCards">
-                        <script type="text/html" id="demo">
-                            {{#  layui.each(d, function(index, card){ }}
-                            <div style="border: solid 1px red">
-                                <p>{{ card.rname }}</p>
-                                <p>{{ card.type }}</p>
-                                <p>{{ card.cardno }}</p>
-                            </div>
-                            {{# } }}
-                        </script>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <%--<div class="layui-container">--%>
+        <%--<div class="layui-row">--%>
+        <%--<div class="layui-col-md8">--%>
+        <%--<div id="allCards">--%>
+        <%--<script type="text/html" id="demo">--%>
+        <%--{{#  layui.each(d, function(index, card){ }}--%>
+        <%--<div style="border: solid 1px red">--%>
+        <%--<p>{{ card.rname }}</p>--%>
+        <%--<p>{{ card.type }}</p>--%>
+        <%--<p>{{ card.cardno }}</p>--%>
+        <%--</div>--%>
+        <%--{{# } }}--%>
+        <%--</script>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
     </div>
 </div>
 </div>
@@ -62,27 +62,34 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/account.js"></script>
 
 <script>
-    layui.use(['element', 'layer', 'laytpl'], function () {
-        var $ = layui.$;
-        var element = layui.element;
-        var layer = layui.layer;
-        var laytpl = layui.laytpl;
-
-        var getTpl = $('#demo').html()
-            , view = document.getElementById('allCards');
-        // 获取数据
-        $.get('<%=path %>/bankCard/allCards?uid='+${user.uid},
-            function (data) {
-                fenye(data[0]);
-            });
-
-        // 渲染数据
-        function fenye(data) {
-            laytpl(getTpl).render(data, function (html) {
-                view.innerHTML = html;
-            });
-        }
-
-    });
+    <%-- 跳转到银行卡的添加页面 uid传递过去 --%>
+    function addBankCard() {
+        window.location.href = "<%=path%>/page/bankCard/addCard"
+    }
 </script>
+<%--<script>--%>
+<%--layui.use(['element', 'layer', 'laytpl'], function () {--%>
+<%--var $ = layui.$;--%>
+<%--var element = layui.element;--%>
+<%--var layer = layui.layer;--%>
+<%--var laytpl = layui.laytpl;--%>
+
+<%--var getTpl = $('#demo').html()--%>
+<%--, view = document.getElementById('allCards');--%>
+<%--// 获取数据--%>
+<%--$.get('<%=path %>/data/bankCard/allCards?uid='+${user.uid},--%>
+<%--function (data) {--%>
+<%--fenye(data[0]);--%>
+<%--});--%>
+
+<%--// 渲染数据--%>
+<%--function fenye(data) {--%>
+<%--laytpl(getTpl).render(data, function (html) {--%>
+<%--view.innerHTML = html;--%>
+<%--});--%>
+<%--}--%>
+
+<%--});--%>
+<%--</script>--%>
+
 </html>
