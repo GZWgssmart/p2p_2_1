@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 7025
-  Date: 2017/12/21
-  Time: 15:04
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="account-left">
     <div class="account-left-nav">
@@ -13,8 +6,10 @@
             <li class=""><a href="<%=path %>/page/user/account">账户总览</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#ipay">充值</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#cash">提现</a></li>
-            <li class=""><a id="myCoupon" href="https://www.pujinziben.com/account.html#taste">我的赠券<i id="couponCount"></i></a></li>
-            <li class=""><a href="https://www.pujinziben.com/account.html#fund">资金记录</a></li>
+
+            <li class=""><a id="myCoupon" href="<%=path %>/page/user/taste">我的赠券<i id="couponCount"></i></a></li>
+
+            <li class=""><a href="<%=path %>/page/user/fund">资金记录</a></li>
         </ul>
         <div class="navbar icon icon-self">我的管理</div>
         <ul class="sub-nav">
@@ -26,8 +21,8 @@
         </ul>
         <div class="navbar icon icon-settings">账户设置</div>
         <ul class="sub-nav">
-            <li class=""><a href="<%=path %>/page/user/safe">安全设置</a></li>
             <li class=""><a href="<%=path%>/page/bankCard/bankCard">我的银行卡</a></li>
+            <li class=""><a href="<%=path %>/page/user/safe">安全设置</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#msg">消息中心</a></li>
         </ul>
     </div>
