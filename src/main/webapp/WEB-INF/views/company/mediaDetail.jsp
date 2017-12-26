@@ -56,7 +56,6 @@
         return null;
     }
     var mediaId = GetQueryString("mediaId");
-alert(mediaId);
     layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
         var element = layui.element;

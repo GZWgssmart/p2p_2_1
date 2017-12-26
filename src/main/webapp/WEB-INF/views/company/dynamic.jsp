@@ -21,9 +21,6 @@
         <input class="layui-input" name="title" id="title" autocomplete="off" placeholder="搜索标题"/>
     </div>
     <div class="layui-inline">
-        <input class="layui-input" name="url" id="url" autocomplete="off" placeholder="搜索url"/>
-    </div>
-    <div class="layui-inline">
         <input class="layui-input" name="createTime" id="createTime" autocomplete="off" placeholder="搜索时间"/>
     </div>
     <button class="layui-btn" data-type="reload">搜索</button>
@@ -36,20 +33,13 @@
     <button class="layui-btn" data-type="delete">删除文章</button>
 </div>
 
-<table id="allReport_table" lay-filter="demo"></table>
+<table id="allDynamic_table" lay-filter="demo"></table>
 
 <script type="text/html" id="imgUtil">
     {{#  if(d.pic !== null && d.pic != ''){ }}
     <img src="<%=path %>/{{ d.pic }}" alt="d.pic" />
     {{#  } else { }}
     <span>没有封面图</span>
-    {{#  } }}
-</script>
-<script type="text/html" id="urlUtil">
-    {{#  if(d.url !== null && d.url != ''){ }}
-    <a target="_blank" href="{{ d.url }}">{{ d.url }}</a>
-    {{#  } else { }}
-    <span>没有链接</span>
     {{#  } }}
 </script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -60,15 +50,14 @@
         var $ = layui.$;
 
         table.render({
-            elem: '#allReport_table'
-            ,url: '<%=path %>/data/company/pagerCriteria'
+            elem: '#allDynamic_table'
+            ,url: '<%=path %>/data/dynamic/pagerCriteria'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'mid', title:'ID', width:50, fixed: 'left'}
+                ,{field:'dyid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'title', title:'标题', width:150}
                 ,{field:'summary', title:'摘要', width:200}
                 ,{field:'pic', title:'封面', width:120, templet: '#imgUtil'}
-                ,{field:'url', title:'链接', width:80, templet: '#urlUtil'}
                 ,{field:'createdTime', title:'创建时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime)}}</div>'}
             ]]
             ,id: 'idTest'
@@ -142,7 +131,6 @@
         var search = {
             reload: function(){
                 var title = $('#title');
-                var url = $('#url');
                 var createTime =$('#createTime');
                 //执行重载
                 table.reload('idTest', {
@@ -151,7 +139,6 @@
                     }
                     ,where: {
                         title: title.val(),
-                        url:url.val(),
                         createTime:createTime.val()
                     }
                 });
