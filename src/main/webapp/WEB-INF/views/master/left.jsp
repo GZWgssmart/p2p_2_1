@@ -13,9 +13,7 @@
             <li class=""><a href="<%=path %>/page/user/account">账户总览</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#ipay">充值</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#cash">提现</a></li>
-
             <li class=""><a id="myCoupon" href="https://www.pujinziben.com/account.html#taste">我的赠券<i id="couponCount"></i></a></li>
-
             <li class=""><a href="https://www.pujinziben.com/account.html#fund">资金记录</a></li>
         </ul>
         <div class="navbar icon icon-self">我的管理</div>
@@ -28,8 +26,8 @@
         </ul>
         <div class="navbar icon icon-settings">账户设置</div>
         <ul class="sub-nav">
-            <li class=""><a href="https://www.pujinziben.com/account.html#bank">我的银行卡</a></li>
             <li class=""><a href="<%=path %>/page/user/safe">安全设置</a></li>
+            <li class=""><a href="<%=path%>/page/user/bankCard">我的银行卡</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#msg">消息中心</a></li>
         </ul>
     </div>

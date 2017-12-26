@@ -5,6 +5,8 @@ import com.p2p.utils.EncryptUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * Created by 娃娃鱼 on 2017/12/21.
  */
@@ -27,8 +29,8 @@ public class UserTest extends BaseTest {
     @Test
     public void testGetByPhone() {
 //        userService.getByPhonePwd("15083562555",EncryptUtils.md5("123456"));
-//        userService.getById(1);
-        userService.getByPhone("13500000000");
+        userService.getById(1);
+//        userService.getByPhone("13500000000");
     }
 
     @Test
@@ -43,5 +45,9 @@ public class UserTest extends BaseTest {
         user.setRname("张三");
         userService.update(user);
     }
-
+    @Test
+    public void testCard(){
+//        List<Object> userList =  userService.;
+//        System.out.println(userList);
+    }
 }

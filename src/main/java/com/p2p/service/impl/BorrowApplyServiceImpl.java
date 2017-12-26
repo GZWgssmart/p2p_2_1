@@ -23,10 +23,7 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
     }
 
     @Override
-    public ServerResponse updateChecked(Integer baid, Integer status, Date cktime) {
-        if(borrowApplyMapper.updateChecked(baid, status, cktime) == 1) {
-            return ServerResponse.createBySuccess("修改成功");
-        }
-        return ServerResponse.createByError("修改失败");
+    public int updateChecked(Integer baid, Integer status, Date cktime) {
+        return 0;
     }
 }

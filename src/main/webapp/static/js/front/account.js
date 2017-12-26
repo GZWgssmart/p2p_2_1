@@ -4220,23 +4220,21 @@ function initMyDebitCard() {
 }
 //添加银行卡
 function addCard(){
-	var param={uid:utils.Storage.getItem('uid')};
-	utils.ajax({
-        url:'front/addBankInfo.do',
-        data:JSON.stringify(param),
-        dataType:'json',
-        success: function(data){
-        	if(data.error == '0'){
-        		$('#myDebitCard').empty().html(data.html);
-        	}else if(data.msg=='请先注册汇付'){
-        		utils.alert(data.msg,function(){
-        			window.location.href="registpay.html";
-        		});
-        	}else{
-        		utils.alert(data.msg);
-        	}
-        }
-    })
+    // var param={uid:utils.Storage.getItem('uid')};
+    // utils.ajax({
+    //     url:'user/addCard',
+    //     data:JSON.stringify(param),
+    //     dataType:'json',
+    //     success: function(data){
+    //     	if(data.error == '0'){
+    //     		$('#myDebitCard').empty().html(data.html);
+    //     	}else{
+    //     		utils.alert(data.msg);
+    //     	}
+    //     }
+    // })
+
+
 }
 //消息中心
 function initMsgCenters(){

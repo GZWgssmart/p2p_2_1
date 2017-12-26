@@ -98,7 +98,7 @@
     min-height: 864px;
     padding: 27px 40px 100px;
     display: table-cell;
-    background: url(/static/images/product-loading.gif) center center no-repeat;
+    background: url(../../images/product-loading.gif)center center no-repeat;
     background-color: #fff;
     vertical-align: top;
 }
@@ -309,7 +309,7 @@ li.interval {
 p.tips-title {
     padding: 10px 0 10px 50px;
     line-height: 26px;
-    background: url(/static/images/tips.png) 24px 15px no-repeat;
+    background: url(../../images/tips.png) 24px 15px no-repeat;
     background-color: #fff5db;
     border: 1px solid #f5c77f;
     color: #777;
@@ -396,14 +396,13 @@ p.tips-title b {
 .luckynum {
     margin: 10px 8px 0 0;
 }
-
-.center-profit .luckynum #DetailsIcon {
-    display: block;
-    width: 17px;
-    height: 25px;
-    float: left;
-    background: url(/static/images/account/icon-wen.png) 0 13px no-repeat;
-    cursor: pointer;
+.center-profit .luckynum #DetailsIcon{
+	display:block;
+	width:17px;
+	height: 25px;
+	float:left;
+	background: url(../../images/account/icon-wen.png)0 13px no-repeat;
+	cursor: pointer;
 }
 
 .center-profit .luckynum .luckyLink > b {
@@ -1296,7 +1295,6 @@ p.tips-title b {
 .taste-list .bg-date,
 .taste-list .xj-date,
 .taste-list .xj-nouse,
-.taste-list .xj-use {
     margin: 14px;
     width: 420px;
     height: 73px;
@@ -1305,14 +1303,14 @@ p.tips-title b {
 
 .taste-list .bg-nouse,
 .taste-list .xj-nouse {
-    background: url(/static/images/account/quan_once.png) bottom center no-repeat;
+    background: url(../../images/account/quan_once.png) bottom center no-repeat;
 }
 
 .taste-list .bg-use,
 .taste-list .bg-date,
 .taste-list .xj-date,
-.taste-list .xj-use {
-    background: url(/static/images/account/quan_oneuse.png) bottom center no-repeat;
+.taste-list .xj-use{
+    background: url(../../images/account/quan_oneuse.png) bottom center no-repeat;
 }
 
 .taste-list .bg-nouse .taste-bg-l,
@@ -2031,15 +2029,15 @@ p.tips-title b {
 /*bank card*/
 
 .bank-card_1 {
-    background: url('/static/images/debitCard/debitCard01.jpg');
+    background: url(../../images/debitCard/debitCard03.jpg);
 }
 
 .bank-card_2 {
-    background: url('/static/images/debitCard/debitCard02.jpg');
+    background: url(../../images/debitCard/debitCard03.jpg);
 }
 
 .bank-card_3 {
-    background: url('/static/images/debitCard/debitCard03.jpg');
+    background: url(../../images/debitCard/debitCard03.jpg);
 }
 
 .bank-card_1,
