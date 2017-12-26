@@ -10,7 +10,7 @@
     <div class="account-left-nav">
         <div class="navbar icon icon-account">我的账户</div>
         <ul class="sub-nav">
-            <li class=""><a href="https://www.pujinziben.com/account.html#account">账户总览</a></li>
+            <li class=""><a href="<%=path %>/page/user/account">账户总览</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#ipay">充值</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#cash">提现</a></li>
 
@@ -23,12 +23,13 @@
             <li class=""><a href="https://www.pujinziben.com/account.html#invest">投资管理</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#claimm">债权管理</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#claimb">债权购买</a></li>
-            <li class="active"><a href="https://www.pujinziben.com/account.html#loan">借款管理</a></li>
+            <li class="active"><a href="localhost://8080/page/borrowApply/addPage">申请借款</a></li>
+            <li class="active"><a href="localhost://8080/page/borrowApply/management">借款管理</a></li>
         </ul>
         <div class="navbar icon icon-settings">账户设置</div>
         <ul class="sub-nav">
             <li class=""><a href="https://www.pujinziben.com/account.html#bank">我的银行卡</a></li>
-            <li class=""><a href="https://www.pujinziben.com/account.html#safe">安全设置</a></li>
+            <li class=""><a href="<%=path %>/page/user/safe">安全设置</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#msg">消息中心</a></li>
         </ul>
     </div>

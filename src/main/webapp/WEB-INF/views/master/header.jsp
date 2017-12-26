@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="nav">
     <div class="wrap cl">
-        <div class="logo"><a href="#"><img src="<%=path%>/static/images/logo.png" alt="普金资本"></a></div>
+        <div class="logo"><a href="localhost://8080"><img src="<%=path%>/static/images/logo.png" alt="普金资本"></a></div>
         <div class="nav-bar">
             <ul>
                 <li class="icon icon-acc"><a href="javascript:void(0);">我的账户</a></li>
                 <!-- <li><a href="javascript:void(0);">信息披露</a></li> -->
                 <li><a href="https://www.pujinziben.com/about.html">信息披露</a></li>
                 <!-- <li><a href="javascript:void(0);" onclick="newPointer()">新手指导</a></li> -->
-                <li><a href="https://www.pujinziben.com/safety.html">安全保障</a></li>
+                <li><a href="localhost://8080/statically/insurance">安全保障</a></li>
                 <li>
                     <a href="https://www.pujinziben.com/investlist.html">投资理财</a>
                     <div class="sub-nav">
@@ -28,7 +28,7 @@
                         <p class="right"></p>
                     </div>
                 </li>
-                <li><a href="https://www.pujinziben.com/">首页</a></li>
+                <li><a href="localhost://8080">首页</a></li>
             </ul>
         </div>
     </div>

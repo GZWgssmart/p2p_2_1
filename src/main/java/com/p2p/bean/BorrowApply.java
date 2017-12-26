@@ -1,8 +1,10 @@
 package com.p2p.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.p2p.common.Constants;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ public class BorrowApply {
 
     private String rname;
 
-    @NotBlank(message="金额不能为空")
+    @DecimalMin(value="10000",message = "最小借款金额不能低于10000")
     private BigDecimal money;
 
     private Integer uid;

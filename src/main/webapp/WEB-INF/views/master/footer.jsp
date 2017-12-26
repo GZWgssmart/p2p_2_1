@@ -99,3 +99,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
+<script>
+    $('.sidebar-top').click(function () {
+        $('body').scrollTop(0);
+    });
+</script>

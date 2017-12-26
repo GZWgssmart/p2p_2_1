@@ -36,7 +36,7 @@
             <form id="loginForm">
                 <div class="from">
                     <label for="phone" class="icon icon-user"></label>
-                    <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号"/>
+                    <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号" maxlength="11"/>
                 </div>
                 <div class="from">
                     <label for="password" class="icon icon-pwd"></label>
@@ -120,7 +120,7 @@
             function (data) {
                 if (data.code == '0') {
                     utils.alert('登录成功！', function () {
-                        window.location.href = '<%=path %>/page/borrow_apply/page';
+                        window.location.href = '<%=path %>/page/user/account';
                     })
                 } else {
                     utils.alert(data.message);

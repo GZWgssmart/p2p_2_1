@@ -101,15 +101,6 @@ body {
     background-color: #ebebeb;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: 100%
-}
-
 a,
 area {
     outline: none;
@@ -889,7 +880,7 @@ color: #999;
 	overflow-y: scroll;
 }
 .popup-from .label {
-    margin: 20px 0 0 31px;
+    margin: 20px 0 0 81px;
 }
 
 .popup-from .label label {
