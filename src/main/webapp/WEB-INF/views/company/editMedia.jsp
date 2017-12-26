@@ -13,69 +13,83 @@
 <body>
 <div class="layui-container">
     <div class="layui-row">
-        <div class="layui-col-md12">
-            <form id="editMediaReport" class="layui-form">
-                <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label">标题</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title" id="title" lay-verify autocomplete="off" placeholder="请输入标题"
-                               class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">摘要</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="summary" lay-verify autocomplete="off" placeholder="请输入摘要"
-                               class="layui-input" id="summary">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-upload">
-                        <label class="layui-label" style="float: left;display: block;padding: 9px 15px;width: 80px;
-                                font-weight: 400;text-align: right;">
-                            <button type="button" class="layui-btn" id="test0">封面图</button>
-                        </label>
-                        <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="pic" width="200" height="200">
-                            <p id="demoText"></p>
+        <div class="layui-col-md12" id="view">
+            <script id="demo" type="text/html">
+                <form id="editMediaReport" class="layui-form">
+                    <div class="layui-form-item" style="margin-top: 20px;">
+                        <label class="layui-form-label">标题</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" id="title" lay-verify autocomplete="off" placeholder="请输入标题"
+                                   class="layui-input" value="{{ d.title }}" />
                         </div>
                     </div>
-                    <input type="hidden" name="pic" id="firstImg"/>
-                </div>
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label"></label>
-                    <div class="layui-input-block">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">摘要</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="summary" lay-verify autocomplete="off" placeholder="请输入摘要"
+                                   class="layui-input" id="summary" value="{{ d.summary }}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-upload">
+                            <label class="layui-label" style="float: left;display: block;padding: 9px 15px;width: 80px;
+                                font-weight: 400;text-align: right;">
+                                <button type="button" class="layui-btn" id="test0">封面图</button>
+                            </label>
+                            <div class="layui-upload-list">
+                                <img class="layui-upload-img" src="<%=path %>/{{ d.pic }}" id="pic" width="200" height="200">
+                                <p id="demoText"></p>
+                            </div>
+                        </div>
+                        <input type="hidden" name="pic" id="firstImg"/>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
                         <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
-                                  id="content"></textarea>
+                                  id="content">{{ d.content }}</textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">地址</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="url" id="url" lay-verify autocomplete="off" placeholder="请输入地址"
-                               class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="url" id="url" lay-verify autocomplete="off" placeholder="请输入地址"
+                                   class="layui-input" value="{{ d.url }}">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">时间</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="whatTime" id="test1" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="whatTime" id="test1" lay-verify="laydate"
+                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" value="{{ formatDate(d.createdTime) }}">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item" style="margin-top: 20px;">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="fabu">修改</button>
+                    <div class="layui-form-item" style="margin-top: 20px;">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="fabu">修改</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </script>
         </div>
     </div>
 </div>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script src="<%=path %>/static/js/home/public.js"></script>
 <script>
-    layui.use(['form', 'laytpl', 'layedit', 'upload','laydate'], function () {
+    //获取url上的值,获取页面传过来的值
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+    var mediaId = GetQueryString("mediaId");
+    layui.use(['form', 'laytpl', 'layedit', 'upload', 'laydate'], function () {
 
         var form = layui.form;
         var $ = layui.jquery;
@@ -84,6 +98,15 @@
         var layedit = layui.layedit;
         var upload = layui.upload;
         var laydate = layui.laydate;
+
+        var getTpl = demo.innerHTML
+            , view = document.getElementById('view');
+        $.get('<%=path %>/data/company/details?mediaId=' + 1,
+            function (data) {
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            });
 
         // 编辑器上传图片接口
         layedit.set({
@@ -137,13 +160,9 @@
         //执行一个laydate实例
         laydate.render({
             elem: '#test1' //指定元素
-            ,type: 'datetime'
+            , type: 'datetime'
         });
 
-        // 选择框
-        form.on('select(typeId)', function (data) {
-            console.log(data.value) //得到被选中的值
-        });
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
             $('#content').val(layedit.getContent(editIndex));

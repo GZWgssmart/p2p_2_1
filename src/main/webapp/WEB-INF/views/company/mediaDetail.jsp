@@ -45,7 +45,7 @@
 </div>
 </body>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
-<script src="<%=path %>/static/js/public.js"></script>
+<script src="<%=path %>/static/js/home/public.js"></script>
 <script>
     //获取url上的值,获取页面传过来的值
     function GetQueryString(name) {
