@@ -12,10 +12,16 @@
 %>
 <head>
     <meta charset="utf-8">
-    <title>媒体报道详情</title>
+    <title>公司动态详情</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
     <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 </head>
+<style>
+    img{
+       width: 600px;
+        height: auto;
+    }
+</style>
 <body>
 <ul class="layui-nav layui-bg-blue" lay-filter="">
     <li class="layui-nav-item"><a href="">首页</a></li>
@@ -24,11 +30,6 @@
 <div class="layui-container">
     <div id="view">
         <script id="demo" type="text/html">
-            {{#  if(d.url !== null && d.url != ''){ }}
-            <a target="_blank" href="{{ d.url }}">{{ d.url }}</a>
-            {{#  } else { }}
-            <span><a href="#"></a></span>
-            {{#  } }}
             <h3>{{ d.title }}</h3>
             <p>{{ d.summary }}</p>
             {{#  if(d.pic !== null){ }}
@@ -56,7 +57,7 @@
         }
         return null;
     }
-    var mediaId = GetQueryString("mediaId");
+    var dynamicId = GetQueryString("dynamicId");
     layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
         var element = layui.element;
@@ -64,7 +65,7 @@
 
         var getTpl = demo.innerHTML
             , view = document.getElementById('view');
-        $.get('<%=path %>/data/company/details?mediaId=' + mediaId,
+        $.get('<%=path %>/data/dynamic/details?dynamicId=' + dynamicId,
             function (data) {
                 laytpl(getTpl).render(data, function (html) {
                     view.innerHTML = html;

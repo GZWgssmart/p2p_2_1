@@ -8,6 +8,15 @@
         ]]>
     </insert>
 
+    <sql id="pageCriteria_common">
+        <if test="dynamic != null and dynamic.title != null and dynamic.title != ''">
+            where d.title like concat('%', #{dynamic.title}, '%')
+        </if>
+        <if test="dynamic != null and dynamic.createdTime != null and dynamic.createdTime != ''">
+            and d.created_time <![CDATA[<=]]> #{dynamic.createdTime}
+        </if>
+    </sql>
+
     <select id="listPagerCriteria" resultType="com.p2p.bean.Dynamic">
         <![CDATA[
           select d.dyid, d.title, d.summary, d. pic, d.created_time as createdTime from dynamic d
@@ -17,17 +26,17 @@
     </select>
 
     <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Dynamic">
-        select count(d.dyid) from dynamic d
+        <![CDATA[
+          select count(d.dyid) from dynamic d
+        ]]>
         <include refid="pageCriteria_common"/>
     </select>
 
-    <sql id="pageCriteria_common">
-        <if test="dynamic != null and dynamic.title != null and dynamic.title != ''">
-            where d.title like concat('%', #{dynamic.title}, '%')
-        </if>
-        <if test="dynamic != null and dynamic.createdTime != null and dynamic.createdTime != ''">
-            and d.created_time <![CDATA[<=]]> #{dynamic.createdTime}
-        </if>
-    </sql>
+    <select id="getById" resultType="com.p2p.bean.Dynamic">
+        <![CDATA[
+          select * from dynamic d where d.dyid = #{dynamicId}
+        ]]>
+    </select>
+
 
 </mapper>
