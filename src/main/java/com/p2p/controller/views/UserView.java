@@ -40,4 +40,8 @@ public class UserView {
         return "user/fund";
     }
 
+    @RequestMapping("recommend")
+    public String recommend(){
+        return "user/recommendPage";
+    }
 }

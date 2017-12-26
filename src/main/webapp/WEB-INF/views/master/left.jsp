@@ -26,7 +26,7 @@
             <li class=""><a href="https://www.pujinziben.com/account.html#msg">消息中心</a></li>
         </ul>
     </div>
-    <a href="#" class="tuijian">
+    <a href="<%=path %>/page/user/recommend" class="tuijian">
         <img src="<%=path%>/static/images/tuijian.png">
     </a>
 </div>
