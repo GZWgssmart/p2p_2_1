@@ -27,7 +27,7 @@
         <div class="navbar icon icon-settings">账户设置</div>
         <ul class="sub-nav">
             <li class=""><a href="<%=path %>/page/user/safe">安全设置</a></li>
-            <li class=""><a href="<%=path%>/page/user/bankCard">我的银行卡</a></li>
+            <li class=""><a href="<%=path%>/page/bankCard/addCard">我的银行卡</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#msg">消息中心</a></li>
         </ul>
     </div>
