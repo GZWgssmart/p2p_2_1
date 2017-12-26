@@ -19,7 +19,7 @@ import java.util.List;
  * @author ChuYiming
  */
 @Controller
-@RequestMapping("/bankCard")
+@RequestMapping("/data/bankCard")
 public class BankCardController {
 
     @Autowired
