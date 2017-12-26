@@ -34,13 +34,8 @@ public class UserTest extends BaseTest {
     @Test
     public void testUpdate() {
         User user = new User();
-        user.setUid(1);
-        user.setUname("假名");
-        user.setZpwd(EncryptUtils.md5("123456"));
-        user.setIdtype("老司机证");
-        user.setIdno("80080080011");
-        user.setEmail("123@qq.com");
-        user.setRname("张三");
+        user.setUid(2);
+        user.setEmail("87654321@qq.com");
         userService.update(user);
     }
 

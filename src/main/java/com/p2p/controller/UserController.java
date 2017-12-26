@@ -49,4 +49,13 @@ public class UserController {
         return serverResponse;
     }
 
+    @RequestMapping("edit")
+    @ResponseBody
+    public ServerResponse edit(User user) {
+        if(user.getUpwd() != null && user.getUpwd() != "") {
+            user.setUpwd(EncryptUtils.md5(user.getUpwd()));
+        }
+        return userService.update(user);
+    }
+
 }
