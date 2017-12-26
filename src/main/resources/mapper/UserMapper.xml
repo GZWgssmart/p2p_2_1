@@ -73,6 +73,9 @@
             <if test="rname != null and rname != ''">
                 rname = #{rname},
             </if>
+            <if test="face != null and face != ''">
+                face = #{face},
+            </if>
             <if test="sex != null">
                 sex = #{sex},
             </if>

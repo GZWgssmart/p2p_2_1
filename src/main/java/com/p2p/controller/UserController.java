@@ -1,10 +1,14 @@
 package com.p2p.controller;
 
+import com.p2p.bean.Rzvip;
 import com.p2p.bean.User;
+import com.p2p.common.BeanCopyUtils;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.UserService;
 import com.p2p.utils.EncryptUtils;
+import com.p2p.vo.UserRzvipVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +60,19 @@ public class UserController {
             user.setUpwd(EncryptUtils.md5(user.getUpwd()));
         }
         return userService.update(user);
+    }
+
+    @PostMapping("saveUserRzvip")
+    public ServerResponse saveUserRzvip(UserRzvipVO userRzvipVO) {
+        User user = new User();
+        Rzvip rzvip = new Rzvip();
+        try {
+            BeanCopyUtils.copy(user, userRzvipVO);
+            BeanCopyUtils.copy(rzvip, userRzvipVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userService.saveBorrow(user, rzvip);
     }
 
 }

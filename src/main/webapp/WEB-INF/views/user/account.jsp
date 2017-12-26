@@ -29,7 +29,7 @@
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
                 <li class="layui-this">用户总览</li>
-                <li>生利宝</li>
+                <li>用户信息</li>
             </ul>
             <div class="layui-tab-content" style="height: 100px;">
                 <!-- 用户总览-->
@@ -37,7 +37,7 @@
                     <div class="layui-col-md12" style="padding-top: 50px;">
                         <div class="layui-col-md5">
                             <div class="center-header">
-                                <img src="<%=path %>/static/${user.face}" width="120" height="120">
+                                <img src="<%=path %>/${user.face}" width="120" height="120">
                             </div>
                             <div class="center-self">
                                 <p class="name">${user.phone}</p>
@@ -85,54 +85,52 @@
                         </div>
                     </div>
                 </div>
-                <!-- 生利宝-->
+                <!-- 用户信息-->
                 <div class="layui-tab-item">
-                    <div class="slb-all">
-                        <div class="slb-left">
-                            <p><span id="slbSum">0.00</span>元</p>
-                            <h1>总金额</h1>
-                            <a href="javascript:slbaoTrading();">转入/转出</a>
-                        </div>
-                        <ul class="slb-right">
-                            <li>
-                                <h2><span id="annuRate">0.000</span>%</h2>
-                                <p>最近7日年化收益率</p>
-                            </li>
-                            <li>
-                                <h2><span id="prdRate">0.000</span>%</h2>
-                                <p>最新收益率</p>
-                            </li>
-                            <li>
-                                <h2><span id="totalProfit">0.00</span>元</h2>
-                                <p>生利宝历史累计收益</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="layui-tab layui-tab-brief" lay-filter="zhuanqian" style="float: left;">
-                        <ul class="layui-tab-title">
-                            <li class="layui-this">转出</li>
-                            <li>转入</li>
-                            <li>收益</li>
-                        </ul>
-                        <div class="layui-tab-content" style="height: 100px;">
-                            <div class="layui-tab-item layui-show">
-                                <table class="layui-table" lay-data="{height:400, url:'#', page:true, id:'zhuanqian', skin: 'row', even: true}">
-                                    <thead>
-                                    <tr>
-                                        <th lay-data="{field:'username', width:200}">日期</th>
-                                        <th lay-data="{field:'sex', width:150, sort: true}">金额</th>
-                                        <th lay-data="{field:'city', width:150}">生利宝余额</th>
-                                        <th lay-data="{field:'sign', width:150}">订单号</th>
-                                        <th lay-data="{field:'xinxi', width:150}">信息</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                            <div class="layui-tab-item">内容2</div>
-                            <div class="layui-tab-item">内容3</div>
+                    <div class="layui-row">
+                        <div class="layui-col-md12">
+                            <form id="addArticleForm" class="layui-form" lay-filter="shuaxin">
+                                <div class="layui-form-item">
+                                    <div class="layui-upload">
+                                        <label class="layui-label hidden" style="float: left;display: block;padding: 9px 15px;width: 80px;
+                                font-weight: 400;text-align: right;">
+                                            <button type="button" class="layui-btn" id="test0">修改头像</button>
+                                        </label>
+                                        <div class="layui-upload-list">
+                                            <img class="layui-upload-img" src="<%=path %>/${user.face}"
+                                                 id="demo1" width="120" height="120"/>
+                                            <p id="demoText"></p>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="face" id="firstImg"/>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">昵称</label>
+                                    <div class="layui-input-block" style="width: 250px">
+                                        <input type="text" name="uname" lay-verify autocomplete="off"
+                                               value="${user.uname }"
+                                               class="layui-input">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="uid" value="${user.uid}"/>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">性别</label>
+                                    <div class="layui-input-block">
+                                        <input type="hidden" name="sex" value=0 checked/>
+                                        <input type="radio" name="sex" value=1 title="男"/>
+                                        <input type="radio" name="sex" value=2 title="女"/>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="edit">修改信息</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -142,18 +140,60 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
-<!-- 客服QQ -->
-<script type="text/javascript" src="<%=path %>/static/js/front/account.js"></script>
 <script>
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);
     });
-    layui.use(['element','table'], function () {
+    layui.use(['element', 'table', 'form', 'upload'], function () {
         var $ = layui.jquery
             , element = layui.element
-            ,table = layui.table;
+            , table = layui.table
+            , form = layui.form
+            , upload = layui.upload;
 
+        //上传封面图
+        var uploadInst = upload.render({
+            elem: '#test0'
+            , url: '<%=path %>/file/firist'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res > 0) {
+                    return layer.msg('失败！');
+                } else {
+                    return $('#firstImg').val(res.msg);
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
 
+        //修改信息
+        form.on('submit(edit)', function (data) {
+            $.post('<%=path %>/data/user/edit',
+                data.field,
+                function (data) {
+                    if (data.code == 0) {
+                        layer.msg('修改成功！');
+                    } else {
+                        layer.msg("修改失败，请重新再试")
+                    }
+                }, 'json'
+            );
+            return false;
+        });
 
     });
 </script>

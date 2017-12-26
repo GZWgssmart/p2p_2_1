@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- 添加邮箱-->
             <div style="display: none;" id="editEmail">
                 <div class="popup-from">
                     <form class="layui-form">
@@ -100,6 +100,7 @@
                     </form>
                 </div>
             </div>
+            <!-- 修改手机号-->
             <div style="display: none;" id="editPhone">
                 <div class="popup-from step1">
                     <div class="label cl">
@@ -132,6 +133,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 修改密码-->
             <div style="display: none;" id="editPwd">
                 <div class="popup-from">
                     <form class="layui-form">
@@ -157,23 +159,46 @@
                     </form>
                 </div>
             </div>
+            <!-- 审核 -->
             <div style="display: none;" id="editIdType">
                 <div class="popup-from">
                     <form class="layui-form">
                         <div class="label cl layui-form-item">
                             <label>选择证件</label>
-                            <div class="layui-input-block">
-                            <select name="idtype">
-                                <option value="身份证">身份证</option>
-                                <option value="驾照">驾照</option>
-                            </select>
-                        </div>
+                                <select name="idtype">
+                                    <option></option>
+                                    <option value="身份证">身份证</option>
+                                    <option value="驾照">驾照</option>
+                                </select>
                         </div>
                         <div class="label cl layui-form-item">
                             <label>证件号</label><input type="text" name="idno" lay-verify="required" class="layui-input" maxlength="18" placeholder="输入证件号">
                         </div>
                         <div class="label cl layui-form-item">
                             <label>真实姓名</label><input type="text" name="rname" lay-verify="required" class="layui-input" placeholder="输入真实姓名">
+                        </div>
+                        <div class="label cl layui-form-item">
+                            <label>学历</label><input type="text" name="xl" lay-verify="required" class="layui-input" placeholder="输入您的学历">
+                        </div>
+                        <div class="label cl layui-form-item">
+                            <label>婚否</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="ism" value="未婚" title="未婚" checked="">
+                                <input type="radio" name="ism" value="已婚" title="已婚">
+                                <input type="radio" name="ism" value="保密" title="保密">
+                            </div>
+                        </div>
+                        <div class="label cl layui-form-item">
+                            <label>毕业院校</label><input type="text" name="bschool" lay-verify="required" class="layui-input" placeholder="输入毕业院校">
+                        </div>
+                        <div class="label cl layui-form-item">
+                            <label>居住地</label><input type="text" name="addr" lay-verify="required" class="layui-input" placeholder="输入居住地">
+                        </div>
+                        <div class="label cl layui-form-item">
+                            <label>工作</label><input type="text" name="work" lay-verify="required" class="layui-input" placeholder="输入工作">
+                        </div>
+                        <div class="label cl layui-form-item">
+                            <label>年龄</label><input type="text" name="age" lay-verify="required|number" class="layui-input" placeholder="输入年龄">
                         </div>
                         <input type="hidden" name="uid" value="${user.uid}"/>
                         <div class="layui-form-item">
@@ -288,7 +313,7 @@
 
         // 认证信息
         form.on('submit(typeSubmit)', function (data) {
-            $.post('<%=path %>/data/user/edit',
+            $.post('<%=path %>/data/user/saveUserRzvip',
                 data.field,
                 function (data) {
                     if (data.code == 0) {
