@@ -1,6 +1,7 @@
 package com.p2p.service;
 
 import com.p2p.bean.BorrowApply;
+import com.p2p.query.BorrowQuery;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,5 +30,13 @@ public class BorrowApplyTest extends BaseTest {
         borrowApply.setTerm(3);
         borrowApplyService.save(borrowApply);
         System.out.println(borrowApply.getBaid());
+    }
+
+    @Test
+    public void testListCir() {
+        BorrowQuery borrowQuery = new BorrowQuery();
+//        borrowQuery.setUid(1);
+//        borrowQuery.setNprofit(1f);
+        borrowApplyService.listPagerCriteria(1,3, borrowQuery);
     }
 }

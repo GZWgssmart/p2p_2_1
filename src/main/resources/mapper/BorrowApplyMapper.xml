@@ -30,6 +30,48 @@
     where baid = #{baid,jdbcType=INTEGER}
   </select>
 
+  <sql id="borrow_query_criteria">
+      <if test="query != null and query.bzid != null">
+        and ba.bzid = #{query.bzid}
+      </if>
+      <if test="query != null and query.ckstatus != null">
+        and ba.ckstatus = #{query.ckstatus}
+      </if>
+      <if test="query != null and query.term != null">
+        and ba.term = #{query.term}
+      </if>
+      <if test="query != null and query.uid != null">
+        and ba.uid = #{query.uid}
+      </if>
+      <if test="query != null and query.cpname != null">
+        and ba.cpname = #{query.cpname}
+      </if>
+      <if test="query != null and query.nprofit != null">
+        and bd.nprofit <![CDATA[<=]]> #{query.nprofit}
+      </if>
+  </sql>
+
+  <sql id="borrow_query">
+      from borrowapply ba, bz b, borrowdetail bd
+      where b.bzid = ba.bzid and bd.baid = ba.baid
+  </sql>
+
+  <select id="listPagerCriteria" resultType="com.p2p.vo.BorrowVO">
+    <![CDATA[
+      select ba.baid, ba.rname, ba.money, b.bzname, ba.uid, ba.ckstatus, ba.cktime, ba.type, ba.term,
+      ba.deadline, bd.cpname, bd.way, bd.nprofit, bd.money as moneyCount
+    ]]>
+    <include refid="borrow_query" />
+    <include refid="borrow_query_criteria" />
+    limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.query.BorrowQuery">
+      select count(ba.baid)
+      <include refid="borrow_query" />
+      <include refid="borrow_query_criteria" />
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from borrowapply where baid = #{baid,jdbcType=INTEGER}
   </delete>

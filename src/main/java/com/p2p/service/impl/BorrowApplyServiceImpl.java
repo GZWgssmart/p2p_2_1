@@ -2,6 +2,7 @@ package com.p2p.service.impl;
 
 import com.p2p.bean.BorrowApply;
 import com.p2p.bean.BorrowDetail;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.common.ValidationResult;
 import com.p2p.common.ValidationUtils;
@@ -34,9 +35,20 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
     }
 
     @Override
-    public int updateChecked(Integer baid, Integer status, Date cktime) {
-        return 0;
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(borrowApplyMapper.listPagerCriteria(pager, obj));
+        pager.setTotal(borrowApplyMapper.countCriteria(obj));
+        return pager;
     }
+
+        @Override
+        public ServerResponse updateChecked(Integer baid, Integer status, Date cktime) {
+            if(borrowApplyMapper.updateChecked(baid, status, cktime) == 1) {
+                return ServerResponse.createBySuccess("修改成功");
+            }
+            return ServerResponse.createByError("修改失败");
+        }
 
     @Override
     public ServerResponse saveBorrow(BorrowApply borrowApply, BorrowDetail borrowDetail) {
