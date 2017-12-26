@@ -91,19 +91,20 @@
                         <div class="layui-form">
                             <div class="layui-form-item">
                                 <div class="layui-inline">
-                                    <label class="layui-form-label">中文版</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="first" placeholder="yyyy-MM-dd">
+                                        <input type="text" class="layui-input" id="first" lay-verify="laydate" placeholder="yyyy-MM-dd">
                                     </div>
                                 </div>
+                                <span style="margin-left: 20px">至</span>
                                 <div class="layui-inline">
-                                    <label class="layui-form-label">国际版</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="end" placeholder="yyyy-MM-dd">
+                                        <input type="text" class="layui-input" id="end" lay-verify="laydate" placeholder="yyyy-MM-dd">
                                     </div>
                                 </div>
+                                <button class="layui-btn layui-btn-primary" data-type="reload">搜索</button>
                             </div>
                         </div>
+                        <table id="allRecommend_table" lay-filter="demo"></table>
                     </div>
                 </div>
             </div>
@@ -113,6 +114,7 @@
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
     $(function () {
@@ -121,13 +123,41 @@
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);
     });
-    layui.use(['element','table'], function () {
+    layui.use(['element','table','laydate'], function () {
         var $ = layui.jquery
             , element = layui.element
             ,table = layui.table;
+            var laydate=layui.laydate;
 
+        table.render({
+            elem: '#allRecommend_table'
+            ,url: '<%=path %>/data/recommend/pagerCriteria?uid='+${user.uid}
+            ,cols: [[
+                {checkbox: true, fixed: true}
+                ,{field:'rmid', title:'ID', width:50, fixed: 'left'}
+                ,{field:'tname', title:'被推荐人', width:150}
+                ,{field:'rname', title:'推荐人', width:200}
+                ,{field:'createdTime', title:'创建时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
+            ]]
+            ,id: 'idTest'
+            ,page: true
+            ,height: 500
+            ,response: {
+                statusName: 'status'
+                ,statusCode: 0
+                ,msgName: 'message'
+                ,countName: 'total'
+                ,dataName: 'rows'
+            }
+        });
 
+        laydate.render({
+            elem:'#first',
+        })
+        laydate.render({
+            elem:'#end',
 
+        })
     });
 </script>
 </html>
