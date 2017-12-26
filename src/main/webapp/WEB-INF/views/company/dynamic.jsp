@@ -27,9 +27,7 @@
 </div>
 
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-    <button class="layui-btn" data-type="isAll">验证是否全选</button>
+    <button class="layui-btn" data-type="detail">查看详情</button>
     <button class="layui-btn" data-type="delete">删除文章</button>
 </div>
 
@@ -58,7 +56,7 @@
                 ,{field:'title', title:'标题', width:150}
                 ,{field:'summary', title:'摘要', width:200}
                 ,{field:'pic', title:'封面', width:120, templet: '#imgUtil'}
-                ,{field:'createdTime', title:'创建时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime)}}</div>'}
+                ,{field:'createdTime', title:'创建时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
             ]]
             ,id: 'idTest'
             ,page: true
@@ -95,19 +93,12 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
+            detail: function(){ //获取选中数据
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
-            }
-            ,isAll: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
-                layer.msg(checkStatus.isAll ? '全选': '未全选')
+                if(data.length==1){
+                    window.open("<%=path %>/page/dynamic/dynamicDetail?dynamicId="+data[0].dyid);
+                }
             }
             ,delete: function(){ //验证是否全选
                 var checkStatus = table.checkStatus('idTest')

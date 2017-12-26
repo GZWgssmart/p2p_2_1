@@ -19,4 +19,9 @@ public class DynamicView {
     public String dynamicPage(){
         return "company/dynamic";
     }
+
+    @RequestMapping("dynamicDetail")
+    public String dynamicDetail(){
+        return "company/dynamicDetail";
+    }
 }

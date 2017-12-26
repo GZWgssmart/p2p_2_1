@@ -52,6 +52,9 @@
           update t_user
         ]]>
         <set>
+            <if test="upwd != null and upwd != ''">
+                upwd = #{upwd},
+            </if>
             <if test="uname != null and uname != ''">
                 uname = #{uname},
             </if>
