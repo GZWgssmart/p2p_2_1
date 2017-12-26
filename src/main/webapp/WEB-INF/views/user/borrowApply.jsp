@@ -175,8 +175,6 @@
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/current.js"></script>
-<!-- 客服QQ -->
-<script type="text/javascript" src="<%=path %>/static/js/front/account.js"></script>
 <script>
     var nowDate = new Date();
     layui.use(['form', 'laydate', 'upload'], function() {
