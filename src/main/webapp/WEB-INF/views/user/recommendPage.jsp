@@ -87,7 +87,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="layui-tab-item">内容2</div>
+                    <div class="layui-tab-item">
+                        <div class="layui-form">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">中文版</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input" id="first" placeholder="yyyy-MM-dd">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">国际版</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input" id="end" placeholder="yyyy-MM-dd">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
     </div>
@@ -99,7 +116,7 @@
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
     $(function () {
-        $("#uid").text(100000+${uid});
+        $("#uid").text(100000+${user.uid});
     })
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);
