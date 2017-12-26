@@ -11,29 +11,33 @@
   <sql id="Base_Column_List">
     bzid, bzname, status
   </sql>
+
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from bz
     where bzid = #{bzid,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from bz
     where bzid = #{bzid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Bz">
+
+  <insert id="save" parameterType="com.p2p.bean.Bz">
     insert into bz (bzid, bzname, status
       )
     values (#{bzid,jdbcType=INTEGER}, #{bzname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.p2p.bean.Bz">
     insert into bz
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bzid != null">
         bzid,
       </if>
-      <if test="bzname != null">
+      <if test="bzname != null and  bz != ''">
         bzname,
       </if>
       <if test="status != null">
@@ -52,10 +56,11 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByIdSelective" parameterType="com.p2p.bean.Bz">
     update bz
     <set>
-      <if test="bzname != null">
+      <if test="bzname != null and bz = ''">
         bzname = #{bzname,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
@@ -64,10 +69,12 @@
     </set>
     where bzid = #{bzid,jdbcType=INTEGER}
   </update>
-  <update id="updateById" parameterType="com.p2p.bean.Bz">
+
+  <update id="update" parameterType="com.p2p.bean.Bz">
     update bz
     set bzname = #{bzname,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER}
     where bzid = #{bzid,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -1,4 +1,5 @@
 package com.p2p.service;
 
-public class BzService {
+public interface BzService extends BaseService{
+
 }
