@@ -49,4 +49,9 @@ public class BankCardController {
         System.out.println(uid);
         return bankCardService.bankCardsByUid(uid);
     }
+    @RequestMapping()
+    @ResponseBody
+    public ServerResponse addCard(BankCard bankCard){
+        return bankCardService.save(bankCard);
+    }
 }

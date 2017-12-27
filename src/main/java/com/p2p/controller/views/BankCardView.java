@@ -17,4 +17,9 @@ public class BankCardView {
         return "bankCard/userBankCard";
     }
 
+    @RequestMapping("addCard")
+    public String bankCardAdd(){
+        return "bankCard/userAddCard";
+    }
+
 }
