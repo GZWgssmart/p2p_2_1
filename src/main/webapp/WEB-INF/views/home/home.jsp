@@ -133,15 +133,24 @@
                             <i class="layui-icon">&#xe658;</i><span>添加公告</span></a>
                         </dd>
 
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'站内信',id:'41'}"><i class="layui-icon">&#xe658;</i><span>站内信</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'站内信',id:'41'}">
+                            <i class="layui-icon">&#xe658;</i><span>站内信</span></a>
+                        </dd>
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'<%=path %>/page/message/allFriend',icon:'&#xe62d;',title:'合作伙伴',id:'42'}">
                                 <i class="layui-icon">&#xe62d;</i><span>合作伙伴</span></a>
                         </dd>
-
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'<%=path %>/page/message/addFriend',icon:'&#xe62d;',title:'添加合作伙伴',id:'43'}">
                                 <i class="layui-icon">&#xe62d;</i><span>添加合作伙伴</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/page/home/indexMsg',icon:'&#xe62d;',title:'合作伙伴',id:'42'}">
+                                <i class="layui-icon">&#xe62d;</i><span>首页信息</span></a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'<%=path %>/page/home/addIndexMsgPage',icon:'&#xe61f;',title:'添加合作伙伴',id:'43'}">
+                                <i class="layui-icon">&#xe61f;</i><span>添加首页信息</span></a>
                         </dd>
                     </dl>
                 </li>

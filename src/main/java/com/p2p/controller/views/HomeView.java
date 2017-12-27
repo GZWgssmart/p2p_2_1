@@ -25,4 +25,13 @@ public class HomeView {
         return "home/main";
     }
 
+    @RequestMapping("addIndexMsgPage")
+    public String addIndexPage(){
+        return "message/addIndexMsg";
+    }
+    @RequestMapping("indexMsg")
+    public String indexMsg(){
+        return "message/indexMsg";
+    }
+
 }

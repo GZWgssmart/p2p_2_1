@@ -1,7 +1,8 @@
 package com.p2p.dao;
 
-import com.p2p.bean.Home;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface HomeMapper extends BaseDAO {
 
 }
