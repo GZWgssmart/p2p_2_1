@@ -14,7 +14,7 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view">
-                <form class="layui-form">
+                <form class="layui-form">j
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
