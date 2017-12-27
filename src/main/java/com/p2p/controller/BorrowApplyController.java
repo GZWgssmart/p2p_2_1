@@ -2,7 +2,9 @@ package com.p2p.controller;
 
 import com.p2p.bean.BorrowApply;
 import com.p2p.bean.BorrowDetail;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
+import com.p2p.query.BorrowQuery;
 import com.p2p.service.BorrowApplyService;
 import com.p2p.vo.BorrowApplyDetail;
 import com.p2p.common.BeanCopyUtils;
@@ -33,5 +35,26 @@ public class BorrowApplyController {
         }
         borrowApply.setUid(1);
         return borrowApplyService.saveBorrow(borrowApply, borrowDetail);
+    }
+
+    @RequestMapping("list")
+    public Pager borrowList(int page, int limit, Integer ckstatus, Integer term, Integer bzid, Float nprofit, String cpname) {
+        BorrowQuery borrowQuery = new BorrowQuery();
+        if(ckstatus != null) {
+            borrowQuery.setCkstatus(ckstatus);
+        }
+        if(nprofit != null) {
+            borrowQuery.setNprofit(nprofit);
+        }
+        if(bzid != null) {
+            borrowQuery.setBzid(bzid);
+        }
+        if(term != null) {
+            borrowQuery.setTerm(term);
+        }
+        if(cpname != null && !"".equals(cpname)) {
+            borrowQuery.setCpname(cpname);
+        }
+        return borrowApplyService.listPagerCriteria(page, limit, borrowQuery);
     }
 }

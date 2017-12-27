@@ -12,6 +12,7 @@ import com.p2p.service.BorrowApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -64,6 +65,8 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
             return ServerResponse.createByError("保存失败");
         }
         borrowDetail.setBaid(borrowApply.getBaid());
+        // TODO 产品名称生成
+        borrowDetail.setCpname("PJ" + Calendar.getInstance().get(Calendar.YEAR) + "BZ" + borrowApply.getBaid());
         if(borrowDetailMapper.save(borrowDetail) == 0){
             return ServerResponse.createByError("保存失败");
         }

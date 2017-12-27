@@ -34,7 +34,7 @@ public class BorrowVO {
 
     private String way;
 
-    private String nprofit;
+    private Float nprofit;
 
     public Integer getBaid() {
         return baid;
@@ -132,11 +132,11 @@ public class BorrowVO {
         this.way = way;
     }
 
-    public String getNprofit() {
+    public Float getNprofit() {
         return nprofit;
     }
 
-    public void setNprofit(String nprofit) {
+    public void setNprofit(Float nprofit) {
         this.nprofit = nprofit;
     }
 
