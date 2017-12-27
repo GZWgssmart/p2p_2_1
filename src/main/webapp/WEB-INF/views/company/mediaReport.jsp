@@ -30,6 +30,7 @@
 </div>
 
 <div class="layui-btn-group demoTable">
+    <button class="layui-btn" data-type="edit">编辑报道</button>
     <button class="layui-btn" data-type="detail">查看详情</button>
     <button class="layui-btn" data-type="isAll">验证是否全选</button>
     <button class="layui-btn" data-type="delete">删除文章</button>
@@ -51,12 +52,14 @@
     <span>没有链接</span>
     {{#  } }}
 </script>
+
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script>
-    layui.use('table', function(){
+    layui.use(['table','layedit'], function(){
         var table = layui.table;
         var $ = layui.$;
+        var layedit=layui.layedit;
 
         table.render({
             elem: '#allReport_table'
@@ -81,30 +84,21 @@
                 ,dataName: 'rows'
             }
         });
-
-        //监听表格复选框选择
-        table.on('checkbox(demo)', function(obj){
-            console.log(obj)
-        });
-        //监听工具条
-        table.on('tool(demo)', function(obj){
-            var data = obj.data;
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
-            }
-        });
-
         $('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
-
         var active = {
+            edit:function () {
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                var mediaDIV=$('#mediaDiv').html();
+                if(data.length == 1) {
+                    window.open("<%=path %>/page/company/editPage?mediaId="+data[0].mid);
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            },
             detail: function(){ //获取选中数据
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;

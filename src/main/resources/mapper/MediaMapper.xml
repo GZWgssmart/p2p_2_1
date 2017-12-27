@@ -25,6 +25,7 @@
         select m.mid, m.title, m.summary, m.pic, m.url, m.created_time as createdTime from media m
      ]]>
     <include refid="common_media" />
+    order by created_time desc
     limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
@@ -40,5 +41,32 @@
         select * from  media m where m.mid = #{meidaId}
       ]]>
   </select>
+
+  <update id="update" parameterType="com.p2p.bean.Media">
+    <![CDATA[
+        update media
+    ]]>
+    <set>
+      <if test="title != null ">
+        title = #{title},
+      </if>
+      <if test="summary != null">
+        summary = #{summary},
+      </if>
+      <if test="content != null">
+        content = #{content},
+      </if>
+      <if test="pic != null">
+        pic = #{pic},
+      </if>
+      <if test="url != null">
+        url = #{url},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime},
+      </if>
+    </set>
+    where mid=#{mid}
+  </update>
 
 </mapper>

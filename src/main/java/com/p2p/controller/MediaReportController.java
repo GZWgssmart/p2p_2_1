@@ -39,6 +39,12 @@ public class MediaReportController {
         return (Media)obj;
     }
 
+    @RequestMapping("editMediaReport")
+    @ResponseBody
+    public ServerResponse<Integer> editMediaReport(Media media, String testTime){
+        media.setCreatedTime(DateUtil.parseDate(testTime,"yyyy-MM-dd HH:mm:ss"));
+        return mediaService.update(media);
+    }
 
 
 }

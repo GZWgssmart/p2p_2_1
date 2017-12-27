@@ -14,20 +14,19 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view">
-            <script id="demo" type="text/html">
                 <form id="editMediaReport" class="layui-form">
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
                             <input type="text" name="title" id="title" lay-verify autocomplete="off" placeholder="请输入标题"
-                                   class="layui-input" value="{{ d.title }}" />
+                                   class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">摘要</label>
                         <div class="layui-input-block">
                             <input type="text" name="summary" lay-verify autocomplete="off" placeholder="请输入摘要"
-                                   class="layui-input" id="summary" value="{{ d.summary }}">
+                                   class="layui-input" id="summary" >
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -37,7 +36,7 @@
                                 <button type="button" class="layui-btn" id="test0">封面图</button>
                             </label>
                             <div class="layui-upload-list">
-                                <img class="layui-upload-img" src="<%=path %>/{{ d.pic }}" id="pic" width="200" height="200">
+                                <img class="layui-upload-img" src="#" id="pic" width="200" height="200">
                                 <p id="demoText"></p>
                             </div>
                         </div>
@@ -46,23 +45,23 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
-                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
-                                  id="content">{{ d.content }}</textarea>
-                        </div>
+                        <textarea class="layui-textarea layui-hide" name="content" id="content" lay-verify="content">
+                        </textarea>
+                    </div>
                     </div>
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">地址</label>
                         <div class="layui-input-block">
                             <input type="text" name="url" id="url" lay-verify autocomplete="off" placeholder="请输入地址"
-                                   class="layui-input" value="{{ d.url }}">
+                                   class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">时间</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="whatTime" id="test1" lay-verify="laydate"
-                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" value="{{ formatDate(d.createdTime) }}">
+                            <input type="text" name="testTime" id="test1" lay-verify="laydate"
+                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item" style="margin-top: 20px;">
@@ -71,7 +70,6 @@
                         </div>
                     </div>
                 </form>
-            </script>
         </div>
     </div>
 </div>
@@ -99,13 +97,15 @@
         var upload = layui.upload;
         var laydate = layui.laydate;
 
-        var getTpl = demo.innerHTML
-            , view = document.getElementById('view');
-        $.get('<%=path %>/data/company/details?mediaId=' + 1,
+        $.get('<%=path %>/data/company/details?mediaId=' + mediaId,
             function (data) {
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
+                $('#title').val(data.title);
+                $('#summary').val(data.summary);
+                $('#pic').attr('src','/'+data.pic);
+                $('#firstImg').val(data.pic);
+                $('#url').val(data.url);
+                $('#test1').val(data.createdTime);
+                layedit.setContent(editIndex,data.content);
             });
 
         // 编辑器上传图片接口
@@ -115,7 +115,6 @@
                 , type: 'post' //默认post
             }
         });
-        //创建一个编辑器
         var editIndex = layedit.build('content', {
             tool: [
                 'strong' //加粗
@@ -126,6 +125,11 @@
                 , 'face' //表情
                 , 'image' //插入图片
             ]
+        });
+
+        $('.site-demo-layedit').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
 
         //上传封面图
@@ -166,7 +170,7 @@
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
             $('#content').val(layedit.getContent(editIndex));
-            $.post('<%=path %>/data/company/editMediaReport',
+            $.post('<%=path %>/data/company/editMediaReport?mid=' + mediaId,
                 $('#editMediaReport').serialize(),
                 function (res) {
                     if (res.code === 0) {

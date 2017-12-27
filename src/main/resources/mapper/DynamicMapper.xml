@@ -22,6 +22,7 @@
           select d.dyid, d.title, d.summary, d. pic, d.created_time as createdTime from dynamic d
         ]]>
         <include refid="pageCriteria_common"/>
+        order by created_time desc
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 

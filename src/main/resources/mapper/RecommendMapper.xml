@@ -18,6 +18,7 @@
         select r.rmid, r.tname, r.rname, r.created_time as createdTime from recommend r where tid = #{recommend.uid}
      ]]>
     <include refid="common_recommend" />
+    order by created_time desc
     limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
