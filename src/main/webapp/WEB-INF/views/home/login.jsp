@@ -31,7 +31,7 @@
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入用户名（必填）" class="layui-input">
+                <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="手机号（必填）" class="layui-input">
             </div>
 
             <div class="layui-form-item">
@@ -52,9 +52,6 @@
             </div>
         </form>
     </div>
-    <footer>
-        <p>ZYZ © zyz</p>
-    </footer>
 </div>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -71,7 +68,7 @@
 
         //监听提交
         form.on('submit(login)', function (data) {
-            $.post('<%=path %>/user/login',
+            $.post('#',
                 data.field,
                 function (res) {
                     if (res.result === "success") {

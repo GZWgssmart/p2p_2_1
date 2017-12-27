@@ -44,4 +44,14 @@ public class UserView {
     public String recommend(){
         return "user/recommendPage";
     }
+
+    @RequestMapping("notice")
+    public String notice(){
+        return "user/notice";
+    }
+
+    @RequestMapping("adminLogin")
+    public String adminLogin() {
+        return "home/login";
+    }
 }
