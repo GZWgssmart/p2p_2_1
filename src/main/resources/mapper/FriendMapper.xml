@@ -11,28 +11,26 @@
   <sql id="Base_Column_List">
     fid, furl, fpic
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from friend
-    where fid = #{fid,jdbcType=INTEGER}
+  <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select f.fid,f.furl,f.fpic from friend f
   </select>
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Media">
+    <![CDATA[
+          select count(f.fid) from friend f
+    ]]>
+  </select>
+
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from friend
     where fid = #{fid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Friend">
-    insert into friend (fid, furl, fpic
-      )
-    values (#{fid,jdbcType=INTEGER}, #{furl,jdbcType=VARCHAR}, #{fpic,jdbcType=VARCHAR}
-      )
+  <insert id="save" parameterType="com.p2p.bean.Friend">
+    insert into friend (furl, fpic)
+    values(#{furl,jdbcType=VARCHAR}, #{fpic,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.bean.Friend">
     insert into friend
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fid != null">
-        fid,
-      </if>
       <if test="furl != null">
         furl,
       </if>
@@ -41,9 +39,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fid != null">
-        #{fid,jdbcType=INTEGER},
-      </if>
+
       <if test="furl != null">
         #{furl,jdbcType=VARCHAR},
       </if>
