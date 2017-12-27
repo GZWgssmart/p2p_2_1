@@ -50,8 +50,4 @@ public class UserView {
         return "user/notice";
     }
 
-    @RequestMapping("adminLogin")
-    public String adminLogin() {
-        return "home/login";
-    }
 }

@@ -17,8 +17,8 @@ public class RoleTest extends BaseTest {
     @Test
     public void saveRole(){
         role = new Role();
-        role.setRname("普通员工");
-        role.setContent("我是普通员工。");
+        role.setRname("root");
+        role.setContent("最高级用户");
         roleService.save(role);
     }
     //更新角色

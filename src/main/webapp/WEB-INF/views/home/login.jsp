@@ -31,14 +31,14 @@
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="手机号（必填）" class="layui-input">
+                <input type="text" name="phone" lay-verify="required" autocomplete="off" placeholder="手机号（必填）" class="layui-input">
             </div>
 
             <div class="layui-form-item">
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe642;</i>
                 </label>
-                <input type="password" name="password" lay-verify="pass" placeholder="请输入密码（必填）" autocomplete="off" class="layui-input">
+                <input type="password" name="pwd" lay-verify="pass" placeholder="请输入密码（必填）" autocomplete="off" class="layui-input">
             </div>
 
             <div class="layui-form-item">
@@ -68,13 +68,13 @@
 
         //监听提交
         form.on('submit(login)', function (data) {
-            $.post('#',
+            $.post('<%=path %>/data/admin/login',
                 data.field,
                 function (res) {
-                    if (res.result === "success") {
-                        window.location.href = "<%=path %>/user/home";
+                    if (res.code === 0) {
+                        window.location.href = "<%=path %>/page/home/homePage";
                     } else {
-                        layer.msg(res.message);
+                        layer.msg("手机号或者密码错误！");
                     }
                 }, 'json'
             );

@@ -67,7 +67,7 @@
         <ul class="layui-nav layui-layout-right kit-nav">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="<%=path %>/static/images/face.jpg" class="layui-nav-img"> ${user.phone }
+                    <img src="<%=path %>/static/images/face.jpg" class="layui-nav-img"> ${admin }
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" id="info">基本资料</a></dd>

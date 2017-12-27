@@ -44,6 +44,9 @@
       <if test="phone != null">
         phone,
       </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
       <if test="huname != null">
         huname,
       </if>
@@ -81,6 +84,9 @@
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="huname != null">
         #{huname,jdbcType=VARCHAR},
