@@ -8,31 +8,14 @@
       <arg column="huid" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List">
-    ruid, rid, huid
-  </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from roleuser
-    where ruid = #{ruid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
+  <delete id="remove" parameterType="java.lang.Integer">
     delete from roleuser
     where ruid = #{ruid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.RoleUser">
-    insert into roleuser (ruid, rid, huid
-      )
-    values (#{ruid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{huid,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.RoleUser">
+
+  <insert id="save" parameterType="com.p2p.bean.RoleUser">
     insert into roleuser
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ruid != null">
-        ruid,
-      </if>
       <if test="rid != null">
         rid,
       </if>
@@ -41,9 +24,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ruid != null">
-        #{ruid,jdbcType=INTEGER},
-      </if>
       <if test="rid != null">
         #{rid,jdbcType=INTEGER},
       </if>
@@ -52,7 +32,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.RoleUser">
+  <update id="update" parameterType="com.p2p.bean.RoleUser">
     update roleuser
     <set>
       <if test="rid != null">
@@ -62,12 +42,6 @@
         huid = #{huid,jdbcType=INTEGER},
       </if>
     </set>
-    where ruid = #{ruid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.RoleUser">
-    update roleuser
-    set rid = #{rid,jdbcType=INTEGER},
-      huid = #{huid,jdbcType=INTEGER}
     where ruid = #{ruid,jdbcType=INTEGER}
   </update>
 </mapper>
