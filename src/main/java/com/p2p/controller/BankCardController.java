@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/12/21.
+ *
  * @author ChuYiming
  */
 @Controller
-@RequestMapping("/bankCard")
+@RequestMapping("/data/bankCard")
 public class BankCardController {
 
     @Autowired
@@ -31,13 +33,25 @@ public class BankCardController {
 
     @PostMapping("remove/{bcid}")
     @ResponseBody
-    public ServerResponse removeById(@PathVariable("bcid")Integer bcid){
+    public ServerResponse removeById(@PathVariable("bcid") Integer bcid) {
         return bankCardService.removeById(bcid);
     }
 
     @PostMapping("active/{bcid}/{status}")
     @ResponseBody
-    public ServerResponse activeById(@PathVariable("bcid")Integer bcid,@PathVariable("status")Integer status){
-        return bankCardService.active(bcid,status);
+    public ServerResponse activeById(@PathVariable("bcid") Integer bcid, @PathVariable("status") Integer status) {
+        return bankCardService.active(bcid, status);
+    }
+
+    @RequestMapping("allCards")
+    @ResponseBody
+    public List<BankCard> allCards(Integer uid) {
+        System.out.println(uid);
+        return bankCardService.bankCardsByUid(uid);
+    }
+    @RequestMapping()
+    @ResponseBody
+    public ServerResponse addCard(BankCard bankCard){
+        return bankCardService.save(bankCard);
     }
 }

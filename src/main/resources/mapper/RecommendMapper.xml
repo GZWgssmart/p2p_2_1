@@ -1,108 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.dao.RecommendMapper">
-  <resultMap id="BaseResultMap" type="com.p2p.bean.Recommend">
-    <constructor>
-      <idArg column="rmid" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tid" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tname" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="created_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
-    rmid, tid, tname, uid, rname, created_time
+  <sql id="common_recommend">
+    <if test="recommend != null and recommend.createdTime != null and recommend.createdTime != ''">
+      and r.created_time <![CDATA[<=]]> #{recommend.createdTime}
+    </if>
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from recommend
-    where rmid = #{rmid,jdbcType=INTEGER}
+
+  <insert id="save" parameterType="com.p2p.bean.Recommend">
+    <![CDATA[
+    insert into recommend(tid, tname, uid, rname, created_time) values(#{tid}, #{tname}, #{uid}, #{rname}, #{createdTime})
+   ]]>
+  </insert>
+
+  <select id="listPagerCriteria" resultType="com.p2p.bean.Recommend">
+    <![CDATA[
+        select r.rmid, r.tname, r.rname, r.created_time as createdTime from recommend r where tid = #{recommend.uid}
+     ]]>
+    <include refid="common_recommend" />
+    limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from recommend
-    where rmid = #{rmid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Recommend">
-    insert into recommend (rmid, tid, tname, 
-      uid, rname, created_time
-      )
-    values (#{rmid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, 
-      #{uid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Recommend">
-    insert into recommend
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="rmid != null">
-        rmid,
-      </if>
-      <if test="tid != null">
-        tid,
-      </if>
-      <if test="tname != null">
-        tname,
-      </if>
-      <if test="uid != null">
-        uid,
-      </if>
-      <if test="rname != null">
-        rname,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="rmid != null">
-        #{rmid,jdbcType=INTEGER},
-      </if>
-      <if test="tid != null">
-        #{tid,jdbcType=INTEGER},
-      </if>
-      <if test="tname != null">
-        #{tname,jdbcType=VARCHAR},
-      </if>
-      <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
-      </if>
-      <if test="rname != null">
-        #{rname,jdbcType=VARCHAR},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Recommend">
-    update recommend
-    <set>
-      <if test="tid != null">
-        tid = #{tid,jdbcType=INTEGER},
-      </if>
-      <if test="tname != null">
-        tname = #{tname,jdbcType=VARCHAR},
-      </if>
-      <if test="uid != null">
-        uid = #{uid,jdbcType=INTEGER},
-      </if>
-      <if test="rname != null">
-        rname = #{rname,jdbcType=VARCHAR},
-      </if>
-      <if test="createdTime != null">
-        created_time = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where rmid = #{rmid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Recommend">
-    update recommend
-    set tid = #{tid,jdbcType=INTEGER},
-      tname = #{tname,jdbcType=VARCHAR},
-      uid = #{uid,jdbcType=INTEGER},
-      rname = #{rname,jdbcType=VARCHAR},
-      created_time = #{createdTime,jdbcType=TIMESTAMP}
-    where rmid = #{rmid,jdbcType=INTEGER}
-  </update>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Recommend">
+    <![CDATA[
+          select count(r.rmid) from recommend r where tid = #{recommend.uid}
+    ]]>
+    <include refid="common_recommend" />
+  </select>
 </mapper>

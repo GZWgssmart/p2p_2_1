@@ -28,9 +28,17 @@ public class MediaReportController {
     }
     @RequestMapping("pagerCriteria")
     @ResponseBody
-    public Pager pagerCriteria(int page, int limit, Media media ){
+    public Pager pagerCriteria(int page, int limit, Media media){
         return mediaService.listPagerCriteria(page,limit,media);
     }
+
+    @RequestMapping("details")
+    @ResponseBody
+    public Media detail(Integer mediaId){
+        Object obj=mediaService.getById(mediaId);
+        return (Media)obj;
+    }
+
 
 
 }

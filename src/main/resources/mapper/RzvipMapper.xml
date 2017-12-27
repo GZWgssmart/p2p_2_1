@@ -30,7 +30,7 @@
     delete from rzvip
     where rzid = #{rzid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Rzvip">
+  <insert id="save" parameterType="com.p2p.bean.Rzvip">
     insert into rzvip (rzid, uid, xl, 
       ism, bschool, addr, 
       work, age, resint1, 

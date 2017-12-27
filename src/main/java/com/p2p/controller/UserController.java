@@ -1,15 +1,22 @@
 package com.p2p.controller;
 
+import com.p2p.bean.Recommend;
+import com.p2p.bean.Rzvip;
 import com.p2p.bean.User;
+import com.p2p.common.BeanCopyUtils;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.UserService;
 import com.p2p.utils.EncryptUtils;
+import com.p2p.vo.UserRzvipVO;
+import com.p2p.vo.UserTuijianVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * Created by 娃娃鱼 on 2017/12/22.
@@ -30,9 +37,25 @@ public class UserController {
 
     @RequestMapping("reg")
     @ResponseBody
-    public ServerResponse reg(User user) {
-        user.setUpwd(EncryptUtils.md5(user.getUpwd()));
-        return userService.save(user);
+    public ServerResponse reg(UserTuijianVO uservo) {
+        User user = new User();
+        Recommend recommend = new Recommend();
+        uservo.setUpwd(EncryptUtils.md5(uservo.getUpwd()));
+        try {
+            if(uservo.getTid() != null) {
+                BeanCopyUtils.copy(user, uservo);
+                BeanCopyUtils.copy(recommend, uservo);
+                recommend.setRname(uservo.getUname());
+                recommend.setCreatedTime(new Date());
+                return userService.saveRecommend(user,recommend);
+            } else {
+                BeanCopyUtils.copy(user, uservo);
+                return userService.save(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ServerResponse.createBySuccess();
     }
 
     @RequestMapping("login")
@@ -47,6 +70,28 @@ public class UserController {
             serverResponse = ServerResponse.createByError();
         }
         return serverResponse;
+    }
+
+    @RequestMapping("edit")
+    @ResponseBody
+    public ServerResponse edit(User user) {
+        if(user.getUpwd() != null && user.getUpwd() != "") {
+            user.setUpwd(EncryptUtils.md5(user.getUpwd()));
+        }
+        return userService.update(user);
+    }
+
+    @PostMapping("saveUserRzvip")
+    public ServerResponse saveUserRzvip(UserRzvipVO userRzvipVO) {
+        User user = new User();
+        Rzvip rzvip = new Rzvip();
+        try {
+            BeanCopyUtils.copy(user, userRzvipVO);
+            BeanCopyUtils.copy(rzvip, userRzvipVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userService.saveBorrow(user, rzvip);
     }
 
 }

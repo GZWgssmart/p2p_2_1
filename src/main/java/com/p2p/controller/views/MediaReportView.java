@@ -16,7 +16,16 @@ public class MediaReportView{
 
     @RequestMapping("mediaReport")
     public String mediaReport(){
-        return "company/MediaReport";
+        return "company/mediaReport";
     }
 
+    @RequestMapping("mediaDetailPage")
+    public String mediaDetailPage(){
+        return "company/mediaDetail";
+    }
+
+    @RequestMapping("editPage")
+    public String editPage(){
+        return "company/editMedia";
+    }
 }

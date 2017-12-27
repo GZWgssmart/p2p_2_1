@@ -119,11 +119,9 @@
             $('#loginForm').serialize(),
             function (data) {
                 if (data.code == '0') {
-                    utils.alert('登录成功！', function () {
-                        window.location.href = '<%=path %>/page/user/account';
-                    })
+                    window.location.href = '<%=path %>/page/user/account';
                 } else {
-                    utils.alert(data.message);
+                    utils.alert('手机号或密码错误！');
                 }
                 $('.btn').text('登录').removeClass('disabled');
             }, 'json'

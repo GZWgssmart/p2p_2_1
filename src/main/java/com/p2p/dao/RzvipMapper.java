@@ -1,7 +1,8 @@
 package com.p2p.dao;
 
-import com.p2p.bean.Rzvip;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RzvipMapper extends BaseDAO {
 
 }

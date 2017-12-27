@@ -31,11 +31,4 @@
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
-<!-- 客服QQ -->
-<script type="text/javascript" src="<%=path %>/static/js/front/account.js"></script>
-<script>
-    $('.sidebar-top').click(function(){
-        $('body').scrollTop(0);
-    });
-</script>
 </html>

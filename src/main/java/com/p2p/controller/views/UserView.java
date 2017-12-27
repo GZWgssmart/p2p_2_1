@@ -30,4 +30,18 @@ public class UserView {
         return "user/safe";
     }
 
+    @RequestMapping("taste")
+    public String taste() {
+        return "user/taste";
+    }
+
+    @RequestMapping("fund")
+    public String fund() {
+        return "user/fund";
+    }
+
+    @RequestMapping("recommend")
+    public String recommend(){
+        return "user/recommendPage";
+    }
 }

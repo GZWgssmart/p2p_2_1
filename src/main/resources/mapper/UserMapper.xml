@@ -24,8 +24,11 @@
         </constructor>
     </resultMap>
     <insert id="save" parameterType="com.p2p.bean.User">
+        <selectKey keyColumn="uid" keyProperty="uid" resultType="integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
       <![CDATA[
-          insert into t_user(phone, upwd, tzm, face) values(#{phone}, #{upwd}, #{tzm}, 'images/face.jpg')
+          insert into t_user(uname, phone, upwd, tzm, face) values(#{uname}, #{phone}, #{upwd}, #{tzm}, 'static/images/face.jpg')
        ]]>
     </insert>
 
@@ -52,6 +55,9 @@
           update t_user
         ]]>
         <set>
+            <if test="upwd != null and upwd != ''">
+                upwd = #{upwd},
+            </if>
             <if test="uname != null and uname != ''">
                 uname = #{uname},
             </if>
@@ -69,6 +75,9 @@
             </if>
             <if test="rname != null and rname != ''">
                 rname = #{rname},
+            </if>
+            <if test="face != null and face != ''">
+                face = #{face},
             </if>
             <if test="sex != null">
                 sex = #{sex},

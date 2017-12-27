@@ -30,8 +30,7 @@
 </div>
 
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
+    <button class="layui-btn" data-type="detail">查看详情</button>
     <button class="layui-btn" data-type="isAll">验证是否全选</button>
     <button class="layui-btn" data-type="delete">删除文章</button>
 </div>
@@ -106,15 +105,14 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
+            detail: function(){ //获取选中数据
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
+                if(data.length == 1) {
+                    window.open("<%=path %>/page/company/mediaDetailPage?mediaId="+data[0].mid);
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
             }
             ,isAll: function(){ //验证是否全选
                 var checkStatus = table.checkStatus('idTest');

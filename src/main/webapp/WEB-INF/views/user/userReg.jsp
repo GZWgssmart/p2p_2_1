@@ -37,11 +37,12 @@
     <div class="regist-box">
         <h3>欢迎注册</h3>
         <p class="error-msg icon icon-error"></p>
-        <!-- <div class="from">
-            <label for="username" class="icon icon-user"></label>
-            <input type="text" name="username" id="username" maxlength="18" autocomplete="new-password" onblur="choseUser(this)" placeholder="输入用户名"/>
-        </div> -->
+
         <form id="regForm">
+            <div class="from">
+            <label for="username" class="icon icon-user"></label>
+            <input type="text" name="uname" id="username" maxlength="18" placeholder="输入用户名"/>
+        </div>
             <div class="from">
                 <label for="phone" class="icon icon-mobile"></label>
                 <input type="text" name="phone" id="phone" onblur="chosePhone(this)" autocomplete="new-password"
@@ -57,7 +58,7 @@
             </div>
             <div class="from from-ext">
                 <label for="useCode" class="icon icon-ext"></label>
-                <input type="text" name="" id="useCode" placeholder="输入邀请码"/>
+                <input type="text" name="tid" id="useCode" placeholder="输入邀请码"/>
             </div>
             <button class="btn" type="button" onclick="regist();">注册</button>
             <div class="agree"><input type="checkbox" id="agree">我已阅读并同意《<a href="javascript:AgreeMent(0);">普金资本服务协议</a>》和《<a
@@ -92,6 +93,7 @@
     function regist() {
         var phone = $('#phone').val();
         var upwd = $('#upwd').val();
+        var useCode = $('#useCode').val();
         if (phone == '') {
             showError('请输入手机号', $('#phone'));
             return;
@@ -110,6 +112,9 @@
         if (!$('#agree').is(':checked')) {
             utils.alert('请勾选服务协议');
             return;
+        }
+        if(useCode != '') {
+            $('#useCode').val(useCode - 100000);
         }
         $('.btn').text('注册中...').addClass('disabled');
         utils.ajax({

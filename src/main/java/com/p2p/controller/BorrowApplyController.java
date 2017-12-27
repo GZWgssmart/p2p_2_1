@@ -4,11 +4,11 @@ import com.p2p.bean.BorrowApply;
 import com.p2p.bean.BorrowDetail;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.BorrowApplyService;
-import com.p2p.service.BorrowDetailService;
-import org.apache.ibatis.annotations.Param;
+import com.p2p.vo.BorrowApplyDetail;
+import com.p2p.common.BeanCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,21 +20,18 @@ public class BorrowApplyController {
 
     @Autowired
     private BorrowApplyService borrowApplyService;
-    @Autowired
-    private BorrowDetailService borrowDetailService;
 
-    private ServerResponse serverResponse;
-
-    @PostMapping("save")
-    public ServerResponse save(BorrowApply borrowApply, BorrowDetail borrowDetail) {
-        serverResponse = borrowApplyService.save(borrowApply);
-        if(serverResponse.isSuccess()) {
-            borrowDetail.setBaid(borrowApply.getBaid());
-            serverResponse = borrowDetailService.save(borrowDetail);
-            if(serverResponse.isSuccess()) {
-                return serverResponse;
-            }
+    @RequestMapping(value="save", method = RequestMethod.POST)
+    public ServerResponse save(BorrowApplyDetail borrowApplyDetail) {
+        BorrowApply borrowApply = new BorrowApply();
+        BorrowDetail borrowDetail = new BorrowDetail();
+        try {
+            BeanCopyUtils.copy(borrowApply, borrowApplyDetail);
+            BeanCopyUtils.copy(borrowDetail, borrowApplyDetail);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return serverResponse;
+        borrowApply.setUid(1);
+        return borrowApplyService.saveBorrow(borrowApply, borrowDetail);
     }
 }
