@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>用户中心</title>
+    <title>普金资本</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="stylesheet" href="<%=path%>/static/css/home/jquery.slider.css">
@@ -25,10 +25,10 @@
         <!-- banner -->
         <div class="banner">
             <div class="slider">
-                <div><a href="www.baidu.com"><img src="<%=path %>/static/images/slide1.jpg" alt="" style="width:1366px;height:340px"></a></div>
-                <div><a href="www.youtube.com"><img src="<%=path %>/static/images/slide2.jpg" alt="" style="width:1366px;height:340px"></a></div>
-                <div><a href="www.bilibili.com"><img src="<%=path %>/static/images/slide3.jpg" alt="" style="width:1366px;height:340px"></a></div>
-                <div><a href="www.weibo.com"><img src="<%=path %>/static/images/slide4.jpg" alt="" style="width:1366px;height:340px"></a></div>
+                <div><a href="www.baidu.com"><img src="<%=path %>/static/images/slide1.jpg" alt="" style="width:100%;height:340px"></a></div>
+                <div><a href="www.youtube.com"><img src="<%=path %>/static/images/slide2.jpg" alt="" style="width:100%;height:340px"></a></div>
+                <div><a href="www.bilibili.com"><img src="<%=path %>/static/images/slide3.jpg" alt="" style="width:100%;height:340px"></a></div>
+                <div><a href="www.weibo.com"><img src="<%=path %>/static/images/slide4.jpg" alt="" style="width:100%;height:340px"></a></div>
             </div>
         </div>
     </div>

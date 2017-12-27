@@ -150,7 +150,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i class="layui-icon">&#xe658;</i><span>后台用户管理</span></a></dd>
                         <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'权限管理',id:'51'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a></dd>
-                        <dd><a href="javascript:;" kit-target data-options="{url:'#',icon:'&#xe658;',title:'添加后台用户',id:'52'}"><i class="layui-icon">&#xe658;</i><span>添加后台用户</span></a></dd>
+                        <dd><a href="javascript:;" kit-target data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe658;',title:'添加后台用户',id:'52'}"><i class="layui-icon">&#xe658;</i><span>添加后台用户</span></a></dd>
                     </dl>
                 </li>
             </ul>

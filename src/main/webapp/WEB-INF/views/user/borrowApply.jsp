@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>用户中心</title>
+    <title>申请借款</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
@@ -84,10 +84,10 @@
                 <label class="layui-form-label">收益方式</label>
                 <div class="layui-input-block">
                     <select name="way" lay-filter="jkqx">
-                        <option value="1">按月付息，到期还本</option>
-                        <option value="2">一次性还本还息</option>
-                        <option value="3">等额本息</option>
-                        <option value="4">等额本金</option>
+                        <option value="1">等额本息</option>
+                        <option value="2">等额本金</option>
+                        <option value="3">先息后本</option>
+                        <option value="4">一次还清</option>
                     </select>
                 </div>
             </div>

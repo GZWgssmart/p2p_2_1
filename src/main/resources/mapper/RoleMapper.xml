@@ -17,22 +17,14 @@
     from role
     where rid = #{rid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
+  <delete id="remove" parameterType="java.lang.Integer">
     delete from role
     where rid = #{rid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Role">
-    insert into role (rid, rname, content
-      )
-    values (#{rid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Role">
+
+  <insert id="save" parameterType="com.p2p.bean.Role">
     insert into role
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="rid != null">
-        rid,
-      </if>
       <if test="rname != null">
         rname,
       </if>
@@ -41,9 +33,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="rid != null">
-        #{rid,jdbcType=INTEGER},
-      </if>
       <if test="rname != null">
         #{rname,jdbcType=VARCHAR},
       </if>
@@ -52,7 +41,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Role">
+
+  <update id="update" parameterType="com.p2p.bean.Role">
     update role
     <set>
       <if test="rname != null">
@@ -62,12 +52,6 @@
         content = #{content,jdbcType=VARCHAR},
       </if>
     </set>
-    where rid = #{rid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Role">
-    update role
-    set rname = #{rname,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR}
     where rid = #{rid,jdbcType=INTEGER}
   </update>
 </mapper>

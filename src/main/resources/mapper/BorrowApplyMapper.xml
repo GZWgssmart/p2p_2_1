@@ -43,8 +43,8 @@
       <if test="query != null and query.uid != null">
         and ba.uid = #{query.uid}
       </if>
-      <if test="query != null and query.cpname != null">
-        and ba.cpname = #{query.cpname}
+      <if test="query != null and query.cpname != null and query.cpname != ''">
+        and bd.cpname = #{query.cpname}
       </if>
       <if test="query != null and query.nprofit != null">
         and bd.nprofit <![CDATA[<=]]> #{query.nprofit}

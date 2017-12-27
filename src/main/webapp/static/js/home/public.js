@@ -58,3 +58,47 @@ function cutString(str, len) {
     }
     return s;
 }
+/**
+ * 格式化借款类型
+ * @param type
+ * @returns {string}
+ */
+function formatType(type) {
+    return type === 1 ? "个人" : "企业";
+}
+/**
+ * 格式化还款方式
+ * @param way
+ * @returns {*}
+ */
+function formatWay(way) {
+    if(way === '1') {
+        return "等额本息";
+    } else if(way === '2') {
+        return "等额本金";
+    } else if(way === '3') {
+        return "先息后本";
+    } else if(way === '4') {
+        return "一次还清";
+    }
+}
+/**
+ * 格式化借款状态
+ * @param status
+ * @returns {*}
+ */
+function formatStatus(status) {
+    if(status === 0) {
+        return "审核中";
+    } else if(status === 1) {
+        return "审核失败";
+    } else if(status === 2) {
+        return "借款中";
+    } else if(status === 3) {
+        return "已流标";
+    } else if(status === 4) {
+        return "还款中";
+    } else if(status === 5) {
+        return "已完成";
+    }
+}
