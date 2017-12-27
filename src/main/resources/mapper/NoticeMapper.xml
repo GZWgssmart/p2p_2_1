@@ -9,25 +9,28 @@
       <arg column="created_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List">
-    nid, title, content, created_time
-  </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from notice
-    where nid = #{nid,jdbcType=INTEGER}
+
+  <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select  n.nid, n.title, n.content, n.created_time from notice n
   </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Notice">
+    <![CDATA[
+          select count(n.nid) from notice n
+    ]]>
+  </select>
+
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from notice
     where nid = #{nid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Notice">
-    insert into notice (nid, title, content, 
-      created_time)
-    values (#{nid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{createdTime,jdbcType=TIMESTAMP})
+
+  <insert id="save" parameterType="com.p2p.bean.Notice">
+    insert into notice ( title, content, created_time)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+            #{createdTime,jdbcType=TIMESTAMP})
   </insert>
+
   <insert id="insertSelective" parameterType="com.p2p.bean.Notice">
     insert into notice
     <trim prefix="(" suffix=")" suffixOverrides=",">
