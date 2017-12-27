@@ -24,4 +24,9 @@ public class DynamicView {
     public String dynamicDetail(){
         return "company/dynamicDetail";
     }
+
+    @RequestMapping("editPage")
+    public String editPage(){
+        return "company/editDynamic";
+    }
 }

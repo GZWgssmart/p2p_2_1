@@ -39,5 +39,12 @@
         ]]>
     </select>
 
+    <update id="update" parameterType="com.p2p.bean.Dynamic">
+        <![CDATA[
+          update dynamic set title = #{title}, summary = #{summary}, pic = #{pic}, content = #{content}, created_time = #{createdTime}
+          where dyid = #{dyid}
+        ]]>
+    </update>
+
 
 </mapper>

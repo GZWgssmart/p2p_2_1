@@ -7,26 +7,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>修改媒体报道</title>
+    <title>修改公司动态</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view">
-                <form id="editMediaReport" class="layui-form">
+                <form class="layui-form">
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" id="title" lay-verify autocomplete="off" placeholder="请输入标题"
+                            <input type="text" name="title" id="title" lay-verify="required"autocomplete="off" placeholder="请输入标题"
                                    class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">摘要</label>
                         <div class="layui-input-block">
-                            <input type="text" name="summary" lay-verify autocomplete="off" placeholder="请输入摘要"
-                                   class="layui-input" id="summary" >
+                            <input type="text" name="summary" lay-verify="required"autocomplete="off" placeholder="请输入摘要"
+                                   class="layui-input" id="summary">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -45,28 +45,21 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
-                        <textarea class="layui-textarea layui-hide" name="content" id="content" lay-verify="content|required">
+                        <textarea class="layui-textarea layui-hide" name="content" id="content" lay-verify="content" lay-verify="required">
                         </textarea>
                     </div>
                     </div>
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地址</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="url" id="url" lay-verify="url" autocomplete="off" placeholder="请输入地址"
-                                   class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
+                    <div class="layui-inline" >
                         <label class="layui-form-label">时间</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="testTime" id="test1" lay-verify="laydate"
-                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                            <input type="text" name="time" id="test1"
+                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" >
                         </div>
                     </div>
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="fabu">修改</button>
+                            <button class="layui-btn" >修改</button>
+                            <%--<button class="layui-btn" lay-submit lay-filter="fabu">修改</button>--%>
                         </div>
                     </div>
                 </form>
@@ -86,7 +79,7 @@
         }
         return null;
     }
-    var mediaId = GetQueryString("mediaId");
+    var dynamicId = GetQueryString("dynamicId");
     layui.use(['form', 'laytpl', 'layedit', 'upload', 'laydate'], function () {
 
         var form = layui.form;
@@ -97,16 +90,15 @@
         var upload = layui.upload;
         var laydate = layui.laydate;
 
-        $.get('<%=path %>/data/company/details?mediaId=' + mediaId,
-            function (data) {
-                $('#title').val(data.title);
-                $('#summary').val(data.summary);
-                $('#pic').attr('src','/'+data.pic);
-                $('#firstImg').val(data.pic);
-                $('#url').val(data.url);
-                $('#test1').val(formatDate(data.createdTime));
-                layedit.setContent(editIndex,data.content);
-            });
+        <%--$.get('<%=path %>/data/dynamic/details?dynamicId=' + dynamicId,--%>
+            <%--function (data) {--%>
+                <%--$('#title').val(data.title);--%>
+                <%--$('#summary').val(data.summary);--%>
+                <%--$('#pic').attr('src','/'+data.pic);--%>
+                <%--$('#firstImg').val(data.pic);--%>
+                <%--$('#test1').val(formatDate(data.createdTime));--%>
+                <%--layedit.setContent(editIndex,data.content);--%>
+            <%--});--%>
 
         // 编辑器上传图片接口
         layedit.set({
@@ -167,25 +159,25 @@
             , type: 'datetime'
         });
 
-        //修改媒体报道
-        form.on('submit(fabu)', function (data) {
-            $('#content').val(layedit.getContent(editIndex));
-            $.post('<%=path %>/data/company/editMediaReport?mid=' + mediaId,
-                $('#editMediaReport').serialize(),
-                function (res) {
-                    if (res.code === 0) {
-                        layer.msg('提交成功', {
-                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
-                        }, function () {
-                            location.reload(true);
-                        });
-                    } else {
-                        layer.msg(res.message);
-                    }
-                }, 'json'
-            );
-            return false;
-        });
+        //修改公司动态
+        <%--form.on('submit(fabu)', function (data) {--%>
+            <%--$('#content').val(layedit.getContent(editIndex));--%>
+            <%--$.post('<%=path %>/data/dynamic/editDynamic?dyid=' + dynamicId,--%>
+                <%--$('#editDynamic').serialize(),--%>
+                <%--function (res) {--%>
+                    <%--if (res.code === 0) {--%>
+                        <%--layer.msg('提交成功', {--%>
+                            <%--time: 1000 //2秒关闭（如果不配置，默认是3秒）--%>
+                        <%--}, function () {--%>
+                            <%--location.reload(true);--%>
+                        <%--});--%>
+                    <%--} else {--%>
+                        <%--layer.msg(res.message);--%>
+                    <%--}--%>
+                <%--}, 'json'--%>
+            <%--);--%>
+            <%--return false;--%>
+        <%--});--%>
 
     });
 </script>

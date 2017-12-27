@@ -27,8 +27,9 @@
 </div>
 
 <div class="layui-btn-group demoTable">
+    <button class="layui-btn" data-type="edit">编辑动态</button>
     <button class="layui-btn" data-type="detail">查看详情</button>
-    <button class="layui-btn" data-type="delete">删除文章</button>
+    <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
 <table id="allDynamic_table" lay-filter="demo"></table>
@@ -70,29 +71,19 @@
             }
         });
 
-        //监听表格复选框选择
-        table.on('checkbox(demo)', function(obj){
-            console.log(obj)
-        });
-        //监听工具条
-        table.on('tool(demo)', function(obj){
-            var data = obj.data;
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
-            }
-        });
-
         $('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
 
         var active = {
+            edit:function () {
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                if(data.length==1){
+                    window.open("<%=path %>/page/dynamic/editPage?dynamicId="+data[0].dyid);
+                }
+            },
             detail: function(){ //获取选中数据
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
@@ -100,17 +91,8 @@
                     window.open("<%=path %>/page/dynamic/dynamicDetail?dynamicId="+data[0].dyid);
                 }
             }
-            ,delete: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                if(data.length == 1) {
-                    layer.confirm('真的删除行么', function(index){
-                        layer.msg('假装删除了');
-                        layer.close(index);
-                    });
-                } else {
-                    layer.msg('请选中一行！', {time:1500});
-                }
+            ,refresh:function () {
+                location.reload(true);
             }
         };
 

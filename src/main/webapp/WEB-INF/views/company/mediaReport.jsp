@@ -32,8 +32,7 @@
 <div class="layui-btn-group demoTable">
     <button class="layui-btn" data-type="edit">编辑报道</button>
     <button class="layui-btn" data-type="detail">查看详情</button>
-    <button class="layui-btn" data-type="isAll">验证是否全选</button>
-    <button class="layui-btn" data-type="delete">删除文章</button>
+    <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
 <table id="allReport_table" lay-filter="demo"></table>
@@ -107,22 +106,9 @@
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }
-            }
-            ,isAll: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
-                layer.msg(checkStatus.isAll ? '全选': '未全选')
-            }
-            ,delete: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                if(data.length == 1) {
-                    layer.confirm('真的删除行么', function(index){
-                        layer.msg('假装删除了');
-                        layer.close(index);
-                    });
-                } else {
-                    layer.msg('请选中一行！', {time:1500});
-                }
+            },
+            refresh:function () {
+                location.reload(true);
             }
         };
 

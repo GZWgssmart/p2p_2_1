@@ -40,4 +40,11 @@ public class DynamicController {
         Object obj=dynamicService.getById(dynamicId);
         return (Dynamic)obj;
     }
+
+    @RequestMapping("editDynamic")
+    @ResponseBody
+    public ServerResponse editDynamic(Dynamic dynamic, String time){
+        dynamic.setCreatedTime(DateUtil.parseDate(time,"yyyy-MM-dd HH:mm:ss"));
+        return dynamicService.update(dynamic);
+    }
 }
