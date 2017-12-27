@@ -8,12 +8,14 @@
   </sql>
 
   <insert id="save" parameterType="com.p2p.bean.Recommend">
+    <![CDATA[
     insert into recommend(tid, tname, uid, rname, created_time) values(#{tid}, #{tname}, #{uid}, #{rname}, #{createdTime})
+   ]]>
   </insert>
 
   <select id="listPagerCriteria" resultType="com.p2p.bean.Recommend">
     <![CDATA[
-        select r.rmid, r.tname, r.rname, r.created_time as createdTime from recommend r where uid = #{recommend.uid}
+        select r.rmid, r.tname, r.rname, r.created_time as createdTime from recommend r where tid = #{recommend.uid}
      ]]>
     <include refid="common_recommend" />
     limit #{pager.beginIndex}, #{pager.pageSize}
@@ -21,7 +23,7 @@
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Recommend">
     <![CDATA[
-          select count(r.rmid) from recommend r where uid = #{recommend.uid}
+          select count(r.rmid) from recommend r where tid = #{recommend.uid}
     ]]>
     <include refid="common_recommend" />
   </select>

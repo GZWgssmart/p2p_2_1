@@ -20,7 +20,7 @@ public class recommendTest extends BaseTest {
         Recommend recommend = new Recommend();
         recommend.setTid(2);
         recommend.setTname("张三");
-        recommend.setUid(1);
+        recommend.setUid(3);
         recommend.setRname("李四");
         recommend.setCreatedTime(new Date());
         recommendService.save(recommend);

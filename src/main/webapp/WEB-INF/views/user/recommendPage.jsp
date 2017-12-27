@@ -95,7 +95,7 @@
                                         <input type="text" class="layui-input" id="first" lay-verify="laydate" placeholder="yyyy-MM-dd">
                                     </div>
                                 </div>
-                                <span style="margin-left: 20px">至</span>
+                                <span>至</span>
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
                                         <input type="text" class="layui-input" id="end" lay-verify="laydate" placeholder="yyyy-MM-dd">
@@ -133,11 +133,9 @@
             elem: '#allRecommend_table'
             ,url: '<%=path %>/data/recommend/pagerCriteria?uid='+${user.uid}
             ,cols: [[
-                {checkbox: true, fixed: true}
-                ,{field:'rmid', title:'ID', width:50, fixed: 'left'}
-                ,{field:'tname', title:'被推荐人', width:150}
-                ,{field:'rname', title:'推荐人', width:200}
-                ,{field:'createdTime', title:'创建时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
+                {field:'rmid', title:'ID', width:50, fixed: 'left'}
+                ,{field:'rname', title:'被推荐人', width:200}
+                ,{field:'createdTime', title:'注册时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
             ]]
             ,id: 'idTest'
             ,page: true

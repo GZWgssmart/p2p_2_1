@@ -24,8 +24,11 @@
         </constructor>
     </resultMap>
     <insert id="save" parameterType="com.p2p.bean.User">
+        <selectKey keyColumn="uid" keyProperty="uid" resultType="integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
       <![CDATA[
-          insert into t_user(phone, upwd, tzm, face) values(#{phone}, #{upwd}, #{tzm}, 'static/images/face.jpg')
+          insert into t_user(uname, phone, upwd, tzm, face) values(#{uname}, #{phone}, #{upwd}, #{tzm}, 'static/images/face.jpg')
        ]]>
     </insert>
 
