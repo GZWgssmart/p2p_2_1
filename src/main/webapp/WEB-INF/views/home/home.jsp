@@ -162,7 +162,6 @@
                                    data-options="{url:'<%=path %>/page/message/addNotice',icon:'&#xe658;',title:'添加公告',id:'44'}">
                                 <i class="layui-icon">&#xe658;</i><span>添加公告</span></a>
                             </dd>
-
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'#',icon:'&#xe658;',title:'站内信',id:'41'}">
                                 <i class="layui-icon">&#xe658;</i><span>站内信</span></a>
