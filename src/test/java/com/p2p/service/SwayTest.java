@@ -11,16 +11,16 @@ public class SwayTest extends BaseTest {
     @Test
     public void testSave(){
         Sway sway = new Sway();
-        sway.setWay("先本后息");
-        sway.setFw("XX算法");
+        sway.setWay("先后息1");
+        sway.setFw("XX算法1");
         swayService.save(sway);
     }
     @Test
     public void testupdate(){
         Sway sway = new Sway();
         sway.setSid(1);
-        sway.setWay("先息后本");
-        sway.setFw("XX算法");
+        sway.setWay("先息后本2");
+        sway.setFw("XX算法2");
         swayService.update(sway);
     }
 

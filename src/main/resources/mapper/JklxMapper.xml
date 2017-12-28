@@ -21,7 +21,7 @@
     delete from jklx
     where lxid = #{lxid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Jklx">
+  <insert id="save" parameterType="com.p2p.bean.Jklx">
     insert into jklx (lxid, lxname, status
       )
     values (#{lxid,jdbcType=INTEGER}, #{lxname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
