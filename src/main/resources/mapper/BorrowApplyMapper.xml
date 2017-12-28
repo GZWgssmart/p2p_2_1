@@ -69,7 +69,7 @@
     ]]>
     <include refid="borrow_query" />
     <include refid="borrow_query_criteria" />
-    limit #{pager.beginIndex}, #{pager.pageSize}
+    limit #{pager.beginIndex}, #{pager.pageSize} order by ba.baid desc
   </select>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.query.BorrowQuery">

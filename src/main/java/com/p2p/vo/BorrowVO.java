@@ -16,6 +16,8 @@ public class BorrowVO {
 
     private BigDecimal money;
 
+    private BigDecimal moneyCount;
+
     private Integer uid;
 
     private String bzname;
@@ -58,6 +60,14 @@ public class BorrowVO {
 
     public void setMoney(BigDecimal money) {
         this.money = money;
+    }
+
+    public BigDecimal getMoneyCount() {
+        return moneyCount;
+    }
+
+    public void setMoneyCount(BigDecimal moneyCount) {
+        this.moneyCount = moneyCount;
     }
 
     public Integer getUid() {
@@ -139,14 +149,4 @@ public class BorrowVO {
     public void setNprofit(Float nprofit) {
         this.nprofit = nprofit;
     }
-
-    public BigDecimal getMoneyCount() {
-        return moneyCount;
-    }
-
-    public void setMoneyCount(BigDecimal moneyCount) {
-        this.moneyCount = moneyCount;
-    }
-
-    private BigDecimal moneyCount;
 }

@@ -13,6 +13,7 @@
 <head>
     <title>投资列表</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
+    <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/index.css">
     <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
 </head>
@@ -26,11 +27,10 @@
                 <div class="invest-top-list">
                     <p>项目期限：</p>
                     <ul class="cl">
-                        <li class="active"><a href="#0">全部</a></li>
-                        <li><a href="#1">1-3个月</a></li>
-                        <li><a href="#2">3-6个月</a></li>
-                        <li><a href="#3">6-9个月</a></li>
-                        <li><a href="#4">大于9个月</a></li>
+                        <li class="active"><a href="javascript:void(0);" onclick="">全部</a></li>
+                        <li><a href="javascript:void(0);" onclick="">3个月</a></li>
+                        <li><a href="javascript:void(0);" onclick="">6个月</a></li>
+                        <li><a href="javascript:void(0);"onclick="">12个月</a></li>
                     </ul>
                 </div>
                 <div class="invest-top-list">
@@ -62,37 +62,47 @@
             </div>
         </div>
         <div class="invest-list-bottom">
-            <ul class="invest-row listData creditor-row">
-                <li>
-                    <div class="invest-title cl"><p>item.bzname</p><h3><a>item.cpname</a></h3></div>
-                    <div class="invest-content cl">
-                        <ul>
-                            <li class="row1"><p class="row-top">预期年化收益率</p><p class="row-bottom color">item.nprofit<span>%</span></p></li>
-                            <li class="row2"><p class="row-top">项目期限</p><p class="row-bottom">item.term个月</p></li>
-                            <li class="row3"><p class="row-top">还款方式</p><p class="row-bottom">按月付息，到期还本</p></li>
-                            <li class="row4"><p class="row-top">可投金额 / 募集总额</p><p class="row-bottom">item.money-item.ymoney万元 / item.money万元</p></li>
-                            <li class="row5">
-                                <div class="line">
-                                    <div class="layui-progress" style="float: left;width: 150px;margin-top: 13px" lay-showPercent="yes">
-                                        <div class="layui-progress layui-progress-bar layui-bg-red"></div>
+            <ul class="invest-row listData creditor-row" id="content">
+                <script type="text/html" id="borrowList">
+                    {{#  layui.each(d, function(index, borrow){ }}
+                    <li>
+                        <div class="invest-title cl"><p>{{ borrow.bzname }}</p><h3><a>{{borrow.cpname}}</a></h3></div>
+                        <div class="invest-content cl">
+                            <ul>
+                                <li class="row1"><p class="row-top">预期年化收益率</p><p class="row-bottom color">{{borrow.nprofit}}<span>%</span></p></li>
+                                <li class="row2"><p class="row-top">项目期限</p><p class="row-bottom">{{borrow.term}}个月</p></li>
+                                <li class="row3"><p class="row-top">还款方式</p><p class="row-bottom">按月付息，到期还本</p></li>
+                                <li class="row4"><p class="row-top">可投金额 / 募集总额</p><p class="row-bottom">{{borrow.money-borrow.moneyCount}}万元 / {{borrow.money}}万元</p></li>
+                                <li class="row5">
+                                    <div class="line">
+                                        <div class="layui-progress" style="float: left;width: 150px;margin-top: 13px" lay-showPercent="true">
+                                            <div class="layui-progress-bar layui-bg-red" lay-percent="{{borrow.moneyCount/borrow.money*100}}%"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <p class="row-top">募集进度</p></li>
-                            <li class="row6">
-                                <button type="button" class="btn" onclick="">立即投标</button>
-                                <%--<button type="button" class="btn disabled" onclick="">还款中</button>--%>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                                    <p class="row-top">募集进度</p></li>
+                                <li class="row6">
+                                    {{# if((borrow.money-borrow.moneyCount)>0){ }}
+                                    <button type="button" class="btn" onclick="">立即投标</button>
+                                    {{# } else if(borrow.ckstatus === 5) { }}
+                                    <button type="button" class="btn disabled" onclick="">已完成</button>
+                                    {{# } else { }}
+                                    <button type="button" class="btn disabled" onclick="">还款中</button>
+                                    {{# } }}
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {{#  }); }}
+                </script>
             </ul>
-            <div id="demo3"></div>
+            <div id="borrowDemo"></div>
         </div>
     </div>
 </div>
 <%@include file="../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
     function searchBorrow() {
@@ -112,5 +122,66 @@
             , 'json'
         );
     }
+</script>
+<script>
+    $(function(){
+
+    });
+
+    function search() {
+
+    }
+        layui.use(['element', 'laypage', 'laytpl'], function () {
+            var $ = layui.$;
+            var element = layui.element;
+            var laypage = layui.laypage;
+            var laytpl = layui.laytpl;
+
+            var page = 1; // 第一页开始
+            var limit = 10; // 每页十个数据，laypage默认也是十个
+
+            var getTpl = $('#borrowList').html()
+                , view = document.getElementById('content');
+            // 获取数据
+            $.get('<%=path %>/data/borrow/frontList', {
+                page: page
+                , limit: limit
+            }, function (data) {
+                fenye(data.rows);
+                pageTotal(data.total)
+            });
+
+            // 渲染数据
+            function fenye(data) {
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            }
+
+            // 分页组件
+            function pageTotal(total) {
+                laypage.render({
+                    elem: 'borrowDemo'
+                    , count: total
+                    , curr: location.hash.replace('#!page=', '') //获取起始页
+                    , hash: 'page' //自定义hash值
+                    , jump: function (obj, first) {
+                        //obj包含了当前分页的所有参数，比如：
+                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        console.log(obj.limit); //得到每页显示的条数
+
+                        //在点击页号和上下页的时候重新加载数据
+                        if (!first) {
+                            $.get('<%=path %>/data/borrow/frontList', {
+                                page: obj.curr,
+                                limit: obj.limit
+                            }, function (data) {
+                                fenye(data.rows);
+                            });
+                        }
+                    }
+                });
+            }
+        });
 </script>
 </html>

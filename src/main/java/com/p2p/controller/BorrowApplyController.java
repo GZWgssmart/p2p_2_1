@@ -72,13 +72,11 @@ public class BorrowApplyController {
      * 前台投资列表
      * @return
      */
-    @RequestMapping(value="frontList", method = RequestMethod.POST)
+    @RequestMapping("frontList")
     public Pager borrowFrontList(Integer page, Integer limit, Integer ckstatus, Integer term, Integer bzid,
                             Float nprofitMin, Float nprofitMax, String cpname) {
         BorrowQuery borrowQuery = queryCriteria(ckstatus, term, bzid, nprofitMin, nprofitMax, cpname);
         borrowQuery.setCkstatus(6);
-        page = 1;
-        limit = 1;
         return borrowApplyService.listPagerCriteria(page, limit, borrowQuery);
     }
 
