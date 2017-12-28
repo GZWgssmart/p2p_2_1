@@ -27,8 +27,8 @@ public class HuserTest extends BaseTest {
 
     @Test
     public void testGetByPhone() {
-        //huserService.getByPhonePwd("15083562555",EncryptUtils.md5("123456"));
-        huserService.getByPhone("15083562555");
+        huserService.getByPhonePwd("13500000000",EncryptUtils.md5("123456"));
+//        huserService.getByPhone("15083562555");
     }
 
 }

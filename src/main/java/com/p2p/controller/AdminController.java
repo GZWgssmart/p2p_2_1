@@ -40,13 +40,11 @@ public class AdminController {
     @PostMapping("login")
     @ResponseBody
     public ServerResponse login(Huser huser) {
-        System.out.println("name:" +huser.getPhone() + "----password:" +huser.getPwd());
         ServerResponse status = null;
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(new UsernamePasswordToken(huser.getPhone(), EncryptUtils.md5(huser.getPwd())));
-            String username = (String) subject.getPrincipal();
-//            Huser huser1 =huserService.getByPhonePwd(huser.getPhone(), EncryptUtils.md5(huser.getPwd()));
+            Huser huser1 =huserService.getByPhonePwd(huser.getPhone(), EncryptUtils.md5(huser.getPwd()));
             Session session = subject.getSession();
             if(subject.hasRole("root")) {
                 System.out.println("我是root用户");
@@ -57,7 +55,7 @@ public class AdminController {
             if(subject.hasRole("message")) {
                 System.out.println("我是message用户");
             }
-            session.setAttribute("admin",username);
+            session.setAttribute("admin",huser1);
             status = ServerResponse.createBySuccess();
         } catch (UnknownAccountException e) {
             status = ServerResponse.createByError();
@@ -67,6 +65,15 @@ public class AdminController {
             status = ServerResponse.createByError();
         }
         return status;
+    }
+
+    @RequestMapping("out")
+    public String outTest() {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
+        }
+        return "index";
     }
     
     @RequestMapping("addhuser")
