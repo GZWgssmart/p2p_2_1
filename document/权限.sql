@@ -1,5 +1,5 @@
 /*
-后台是用手机号密码登录，大家根据自己的功能登录相应的角色。密码：123456
+后台是用手机号密码登录，大家根据自己的功能登录相应的角色。密码：123456 （已加盐）
 审核和设置奖励的组员，用13511111111登录
 管理信息的组员，用13522222222登录
 
@@ -10,9 +10,9 @@
 */
 
 -- 默认三个用户的信息，root用户，manage用户，message用户
-INSERT INTO `huser` VALUES ('1', 'root', '1', '13500000000', '4QrcOUm6Wau+VuBX8g+IPg==', 'root', '0', '默认分组', '123@qq.com', null, null, null, null);
-INSERT INTO `huser` VALUES ('2', 'manage', '1', '13511111111', '4QrcOUm6Wau+VuBX8g+IPg==', 'manage', '1', '审核设置分组', '321@qq.com', null, null, null, null);
-INSERT INTO `huser` VALUES ('3', 'message', '1', '13522222222', '4QrcOUm6Wau+VuBX8g+IPg==', 'message', '2', '信息设置分组', '222@qq.com', null, null, null, null);
+INSERT INTO `huser` VALUES ('1', 'root', '1', '13500000000', 'wr+H6GPsOw9hqVg1xXC1mQ==', 'root', '0', '默认分组', '123@qq.com', null, null, null, null);
+INSERT INTO `huser` VALUES ('2', 'manage', '1', '13511111111', 'wr+H6GPsOw9hqVg1xXC1mQ==', 'manage', '1', '审核设置分组', '321@qq.com', null, null, null, null);
+INSERT INTO `huser` VALUES ('3', 'message', '1', '13522222222', 'wr+H6GPsOw9hqVg1xXC1mQ==', 'message', '2', '信息设置分组', '222@qq.com', null, null, null, null);
 
 -- 三个角色
 INSERT INTO `role` VALUES ('1', 'root', '最高级用户');
@@ -41,3 +41,6 @@ INSERT INTO `rolejur` VALUES ('3', '1', '3');
 INSERT INTO `rolejur` VALUES ('4', '2', '2');
 -- 3 message用户，3 管理信息的权限
 INSERT INTO `rolejur` VALUES ('5', '3', '1');
+
+-- 换用新的密码规则
+UPDATE t_user set upwd = 'wr+H6GPsOw9hqVg1xXC1mQ==';

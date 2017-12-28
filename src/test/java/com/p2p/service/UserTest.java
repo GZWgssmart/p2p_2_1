@@ -1,6 +1,7 @@
 package com.p2p.service;
 
 import com.p2p.bean.User;
+import com.p2p.common.Constants;
 import com.p2p.utils.EncryptUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,9 @@ public class UserTest extends BaseTest {
 
     @Test
     public void testSave() {
-        String tzm = System.currentTimeMillis() + "";
-        int z = Integer.valueOf(tzm.substring(5, 13));
         User user = new User();
-        user.setPhone("15083562555");
-        user.setUpwd(EncryptUtils.md5("123456"));
-        user.setTzm(z);
+        user.setPhone("15011111111");
+        user.setUpwd(EncryptUtils.md5("123456" + Constants.SALT));
         userService.save(user);
     }
 

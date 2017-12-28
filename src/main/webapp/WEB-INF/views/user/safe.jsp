@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   To change this template use File | Settings | File Templates.
@@ -44,6 +45,7 @@
                                     <a href="javascript:;" id="changePhone">修改</a>
                                 </div>
                             </li>
+                            <c:if test="">
                             <li>
                                 <div class="safe-list-1">
                                     <p class="icon icon-wrong" id="email-icon">
@@ -54,6 +56,7 @@
                                     <a href="javascript:;" id="email">进行绑定</a>
                                 </div>
                             </li>
+                            </c:if>
                             <li>
                                 <div class="safe-list-1">
                                     <p class="icon icon-wrong" id="realName-icon">身份认证</p>

@@ -4,6 +4,7 @@ import com.p2p.bean.Recommend;
 import com.p2p.bean.Rzvip;
 import com.p2p.bean.User;
 import com.p2p.common.BeanCopyUtils;
+import com.p2p.common.Constants;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.UserService;
 import com.p2p.utils.EncryptUtils;
@@ -40,7 +41,7 @@ public class UserController {
     public ServerResponse reg(UserTuijianVO uservo) {
         User user = new User();
         Recommend recommend = new Recommend();
-        uservo.setUpwd(EncryptUtils.md5(uservo.getUpwd()));
+        uservo.setUpwd(EncryptUtils.md5(uservo.getUpwd() + Constants.SALT));
         try {
             if(uservo.getTid() != null) {
                 BeanCopyUtils.copy(user, uservo);
@@ -62,7 +63,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse login(User user, HttpSession session) {
         ServerResponse serverResponse = null;
-        User user1 = userService.getByPhonePwd(user.getPhone(), EncryptUtils.md5(user.getUpwd()));
+        User user1 = userService.getByPhonePwd(user.getPhone(), EncryptUtils.md5(user.getUpwd() + Constants.SALT));
         if(user1 != null) {
             session.setAttribute("user", user1);
             serverResponse = ServerResponse.createBySuccess();
@@ -75,8 +76,8 @@ public class UserController {
     @RequestMapping("edit")
     @ResponseBody
     public ServerResponse edit(User user) {
-        if(user.getUpwd() != null && user.getUpwd() != "") {
-            user.setUpwd(EncryptUtils.md5(user.getUpwd()));
+        if(user.getUpwd() != null && !"".equals(user.getUpwd())) {
+            user.setUpwd(EncryptUtils.md5(user.getUpwd() + Constants.SALT));
         }
         return userService.update(user);
     }

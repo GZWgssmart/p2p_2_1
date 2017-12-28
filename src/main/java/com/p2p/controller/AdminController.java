@@ -1,6 +1,7 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Huser;
+import com.p2p.common.Constants;
 import com.p2p.common.ServerResponse;
 import com.p2p.dao.HuserMapper;
 import com.p2p.service.HuserService;
@@ -43,8 +44,8 @@ public class AdminController {
         ServerResponse status = null;
         Subject subject = SecurityUtils.getSubject();
         try {
-            subject.login(new UsernamePasswordToken(huser.getPhone(), EncryptUtils.md5(huser.getPwd())));
-            Huser huser1 =huserService.getByPhonePwd(huser.getPhone(), EncryptUtils.md5(huser.getPwd()));
+            subject.login(new UsernamePasswordToken(huser.getPhone(), EncryptUtils.md5(huser.getPwd() + Constants.SALT)));
+            Huser huser1 =huserService.getByPhonePwd(huser.getPhone(), EncryptUtils.md5(huser.getPwd() + Constants.SALT));
             Session session = subject.getSession();
             if(subject.hasRole("root")) {
                 System.out.println("我是root用户");
