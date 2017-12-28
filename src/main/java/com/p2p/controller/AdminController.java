@@ -29,6 +29,14 @@ public class AdminController {
     @Autowired
     private HuserService huserService;
 
+    @RequestMapping("Phone")
+    @ResponseBody
+    public ServerResponse regPhone(String phone) {
+        System.out.println(phone);
+        return huserService.getByPhone(phone);
+    }
+
+
     @PostMapping("login")
     @ResponseBody
     public ServerResponse login(Huser huser) {

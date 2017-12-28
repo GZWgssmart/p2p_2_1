@@ -1,5 +1,7 @@
 package com.p2p.service.impl;
 
+import com.p2p.bean.Huser;
+import com.p2p.common.ServerResponse;
 import com.p2p.dao.HuserMapper;
 import com.p2p.service.HkbService;
 import com.p2p.service.HuserService;
@@ -14,10 +16,25 @@ public class HuserServiceImpl extends AbstractServiceImpl implements HuserServic
 
     private HuserMapper huserMapper;
 
+    @Override
+    public Huser getByPhonePwd(String phone, String pwd) {
+        return huserMapper.getByPhonePwd(phone, pwd);
+    }
+
+    @Override
+    public ServerResponse<Integer> getByPhone(String phone) {
+        if(huserMapper.getByPhone(phone) != 0) {
+            return ServerResponse.createBySuccess("手机号存在");
+        } else {
+            return ServerResponse.createByError("手机号不存在");
+        }
+    }
+
     @Autowired
-    public void setHuserMapper(HuserMapper huserMapper){
+    public void setUserMapper(HuserMapper huserMapper) {
         super.setBaseDAO(huserMapper);
         this.huserMapper = huserMapper;
     }
+
 
 }
