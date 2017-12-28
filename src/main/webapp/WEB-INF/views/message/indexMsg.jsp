@@ -18,7 +18,7 @@
 <body style="padding-top: 20px">
 
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="edit">编辑报道</button>
+    <button class="layui-btn" data-type="edit"  lay-submit lay-filter="edit">编辑报道</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
@@ -226,6 +226,9 @@
                 location.reload(true);
             },
         };
+        form.on('submit(edit)', function (data) {
+            var checkStatus = table.checkStatus('idTest')
+                ,data = checkStatus.data;
         $.get('<%=path %>/data/home/getById?hid=' + data[0.].hid,
             function (data) {
                 $("#pic1").attr('src',"/"+data.pic1);
@@ -237,6 +240,8 @@
                 $("#url2").val(data.url2);
                 $("#url3").val(data.url3);
             });
+            return false;
+        });
         //上传轮播图一
         var uploadInst1 = upload.render({
             elem: '#test1'
