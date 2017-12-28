@@ -22,13 +22,13 @@
     delete from sway
     where sid = #{sid,jdbcType=INTEGER}
   </delete>
-  <insert id="save" parameterType="com.p2p.bean.Sway">
+  <insert id="" parameterType="com.p2p.bean.Sway">
     insert into sway (sid, way, fw, 
       status)
     values (#{sid,jdbcType=INTEGER}, #{way,jdbcType=VARCHAR}, #{fw,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Sway">
+  <insert id="save" parameterType="com.p2p.bean.Sway">
     insert into sway
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sid != null">

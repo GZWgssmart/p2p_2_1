@@ -24,14 +24,14 @@
     where bzid = #{bzid,jdbcType=INTEGER}
   </delete>
 
-  <insert id="save" parameterType="com.p2p.bean.Bz">
+  <insert id="insert" parameterType="com.p2p.bean.Bz">
     insert into bz (bzid, bzname, status
       )
     values (#{bzid,jdbcType=INTEGER}, #{bzname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
 
-  <insert id="insertSelective" parameterType="com.p2p.bean.Bz">
+  <insert id="save" parameterType="com.p2p.bean.Bz">
     insert into bz
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bzid != null">
@@ -57,7 +57,7 @@
     </trim>
   </insert>
 
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Bz">
+  <update id="update" parameterType="com.p2p.bean.Bz">
     update bz
     <set>
       <if test="bzname != null and bz = ''">
@@ -70,7 +70,7 @@
     where bzid = #{bzid,jdbcType=INTEGER}
   </update>
 
-  <update id="update" parameterType="com.p2p.bean.Bz">
+  <update id="updateById" parameterType="com.p2p.bean.Bz">
     update bz
     set bzname = #{bzname,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER}
