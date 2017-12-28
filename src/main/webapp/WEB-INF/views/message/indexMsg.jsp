@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body style="padding-top: 20px">
-
 <div class="layui-btn-group demoTable">
     <button class="layui-btn" data-type="edit"  lay-submit lay-filter="edit">编辑报道</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
@@ -66,10 +65,10 @@
     <span>没有链接</span>
     {{#  } }}
 </script>
-<div class="layui-container"style="display: none">
+<div id="app">
+<div class="layui-container"style="display: none;width: 800px;" id="editIndexMsg">
     <div class="layui-row">
         <div class="layui-col-md12">
-            <form  class="layui-form" id="editIndexMsg">
                 <div class="layui-form-item">
                     <div class="layui-upload">
                         <label class="layui-label" style="float: left;display: block;padding: 9px 15px;width: 80px;
@@ -77,11 +76,11 @@
                             <button type="button" class="layui-btn" id="test1">轮播图一</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="pic1" width="200" height="200" name="pic1">
+                            <img class="layui-upload-img" :src="'/' + msg.pic1" id="pic1" width="200" height="200" name="pic1">
                             <p id="demoText1"></p>
                         </div>
                     </div>
-                    <input type="hidden" name="pic1" id="firstImg1"/>
+                    <input type="text" v-model="msg.pic1" id="firstImg1"/>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
@@ -90,11 +89,11 @@
                             <button type="button" class="layui-btn" id="test2">轮播图二</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="pic2" width="200" height="200" name="pic2">
+                            <img class="layui-upload-img"  :src="'/' + msg.pic2" id="pic2" width="200" height="200" name="pic2">
                             <p id="demoText2"></p>
                         </div>
                     </div>
-                    <input type="hidden" name="pic2" id="firstImg2"/>
+                    <input v-model="msg.pic2" id="firstImg2"/>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
@@ -103,11 +102,11 @@
                             <button type="button" class="layui-btn" id="test3">轮播图三</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="pic3" width="200" height="200" name="pic2">
+                            <img class="layui-upload-img"  :src="'/' + msg.pic3" id="pic3" width="200" height="200" name="pic2">
                             <p id="demoText3"></p>
                         </div>
                     </div>
-                    <input type="hidden" name="pic3" id="firstImg3"/>
+                    <input  v-model="msg.pic3" id="firstImg3"/>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
@@ -116,52 +115,77 @@
                             <button type="button" class="layui-btn" id="testEwm">二维码</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" id="ewm" width="200" height="200" name="ewm">
+                            <img class="layui-upload-img" :src="'/' + msg.ewm" width="200" height="200">
                             <p id="ewmText"></p>
                         </div>
                     </div>
-                    <input type="hidden" name="ewm" id="firstEwm"/>
+                    <input type="hidden" v-model="msg.ewm" id="firstEwm"/>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话</label>
                     <div class="layui-input-block">
-                        <input type="text" name="phone" lay-verify="phone" id="phone" autocomplete="off" placeholder="请输入地址"
-                               class="layui-input">
+                        <input type="text" v-model="msg.phone" lay-verify="phone" autocomplete="off" placeholder="请输入地址"
+                               class="layui-input" >
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">链接1</label>
                     <div class="layui-input-block">
-                        <input type="text" name="url1" id="url1" autocomplete="off" placeholder="请输入地址"
+                        <input type="text" v-model="msg.url1" autocomplete="off" placeholder="请输入地址"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">链接2</label>
                     <div class="layui-input-block">
-                        <input type="text" name="url2" id="url2" autocomplete="off" placeholder="请输入地址"
+                        <input type="text" v-model="msg.url2" autocomplete="off" placeholder="请输入地址"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">链接3</label>
                     <div class="layui-input-block">
-                        <input type="text" name="url3" id="url3" autocomplete="off" placeholder="请输入地址"
+                        <input type="text" v-model="msg.url3" autocomplete="off" placeholder="请输入地址"
                                class="layui-input">
                     </div>
                 </div>
+            <input type="hidden" v-model="msg.hid"/>
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="fabu">立即提交</button>
+                        <button class="layui-btn" @click="add" >立即提交</button>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/static/js/qs.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+
 <script>
+
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            msg:[]
+        },
+        methods : {
+            add () {
+                console.log(this.msg);
+                axios.post('/data/home/editIndexMsg',Qs.stringify(this.msg)).then((response)=>{
+//                    alert(response.data.code);
+                    alert("成功")
+                },(error)=>{
+                    alert("失败")
+                });
+            }
+        }
+    });
+
     layui.use(['table','form', 'layedit', 'upload'], function(){
         var table = layui.table;
         var form = layui.form;
@@ -206,7 +230,6 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    $editIndexMsg=$("#editIndexMsg").html();
                     layer.open({
                         type: 1,                //弹窗类型
                         title: '编辑首页信息',     //显示标题
@@ -215,9 +238,9 @@
                         fixed:false,    //层是否固定在可视区域
                         move: false,//禁止拖拽
                         area: ['890px', '560px'], //宽高
-                        content: $editIndexMsg,  //弹窗内容
-
+                        content: $("#editIndexMsg"),  //弹窗内容
                     });
+                    vue.msg=data[0];
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }
@@ -226,20 +249,7 @@
                 location.reload(true);
             },
         };
-        form.on('submit(edit)', function (data) {
-            var checkStatus = table.checkStatus('idTest')
-                ,data = checkStatus.data;
-        $.get('<%=path %>/data/home/getById?hid=' + data[0.].hid,
-            function (data) {
-                $("#pic1").attr('src',"/"+data.pic1);
-                $("#pic2").attr('src',"/"+data.pic2);
-                $("#pic3").attr('src',"/"+data.pic3);
-                $("#ewm").attr('src',"/"+data.ewm);
-                $("#phone").val(data.phone);
-                $("#url1").val(data.url1);
-                $("#url2").val(data.url2);
-                $("#url3").val(data.url3);
-            });
+
             return false;
         });
         //上传轮播图一

@@ -179,7 +179,7 @@
                             </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/home/indexMsg',icon:'&#xe62d;',title:'合作伙伴',id:'42'}">
+                                   data-options="{url:'<%=path %>/page/home/indexMsg',icon:'&#xe62d;',title:'首页信息',id:'42'}">
                                     <i class="layui-icon">&#xe62d;</i><span>首页信息</span></a>
                             </dd>
                             <dd>
