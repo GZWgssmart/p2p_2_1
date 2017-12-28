@@ -1,6 +1,7 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Home;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,20 @@ public class HomeController {
         return homeService.save(home);
     }
 
+    @RequestMapping("indexMsg")
+    @ResponseBody
+    public Pager pagerCriteria(int page, int limit, Home home){
+        return homeService.listPagerCriteria(page,limit,home);
+    }
+
+    @RequestMapping("getById")
+    @ResponseBody
+    public Home getById(int hid){
+        return (Home)homeService.getById(hid);
+    }
+    @RequestMapping("editIndexMsg")
+    @ResponseBody
+    public ServerResponse update(Home home){
+        return homeService.update(home);
+    }
 }

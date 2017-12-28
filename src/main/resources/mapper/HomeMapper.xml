@@ -1,142 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.dao.HomeMapper">
-  <resultMap id="BaseResultMap" type="com.p2p.bean.Home">
-    <constructor>
-      <idArg column="hid" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="pic1" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="pic2" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="pic3" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="ewm" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="url1" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="url2" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="url3" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="url4" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
-    hid, pic1, pic2, pic3, ewm, phone, url1, url2, url3, url4
-  </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from home
-    where hid = #{hid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from home
-    where hid = #{hid,jdbcType=INTEGER}
-  </delete>
   <insert id="save" parameterType="com.p2p.bean.Home">
-    insert into home (hid, pic1, pic2,
-      pic3, ewm, phone, url1,
-      url2, url3)
+    insert into home (hid, pic1, pic2,pic3, ewm, phone, url1,url2, url3)
     values (#{hid,jdbcType=INTEGER}, #{pic1,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR},
       #{pic3,jdbcType=VARCHAR}, #{ewm,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{url1,jdbcType=VARCHAR},
       #{url2,jdbcType=VARCHAR}, #{url3,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Home">
-    insert into home
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="hid != null">
-        hid,
-      </if>
-      <if test="pic1 != null">
-        pic1,
-      </if>
-      <if test="pic2 != null">
-        pic2,
-      </if>
-      <if test="pic3 != null">
-        pic3,
-      </if>
-      <if test="ewm != null">
-        ewm,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="url1 != null">
-        url1,
-      </if>
-      <if test="url2 != null">
-        url2,
-      </if>
-      <if test="url3 != null">
-        url3,
-      </if>
-      <if test="url4 != null">
-        url4,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="hid != null">
-        #{hid,jdbcType=INTEGER},
-      </if>
-      <if test="pic1 != null">
-        #{pic1,jdbcType=VARCHAR},
-      </if>
-      <if test="pic2 != null">
-        #{pic2,jdbcType=VARCHAR},
-      </if>
-      <if test="pic3 != null">
-        #{pic3,jdbcType=VARCHAR},
-      </if>
-      <if test="ewm != null">
-        #{ewm,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="url1 != null">
-        #{url1,jdbcType=VARCHAR},
-      </if>
-      <if test="url2 != null">
-        #{url2,jdbcType=VARCHAR},
-      </if>
-      <if test="url3 != null">
-        #{url3,jdbcType=VARCHAR},
-      </if>
-      <if test="url4 != null">
-        #{url4,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Home">
-    update home
-    <set>
-      <if test="pic1 != null">
-        pic1 = #{pic1,jdbcType=VARCHAR},
-      </if>
-      <if test="pic2 != null">
-        pic2 = #{pic2,jdbcType=VARCHAR},
-      </if>
-      <if test="pic3 != null">
-        pic3 = #{pic3,jdbcType=VARCHAR},
-      </if>
-      <if test="ewm != null">
-        ewm = #{ewm,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="url1 != null">
-        url1 = #{url1,jdbcType=VARCHAR},
-      </if>
-      <if test="url2 != null">
-        url2 = #{url2,jdbcType=VARCHAR},
-      </if>
-      <if test="url3 != null">
-        url3 = #{url3,jdbcType=VARCHAR},
-      </if>
-      <if test="url4 != null">
-        url4 = #{url4,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where hid = #{hid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Home">
+  <select id="listPagerCriteria" resultType="com.p2p.bean.Home">
+    <![CDATA[
+          select h.hid, h. pic1, h.pic2, h.pic3, h.ewm, h.phone, h.url1, h.url2, h.url3 from home h
+        ]]>
+      limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Home">
+    <![CDATA[
+          select count(h.hid) from home h
+        ]]>
+  </select>
+
+  <update id="update" parameterType="com.p2p.bean.Home">
     update home
     set pic1 = #{pic1,jdbcType=VARCHAR},
       pic2 = #{pic2,jdbcType=VARCHAR},
@@ -145,8 +29,13 @@
       phone = #{phone,jdbcType=VARCHAR},
       url1 = #{url1,jdbcType=VARCHAR},
       url2 = #{url2,jdbcType=VARCHAR},
-      url3 = #{url3,jdbcType=VARCHAR},
-      url4 = #{url4,jdbcType=VARCHAR}
+      url3 = #{url3,jdbcType=VARCHAR}
     where hid = #{hid,jdbcType=INTEGER}
   </update>
+
+  <select id="getById" resultType="com.p2p.bean.Home">
+    <![CDATA[
+          select * from home h where h.hid = #{hid}
+        ]]>
+  </select>
 </mapper>

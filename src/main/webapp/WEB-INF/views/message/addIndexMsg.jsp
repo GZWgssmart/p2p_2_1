@@ -62,11 +62,17 @@
                     <input type="hidden" name="pic3" id="firstImg3"/>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">二维码</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="ewm" lay-verify="required" autocomplete="off"
-                               class="layui-input">
+                    <div class="layui-upload">
+                        <label class="layui-label" style="float: left;display: block;padding: 9px 15px;width: 80px;
+                                font-weight: 400;text-align: right;">
+                            <button type="button" class="layui-btn" id="testEwm">二维码</button>
+                        </label>
+                        <div class="layui-upload-list">
+                            <img class="layui-upload-img" id="ewm" width="200" height="200">
+                            <p id="ewmText"></p>
+                        </div>
                     </div>
+                    <input type="hidden" name="ewm" id="firstEwm"/>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话</label>
@@ -194,6 +200,34 @@
             , error: function () {
                 //演示失败状态，并实现重传
                 var demoText = $('#demoText3');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        //上传轮播图三
+        var uploadInst = upload.render({
+            elem: '#testEwm'
+            , url: '<%=path %>/file/firist'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#ewm').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res > 0) {
+                    return layer.msg('失败！');
+                } else {
+                    return $('#firstEwm').val(res.msg);
+                }
+                //上传成功
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#ewmText');
                 demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
                 demoText.find('.demo-reload').on('click', function () {
                     uploadInst.upload();
