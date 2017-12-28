@@ -95,7 +95,7 @@
                                    data-options="{url:'#',icon:'&#xe658;',title:'借款类型',id:'10'}"><i class="layui-icon">&#xe658;</i><span>借款类型</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'借款审核',id:'11'}"><i class="layui-icon">&#xe658;</i><span>借款审核</span></a>
+                                   data-options="{url:'<%=path %>/page/borrowApply/adminBorrowList',icon:'&#xe658;',title:'借款审核',id:'11'}"><i class="layui-icon">&#xe658;</i><span>借款审核</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'#',icon:'&#xe658;',title:'标种',id:'12'}"><i class="layui-icon">&#xe658;</i><span>标种</span></a>

@@ -43,4 +43,13 @@ public class BorrowApplyView {
     public String investList(){
         return "index/investList";
     }
+
+    /**
+     * 管理员查看投资列表
+     * @return
+     */
+    @GetMapping("adminBorrowList")
+    public String adminManage() {
+        return "borrow/adminBorrowManage";
+    }
 }
