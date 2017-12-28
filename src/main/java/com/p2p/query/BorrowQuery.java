@@ -13,7 +13,9 @@ public class BorrowQuery {
 
     private Integer bzid;
 
-    private Float nprofit;
+    private Float nprofitMin;
+
+    private Float nprofitMax;
 
     private String cpname;
 
@@ -49,12 +51,20 @@ public class BorrowQuery {
         this.bzid = bzid;
     }
 
-    public Float getNprofit() {
-        return nprofit;
+    public Float getNprofitMin() {
+        return nprofitMin;
     }
 
-    public void setNprofit(Float nprofit) {
-        this.nprofit = nprofit;
+    public void setNprofitMin(Float nprofitMin) {
+        this.nprofitMin = nprofitMin;
+    }
+
+    public Float getNprofitMax() {
+        return nprofitMax;
+    }
+
+    public void setNprofitMax(Float nprofitMax) {
+        this.nprofitMax = nprofitMax;
     }
 
     public String getCpname() {

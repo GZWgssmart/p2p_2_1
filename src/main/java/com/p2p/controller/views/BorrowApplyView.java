@@ -26,8 +26,21 @@ public class BorrowApplyView {
         return "user/borrowApply";
     }
 
+    /**
+     * 用户借款管理列表页
+     * @return
+     */
     @GetMapping("management")
     public String borrowManagement() {
         return "user/borrowManage";
+    }
+
+    /**
+     * 主页投资列表页
+     * @return
+     */
+    @GetMapping("investList")
+    public String investList(){
+        return "index/investList";
     }
 }

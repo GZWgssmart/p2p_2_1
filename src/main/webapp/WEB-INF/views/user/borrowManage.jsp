@@ -34,7 +34,10 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <input type="text" id="nprofit" name="nprofit" placeholder="请输入利率" class="layui-input">
+                        <input type="text" id="nprofitMin" name="nprofitMin" placeholder="请输入最小利率" class="layui-input">
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" id="nprofitMax" name="nprofitMax" placeholder="请输入最大利率" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -129,7 +132,8 @@
                         ,bzid : $('#bzid').val()
                         ,term : $('#term').val()
                         ,ckstatus : $('#ckstatus').val()
-                        ,nprofit : $('#nprofit').val()
+                        ,nprofitMin : $('#nprofitMin').val()
+                        ,nprofitMax : $('#nprofitMax').val()
                     }
                 });
             }

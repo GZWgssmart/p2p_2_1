@@ -17,7 +17,7 @@
                 <!-- <li><a href="javascript:void(0);" onclick="newPointer()">新手指导</a></li> -->
                 <li><a href="<%=path%>/statically/insurance">安全保障</a></li>
                 <li>
-                    <a href="https://www.pujinziben.com/investlist.html">投资理财</a>
+                    <a href="<%=path%>/page/borrowApply/investList">投资理财</a>
                     <div class="sub-nav">
                         <a href="https://www.pujinziben.com/investlist.html#006">恒金保</a>
                         <a href="https://www.pujinziben.com/investlist.html#004">普金保</a>
