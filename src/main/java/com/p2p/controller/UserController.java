@@ -75,11 +75,17 @@ public class UserController {
 
     @RequestMapping("edit")
     @ResponseBody
-    public ServerResponse edit(User user) {
+    public ServerResponse edit(User user, HttpSession session) {
+        ServerResponse serverResponse = null;
         if(user.getUpwd() != null && !"".equals(user.getUpwd())) {
             user.setUpwd(EncryptUtils.md5(user.getUpwd() + Constants.SALT));
         }
-        return userService.update(user);
+        serverResponse = userService.update(user);
+        Object obj= userService.getById(user.getUid());
+        User user1 = (User) obj;
+        session.setAttribute("user",user1);
+        serverResponse.setData(user1);
+        return serverResponse;
     }
 
     @PostMapping("saveUserRzvip")

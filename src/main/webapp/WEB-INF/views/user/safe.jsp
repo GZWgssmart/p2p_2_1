@@ -26,7 +26,7 @@
     <%--<%@include file="../master/aboutLeft.jsp"%>--%>
     <div class="account-right">
         <%-- 在此处写用户后台模块代码--%>
-        <div class="layui-tab layui-tab-brief" lay-filter="zhuanqian" style="float: left;">
+        <div class="layui-tab layui-tab-brief"  style="float: left;">
             <ul class="layui-tab-title">
                 <li class="layui-this">安全中心</li>
             </ul>
@@ -45,27 +45,53 @@
                                     <a href="javascript:;" id="changePhone">修改</a>
                                 </div>
                             </li>
-                            <c:if test="">
-                            <li>
-                                <div class="safe-list-1">
-                                    <p class="icon icon-wrong" id="email-icon">
-                                        邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
-                                </div>
-                                <div class="safe-list-2" id="email-text">获取最新的投资讯息和账户信息变动通知</div>
-                                <div class="safe-list-3">
-                                    <a href="javascript:;" id="email">进行绑定</a>
-                                </div>
-                            </li>
-                            </c:if>
-                            <li>
-                                <div class="safe-list-1">
-                                    <p class="icon icon-wrong" id="realName-icon">身份认证</p>
-                                </div>
-                                <div class="safe-list-2" id="realName-text">一旦实名认证通过将不能修改</div>
-                                <div class="safe-list-3">
-                                    <a href="javascript:;" id="realName">去认证</a>
-                                </div>
-                            </li>
+                            <c:choose>
+                                <c:when test="${user.email != null}">
+                                    <li>
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-true">
+                                                邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
+                                        </div>
+                                        <div class="safe-list-2"  id="userEmail">${user.email}</div>
+                                        <div class="safe-list-3">
+                                            <a href="javascript:;" class="email">更改邮箱</a>
+                                        </div>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-wrong" id="email-icon">
+                                                邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
+                                        </div>
+                                        <div class="safe-list-2" id="email-text">获取最新的投资讯息和账户信息变动通知</div>
+                                        <div class="safe-list-3">
+                                            <a href="javascript:;" class="email">进行绑定</a>
+                                        </div>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${user.idtype != null}">
+                                    <li>
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-true">身份认证</p>
+                                        </div>
+                                        <div class="safe-list-2">${user.rname}&nbsp;${user.idno}</div>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li>
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-wrong" id="realName-icon">身份认证</p>
+                                        </div>
+                                        <div class="safe-list-2" id="realName-text">一旦实名认证通过将不能修改</div>
+                                        <div class="safe-list-3">
+                                            <a href="javascript:;" id="realName">去认证</a>
+                                        </div>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
                             <li>
                                 <div class="safe-list-1">
                                     <p class="icon icon-true">登录密码</p>
@@ -77,14 +103,14 @@
                                     <a href="javascript:;" id="password_btn">修改</a>
                                 </div>
                             </li>
-                            <!-- <li>
+                            <li>
                                 <div class="safe-list-1">
                                     <p class="icon icon-true">交易密码</p>
                                 </div>
                                 <div class="safe-list-2">
                                     ******
                                 </div>
-                            </li> -->
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -94,12 +120,14 @@
                 <div class="popup-from">
                     <form class="layui-form">
                         <div class="label cl layui-form-item">
-                            <label>添加邮箱</label><input type="text" name="email" id="addEmail" lay-verify="required|email" autocomplete="off" placeholder="输入您的邮箱地址" class="layui-input"/>
+                            <label>邮箱地址</label><input type="text" name="email" id="addEmail" lay-verify="required|email"
+                                                      autocomplete="off" placeholder="输入您的邮箱地址" class="layui-input" value="${user.email}"/>
                             <input type="hidden" name="uid" value="${user.uid}"/>
                         </div>
-                    <div class="layui-form-item">
-                        <button type="button" class="btn layui-btn" lay-submit lay-filter="emailSubmit">添加邮箱</button>
-                    </div>
+                        <div class="layui-form-item">
+                            <button type="button" class="btn layui-btn" lay-submit lay-filter="emailSubmit">添加邮箱
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -143,7 +171,7 @@
                         <div class="label cl layui-form-item">
                             <label>原始密码</label>
                             <input type="password" id="oldPassword" lay-verify="required" autocomplete="off"
-                                                      maxlength="18" placeholder="输入原始密码" class="layui-input"/>
+                                   maxlength="18" placeholder="输入原始密码" class="layui-input"/>
                         </div>
                         <div class="label cl">
                             <label>新密码</label>
@@ -153,7 +181,7 @@
                         <div class="label cl">
                             <label>确认密码</label>
                             <input type="password" name="upwd" maxlength="18"
-                                   lay-verify="required" autocomplete="off" placeholder="再次输入新密码" class="layui-input" />
+                                   lay-verify="required" autocomplete="off" placeholder="再次输入新密码" class="layui-input"/>
                             <input type="hidden" name="uid" value="${user.uid}"/>
                         </div>
                         <div class="layui-form-item">
@@ -168,20 +196,23 @@
                     <form class="layui-form">
                         <div class="label cl layui-form-item">
                             <label>选择证件</label>
-                                <select name="idtype">
-                                    <option></option>
-                                    <option value="身份证">身份证</option>
-                                    <option value="驾照">驾照</option>
-                                </select>
+                            <select name="idtype">
+                                <option></option>
+                                <option value="身份证">身份证</option>
+                                <option value="驾照">驾照</option>
+                            </select>
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>证件号</label><input type="text" name="idno" lay-verify="required" class="layui-input" maxlength="18" placeholder="输入证件号">
+                            <label>证件号</label><input type="text" name="idno" lay-verify="required" class="layui-input"
+                                                     maxlength="18" placeholder="输入证件号">
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>真实姓名</label><input type="text" name="rname" lay-verify="required" class="layui-input" placeholder="输入真实姓名">
+                            <label>真实姓名</label><input type="text" name="rname" lay-verify="required" class="layui-input"
+                                                      placeholder="输入真实姓名">
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>学历</label><input type="text" name="xl" lay-verify="required" class="layui-input" placeholder="输入您的学历">
+                            <label>学历</label><input type="text" name="xl" lay-verify="required" class="layui-input"
+                                                    placeholder="输入您的学历">
                         </div>
                         <div class="label cl layui-form-item">
                             <label>婚否</label>
@@ -192,28 +223,27 @@
                             </div>
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>毕业院校</label><input type="text" name="bschool" lay-verify="required" class="layui-input" placeholder="输入毕业院校">
+                            <label>毕业院校</label><input type="text" name="bschool" lay-verify="required"
+                                                      class="layui-input" placeholder="输入毕业院校">
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>居住地</label><input type="text" name="addr" lay-verify="required" class="layui-input" placeholder="输入居住地">
+                            <label>居住地</label><input type="text" name="addr" lay-verify="required" class="layui-input"
+                                                     placeholder="输入居住地">
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>工作</label><input type="text" name="work" lay-verify="required" class="layui-input" placeholder="输入工作">
+                            <label>工作</label><input type="text" name="work" lay-verify="required" class="layui-input"
+                                                    placeholder="输入工作">
                         </div>
                         <div class="label cl layui-form-item">
-                            <label>年龄</label><input type="text" name="age" lay-verify="required|number" class="layui-input" placeholder="输入年龄">
+                            <label>年龄</label><input type="text" name="age" lay-verify="required|number"
+                                                    class="layui-input" placeholder="输入年龄">
                         </div>
                         <input type="hidden" name="uid" value="${user.uid}"/>
                         <div class="layui-form-item">
-                            <button type="button" class="btn layui-btn" lay-submit lay-filter="typeSubmit">添加认证信息</button>
+                            <button type="button" class="btn layui-btn" lay-submit lay-filter="typeSubmit">添加认证信息
+                            </button>
                         </div>
                     </form>
-                </div>
-                <div class="popup-result">
-                    <div class="success">
-                        <p>请等待审核!</p>
-                        <button type="button" class="btn" id="">确定</button>
-                    </div>
                 </div>
             </div>
 
@@ -234,7 +264,7 @@
         var layer = layui.layer;
         var form = layui.form;
 
-        $('#email').on('click', function () {
+        $('.email').on('click', function () {
             var myemail = $('#editEmail').html();
             layer.open({
                 title: ['绑定邮箱', 'text-align:center;font:26px;'],
@@ -282,6 +312,8 @@
                     if (data.code == 0) {
                         layer.closeAll();
                         layer.msg("添加成功");
+                        $('#userEmail').empty();
+                        $('#userEmail').append(data.data.email);
                     } else {
                         layer.msg("添加失败，请重新再试")
                     }
@@ -294,7 +326,7 @@
         form.on('submit(upwdSubmit)', function (data) {
             var one = data.field.newpwd;
             var two = data.field.upwd;
-            if(one != two) {
+            if (one != two) {
                 layer.msg("密码不一致")
             }
             $.post('<%=path %>/data/user/edit',
@@ -302,9 +334,9 @@
                 function (data) {
                     if (data.code == 0) {
                         layer.closeAll();
-                        layer.alert('这里写内容',{
+                        layer.alert('这里写内容', {
                             title: ' ',
-                            btnAlign:'c'
+                            btnAlign: 'c'
                         });
                     } else {
                         layer.msg("修改失败，请重新再试！")

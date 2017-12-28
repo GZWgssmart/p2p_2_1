@@ -46,7 +46,7 @@
 
     <select id="getById" parameterType="integer" resultType="user">
         <![CDATA[
-          select *  from t_user
+          select *  from t_user where uid = #{id}
          ]]>
     </select>
 
