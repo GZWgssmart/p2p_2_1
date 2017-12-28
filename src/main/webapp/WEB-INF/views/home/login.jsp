@@ -31,7 +31,7 @@
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input type="text" name="phone" lay-verify="required" autocomplete="off" placeholder="手机号（必填）" class="layui-input">
+                <input type="text" name="phone" lay-verify="required" autocomplete="off" placeholder="手机号（必填）" maxlength="11" class="layui-input">
             </div>
 
             <div class="layui-form-item">

@@ -18,11 +18,17 @@ public class HuserTest extends BaseTest {
         Huser huser = new Huser();
         huser.setRname("message");
         huser.setSex(1);
-        huser.setPhone("13522222222");
+        huser.setPhone("15083562555");
         huser.setHuname("message");
         huser.setEmail("222@qq.com");
         huser.setPwd(EncryptUtils.md5("123456"));
         huserService.save(huser);
+    }
+
+    @Test
+    public void testGetByPhone() {
+        huserService.getByPhonePwd("13500000000",EncryptUtils.md5("123456"));
+//        huserService.getByPhone("15083562555");
     }
 
 }
