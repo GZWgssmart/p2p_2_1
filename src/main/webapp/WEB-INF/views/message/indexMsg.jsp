@@ -275,7 +275,6 @@
                 if (res > 0) {
                     return layer.msg('失败！');
                 } else {
-//                    $('#firstImg1').val()
                     vue.msg.pic1 = res.msg
                     return vue.msg.pic1;
                 }

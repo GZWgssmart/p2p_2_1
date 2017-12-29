@@ -1,7 +1,8 @@
 package com.p2p.dao;
 
-import com.p2p.bean.RoleUser;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RoleUserMapper extends BaseDAO {
 
 }

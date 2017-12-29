@@ -37,4 +37,9 @@ public class RoleTest extends BaseTest {
         role.setRid(2);
         roleService.removeById(role.getRid());
     }
+
+    @Test
+    public void testAll() {
+        roleService.listAll();
+    }
 }

@@ -52,6 +52,9 @@
 
 
   <insert id="save" parameterType="com.p2p.bean.Huser">
+    <selectKey keyColumn="huid" keyProperty="huid" resultType="integer" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into huser
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="rname != null">

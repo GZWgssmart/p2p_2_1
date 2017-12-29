@@ -7,6 +7,10 @@ import com.p2p.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by qingfeng on 2017/12/26.
@@ -50,5 +54,17 @@ public class RoleController {
         role = new Role();
         role.setRid(id);
         return roleService.removeById(role.getRid());
+    }
+
+    @RequestMapping("listAll")
+    @ResponseBody
+    public List<Role> allType() {
+        List<Object> objects = roleService.listAll();
+        List<Role> roles = new ArrayList<>();
+        for (Object obj : objects) {
+            Role type = (Role) obj;
+            roles.add(type);
+        }
+        return roles;
     }
 }

@@ -1,11 +1,14 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Huser;
+import com.p2p.bean.RoleUser;
+import com.p2p.common.BeanCopyUtils;
 import com.p2p.common.Constants;
 import com.p2p.common.ServerResponse;
 import com.p2p.dao.HuserMapper;
 import com.p2p.service.HuserService;
 import com.p2p.utils.EncryptUtils;
+import com.p2p.vo.HuserRoleVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -30,7 +33,7 @@ public class AdminController {
     @Autowired
     private HuserService huserService;
 
-    @RequestMapping("Phone")
+    @RequestMapping("phone")
     @ResponseBody
     public ServerResponse regPhone(String phone) {
         System.out.println(phone);
@@ -78,7 +81,16 @@ public class AdminController {
     }
     
     @RequestMapping("addhuser")
-    public ServerResponse save(Huser huser){
-        return huserService.save(huser);
+    @ResponseBody
+    public ServerResponse save(HuserRoleVO huserRoleVO){
+        Huser huser = new Huser();
+        RoleUser roleUser = new RoleUser();
+        try {
+            BeanCopyUtils.copy(huser, huserRoleVO);
+            BeanCopyUtils.copy(roleUser, huserRoleVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return huserService.saveRoleUser(huser, roleUser);
     }
 }

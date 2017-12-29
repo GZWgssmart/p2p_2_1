@@ -54,4 +54,10 @@
     </set>
     where rid = #{rid,jdbcType=INTEGER}
   </update>
+
+  <select id="listAll" resultType="role">
+    <![CDATA[
+      select * from role
+    ]]>
+  </select>
 </mapper>
