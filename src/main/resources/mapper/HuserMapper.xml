@@ -139,6 +139,12 @@
   <update id="update" parameterType="com.p2p.bean.Huser">
     update huser
     <set>
+      <if test="rname != null">
+        rname = #{rname,jdbcType=INTEGER},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=INTEGER},
+      </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=INTEGER},
       </if>

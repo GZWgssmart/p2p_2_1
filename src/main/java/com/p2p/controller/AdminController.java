@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created  qingfeng on 2017/12/27.
  */
@@ -85,6 +87,7 @@ public class AdminController {
     public ServerResponse save(HuserRoleVO huserRoleVO){
         Huser huser = new Huser();
         RoleUser roleUser = new RoleUser();
+        huserRoleVO.setPwd(EncryptUtils.md5(huserRoleVO.getPwd() + Constants.SALT));
         try {
             BeanCopyUtils.copy(huser, huserRoleVO);
             BeanCopyUtils.copy(roleUser, huserRoleVO);
@@ -93,4 +96,20 @@ public class AdminController {
         }
         return huserService.saveRoleUser(huser, roleUser);
     }
+
+    @RequestMapping("edit")
+    @ResponseBody
+    public ServerResponse edit(Huser user, HttpSession session) {
+        ServerResponse serverResponse = null;
+        if(user.getPwd() != null && !"".equals(user.getPwd())) {
+            user.setPwd(EncryptUtils.md5(user.getPwd() + Constants.SALT));
+        }
+        serverResponse = huserService.update(user);
+        Object obj= huserService.getById(user.getHuid());
+        Huser user1 = (Huser) obj;
+        session.setAttribute("user",user1);
+        serverResponse.setData(user1);
+        return serverResponse;
+    }
+
 }

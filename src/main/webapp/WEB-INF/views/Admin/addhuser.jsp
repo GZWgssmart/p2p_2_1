@@ -53,7 +53,6 @@
                     <div class="layui-input-block">
                         <select name="rid" id="type">
                             <script id="demo" type="text/html">
-                                <option value=""></option>
                                 {{#  layui.each(d, function(index, role){ }}
                                 <option value="{{ role.rid }}">{{ role.content }}</option>
                                 {{#  }); }}
@@ -93,7 +92,7 @@
             form.render('select');
         });
 
-        //提交文章
+        //添加后台用户
         form.on('submit(add)', function (data) {
             $.post('<%=path %>/data/admin/phone',
                 {phone: data.field.phone},
