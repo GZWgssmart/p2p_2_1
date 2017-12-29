@@ -34,8 +34,11 @@
       <if test="query != null and query.bzid != null">
         and ba.bzid = #{query.bzid}
       </if>
-      <if test="query != null and query.ckstatus != null">
+      <if test="query != null and query.ckstatus != null and query.ckstatus != 6">
         and ba.ckstatus = #{query.ckstatus}
+      </if>
+      <if test="query != null and query.ckstatus != null and query.ckstatus == 6">
+        and ba.ckstatus in (2, 4, 5)
       </if>
       <if test="query != null and query.term != null">
         and ba.term = #{query.term}
@@ -46,8 +49,11 @@
       <if test="query != null and query.cpname != null and query.cpname != ''">
         and bd.cpname = #{query.cpname}
       </if>
-      <if test="query != null and query.nprofit != null">
-        and bd.nprofit <![CDATA[<=]]> #{query.nprofit}
+      <if test="query != null and query.nprofitMin != null">
+        and bd.nprofit <![CDATA[>=]]> #{query.nprofitMin}
+      </if>
+      <if test="query != null and query.nprofitMax != null">
+        and bd.nprofit <![CDATA[<=]]> #{query.nprofitMax}
       </if>
   </sql>
 
@@ -63,7 +69,7 @@
     ]]>
     <include refid="borrow_query" />
     <include refid="borrow_query_criteria" />
-    limit #{pager.beginIndex}, #{pager.pageSize}
+    limit #{pager.beginIndex}, #{pager.pageSize} order by ba.baid desc
   </select>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.query.BorrowQuery">

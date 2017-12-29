@@ -15,8 +15,8 @@ public class JurTest extends BaseTest{
     @Test
     public void testSave(){
         Jur jur = new Jur();
-        jur.setJurl("/addjurl/removeJur.jsp");
-        jur.setContent("添加删除");
+        jur.setJurl("install");
+        jur.setContent("设置奖励的权限");
         jurService.save(jur);
     }
 

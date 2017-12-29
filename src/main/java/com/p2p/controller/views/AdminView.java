@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/page/admin")
 public class AdminView {
+
+    @RequestMapping("login")
+    public String adminLogin() {
+        return "home/login";
+    }
+
     @RequestMapping("add")
     public String userReg() {
         return "Admin/addhuser";

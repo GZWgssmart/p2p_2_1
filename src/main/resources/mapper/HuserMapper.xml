@@ -32,6 +32,25 @@
     where huid = #{huid,jdbcType=INTEGER}
   </delete>
 
+  <select id="getByPhonePwd" resultType="huser">
+    <![CDATA[
+      select *  from huser where phone = #{phone} and pwd = #{pwd}
+     ]]>
+  </select>
+
+  <select id="getByPhone" parameterType="string" resultType="int">
+    <![CDATA[
+          select * from huser where phone = #{phone}
+        ]]>
+  </select>
+
+  <select id="getById" parameterType="integer" resultType="huser">
+    <![CDATA[
+          select *  from huser
+         ]]>
+  </select>
+
+
   <insert id="save" parameterType="com.p2p.bean.Huser">
     insert into huser
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -43,6 +62,9 @@
       </if>
       <if test="phone != null">
         phone,
+      </if>
+      <if test="pwd != null">
+        pwd,
       </if>
       <if test="huname != null">
         huname,
@@ -81,6 +103,9 @@
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
       </if>
       <if test="huname != null">
         #{huname,jdbcType=VARCHAR},

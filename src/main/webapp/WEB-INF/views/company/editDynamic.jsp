@@ -14,7 +14,7 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view">
-                <form class="layui-form">j
+                <form class="layui-form">
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
@@ -53,13 +53,12 @@
                         <label class="layui-form-label">时间</label>
                         <div class="layui-input-inline">
                             <input type="text" name="time" id="test1"
-                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" >
+                                   placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" lay-verify="required">
                         </div>
                     </div>
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <div class="layui-input-block">
-                            <button class="layui-btn" >修改</button>
-                            <%--<button class="layui-btn" lay-submit lay-filter="fabu">修改</button>--%>
+                            <button class="layui-btn" lay-submit="" lay-filter="fabu">修改</button>
                         </div>
                     </div>
                 </form>
@@ -90,15 +89,15 @@
         var upload = layui.upload;
         var laydate = layui.laydate;
 
-        <%--$.get('<%=path %>/data/dynamic/details?dynamicId=' + dynamicId,--%>
-            <%--function (data) {--%>
-                <%--$('#title').val(data.title);--%>
-                <%--$('#summary').val(data.summary);--%>
-                <%--$('#pic').attr('src','/'+data.pic);--%>
-                <%--$('#firstImg').val(data.pic);--%>
-                <%--$('#test1').val(formatDate(data.createdTime));--%>
-                <%--layedit.setContent(editIndex,data.content);--%>
-            <%--});--%>
+        $.get('<%=path %>/data/dynamic/details?dynamicId=' + dynamicId,
+            function (data) {
+                $('#title').val(data.title);
+                $('#summary').val(data.summary);
+                $('#pic').attr('src','/'+data.pic);
+                $('#firstImg').val(data.pic);
+                $('#test1').val(formatDate(data.createdTime));
+                layedit.setContent(editIndex,data.content);
+            });
 
         // 编辑器上传图片接口
         layedit.set({
@@ -160,24 +159,24 @@
         });
 
         //修改公司动态
-        <%--form.on('submit(fabu)', function (data) {--%>
-            <%--$('#content').val(layedit.getContent(editIndex));--%>
-            <%--$.post('<%=path %>/data/dynamic/editDynamic?dyid=' + dynamicId,--%>
-                <%--$('#editDynamic').serialize(),--%>
-                <%--function (res) {--%>
-                    <%--if (res.code === 0) {--%>
-                        <%--layer.msg('提交成功', {--%>
-                            <%--time: 1000 //2秒关闭（如果不配置，默认是3秒）--%>
-                        <%--}, function () {--%>
-                            <%--location.reload(true);--%>
-                        <%--});--%>
-                    <%--} else {--%>
-                        <%--layer.msg(res.message);--%>
-                    <%--}--%>
-                <%--}, 'json'--%>
-            <%--);--%>
-            <%--return false;--%>
-        <%--});--%>
+        form.on('submit(fabu)', function (data) {
+            $('#content').val(layedit.getContent(editIndex));
+            $.post('<%=path %>/data/dynamic/editDynamic?dyid=' + dynamicId,
+                $('#editDynamic').serialize(),
+                function (res) {
+                    if (res.code === 0) {
+                        layer.msg('提交成功', {
+                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            location.reload(true);
+                        });
+                    } else {
+                        layer.msg(res.message);
+                    }
+                }, 'json'
+            );
+            return false;
+        });
 
     });
 </script>

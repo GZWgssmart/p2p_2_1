@@ -29,7 +29,11 @@ public enum BorrowStatusEnum {
     /**
      * 已完成
      */
-    COMPLETE(5,"已完成");
+    COMPLETE(5,"已完成"),
+    /**
+     * 前台列表不需要显示审核中、审核失败、已流标的特殊状态标记
+     */
+    OTHER(6,"前台特殊情况");
 
     private int code;
     private String message;

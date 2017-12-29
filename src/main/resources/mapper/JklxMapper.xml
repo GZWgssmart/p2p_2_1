@@ -27,7 +27,7 @@
     values (#{lxid,jdbcType=INTEGER}, #{lxname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Jklx">
+  <insert id="save" parameterType="com.p2p.bean.Jklx">
     insert into jklx
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="lxid != null">
@@ -52,7 +52,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Jklx">
+  <update id="update" parameterType="com.p2p.bean.Jklx">
     update jklx
     <set>
       <if test="lxname != null">

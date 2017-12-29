@@ -18,14 +18,14 @@
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" id="title" lay-verify autocomplete="off" placeholder="请输入标题"
+                            <input type="text" name="title" id="title" lay-verify="required" autocomplete="off" placeholder="请输入标题"
                                    class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">摘要</label>
                         <div class="layui-input-block">
-                            <input type="text" name="summary" lay-verify autocomplete="off" placeholder="请输入摘要"
+                            <input type="text" name="summary" lay-verify="required" autocomplete="off" placeholder="请输入摘要"
                                    class="layui-input" id="summary" >
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="fabu">修改</button>
+                            <button class="layui-btn" lay-submit="" lay-filter="fabu">修改</button>
                         </div>
                     </div>
                 </form>

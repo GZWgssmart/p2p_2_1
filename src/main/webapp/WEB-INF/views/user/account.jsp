@@ -37,7 +37,7 @@
                     <div class="layui-col-md12" style="padding-top: 50px;">
                         <div class="layui-col-md5">
                             <div class="center-header">
-                                <img src="<%=path %>/${user.face}" width="120" height="120">
+                                <img src="<%=path %>/${user.face}" id="face" width="120" height="120">
                             </div>
                             <div class="center-self">
                                 <p class="name">${user.phone}</p>
@@ -108,8 +108,7 @@
                                     <label class="layui-form-label">昵称</label>
                                     <div class="layui-input-block" style="width: 250px">
                                         <input type="text" name="uname" lay-verify autocomplete="off"
-                                               value="${user.uname }"
-                                               class="layui-input">
+                                               value="${user.uname }" class="layui-input" id="uname">
                                     </div>
                                 </div>
                                 <input type="hidden" name="uid" value="${user.uid}"/>
@@ -141,6 +140,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
+    $("input[name='sex'][value=${user.sex}]").attr("checked",true);
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);
     });
@@ -185,8 +185,10 @@
             $.post('<%=path %>/data/user/edit',
                 data.field,
                 function (data) {
-                    if (data.code == 0) {
+                    if (data.code === 0) {
                         layer.msg('修改成功！');
+                        $('#face').empty();
+                        $('#face').attr('src','/' + data.data.face);
                     } else {
                         layer.msg("修改失败，请重新再试")
                     }

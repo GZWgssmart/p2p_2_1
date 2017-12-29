@@ -82,4 +82,8 @@ public class ServerResponse<T> implements Serializable {
     public T getData() {
         return data;
     }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }
