@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -38,6 +39,12 @@ public class BorrowApplyController {
         }
         borrowApply.setUid(1);
         return borrowApplyService.saveBorrow(borrowApply, borrowDetail);
+    }
+
+    @RequestMapping("detail")
+    public BorrowApplyDetail getDetail(Integer baid) {
+//        request.setAttribute("borrowDetail", borrowApplyService.getById(baid));
+        return (BorrowApplyDetail) borrowApplyService.getById(baid);
     }
 
     /**

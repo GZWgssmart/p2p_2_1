@@ -19,15 +19,17 @@
       <arg column="resstr2" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
+
   <sql id="Base_Column_List">
-    baid, rname, money, uid, bzid, cktime, ckstatus, type, term, deadline, resint1, resint2, 
-    resstr1, resstr2
+    ba.baid, ba.rname, ba.money, b.bzname, ba.uid, ba.ckstatus, ba.cktime, ba.type, ba.term,
+      ba.deadline, bd.cpname, bd.way, bd.nprofit, bd.money as moneyCount,
+       bd.fpic, bd.ypic, bd.qpic, bd.tpic, bd.mpurpose, bd.hksource, bd.suggest, bd.xmdes, bd.guarantee
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="getById" parameterType="java.lang.Integer" resultType="com.p2p.vo.BorrowApplyDetail">
     select 
     <include refid="Base_Column_List" />
-    from borrowapply
-    where baid = #{baid,jdbcType=INTEGER}
+    from borrowapply ba, bz b, borrowdetail bd
+    where b.bzid = ba.bzid and bd.baid = ba.baid and ba.baid = #{id,jdbcType=INTEGER}
   </select>
 
   <sql id="borrow_query_criteria">
@@ -69,7 +71,7 @@
     ]]>
     <include refid="borrow_query" />
     <include refid="borrow_query_criteria" />
-    limit #{pager.beginIndex}, #{pager.pageSize} order by ba.baid desc
+    order by ba.baid desc limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.query.BorrowQuery">

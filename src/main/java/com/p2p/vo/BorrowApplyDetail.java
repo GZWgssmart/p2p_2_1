@@ -23,11 +23,17 @@ public class BorrowApplyDetail {
     private Integer type;
 
     private Integer term;
+    /**
+     * 对应borrowdetail表的money，为已投资金额
+     */
+    private BigDecimal moneyCount;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date deadline;
 
     private Integer bdid;
+
+    private String bzname;
 
     private String fpic;
 
@@ -85,6 +91,14 @@ public class BorrowApplyDetail {
         this.bzid = bzid;
     }
 
+    public String getBzname() {
+        return bzname;
+    }
+
+    public void setBzname(String bzname) {
+        this.bzname = bzname;
+    }
+
     public Integer getType() {
         return type;
     }
@@ -99,6 +113,14 @@ public class BorrowApplyDetail {
 
     public void setTerm(Integer term) {
         this.term = term;
+    }
+
+    public BigDecimal getMoneyCount() {
+        return moneyCount;
+    }
+
+    public void setMoneyCount(BigDecimal moneyCount) {
+        this.moneyCount = moneyCount;
     }
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")

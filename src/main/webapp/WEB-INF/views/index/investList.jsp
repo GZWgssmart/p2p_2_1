@@ -26,38 +26,38 @@
             <div class="invest-top-left">
                 <div class="invest-top-list">
                     <p>项目期限：</p>
-                    <ul class="cl">
-                        <li class="active"><a href="javascript:void(0);" onclick="">全部</a></li>
-                        <li><a href="javascript:void(0);" onclick="">3个月</a></li>
-                        <li><a href="javascript:void(0);" onclick="">6个月</a></li>
-                        <li><a href="javascript:void(0);"onclick="">12个月</a></li>
+                    <ul id="term">
+                        <li class="active"><a href="javascript:void(0);" onclick="searchBorrow('term', null, null, null, null);">全部</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('term', 3, null, null, null);">3个月</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('term', 6, null, null, null);">6个月</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('term', 12, null, null, null);">12个月</a></li>
                     </ul>
                 </div>
                 <div class="invest-top-list">
                     <p>年化收益：</p>
-                    <ul>
-                        <li class="active"><a href="#00">全部</a></li>
-                        <li><a href="#01"><=10%</a></li>
-                        <li><a href="#02">10%-15%</a></li>
-                        <li><a href="#03">15%-25%</a></li>
+                    <ul id="nprofit">
+                        <li class="active"><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, null, null, null);">全部</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, 0, 10, null);"><=10%</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, 10, 15, null);">10%-15%</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, 15, 25, null);">15%-25%</a></li>
                     </ul>
                 </div>
                 <div class="invest-top-list">
                     <p>项目类型：</p>
-                    <ul>
-                        <li class="active"><a href="#000">全部</a></li>
-                        <li><a href="#003">多金宝</a></li>
-                        <li><a href="#004">普金保</a></li>
-                        <li><a href="#006">恒金保</a></li>
-                        <li><a href="#005">新手标</a></li>
+                    <ul id="bz">
+                        <li class="active"><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, null);">全部</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 3);">多金宝</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 2);">普金保</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 1);">恒金保</a></li>
+                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 4);">新手标</a></li>
                     </ul>
                 </div>
             </div>
             <div class="invest-top-right">
                 <div class="invest-top-list">
                     <div class="textmiddle">借款标题</div>
-                    <input type="text" class="text" id="claimm-can-title"/>
-                    <a type="button" href="javascript:void(0);" class="search" onclick="searchBorrow();">搜索</a>
+                    <input type="text" name="cpname" class="text" id="cpname"/>
+                    <a href="javascript:void(0);" class="layui-btn layui-btn-normal" onclick="searchBorrow(null, null, null, null, null);">搜索</a>
                 </div>
             </div>
         </div>
@@ -66,7 +66,9 @@
                 <script type="text/html" id="borrowList">
                     {{#  layui.each(d, function(index, borrow){ }}
                     <li>
-                        <div class="invest-title cl"><p>{{ borrow.bzname }}</p><h3><a>{{borrow.cpname}}</a></h3></div>
+                        <div class="invest-title cl"><p>{{ borrow.bzname }}</p>
+                            <h3><a href="javascript:void(0);" onclick="borrowDetail('{{borrow.baid}}');">{{borrow.cpname}}</a></h3>
+                        </div>
                         <div class="invest-content cl">
                             <ul>
                                 <li class="row1"><p class="row-top">预期年化收益率</p><p class="row-bottom color">{{borrow.nprofit}}<span>%</span></p></li>
@@ -82,7 +84,7 @@
                                     <p class="row-top">募集进度</p></li>
                                 <li class="row6">
                                     {{# if((borrow.money-borrow.moneyCount)>0){ }}
-                                    <button type="button" class="btn" onclick="">立即投标</button>
+                                    <button type="button" class="btn" onclick="borrowDetail('{{borrow.baid}}');">立即投标</button>
                                     {{# } else if(borrow.ckstatus === 5) { }}
                                     <button type="button" class="btn disabled" onclick="">已完成</button>
                                     {{# } else { }}
@@ -105,32 +107,27 @@
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
-    function searchBorrow() {
-        $.post('<%=path %>/data/borrow/frontList'
-//            , $('#borrowApplyDetail').serialize(),
-//            function (res) {
-//                if (res.code === 0) {
-//                    layer.msg('提交成功', {
-//                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
-//                    }, function () {
-//                        location.reload(true);
-//                    });
-//                } else {
-//                    layer.msg(res.message);
-//                }
-//            }
-            , 'json'
-        );
-    }
-</script>
-<script>
     $(function(){
-
+        search(null, null, null, null, null);
     });
 
-    function search() {
-
+    function borrowDetail(baid) {
+        window.location.href='<%=path %>/page/borrowApply/detail/'+ baid;
     }
+
+    function searchBorrow(demoId, term, min, max, bzid) {
+        if(demoId !== '') {
+            $('#'+ demoId +' li').removeClass('active');
+            $('a').click(
+                function(){
+                    $(this).parent().attr('class','active');
+                });
+        }
+        var cpname = $('#cpname').val();
+        search(term, min, max, cpname, bzid);
+    }
+
+    function search(term, min, max, cpname, bzid) {
         layui.use(['element', 'laypage', 'laytpl'], function () {
             var $ = layui.$;
             var element = layui.element;
@@ -139,13 +136,17 @@
 
             var page = 1; // 第一页开始
             var limit = 10; // 每页十个数据，laypage默认也是十个
-
             var getTpl = $('#borrowList').html()
                 , view = document.getElementById('content');
             // 获取数据
             $.get('<%=path %>/data/borrow/frontList', {
                 page: page
                 , limit: limit
+                , term : term
+                , nprofitMax:max
+                ,nprofitMin:min
+                ,cpname: cpname
+                ,bzid: bzid
             }, function (data) {
                 fenye(data.rows);
                 pageTotal(data.total)
@@ -183,5 +184,6 @@
                 });
             }
         });
+    }
 </script>
 </html>

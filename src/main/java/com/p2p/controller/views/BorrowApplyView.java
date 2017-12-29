@@ -5,9 +5,9 @@ import com.p2p.common.ServerResponse;
 import com.p2p.service.BorrowApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by 7025 on 2017/12/21.
@@ -51,5 +51,11 @@ public class BorrowApplyView {
     @GetMapping("adminBorrowList")
     public String adminManage() {
         return "borrow/adminBorrowManage";
+    }
+
+    @GetMapping("detail/{baid}")
+    public String detail(@PathVariable("baid") Integer baid, HttpServletRequest request) {
+        request.setAttribute("baid", baid);
+        return "index/borrowDetail";
     }
 }
