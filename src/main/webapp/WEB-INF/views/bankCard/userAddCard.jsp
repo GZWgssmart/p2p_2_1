@@ -165,7 +165,7 @@
 <script type="text/javascript" src="<%=path%>/static/bankCard/postbe.js"></script>
 <script>
     function addCard() {
-        $.post('<%=path%>/data/bankCard/add',
+        $.post('<%=path%>/data/bankCard/save',
             $('#addForm').serialize(),
             function (data) {
                 if (data.code == 0) {

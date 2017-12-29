@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page/bankCard")
 public class BankCardView {
 
-    @RequestMapping("bankCard")
+    @RequestMapping("userBankCard")
     public String bankCard() {
         return "bankCard/userBankCard";
     }
 
-    @RequestMapping("addCard")
+    @RequestMapping("userAddCard")
     public String bankCardAdd(){
         return "bankCard/userAddCard";
     }

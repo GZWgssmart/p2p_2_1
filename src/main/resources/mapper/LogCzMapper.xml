@@ -116,4 +116,10 @@
       status = #{status,jdbcType=INTEGER}
     where czid = #{czid,jdbcType=INTEGER}
   </update>
+
+  <insert id="save" parameterType="com.p2p.bean.LogCz">
+    <![CDATA[
+          insert into log_cz(uid, bankcard, banktype, money) values(#{uid}, #{bankcard},#{banktype},#{money})
+       ]]>
+  </insert>
 </mapper>

@@ -64,7 +64,7 @@
 <script>
     <%-- 跳转到银行卡的添加页面 uid传递过去 --%>
     function addBankCard() {
-        window.location.href = "<%=path%>/page/bankCard/addCard"
+        window.location.href = "<%=path%>/page/bankCard/userAddCard"
     }
 </script>
 <%--<script>--%>

@@ -37,7 +37,7 @@ public class BankCardController {
         System.out.println(uid);
         return bankCardService.bankCardsByUid(uid);
     }
-    @RequestMapping("add")
+    @RequestMapping("save")
     public ServerResponse addCard(BankCard bankCard){
         ServerResponse serverResponse = null;
         if(bankCard!=null){
