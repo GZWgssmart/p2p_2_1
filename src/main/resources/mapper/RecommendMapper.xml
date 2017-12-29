@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.dao.RecommendMapper">
-  <sql id="common_recommend">
-    <if test="recommend != null and recommend.createdTime != null and recommend.createdTime != ''">
-      and r.created_time <![CDATA[<=]]> #{recommend.createdTime}
-    </if>
-  </sql>
 
   <insert id="save" parameterType="com.p2p.bean.Recommend">
     <![CDATA[
@@ -15,17 +10,17 @@
 
   <select id="listPagerCriteria" resultType="com.p2p.bean.Recommend">
     <![CDATA[
-        select r.rmid, r.tname, r.rname, r.created_time as createdTime from recommend r where tid = #{recommend.uid}
+        select r.rmid, r.tname, r.uid, r.rname, r.created_time as createdTime from recommend r
+        where r.uid = #{recommend.uid} and #{recommend.first} <= r.created_time and  r.created_time <= #{recommend.end}
      ]]>
-    <include refid="common_recommend" />
     order by created_time desc
     limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Recommend">
     <![CDATA[
-          select count(r.rmid) from recommend r where tid = #{recommend.uid}
+          select count(r.rmid) from recommend r where r.uid = #{recommend.uid}
+          and #{recommend.first} <= r.created_time and  r.created_time <= #{recommend.end}
     ]]>
-    <include refid="common_recommend" />
   </select>
 </mapper>

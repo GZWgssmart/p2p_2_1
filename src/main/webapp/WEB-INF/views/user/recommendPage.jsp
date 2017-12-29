@@ -46,12 +46,7 @@
                                 <p class="tj-text" style="padding-left: 70px;">2.
                                     活动期间内成功邀请50位以上好友注册投资成功合计满100000，可额外获得500元现金券奖励，可在<span>【我的账户-我的赠券】</span>中查看。</p>
                                 <p class="tj-text" style="padding-left: 70px;">(满足活动条件的用户在活动结束后3个工作日内奖励将以现金券的形式发放至用户账户)</p>
-                                <p class="tj-text"><span>注：</span>需将自己的邀请链接地址或推荐号发给您的好友，这样您才能成为他的邀请者。</p>
-                                <div class="tj-clip" id="tj-clip">
-                                    <p class="tj-clip-text" id="tj-clip-text">
-                                        https://www.pujinziben.com/regist.html?useCode=111054</p>
-                                    <button type="button" class="tj-clip-btn" id="tj-clip-btn">复制链接</button>
-                                </div>
+                                <p class="tj-text"><span>注：</span>需将自己的推荐号发给您的好友，这样您才能成为他的邀请者。</p>
                                 <div class="tj-icon">
                                     <ul>
                                         <li>
@@ -92,16 +87,18 @@
                             <div class="layui-form-item">
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="first" lay-verify="laydate" placeholder="yyyy-MM-dd">
+                                        <input type="text" class="layui-input" name = "first" id="first" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss">
                                     </div>
                                 </div>
                                 <span>至</span>
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" id="end" lay-verify="laydate" placeholder="yyyy-MM-dd">
+                                        <input type="text" class="layui-input" name= "end" id="end" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss">
                                     </div>
                                 </div>
+                                <div class="searchType">
                                 <button class="layui-btn layui-btn-primary" data-type="reload">搜索</button>
+                                </div>
                             </div>
                         </div>
                         <table id="allRecommend_table" lay-filter="demo"></table>
@@ -151,11 +148,33 @@
 
         laydate.render({
             elem:'#first',
+            type: 'datetime'
         })
         laydate.render({
-            elem:'#end',
-
+            elem:'#end'
+            ,type: 'datetime'
         })
+        $('.searchType .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            search[type] ? search[type].call(this) : '';
+        });
+
+        var search = {
+            reload: function(){
+                var first = $('#first');
+                var end =$('#end');
+                //执行重载
+                table.reload('idTest', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        first:first.val(),
+                        end:end.val()
+                    }
+                });
+            }
+        };
     });
 </script>
 </html>

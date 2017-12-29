@@ -1,5 +1,7 @@
 package com.p2p.bean;
 
+import com.p2p.common.DateUtil;
+
 import java.util.Date;
 
 /**
@@ -18,6 +20,9 @@ public class Recommend {
     private String rname;
 
     private Date createdTime;
+
+    private String first;
+    private String end;
 
     public Recommend(Integer rmid, Integer tid, String tname, Integer uid, String rname, Date createdTime) {
         this.rmid = rmid;
@@ -78,5 +83,21 @@ public class Recommend {
 
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public void setFirst(String first) {
+        this.first = first;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public Date getFirst() {
+        return DateUtil.parseDate(first,"yyyy-MM-dd HH:mm:ss");
+    }
+
+    public Date getEnd() {
+        return DateUtil.parseDate(end,"yyyy-MM-dd HH:mm:ss");
     }
 }
