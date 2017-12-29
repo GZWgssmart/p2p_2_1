@@ -44,6 +44,13 @@
     <span>没有轮播图</span>
     {{#  } }}
 </script>
+<script type="text/html" id="ewm">
+    {{#  if(d.ewm !== null && d.ewm != ''){ }}
+    <img src="<%=path %>/{{ d.ewm }}" alt="d.ewm" />
+    {{#  } else { }}
+    <span>没有二维码</span>
+    {{#  } }}
+</script>
 <script type="text/html" id="urlUtil1">
     {{#  if(d.url1 !== null && d.url1 != ''){ }}
     <a target="_blank" href="{{ d.url1 }}">{{ d.url1 }}</a>
@@ -65,6 +72,7 @@
     <span>没有链接</span>
     {{#  } }}
 </script>
+<%--修改信息--%>
 <div id="app">
 <div class="layui-container"style="display: none;width: 800px;" id="editIndexMsg">
     <div class="layui-row">
@@ -80,7 +88,7 @@
                             <p id="demoText1"></p>
                         </div>
                     </div>
-                    <input type="text" v-model="msg.pic1" id="firstImg1"/>
+                    <input type="hidden" v-model="msg.pic1"/>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
@@ -93,7 +101,7 @@
                             <p id="demoText2"></p>
                         </div>
                     </div>
-                    <input v-model="msg.pic2" id="firstImg2"/>
+                    <input type="hidden" v-model="msg.pic2"/>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
@@ -106,7 +114,7 @@
                             <p id="demoText3"></p>
                         </div>
                     </div>
-                    <input  v-model="msg.pic3" id="firstImg3"/>
+                    <input type="hidden" v-model="msg.pic3"/>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
@@ -119,7 +127,7 @@
                             <p id="ewmText"></p>
                         </div>
                     </div>
-                    <input type="hidden" v-model="msg.ewm" id="firstEwm"/>
+                    <input type="hidden" v-model="msg.ewm"/>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话</label>
@@ -165,27 +173,7 @@
 <script src="/static/js/qs.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
-
 <script>
-
-    var vue = new Vue({
-        el:"#app",
-        data:{
-            msg:[]
-        },
-        methods : {
-            add () {
-                console.log(this.msg);
-                axios.post('/data/home/editIndexMsg',Qs.stringify(this.msg)).then((response)=>{
-//                    alert(response.data.code);
-                    alert("成功")
-                },(error)=>{
-                    alert("失败")
-                });
-            }
-        }
-    });
-
     layui.use(['table','form', 'layedit', 'upload'], function(){
         var table = layui.table;
         var form = layui.form;
@@ -193,6 +181,26 @@
         var layer = layui.layer;
         var layedit = layui.layedit;
         var upload = layui.upload;
+        // 声明vue方法
+        var vue = new Vue({
+            el:"#app",
+            data:{
+                msg:[]
+            },
+            methods : {
+                add () {
+                    console.log(this.msg);
+                    axios.post('/data/home/editIndexMsg',Qs.stringify(this.msg)).then((response)=>{
+                        layer.closeAll();
+                        layer.msg('修改成功！');
+                        //执行重载表格
+                        table.reload('idTest');
+                    },(error)=>{
+                        layer.msg('修改失败，请重新再试！');
+                    });
+                }
+            }
+        });
 
         table.render({
             elem: '#allIndex_msg'
@@ -240,6 +248,7 @@
                         area: ['890px', '560px'], //宽高
                         content: $("#editIndexMsg"),  //弹窗内容
                     });
+                    //给vue对象赋值
                     vue.msg=data[0];
                 } else {
                     layer.msg('请选中一行！', {time:1500});
@@ -250,8 +259,7 @@
             },
         };
 
-            return false;
-        });
+
         //上传轮播图一
         var uploadInst1 = upload.render({
             elem: '#test1'
@@ -267,7 +275,9 @@
                 if (res > 0) {
                     return layer.msg('失败！');
                 } else {
-                    return $('#firstImg1').val(res.msg);
+//                    $('#firstImg1').val()
+                    vue.msg.pic1 = res.msg
+                    return vue.msg.pic1;
                 }
                 var item = this.item;
             }
@@ -295,7 +305,8 @@
                 if (res > 0) {
                     return layer.msg('失败！');
                 } else {
-                    return $('#firstImg2').val(res.msg);
+                    vue.msg.pic2 = res.msg
+                    return vue.msg.pic2;
                 }
                 //上传成功
             }
@@ -323,7 +334,8 @@
                 if (res > 0) {
                     return layer.msg('失败！');
                 } else {
-                    return $('#firstImg3').val(res.msg);
+                    vue.msg.pic3 = res.msg
+                    return vue.msg.pic3;
                 }
                 //上传成功
             }
@@ -336,7 +348,7 @@
                 });
             }
         });
-        //上传轮播图三
+        //上传二维码
         var uploadInst4 = upload.render({
             elem: '#testEwm'
             , url: '<%=path %>/file/firist'
@@ -351,7 +363,8 @@
                 if (res > 0) {
                     return layer.msg('失败！');
                 } else {
-                    return $('#firstEwm').val(res.msg);
+                    vue.msg.ewm = res.msg
+                    return vue.msg.pic2;
                 }
                 //上传成功
             }
@@ -364,26 +377,7 @@
                 });
             }
         });
-        //提交首页信息
-        form.on('submit(fabu)', function (data) {
-            var checkStatus = table.checkStatus('idTest')
-                ,data = checkStatus.data;
-            $.post('<%=path %>/data/home/editIndexMsg?hid='+data[0].hid,
-                $('#editIndexMsg').serialize(),
-                function (res) {
-                    if (res.code === 0) {
-                        layer.msg('提交成功', {
-                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
-                        }, function () {
-                            location.reload(true);
-                        });
-                    } else {
-                        layer.msg(res.message);
-                    }
-                }, 'json'
-            );
-            return false;
-        });
+
     });
 </script>
 </body>
