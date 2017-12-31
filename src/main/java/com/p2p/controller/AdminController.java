@@ -99,16 +99,16 @@ public class AdminController {
 
     @RequestMapping("edit")
     @ResponseBody
-    public ServerResponse edit(Huser user, HttpSession session) {
+    public ServerResponse edit(Huser huser, HttpSession session) {
         ServerResponse serverResponse = null;
-        if(user.getPwd() != null && !"".equals(user.getPwd())) {
-            user.setPwd(EncryptUtils.md5(user.getPwd() + Constants.SALT));
+        if(huser.getPwd() != null && !"".equals(huser.getPwd())) {
+            huser.setPwd(EncryptUtils.md5(huser.getPwd() + Constants.SALT));
         }
-        serverResponse = huserService.update(user);
-        Object obj= huserService.getById(user.getHuid());
-        Huser user1 = (Huser) obj;
-        session.setAttribute("user",user1);
-        serverResponse.setData(user1);
+        serverResponse = huserService.update(huser);
+        Object obj= huserService.getById(huser.getHuid());
+        Huser huser1 = (Huser) obj;
+        session.setAttribute("admin",huser1);
+        serverResponse.setData(huser1);
         return serverResponse;
     }
 

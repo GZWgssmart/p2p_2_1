@@ -68,6 +68,7 @@
 
         //监听提交
         form.on('submit(login)', function (data) {
+            layer.load(0, {shade: false});
             $.post('<%=path %>/data/admin/login',
                 data.field,
                 function (res) {

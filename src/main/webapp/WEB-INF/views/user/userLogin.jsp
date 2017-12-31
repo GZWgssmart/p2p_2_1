@@ -36,11 +36,11 @@
             <form id="loginForm">
                 <div class="from">
                     <label for="phone" class="icon icon-user"></label>
-                    <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号" maxlength="11"/>
+                    <input type="text" name="phone" id="phone" autocomplete="off" placeholder="输入手机号" maxlength="11" value="${requestScope.phone }"/>
                 </div>
                 <div class="from">
                     <label for="password" class="icon icon-pwd"></label>
-                    <input type="password" name="upwd" id="password" autocomplete="new-password" placeholder="输入登录密码"/>
+                    <input type="password" name="upwd" id="password" autocomplete="new-password" placeholder="输入登录密码" value="${requestScope.upwd }"/>
                 </div>
                 <div class="from">
                     <div class="pull-box">
@@ -48,6 +48,9 @@
                         <div class="pull-default">请按住滑块，拖动到最右边</div>
                         <div class="pull-btn"></div>
                     </div>
+                </div>
+                <div class="">
+                    <input type="radio" name="choose" value="0">记住帐号密码
                 </div>
                 <input class="btn" type="button" value="登录" onclick="submitLogin();"/>
             </form>

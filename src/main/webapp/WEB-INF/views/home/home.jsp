@@ -68,7 +68,7 @@
         <ul class="layui-nav layui-layout-right kit-nav">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="<%=path %>/static/images/face.jpg" class="layui-nav-img"> ${admin.rname }
+                    <img src="<%=path %>/static/images/face.jpg" class="layui-nav-img"> <sapn id="rname">${admin.rname }</sapn>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" id="info">基本资料</a></dd>
@@ -95,7 +95,8 @@
                                    data-options="{url:'#',icon:'&#xe658;',title:'借款类型',id:'10'}"><i class="layui-icon">&#xe658;</i><span>借款类型</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/borrowApply/adminBorrowList',icon:'&#xe658;',title:'借款审核',id:'11'}"><i class="layui-icon">&#xe658;</i><span>借款审核</span></a>
+                                   data-options="{url:'<%=path %>/page/borrowApply/adminBorrowList',icon:'&#xe658;',title:'借款审核',id:'11'}"><i
+                                    class="layui-icon">&#xe658;</i><span>借款审核</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'#',icon:'&#xe658;',title:'标种',id:'12'}"><i class="layui-icon">&#xe658;</i><span>标种</span></a>
@@ -189,7 +190,7 @@
                         </dl>
                     </li>
                 </shiro:hasPermission>
-                    <%--root用户可见--%>
+                <%--root用户可见--%>
                 <shiro:hasPermission name="root">
                     <li class="layui-nav-item">
                         <a href="javascript:;"><span>角色权限</span></a>
@@ -210,7 +211,7 @@
             </ul>
         </div>
     </div>
-    <div class="layui-body" id="container">
+    <div class="layui-body" id="container">、
         <!-- 内容主体区域 ,修改main路劲的话要去tab.js下改动，所以我们到时候规定好一个main页面-->
         <div style="padding: 15px;">主体内容加载中,请稍等...</div>
     </div>
@@ -223,27 +224,106 @@
     </div>
 </div>
 
+<div style="display: none;" id="editIndexMsg">
+    <form class="layui-form" id="huserForm">
+        <div class="layui-form-item">
+            <label class="layui-form-label">昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="rname" autocomplete="off" placeholder="请输入昵称" class="layui-input"
+                       value="${admin.rname}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value=1 title="男"/>
+                <input type="radio" name="sex" value=2 title="女"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-block">
+                <input type="text" name="phone" autocomplete="off" placeholder="请输入手机号" class="layui-input"
+                       value="${admin.phone}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">真实姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="huname" autocomplete="off" placeholder="请输入真实姓名" class="layui-input"
+                       value="${admin.huname}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" autocomplete="off" placeholder="请输入邮箱" class="layui-input"
+                       value="${admin.email}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">组织</label>
+            <div class="layui-input-block">
+                <input type="text" name="oname" class="layui-input" value="${admin.oname}" disabled>
+            </div>
+        </div>
+        <input type="hidden" name="huid" value="${admin.huid}"/>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="edit">修改信息</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
     var message;
     layui.config({
         base: '<%=path %>/static/js/home/'
-    }).use(['app', 'message'], function () {
+    }).use(['app', 'message', 'form'], function () {
         var app = layui.app,
             $ = layui.jquery,
             layer = layui.layer
         //将message设置为全局以便子页面调用
         message = layui.message;
+        var form = layui.form;
         //主入口
         app.set({
             type: 'iframe'
         }).init();
+        $("input[name='sex'][value=${admin.sex}]").attr("checked",true);
+
         //信息
         $('#info').on('click', function () {
-            layer.prompt(function (val, index) {
-                layer.msg('得到了' + val);
-                layer.close(index);
+            layer.open({
+                type: 1,                //弹窗类型
+                title: '编辑个人信息',     //显示标题
+                closeBtn: 1,         //是否显示关闭按钮
+                shadeClose: true, //显示模态窗口
+                fixed: false,    //层是否固定在可视区域
+                move: false,//禁止拖拽
+                area: ['890px', '560px'], //宽高
+                content: $("#editIndexMsg")  //弹窗内容
             });
+        });
+
+        //修改信息
+        form.on('submit(edit)', function (data) {
+            $.post('<%=path %>/data/admin/edit',
+                $('#huserForm').serialize(),
+                function (res) {
+                    if (res.code === 0) {
+                        layer.closeAll();
+                        layer.msg('修改成功！');
+                        $('#rname').empty();
+                        $('#rname').text(res.data.rname);
+                    } else {
+                        layer.msg("修改失败，请重新再试")
+                    }
+                }, 'json'
+            );
+            return false;
         });
 
     });

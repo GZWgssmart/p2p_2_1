@@ -147,7 +147,7 @@ utils.initLoginData = function(){
 		$('#top .top-list li:last').addClass('no');
 		$('#top .top-list li:first a').text('退出').attr({'class':'','href':'javascript:;'}).click(function(){
 			utils.Storage.clear();
-			window.location.href='index.html';
+			window.location.href='/';
 //	    	   $.ajax({
 //	    		    url:'front/logout.do',
 //	    		    type: "post",

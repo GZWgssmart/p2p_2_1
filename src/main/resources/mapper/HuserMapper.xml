@@ -46,8 +46,8 @@
 
   <select id="getById" parameterType="integer" resultType="huser">
     <![CDATA[
-          select *  from huser
-         ]]>
+          select *  from huser where huid = #{huid}
+     ]]>
   </select>
 
 
