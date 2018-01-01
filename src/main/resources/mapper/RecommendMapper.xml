@@ -11,8 +11,14 @@
   <select id="listPagerCriteria" resultType="com.p2p.bean.Recommend">
     <![CDATA[
         select r.rmid, r.tname, r.uid, r.rname, r.created_time as createdTime from recommend r
-        where r.uid = #{recommend.uid} and #{recommend.first} <= r.created_time and  r.created_time <= #{recommend.end}
+        where r.uid = #{recommend.uid}
      ]]>
+     <if test="recommend.first != null and recommend.first != ''">
+       and r.created_time between #{recommend.first}
+     </if>
+    <if test="recommend.end != null and recommend.end != ''">
+       and #{recommend.end}
+     </if>
     order by created_time desc
     limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
@@ -20,7 +26,12 @@
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Recommend">
     <![CDATA[
           select count(r.rmid) from recommend r where r.uid = #{recommend.uid}
-          and #{recommend.first} <= r.created_time and  r.created_time <= #{recommend.end}
     ]]>
+    <if test="recommend.first != null and recommend.first != ''">
+      and r.created_time between 'recommend.first'
+    </if>
+    <if test="recommend.end != null and recommend.end != ''">
+      and 'recommend.end'
+    </if>
   </select>
 </mapper>

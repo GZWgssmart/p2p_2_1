@@ -21,6 +21,7 @@ public class RecommendController {
     @RequestMapping("pagerCriteria")
     @ResponseBody
     public Pager pagerCriteria(int page, int limit, Recommend recommend){
+        System.out.println(recommend.getFirst() + "-----------------_________");
         return recommendService.listPagerCriteria(page,limit,recommend);
     }
 

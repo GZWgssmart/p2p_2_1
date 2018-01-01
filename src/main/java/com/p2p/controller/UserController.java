@@ -77,7 +77,9 @@ public class UserController {
         User user1 = userService.getByPhonePwd(user.getPhone(), EncryptUtils.md5(user.getUpwd() + Constants.SALT));
         if(user1 != null) {
             session.setAttribute("user", user1);
-            if(choose.equals("0")) {
+            if(choose == null) {
+                System.out.println("为空，null了！");
+            } else if(choose.equals("0")){
                 // 登录成功时把密码和用户保存到cookies中，密码加密
                 addCookie(user.getPhone(), desUtils.encrypt(user.getUpwd()), response, request);
             }

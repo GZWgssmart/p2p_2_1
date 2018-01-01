@@ -24,13 +24,15 @@ public class Recommend {
     private String first;
     private String end;
 
-    public Recommend(Integer rmid, Integer tid, String tname, Integer uid, String rname, Date createdTime) {
+    public Recommend(Integer rmid, Integer tid, String tname, Integer uid, String rname, Date createdTime, String first, String end) {
         this.rmid = rmid;
         this.tid = tid;
         this.tname = tname;
         this.uid = uid;
         this.rname = rname;
         this.createdTime = createdTime;
+        this.first = first;
+        this.end = end;
     }
 
     public Recommend() {
@@ -93,11 +95,11 @@ public class Recommend {
         this.end = end;
     }
 
-    public Date getFirst() {
-        return DateUtil.parseDate(first,"yyyy-MM-dd HH:mm:ss");
+    public String getFirst() {
+        return first;
     }
 
-    public Date getEnd() {
-        return DateUtil.parseDate(end,"yyyy-MM-dd HH:mm:ss");
+    public String getEnd() {
+        return end;
     }
 }

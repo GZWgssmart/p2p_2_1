@@ -96,7 +96,7 @@
                                         <input type="text" class="layui-input" name= "end" id="end" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss">
                                     </div>
                                 </div>
-                                <div class="searchType">
+                                <div class="searchType layui-inline">
                                 <button class="layui-btn layui-btn-primary" data-type="reload">搜索</button>
                                 </div>
                             </div>
@@ -130,13 +130,13 @@
             elem: '#allRecommend_table'
             ,url: '<%=path %>/data/recommend/pagerCriteria?uid='+${user.uid}
             ,cols: [[
-                {field:'rmid', title:'ID', width:50, fixed: 'left'}
-                ,{field:'rname', title:'被推荐人', width:200}
-                ,{field:'createdTime', title:'注册时间', width:180, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
+                {field:'rmid', title:'ID', width:100, fixed: 'left'}
+                ,{field:'rname', title:'被推荐人', width:340}
+                ,{field:'createdTime', title:'注册时间', width:340, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
             ]]
             ,id: 'idTest'
             ,page: true
-            ,height: 500
+            ,width: 800
             ,response: {
                 statusName: 'status'
                 ,statusCode: 0
