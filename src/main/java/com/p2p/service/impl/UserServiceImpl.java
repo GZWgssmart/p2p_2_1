@@ -3,6 +3,7 @@ package com.p2p.service.impl;
 import com.p2p.bean.Recommend;
 import com.p2p.bean.Rzvip;
 import com.p2p.bean.User;
+import com.p2p.bean.UserMoney;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.common.ValidationResult;
@@ -10,6 +11,7 @@ import com.p2p.common.ValidationUtils;
 import com.p2p.dao.RecommendMapper;
 import com.p2p.dao.RzvipMapper;
 import com.p2p.dao.UserMapper;
+import com.p2p.dao.UserMoneyMapper;
 import com.p2p.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
     private UserMapper userMapper;
     private RzvipMapper rzvipMapper;
     private RecommendMapper recommendMapper;
+    private UserMoneyMapper userMoneyMapper;
 
     @Override
     public User getByPhonePwd(String phone, String upwd) {
@@ -86,6 +89,11 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
         if(userMapper.save(user) == 0) {
             return ServerResponse.createByError("保存失败");
         }
+        UserMoney userMoney = new UserMoney();
+        userMoney.setUid(user.getUid());
+        if(userMoneyMapper.save(userMoney) == 0) {
+            return ServerResponse.createByError("保存失败");
+        }
         recommend.setUid(user.getUid());
         recommend.setTname(user.getUid()+"");
         if(recommendMapper.save(recommend) == 0){
@@ -108,5 +116,9 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
     @Autowired
     public void setRecommendMapper(RecommendMapper recommendMapper) {
         this.recommendMapper = recommendMapper;
+    }
+    @Autowired
+    public void setUserMoneyMapper(UserMoneyMapper userMoneyMapper) {
+        this.userMoneyMapper = userMoneyMapper;
     }
 }

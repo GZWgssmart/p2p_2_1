@@ -43,7 +43,6 @@ public class BorrowApplyController {
 
     @RequestMapping("detail")
     public BorrowApplyDetail getDetail(Integer baid) {
-//        request.setAttribute("borrowDetail", borrowApplyService.getById(baid));
         return (BorrowApplyDetail) borrowApplyService.getById(baid);
     }
 

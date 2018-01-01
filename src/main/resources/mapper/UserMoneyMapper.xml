@@ -17,11 +17,16 @@
   <sql id="Base_Column_List">
     umid, uid, zmoney, kymoney, symoney, tzmoney, djmoney, dsmoney, jlmoney
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.Integer" resultType="userMoney">
     select 
     <include refid="Base_Column_List" />
     from usermoney
     where umid = #{umid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getUserMoney" resultType="com.p2p.bean.UserMoney">
+    select uid, zmoney, kymoney, symoney, tzmoney, djmoney, dsmoney, jlmoney
+    from usermoney where uid = #{uid,jdbcType=INTEGER}
   </select>
 
   <delete id="removeById" parameterType="java.lang.Integer">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 7025
@@ -11,7 +12,16 @@
         <div class="logo"><a href="<%=path%>/"><img src="<%=path%>/static/images/logo.png" alt="普金资本"></a></div>
         <div class="nav-bar">
             <ul>
-                <li class="icon icon-acc"><a href="javascript:void(0);">我的账户</a></li>
+                <c:if test="${sessionScope.user != null}">
+                    <li class="icon icon-acc">
+                        <a href="javascript:void(0);" onclick="window.location.href='<%=path %>/page/user/account'">我的账户</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.user == null}">
+                    <li class="icon icon-acc">
+                        <a href="javascript:void(0);" onclick="window.location.href='<%=path %>/page/user/login/'">我的账户</a>
+                    </li>
+                </c:if>
                 <!-- <li><a href="javascript:void(0);">信息披露</a></li> -->
                 <li><a href="https://www.pujinziben.com/about.html">信息披露</a></li>
                 <!-- <li><a href="javascript:void(0);" onclick="newPointer()">新手指导</a></li> -->

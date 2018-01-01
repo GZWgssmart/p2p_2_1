@@ -52,7 +52,7 @@
                     </div>
                     <div class="subject-submit-b-l">
                         <p>总投标数：<span id="investNum">10</span></p>
-                        <p>最大投标金额：<span id="maxTenderedSum">{{d.money-d.moneyCount}}</span></p>
+                        <p>最大投标金额：<span id="maxTenderedSum">{{d.money-d.moneyCount}}元</span></p>
                     </div>
                     <div class="subject-submit-b-r">
                         <div class="line">
@@ -68,18 +68,18 @@
                 </div>
                 <div class="subject-s-r-c">
                     <p>可用余额：<span id="canUseSum">
-                    <c:if test="${sessionScope.user != null}"><p>可用余额</p></c:if>
+                    <c:if test="${sessionScope.user != null}"><p>${requestScope.userMoney.kymoney}元</p></c:if>
                     <c:if test="${sessionScope.user == null}"><p>登录后查看余额</p></c:if>
                     </span></p>
                     <p class="rate">预期收益：<span class="color" id="reckon">0.00</span></p>
                 </div>
                 <div class="subject-s-r-c">
-                    <p>剩余可投：<span id="investAmount">{{d.money-d.money}}元</span></p>
+                    <p>剩余可投：<span id="investAmount">{{d.money-d.moneyCount}}元</span></p>
                     <p class="rate active" id="increaseP">加息收益：<span class="color" id="increase">0.00</span></p>
                 </div>
                 <div class="input">
                     <input type="text" placeholder="请输入投资金额" id="tzmoney">
-                    <button type="button" onclick="touzi">全投</button>
+                    <button type="button" onclick="allInvest(${requestScope.userMoney.kymoney}, '{{d.money-d.moneyCount}}');">全投</button>
                 </div>
                 <div class="quan">
                     <select id="selectQuan">
@@ -87,7 +87,13 @@
                     </select>
                     <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
-                <button class="btn disabled" id="investBtn" type="button">还款中</button>
+                {{# if((d.money-d.moneyCount)>0){ }}
+                <button type="button" class="btn" onclick="invest();">立即投标</button>
+                {{# } else if(d.ckstatus === 5) { }}
+                <button type="button" class="btn disabled" onclick="">已完成</button>
+                {{# } else { }}
+                <button type="button" class="btn disabled" onclick="">还款中</button>
+                {{# } }}
                 <p class="agreement" style="height: 0;"></p>
                 <div id="productJump"></div>
             </div>
@@ -137,12 +143,37 @@
         <div class="sub-a-box files" id="files">
             <p class="icon icon-danger files-title">互联金融将以客观、公正的原则，最大程度地核实借入者信息的真实性，但不保证审核信息100%真实。如果借入者长期逾期，其提供的信息将被公布。</p>
             <ul class="files-box">
-                <li class="">
-                    <img alt="" width="320" height="200" src="http://pic.3h3.com/up/2015-9/201599991030063384.jpg">
+                <li class="layui-col-md2">
+                    {{# if(d.fpic != null && d.fpic != ''){ }}
+                    <img alt="" width="320" height="200" src="<%=path %>/{{d.fpic}}">
                     <p>
                         <span class="icon icon-true">法人身份认证</span>
                     </p>
-                    <a href="javascript:;" onclick="" style="display: inline;">点击查看大图</a>
+                    {{# } }}
+                </li>
+                <li class="layui-col-md2">
+                    {{# if(d.ypic != null && d.ypic != ''){ }}
+                    <img alt="" width="320" height="200" src="<%=path %>/{{d.ypic}}">
+                    <p>
+                        <span class="icon icon-true">营业执照</span>
+                    </p>
+                    {{# } }}
+                </li>
+                <li class="layui-col-md2">
+                    {{# if(d.qpic != null && d.qpic != ''){ }}
+                    <img alt="" width="320" height="200" src="<%=path %>/{{d.qpic}}">
+                    <p>
+                        <span class="icon icon-true">银行账号</span>
+                    </p>
+                    {{# } }}
+                </li>
+                <li class="layui-col-md2">
+                    {{# if(d.tpic != null && d.tpic != ''){ }}
+                    <img alt="" width="320" height="200" src="<%=path %>/{{d.tpic}}">
+                    <p>
+                        <span class="icon icon-true">其他资料</span>
+                    </p>
+                    {{# } }}
                 </li>
             </ul>
         </div>
@@ -217,9 +248,10 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/borrow/detail.js"></script>
 <script>
+    var minInvest = 100;// 最小投资金额
+
     layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
         var element = layui.element;
@@ -236,5 +268,22 @@
             },'json');
 
     });
+    /**
+     * 全投按钮
+     * @param ktmoney 可投金额
+     * @param maxInvest 最大可投
+     */
+    function allInvest(ktmoney, maxInvest) {
+        if(ktmoney < minInvest) {
+            return;
+        }
+        if(ktmoney > maxInvest) {
+            return "最多可投" + maxInvest + '元';
+        }
+    }
+
+    function invest() {
+
+    }
 </script>
 </html>
