@@ -13,6 +13,7 @@
   </sql>
   <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select f.fid,f.furl,f.fpic from friend f
+     limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Media">
     <![CDATA[
