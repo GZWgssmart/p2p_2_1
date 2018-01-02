@@ -116,10 +116,26 @@
       status = #{status,jdbcType=INTEGER}
     where czid = #{czid,jdbcType=INTEGER}
   </update>
-
   <insert id="save" parameterType="com.p2p.bean.LogCz">
     <![CDATA[
           insert into log_cz(uid, bankcard, banktype, money) values(#{uid}, #{bankcard},#{banktype},#{money})
        ]]>
   </insert>
+    <sql id="logCz_query_criteria">
+        <if test="query!=null and query.uid !=null">
+            where z.uid =#{query.uid}
+        </if>
+    </sql>
+  <select id="listPagerCriteria" resultType="com.p2p.bean.LogCz">
+    <![CDATA[
+      select z.money,z.banktype,z.bankcard,z.created_time from log_cz z,t_user u
+    ]]>
+      <include refid="logCz_query_criteria" />
+       limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+  <select id="countCriteria" resultType="long">
+    <![CDATA[
+            select count(z.czid) from log_cz z,t_user u where z.uid =u.uid
+        ]]>
+  </select>
 </mapper>
