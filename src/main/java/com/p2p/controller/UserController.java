@@ -5,6 +5,7 @@ import com.p2p.bean.Rzvip;
 import com.p2p.bean.User;
 import com.p2p.common.BeanCopyUtils;
 import com.p2p.common.Constants;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.UserService;
 import com.p2p.utils.DESUtils;
@@ -147,6 +148,12 @@ public class UserController {
         //将cookie添加到响应
         response.addCookie(nameCookie);
         response.addCookie(upwdCookie);
+    }
+
+    @RequestMapping("pagerCriteria")
+    @ResponseBody
+    public Pager pagerCriteria(int page, int limit, User user){
+        return userService.listPagerCriteria(page,limit, user);
     }
 
 }
