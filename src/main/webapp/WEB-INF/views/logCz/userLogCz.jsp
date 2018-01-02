@@ -21,13 +21,11 @@
 <%@include file="../master/header.jsp" %>
 <div class="account cl">
     <%@include file="../master/left.jsp" %>
-    <%--信息披露里的左侧边栏--%>
-    <%--<%@include file="../master/aboutLeft.jsp"%>--%>
     <div class="account-right">
         <div class="account-right-nav">
             <div class="sub-a-nav">
-                <a href="javascript:void(0);" class="active show-ipay">充值</a>
-                <a href="javascript:void(0);" class="show-ipay-list">充值记录</a>
+                <a href="<%=path%>/page/logCz/userLogCz" class="active show-ipay">充值</a>
+                <a href="<%=path%>/page/logCz/userCzHistory" class="show-ipay-list">充值记录</a>
             </div>
             <em class="em-line"></em>
         </div>
@@ -74,17 +72,6 @@
                         <p class="text">至</p>
                         <input type="text" class="date icon icon-date" id="endDate">
                         <button type="button" class="search" id="ipaySearch">搜索</button>
-                    </div>
-                    <div class="account-list">
-                        <ul class="ipay-list-box list-box">
-                            <li class="title">
-                                <div class="children0">账户名</div>
-                                <div class="children1">充值金额</div>
-                                <div class="children2">充值类型</div>
-                                <div class="children3">充值时间</div>
-                                <div class="children4">充值状态</div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </form>
