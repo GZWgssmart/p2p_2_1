@@ -26,7 +26,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">公告标题</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify autocomplete="off" placeholder="请输入公告标题"
+                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入公告标题"
                                class="layui-input">
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">公告内容</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容"  type="text" name="content" placeholder="请输入公告内容" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容"  type="text" name="content" lay-verify="content" placeholder="请输入公告内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
@@ -61,6 +61,18 @@
         var laytpl = layui.laytpl;
         var upload = layui.upload;
         var laydate = layui.laydate;
+
+        form.verify({
+            title: function(value){
+                if(value.length < 1){
+                    return '需要填写标题';
+                }
+            },content: function(value){
+                if(value.length < 1){
+                    return '需要填写内容';
+                }
+            }
+        });
 
         //提交媒体报道
         form.on('submit(fabu)', function (data) {

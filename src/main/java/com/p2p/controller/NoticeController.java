@@ -33,4 +33,17 @@ public class NoticeController {
         return noticeService.save(notice);
     }
 
+    @RequestMapping("editNotice")
+    @ResponseBody
+    public ServerResponse editNotice(Notice notice){
+        return noticeService.update(notice);
+    }
+
+    @RequestMapping("noticeDetail")
+    @ResponseBody
+    public Notice noticeDetail(Integer noticeId){
+       Object obj = noticeService.getById(noticeId);
+       return (Notice) obj;
+    }
+
 }

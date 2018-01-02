@@ -20,8 +20,7 @@
 
 <div class="layui-btn-group demoTable">
     <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-    <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-    <button class="layui-btn" data-type="isAll">验证是否全选</button>
+    <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
 <table id="allFriend_table" lay-filter="demo"></table>
@@ -53,8 +52,8 @@
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'fid', title:'ID', width:50, fixed: 'left'}
-                ,{field:'fpic', title:'图片', width:120, templet: '#imgUtil'}
-                ,{field:'furl', title:'链接', width:80, templet: '#urlUtil'}
+                ,{field:'fpic', title:'图片', width:300,height:200, templet: '#imgUtil'}
+                ,{field:'furl', title:'链接', width:300, templet: '#urlUtil'}
                  ]]
             ,id: 'idTest'
             ,page: true
@@ -96,27 +95,10 @@
                     ,data = checkStatus.data;
                 layer.alert(JSON.stringify(data));
             }
-            ,getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
+            ,refresh:function () {
+                location.reload(true);
             }
-            ,isAll: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
-                layer.msg(checkStatus.isAll ? '全选': '未全选')
-            }
-            ,delete: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                if(data.length == 1) {
-                    layer.confirm('真的删除行么', function(index){
-                        layer.msg('假装删除了');
-                        layer.close(index);
-                    });
-                } else {
-                    layer.msg('请选中一行！', {time:1500});
-                }
-            }
+
         };
 
         $('.searchType .layui-btn').on('click', function(){
