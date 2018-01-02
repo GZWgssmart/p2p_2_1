@@ -1,7 +1,5 @@
 package com.p2p.bean;
 
-import com.p2p.common.DateUtil;
-
 import java.util.Date;
 
 /**

@@ -1,7 +1,6 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Recommend;
-import com.p2p.common.DateUtil;
 import com.p2p.common.Pager;
 import com.p2p.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;

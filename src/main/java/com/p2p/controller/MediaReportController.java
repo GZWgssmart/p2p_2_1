@@ -1,7 +1,7 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Media;
-import com.p2p.common.DateUtil;
+import com.p2p.utils.DateUtil;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.MediaService;

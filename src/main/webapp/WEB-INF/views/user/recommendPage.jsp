@@ -29,148 +29,151 @@
     <%--信息披露里的左侧边栏--%>
     <%--<%@include file="../master/aboutLeft.jsp"%>--%>
     <div class="account-right">
-            <div class="layui-tab layui-tab-brief" lay-filter="zhuanqian" style="float: left;">
-                <ul class="layui-tab-title">
-                    <li class="layui-this">推荐好友</li>
-                    <li>推荐列表</li>
-                </ul>
-                <div class="layui-tab-content" style="height: 100px;">
-                    <div class="layui-tab-item layui-show">
-                        <div class="account-content">
-                            <div class="tuiJianShow">
-                                <img src="<%=path %>/static/images/banner_t.png" width="896" height="260">
-                                <p class="tj-tips">尊敬的用户,您的推荐号为：<span id="uid"></span></p>
-                                <p class="tj-text">活动时间：<span>2017年12月15日—2018年1月15日；</span></p>
-                                <p class="tj-text">活动对象：活动期间新注册用户的推荐人；</p>
-                                <p class="tj-text">活动说明：1. 活动期间邀请好友注册并累计投资满10000元，得50元现金券奖励；</p>
-                                <p class="tj-text" style="padding-left: 70px;">2.
-                                    活动期间内成功邀请50位以上好友注册投资成功合计满100000，可额外获得500元现金券奖励，可在<span>【我的账户-我的赠券】</span>中查看。</p>
-                                <p class="tj-text" style="padding-left: 70px;">(满足活动条件的用户在活动结束后3个工作日内奖励将以现金券的形式发放至用户账户)</p>
-                                <p class="tj-text"><span>注：</span>需将自己的推荐号发给您的好友，这样您才能成为他的邀请者。</p>
-                                <div class="tj-icon">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:;" onmouseover="weixin1();" onmouseleave="weixin2();">
-                                                <p id="weixin" class="icon icon-weichart"></p>
-                                            </a>
-                                            <p>分享到微信</p>
-                                        </li>
-                                        <li>
-                                            <a target="_blank"
-                                               href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.pujinziben.com&amp;desc=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;pics=http://www.pujinziben.com/resources/front/v01/src/images/logo.png&amp;summary=%E8%BF%98%E4%B8%8D%E9%94%99%E5%93%A6&amp;site=QQ%E5%88%86%E4%BA%AB&amp;style=201&amp;width=32&amp;height=32"
-                                               class="about_qq">
-                                                <p class="icon icon-QQ"></p>
-                                            </a>
-                                            <p>分享到QQ</p>
-                                        </li>
-                                        <li>
-                                            <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.pujinziben.com/&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">
-                                                <p class="icon icon-qzone"></p>
-                                            </a>
-                                            <p>分享到QQ空间</p>
-                                        </li>
-                                        <li>
-                                            <a target="_blank"
-                                               href="http://service.weibo.com/share/share.php?url=http://www.pujinziben.com&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;appkey=1343713053&amp;searchPic=true"
-                                               class="about_sina">
-                                                <p class="icon icon-Sina"></p>
-                                            </a>
-                                            <p>分享到新浪微博</p>
-                                        </li>
-                                    </ul>
-                                </div>
+        <div class="layui-tab layui-tab-brief" lay-filter="zhuanqian" style="float: left;">
+            <ul class="layui-tab-title">
+                <li class="layui-this">推荐好友</li>
+                <li>推荐列表</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show">
+                    <div class="account-content">
+                        <div class="tuiJianShow">
+                            <img src="<%=path %>/static/images/banner_t.png" width="896" height="260">
+                            <p class="tj-tips">尊敬的用户,您的推荐号为：<span class="uid"></span></p>
+                            <p class="tj-text">活动时间：<span>2017年12月15日—2018年1月15日；</span></p>
+                            <p class="tj-text">活动对象：活动期间新注册用户的推荐人；</p>
+                            <p class="tj-text">活动说明：1. 活动期间邀请好友注册并累计投资满10000元，得50元现金券奖励；</p>
+                            <p class="tj-text" style="padding-left: 70px;">2.
+                                活动期间内成功邀请50位以上好友注册投资成功合计满100000，可额外获得500元现金券奖励，可在<span>【我的账户-我的赠券】</span>中查看。</p>
+                            <p class="tj-text" style="padding-left: 70px;">(满足活动条件的用户在活动结束后3个工作日内奖励将以现金券的形式发放至用户账户)</p>
+                            <p class="tj-text"><span>注：</span>需将自己的推荐号发给您的好友，这样您才能成为他的邀请者。</p>
+                            <div class="tj-clip">
+                                <input class="tj-clip-text" id="userCode" />
+                            </div>
+                            <div class="tj-icon">
+                                <ul>
+                                    <li>
+                                        <a target="_blank"
+                                           href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.pujinziben.com&amp;desc=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;pics=http://www.pujinziben.com/resources/front/v01/src/images/logo.png&amp;summary=%E8%BF%98%E4%B8%8D%E9%94%99%E5%93%A6&amp;site=QQ%E5%88%86%E4%BA%AB&amp;style=201&amp;width=32&amp;height=32"
+                                           class="about_qq">
+                                            <p class="icon icon-QQ"></p>
+                                        </a>
+                                        <p>分享到QQ</p>
+                                    </li>
+                                    <li>
+                                        <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.pujinziben.com/&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">
+                                            <p class="icon icon-qzone"></p>
+                                        </a>
+                                        <p>分享到QQ空间</p>
+                                    </li>
+                                    <li>
+                                        <a target="_blank"
+                                           href="http://service.weibo.com/share/share.php?url=http://www.pujinziben.com&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;appkey=1343713053&amp;searchPic=true"
+                                           class="about_sina">
+                                            <p class="icon icon-Sina"></p>
+                                        </a>
+                                        <p>分享到新浪微博</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="layui-tab-item">
-                        <div class="layui-form">
-                            <div class="layui-form-item">
-                                <div class="layui-inline">
-                                    <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" name = "first" id="first" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss">
-                                    </div>
-                                </div>
-                                <span>至</span>
-                                <div class="layui-inline">
-                                    <div class="layui-input-inline">
-                                        <input type="text" class="layui-input" name= "end" id="end" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss">
-                                    </div>
-                                </div>
-                                <div class="searchType layui-inline">
-                                <button class="layui-btn layui-btn-primary" data-type="reload">搜索</button>
-                                </div>
-                            </div>
-                        </div>
-                        <table id="allRecommend_table" lay-filter="demo"></table>
                     </div>
                 </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" name="first" id="first" lay-verify="laydate"
+                                           placeholder="开始时间">
+                                </div>
+                            </div>
+                            <span>至</span>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" name="end" id="end" lay-verify="laydate"
+                                           placeholder="结束时间">
+                                </div>
+                            </div>
+                            <div class="searchType layui-inline">
+                                <button class="layui-btn layui-btn-primary" data-type="reload">搜索</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="allRecommend_table" lay-filter="demo"></table>
+                </div>
             </div>
+        </div>
     </div>
 </div>
 <%@include file="../master/footer.jsp" %>
 </body>
-<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
     $(function () {
-        $("#uid").text(100000+${user.uid});
+        $(".uid").text(100000 +${user.uid});
+        $('#userCode').val('http://localhost:8080/page/user/reg?' + (100000 +${user.uid}));
     })
-    $('.sidebar-top').click(function () {
-        $('body').scrollTop(0);
-    });
-    layui.use(['element','table','laydate'], function () {
+
+    layui.use(['element', 'table', 'laydate'], function () {
         var $ = layui.jquery
             , element = layui.element
-            ,table = layui.table;
-            var laydate=layui.laydate;
+            , table = layui.table;
+        var laydate = layui.laydate;
 
         table.render({
             elem: '#allRecommend_table'
-            ,url: '<%=path %>/data/recommend/pagerCriteria?uid='+${user.uid}
-            ,cols: [[
-                {field:'rmid', title:'ID', width:100, fixed: 'left'}
-                ,{field:'rname', title:'被推荐人', width:340}
-                ,{field:'createdTime', title:'注册时间', width:340, sort: true, templet:'<div>{{ formatDate(d.createdTime) }}</div>'}
+            , url: '<%=path %>/data/recommend/pagerCriteria?uid=' +${user.uid}
+            , cols: [[
+                {field: 'rmid', title: 'ID', width: 100, fixed: 'left'}
+                , {field: 'rname', title: '被推荐人', width: 340}
+                , {
+                    field: 'createdTime',
+                    title: '注册时间',
+                    width: 340,
+                    sort: true,
+                    templet: '<div>{{ formatDate(d.createdTime) }}</div>'
+                }
             ]]
-            ,id: 'idTest'
-            ,page: true
-            ,width: 800
-            ,response: {
+            , id: 'idTest'
+            , page: true
+            , width: 800
+            , response: {
                 statusName: 'status'
-                ,statusCode: 0
-                ,msgName: 'message'
-                ,countName: 'total'
-                ,dataName: 'rows'
+                , statusCode: 0
+                , msgName: 'message'
+                , countName: 'total'
+                , dataName: 'rows'
             }
         });
 
         laydate.render({
-            elem:'#first',
+            elem: '#first',
             type: 'datetime'
         })
         laydate.render({
-            elem:'#end'
-            ,type: 'datetime'
+            elem: '#end'
+            , type: 'datetime'
         })
-        $('.searchType .layui-btn').on('click', function(){
+        $('.searchType .layui-btn').on('click', function () {
             var type = $(this).data('type');
             search[type] ? search[type].call(this) : '';
         });
 
         var search = {
-            reload: function(){
+            reload: function () {
                 var first = $('#first');
-                var end =$('#end');
+                var end = $('#end');
                 //执行重载
                 table.reload('idTest', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
-                    ,where: {
-                        first:first.val(),
-                        end:end.val()
+                    , where: {
+                        first: first.val(),
+                        end: end.val()
                     }
                 });
             }

@@ -82,6 +82,12 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
+    var one = window.location.search;
+    if(one != null || one != '') {
+        one = one.replace("?","");
+        $('#useCode').val(one);
+        $('.from-ext').attr('class', 'from fadeOutUpBig');
+    }
     var isPhoneRegist, isUserRegist;
     $(function () {
         utils.initInput();
@@ -189,7 +195,6 @@
             success: function (data) {
                 if (data.error == '0') {
                     $('.AgreeMent .popup-area').html(data.content);
-
                 }
             }
         })

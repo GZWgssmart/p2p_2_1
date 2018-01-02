@@ -1,4 +1,4 @@
-package com.p2p.common;
+package com.p2p.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -21,4 +21,13 @@ public class Constants {
      * 盐值
      */
     public static final String SALT = "p2p_2_1";
+
+    /**
+     * 后台用户session名
+     */
+    public static final String ADMIN_IN_SESSION = "admin";
+    /**
+     * 前台用户session名
+     */
+    public static final String USER_IN_SESSION = "user";
 }
