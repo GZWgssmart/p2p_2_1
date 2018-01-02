@@ -29,4 +29,9 @@ public class DynamicView {
     public String editPage(){
         return "company/editDynamic";
     }
+
+    @RequestMapping("indexDynamic")
+    public String indexDynamic(){
+        return "index/dynamic";
+    }
 }

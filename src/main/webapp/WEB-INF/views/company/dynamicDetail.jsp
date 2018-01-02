@@ -13,40 +13,55 @@
 <head>
     <meta charset="utf-8">
     <title>公司动态详情</title>
-    <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
-    <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+    <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
+    <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
+    <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
 </head>
 <style>
-    img{
-       width: 600px;
-        height: auto;
+    body {
+        height: 50px;
+        line-height: 50px;
     }
+    #view{
+        width: 88%;
+        background-color: white;
+        margin:0 auto;
+        padding-bottom: 40px;
+    }
+    span{
+        color: #999;
+        float:right;
+        margin-left: 10px;
+        padding-right:40px;
+    }
+
 </style>
 <body>
-<ul class="layui-nav layui-bg-blue" lay-filter="">
-    <li class="layui-nav-item"><a href="">首页</a></li>
-    <li class="layui-nav-item"><a href="<%=path %>/user/loginPage">用户登录</a></li>
-</ul>
-<div class="layui-container">
+<%@include file="../master/top.jsp" %>
+<%@include file="../master/header.jsp" %>
+<div class="layui-container" style="margin-top: 30px;">
     <div id="view">
         <script id="demo" type="text/html">
-            <h3>{{ d.title }}</h3>
-            <p>{{ d.summary }}</p>
+            <h3 style="font-weight: normal;text-align: center;font-size: 18px;">【普金资本】{{ d.title }}</h3>
+            <span><a href="<%=path %>/page/dynamic/indexDynamic" style="color: #319bff;">返回列表</a></span><span><div>{{ formatDate(d.createdTime) }}</div></span></br>
+            <p style="margin-left: 20px;">&nbsp;&nbsp;&nbsp;{{ d.summary }}</p>
             {{#  if(d.pic !== null){ }}
-            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto"/>
+            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 800px;height: auto;margin-left: 180px"/>
             {{#  } else { }}
             <span>-----------------</span>
             {{#  } }}
-            <div>
+            <div style="margin-left: 20px;margin-right: 20px;">
                 {{ d.content }}
             </div>
-            <p><div>{{ formatDate(d.createdTime) }}</div></p>
         </script>
     </div>
 </div>
+<%@include file="../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
-<script src="<%=path %>/static/js/public.js"></script>
+<script src="<%=path %>/static/js/home/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
     //获取url上的值,获取页面传过来的值
     function GetQueryString(name) {

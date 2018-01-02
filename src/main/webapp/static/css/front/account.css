@@ -98,7 +98,7 @@
     min-height: 864px;
     padding: 27px 40px 100px;
     display: table-cell;
-    background: url(../../images/product-loading.gif)center center no-repeat;
+    background: url(/static/images/product-loading.gif)center center no-repeat;
     background-color: #fff;
     vertical-align: top;
 }
@@ -1303,14 +1303,14 @@ p.tips-title b {
 
 .taste-list .bg-nouse,
 .taste-list .xj-nouse {
-    background: url(../../images/account/quan_once.png) bottom center no-repeat;
+    background: url(/static/images/quan_once.png) bottom center no-repeat;
 }
 
 .taste-list .bg-use,
 .taste-list .bg-date,
 .taste-list .xj-date,
 .taste-list .xj-use{
-    background: url(../../images/account/quan_oneuse.png) bottom center no-repeat;
+    background: url(/static/images/quan_oneuse.png) bottom center no-repeat;
 }
 
 .taste-list .bg-nouse .taste-bg-l,
@@ -1443,7 +1443,7 @@ p.tips-title b {
     width: 100%;
     height: 100%;
     display: block;
-    background: url(/static/images/account/quan_date2.png) top center no-repeat;
+    background: url(/static/images/quan_date2.png) top center no-repeat;
 }
 
 .taste-list .bg-date .taste-bg-r a,
@@ -1451,7 +1451,7 @@ p.tips-title b {
     width: 100%;
     height: 100%;
     display: block;
-    background: url(/static/images/account/quan_data.png) top center no-repeat;
+    background: url(/static/images/quan_data.png) top center no-repeat;
 }
 
 .taste-list .bg-nouse .taste-bg-r a,
