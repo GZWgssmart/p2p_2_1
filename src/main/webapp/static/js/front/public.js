@@ -147,18 +147,6 @@ utils.initLoginData = function(){
 		$('#top .top-list li:last').addClass('no');
 		$('#top .top-list li:first a').text('退出').attr({'class':'','href':'javascript:;'}).click(function(){
 			utils.Storage.clear();
-			window.location.href='/';
-//	    	   $.ajax({
-//	    		    url:'front/logout.do',
-//	    		    type: "post",
-//	    		    dataType: "json",
-//	    		    success: function (data) {
-//	    		    	if(data.error == '0'){
-//	    					utils.Storage.clear();
-//	    					window.location.href='index.html';
-//	    		    	}
-//	    		    }
-//	    		});
 		});
 	}else{
 		$('.nav .icon-acc a').attr('href',utils.getBasePath()+'login.html');
@@ -806,5 +794,12 @@ function preloadImages(arr){
 };
 utils.getBasePath = function(){
 	return "https://www.pujinziben.com/";
+}
+// 退出登录清空session
+function outUser() {
+    $.get("/data/user/out",
+        function(data) {
+    		window.location.href= "/";
+        });
 }
 

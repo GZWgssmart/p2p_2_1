@@ -301,7 +301,7 @@ a { color: #3177c1; }
 
 .arrow-btn-left, .arrow-btn-right { display: inline-block; width: 5px; height: 7px; background: url(../img/icon-arrow-left.png) no-repeat; overflow: hidden; }
 
-.arrow-btn-right { background: url(../img/icon-arrow-right.png) no-repeat; }
+.arrow-btn-right { background: url(/static/img/icon-arrow-right.png) no-repeat; }
 
 .main .content { margin: 0 0 0 255px; padding: 50px 35px 35px; _float: left; _margin-left: 0; }
 

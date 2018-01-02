@@ -119,9 +119,11 @@ public class UserController {
     }
 
     @RequestMapping("out")
-    public String out(HttpSession session) {
-        session.invalidate();
-        return "index";
+    @ResponseBody
+    public ServerResponse out(HttpSession session) {
+        session.removeAttribute("user");
+        ServerResponse serverResponse = ServerResponse.createBySuccess();
+        return serverResponse;
     }
 
     /**

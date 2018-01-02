@@ -135,15 +135,16 @@
     </div>
 </div>
 <%@include file="../master/footer.jsp" %>
-</body>
-<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
+    $(function () {
+        var user = "${user}";
+        if(user == null || user == '') {
+            alert("您未登录，请登录！");
+        }
+    })
     $("input[name='sex'][value=${user.sex}]").attr("checked",true);
-    $('.sidebar-top').click(function () {
-        $('body').scrollTop(0);
-    });
     layui.use(['element', 'table', 'form', 'upload'], function () {
         var $ = layui.jquery
             , element = layui.element
@@ -199,6 +200,7 @@
 
     });
 </script>
+</body>
 </html>
 
 

@@ -1396,7 +1396,7 @@ color: #999;
 .mod-sidebar ul li a{
 	display:block;
 	height:50px;
-    background-image: url(../images/right.png);
+    background-image: url(/static/images/right.png);
     background-repeat: no-repeat;
 }
 .mod-sidebar ul li a.sidebar-qq{
