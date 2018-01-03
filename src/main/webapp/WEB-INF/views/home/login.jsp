@@ -76,6 +76,7 @@
                         window.location.href = "<%=path %>/page/home/homePage";
                     } else {
                         layer.msg("手机号或者密码错误！");
+                        layer.close(layer.load());
                     }
                 }, 'json'
             );

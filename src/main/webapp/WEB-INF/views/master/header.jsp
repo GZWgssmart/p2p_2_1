@@ -19,21 +19,21 @@
                 </c:if>
                 <c:if test="${sessionScope.user == null}">
                     <li class="icon icon-acc">
-                        <a href="javascript:void(0);" onclick="window.location.href='<%=path %>/page/user/login/'">我的账户</a>
+                        <a href="javascript:void(0);" onclick="window.location.href='<%=path %>/page/user/login'">我的账户</a>
                     </li>
                 </c:if>
                 <!-- <li><a href="javascript:void(0);">信息披露</a></li> -->
-                <li><a href="https://www.pujinziben.com/about.html">信息披露</a></li>
+                <li><a href="#">信息披露</a></li>
                 <!-- <li><a href="javascript:void(0);" onclick="newPointer()">新手指导</a></li> -->
                 <li><a href="<%=path%>/statically/insurance">安全保障</a></li>
                 <li>
                     <a href="<%=path%>/page/borrowApply/investList">投资理财</a>
                     <div class="sub-nav">
-                        <a href="https://www.pujinziben.com/investlist.html#006">恒金保</a>
-                        <a href="https://www.pujinziben.com/investlist.html#004">普金保</a>
-                        <a href="https://www.pujinziben.com/investlist.html#003">多金宝</a>
-                        <a href="https://www.pujinziben.com/investlist.html#005">新手标</a>
-                        <a href="https://www.pujinziben.com/creditorlist.html">债权转让</a>
+                        <a href="#">恒金保</a>
+                        <a href="#">普金保</a>
+                        <a href="#">多金宝</a>
+                        <a href="#">新手标</a>
+                        <a href="#">债权转让</a>
                         <p class="left"></p>
                         <p class="right"></p>
                     </div>

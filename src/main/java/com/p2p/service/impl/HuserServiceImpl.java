@@ -66,7 +66,6 @@ public class HuserServiceImpl extends AbstractServiceImpl implements HuserServic
 
     @Autowired
     public void setRoleUserMapper(RoleUserMapper roleUserMapper) {
-        super.setBaseDAO(roleUserMapper);
         this.roleUserMapper = roleUserMapper;
     }
 

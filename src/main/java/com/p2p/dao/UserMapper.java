@@ -16,4 +16,6 @@ public interface UserMapper extends BaseDAO {
 
     @Override
     List<Object> listPagerCriteria(@Param("pager")Pager pager, @Param("user") Object obj);
+    int updateVip(String[] uid);
+
 }

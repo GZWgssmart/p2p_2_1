@@ -113,7 +113,7 @@
                                    data-options="{url:'<%=path %>/page/check/userVip',icon:'&#xe658;',title:'vip用户',id:'20'}"><i class="layui-icon">&#xe658;</i><span>vip用户</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'认证审核',id:'21'}"><i class="layui-icon">&#xe658;</i><span>认证审核</span></a>
+                                   data-options="{url:'<%=path %>/page/admin/vip',icon:'&#xe658;',title:'认证审核',id:'21'}"><i class="layui-icon">&#xe658;</i><span>认证审核</span></a>
                             </dd>
                         </dl>
                     </li>
@@ -196,7 +196,7 @@
                         <a href="javascript:;"><span>角色权限</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i
+                                   data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i
                                     class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target

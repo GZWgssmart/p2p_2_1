@@ -42,5 +42,13 @@ public class UserTest extends BaseTest {
     public void testCard(){
 //        List<Object> userList =  userService.;
 //        System.out.println(userList);
+        String uid = ",1,2,3";
+        System.out.println("uid:" + uid);
+        String a = uid.replaceFirst(",","");
+        System.out.println(a);
+        // 可以用 StringBuilder 这个类，里面有一个接口replace，如下
+        StringBuilder sb = new StringBuilder("abcd");
+        sb.replace(1, 2, "测试是否替换指定的第二个元素");
+        System.out.println(sb.toString());
     }
 }

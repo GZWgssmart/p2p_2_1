@@ -10,7 +10,7 @@
 <div class="top" id="top">
     <div class="wrap">
         <div class="top-left icon icon-phone">
-            <span>客服热线：</span>400-606-2079 <span>（8:30～17:30）</span>
+            <span><a href="/page/admin/login">后台用户登录</a></span>
         </div>
         <div class="top-right cl">
             <ul class="top-list" id="navigation">
