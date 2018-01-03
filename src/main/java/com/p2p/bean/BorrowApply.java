@@ -1,8 +1,6 @@
 package com.p2p.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.p2p.common.Constants;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;

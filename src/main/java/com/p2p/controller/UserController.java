@@ -3,10 +3,11 @@ package com.p2p.controller;
 import com.p2p.bean.Recommend;
 import com.p2p.bean.Rzvip;
 import com.p2p.bean.User;
+import com.p2p.bean.UserMoney;
 import com.p2p.common.BeanCopyUtils;
 import com.p2p.common.Constants;
-import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
+import com.p2p.service.UserMoneyService;
 import com.p2p.service.UserService;
 import com.p2p.utils.DESUtils;
 import com.p2p.utils.EncryptUtils;
@@ -35,6 +36,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserMoneyService userMoneyService;
 
     private DESUtils desUtils = new DESUtils();
 
@@ -119,6 +123,11 @@ public class UserController {
         return userService.saveBorrow(user, rzvip);
     }
 
+    @RequestMapping("money")
+    public UserMoney getUserMoney(Integer uid) {
+        return userMoneyService.getUserMoney(uid);
+    }
+
     @RequestMapping("out")
     @ResponseBody
     public ServerResponse out(HttpSession session) {
@@ -148,12 +157,6 @@ public class UserController {
         //将cookie添加到响应
         response.addCookie(nameCookie);
         response.addCookie(upwdCookie);
-    }
-
-    @RequestMapping("pagerCriteria")
-    @ResponseBody
-    public Pager pagerCriteria(int page, int limit, User user){
-        return userService.listPagerCriteria(page,limit, user);
     }
 
 }

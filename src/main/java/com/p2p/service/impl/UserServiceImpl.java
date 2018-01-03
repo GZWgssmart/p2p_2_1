@@ -109,6 +109,18 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
         this.userMapper = userMapper;
     }
 
+    @Override
+    public ServerResponse<Integer> save(Object obj) {
+        User user = (User)obj;
+        super.save(user);
+        UserMoney userMoney = new UserMoney();
+        userMoney.setUid(user.getUid());
+        if(userMoneyMapper.save(userMoney) == 0) {
+            return ServerResponse.createByError("保存失败");
+        }
+        return ServerResponse.createBySuccess("保存成功");
+    }
+
     @Autowired
     public void setRzvipMapper(RzvipMapper rzvipMapper) {
         this.rzvipMapper = rzvipMapper;
