@@ -26,7 +26,7 @@
     <%--<%@include file="../master/aboutLeft.jsp"%>--%>
     <div class="account-right">
         <%-- 在此处写用户后台模块代码--%>
-        <div class="layui-tab layui-tab-brief"  style="float: left;">
+        <div class="layui-tab layui-tab-brief" style="float: left;">
             <ul class="layui-tab-title">
                 <li class="layui-this">安全中心</li>
             </ul>
@@ -52,7 +52,7 @@
                                             <p class="icon icon-true">
                                                 邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</p>
                                         </div>
-                                        <div class="safe-list-2"  id="userEmail">${user.email}</div>
+                                        <div class="safe-list-2" id="userEmail">${user.email}</div>
                                         <div class="safe-list-3">
                                             <a href="javascript:;" class="email">更改邮箱</a>
                                         </div>
@@ -121,7 +121,8 @@
                     <form class="layui-form">
                         <div class="label cl layui-form-item">
                             <label>邮箱地址</label><input type="text" name="email" id="addEmail" lay-verify="required|email"
-                                                      autocomplete="off" placeholder="输入您的邮箱地址" class="layui-input" value="${user.email}"/>
+                                                      autocomplete="off" placeholder="输入您的邮箱地址" class="layui-input"
+                                                      value="${user.email}"/>
                             <input type="hidden" name="uid" value="${user.uid}"/>
                         </div>
                         <div class="layui-form-item">
@@ -139,12 +140,14 @@
                         <span>&nbsp;&nbsp;${user.phone}</span>
                     </div>
                     <form class="layui-form">
-                    <div class="label cl">
-                        <label>手机号</label>
-                        <input type="text" name="phone" id="phone" onblur="chosePhone(this)" maxlength="11"  placeholder="输入您的新手机号码">
-                        <input type="hidden" name="uid" value="${user.uid}"/>
-                    </div>
-                    <button type="button" class="btn" id="button_id"  lay-submit lay-filter="phoneSubmit">修改</button>
+                        <div class="label cl">
+                            <label>手机号</label>
+                            <input type="text" name="phone" id="phone" onblur="chosePhone(this)" maxlength="11"
+                                   placeholder="输入您的新手机号码"
+                                   class="layui-input" lay-verify="required">
+                            <input type="hidden" name="uid" value="${user.uid}"/>
+                        </div>
+                        <button type="button" class="btn" id="button_id" lay-submit lay-filter="phoneSubmit">修改</button>
                     </form>
                 </div>
                 <div class="popup-result">
@@ -352,6 +355,7 @@
             );
             return false;
         });
+
         form.on('submit(phoneSubmit)', function (data) {
             $.post('<%=path %>/data/user/edit',
                 data.field,
@@ -359,7 +363,7 @@
                     if (data.code == 0) {
                         layer.closeAll();
                         layer.msg("修改成功");
-                        Window.location.reload();
+                        parent.location.reload()
                     } else {
                         layer.msg("修改失败，请重新再试")
                     }
@@ -378,7 +382,7 @@
         }
         utils.ajax({
             url: '<%=path %>/data/user/regPhone',
-            data: {phone:phone},
+            data: {phone: phone},
             dataType: 'json',
             success: function (data) {
                 if (data.code == '0') {
