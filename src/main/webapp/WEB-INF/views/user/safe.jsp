@@ -133,29 +133,19 @@
             </div>
             <!-- 修改手机号-->
             <div style="display: none;" id="editPhone">
-                <div class="popup-from step1">
-                    <div class="label cl">
-                        <label>原手机号</label>
-                        <p class="text" id="oldPhoneNum"></p>
-                    </div>
-                    <div class="label label-msg cl">
-                        <label>验证码</label>
-                        <input type="text" id="oldMobliePhoneCode" maxlength="6" placeholder="输入您短信验证码">
-                        <button type="button" id="getMsgCodeOld">获取验证码</button>
-                    </div>
-                    <button type="button" class="btn" id="phone-submit-one">验证</button>
-                </div>
                 <div class="popup-from step2">
+                    <div class="label cl layui-form-item">
+                        <span>原手机号</span>
+                        <span>&nbsp;&nbsp;${user.phone}</span>
+                    </div>
+                    <form class="layui-form">
                     <div class="label cl">
-                        <label>新手机号</label>
-                        <input type="text" id="newMobliePhone" maxlength="11" placeholder="输入您的新手机号码">
+                        <label>手机号</label>
+                        <input type="text" name="phone" id="phone" onblur="chosePhone(this)" maxlength="11"  placeholder="输入您的新手机号码">
+                        <input type="hidden" name="uid" value="${user.uid}"/>
                     </div>
-                    <div class="label label-msg cl">
-                        <label>验证码</label>
-                        <input type="text" id="newMobliePhoneCode" maxlength="6" placeholder="输入您短信验证码">
-                        <button type="button" id="getMsgCode">获取验证码</button>
-                    </div>
-                    <button type="button" class="btn" id="phone-submit">修改</button>
+                    <button type="button" class="btn" id="button_id"  lay-submit lay-filter="phoneSubmit">修改</button>
+                    </form>
                 </div>
                 <div class="popup-result">
                     <div class="success">
@@ -254,6 +244,7 @@
 
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);
@@ -361,8 +352,53 @@
             );
             return false;
         });
-
+        form.on('submit(phoneSubmit)', function (data) {
+            $.post('<%=path %>/data/user/edit',
+                data.field,
+                function (data) {
+                    if (data.code == 0) {
+                        layer.closeAll();
+                        layer.msg("修改成功");
+                        Window.location.reload();
+                    } else {
+                        layer.msg("修改失败，请重新再试")
+                    }
+                }, 'json'
+            );
+            return false;
+        });
     });
+    //验证手机号是否注册
+    function chosePhone(obj) {
+        isPhoneRegist = false;
+        var phone = $(obj).val();
+        if (phone == '') {
+            showError("请输入手机号码", $(obj));
+            return;
+        }
+        utils.ajax({
+            url: '<%=path %>/data/user/regPhone',
+            data: {phone:phone},
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == '0') {
+                    layer.msg('手机号已经注册!');
+                    isPhoneRegist = true;
+                } else {
+                    isPhoneRegist = false;
+                }
+            }
+        })
+    };
+    //错误提示
+    function showError(msg, obj) {
+        $('.error-msg').text(msg).addClass('show');
+        obj.parent('.from').addClass('error');
+        obj.focus(function () {
+            obj.parent('.from').removeClass('error');
+            $('.error-msg').removeClass('show');
+        });
+    }
 </script>
 </body>
 </html>

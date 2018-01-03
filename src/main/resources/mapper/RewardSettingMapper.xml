@@ -18,22 +18,19 @@
     from reward_setting
     where rwsid = #{rwsid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
+
+  <select id="getPercent" resultType="double">
+    select percent from reward_setting where #{money} <![CDATA[ >= ]]> minmoney and #{money} <![CDATA[ <= ]]> maxmoney
+  </select>
+
+  <delete id="removeById" parameterType="java.lang.Integer">
     delete from reward_setting
     where rwsid = #{rwsid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.RewardSetting">
-    insert into reward_setting (rwsid, minmoney, maxmoney, 
-      percent)
-    values (#{rwsid,jdbcType=INTEGER}, #{minmoney,jdbcType=DECIMAL}, #{maxmoney,jdbcType=DECIMAL}, 
-      #{percent,jdbcType=DOUBLE})
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.RewardSetting">
+
+  <insert id="save" parameterType="com.p2p.bean.RewardSetting">
     insert into reward_setting
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="rwsid != null">
-        rwsid,
-      </if>
       <if test="minmoney != null">
         minmoney,
       </if>
@@ -45,9 +42,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="rwsid != null">
-        #{rwsid,jdbcType=INTEGER},
-      </if>
       <if test="minmoney != null">
         #{minmoney,jdbcType=DECIMAL},
       </if>
@@ -59,7 +53,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.RewardSetting">
+
+  <update id="update" parameterType="com.p2p.bean.RewardSetting">
     update reward_setting
     <set>
       <if test="minmoney != null">
@@ -72,13 +67,6 @@
         percent = #{percent,jdbcType=DOUBLE},
       </if>
     </set>
-    where rwsid = #{rwsid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.RewardSetting">
-    update reward_setting
-    set minmoney = #{minmoney,jdbcType=DECIMAL},
-      maxmoney = #{maxmoney,jdbcType=DECIMAL},
-      percent = #{percent,jdbcType=DOUBLE}
     where rwsid = #{rwsid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,7 +1,8 @@
 package com.p2p.dao;
 
-import com.p2p.bean.RewardSetting;
+import java.math.BigDecimal;
 
 public interface RewardSettingMapper extends BaseDAO {
 
+    Double getPercent(BigDecimal money);
 }
