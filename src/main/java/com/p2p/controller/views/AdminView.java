@@ -19,4 +19,10 @@ public class AdminView {
     public String userReg() {
         return "Admin/addhuser";
     }
+
+    @RequestMapping("List")
+    public String huserList() {
+        return "Admin/huserList";
+    }
+
 }

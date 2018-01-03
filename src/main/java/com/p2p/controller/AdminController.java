@@ -4,8 +4,8 @@ import com.p2p.bean.Huser;
 import com.p2p.bean.RoleUser;
 import com.p2p.common.BeanCopyUtils;
 import com.p2p.common.Constants;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
-import com.p2p.dao.HuserMapper;
 import com.p2p.service.HuserService;
 import com.p2p.utils.EncryptUtils;
 import com.p2p.vo.HuserRoleVO;
@@ -17,18 +17,17 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
 /**
  * Created  qingfeng on 2017/12/27.
  */
-@Controller
+@RestController
 @RequestMapping("/data/admin")
 public class AdminController {
 
@@ -36,15 +35,17 @@ public class AdminController {
     private HuserService huserService;
 
     @RequestMapping("phone")
-    @ResponseBody
     public ServerResponse regPhone(String phone) {
         System.out.println(phone);
         return huserService.getByPhone(phone);
     }
 
+    @RequestMapping("adminList")
+    public Pager HuserList(Integer pageNo, Integer limit, HuserRoleVO huserRoleVO) {
+        return huserService.listPagerCriteria(pageNo,limit,huserRoleVO);
+    }
 
     @PostMapping("login")
-    @ResponseBody
     public ServerResponse login(Huser huser) {
         ServerResponse status = null;
         Subject subject = SecurityUtils.getSubject();
@@ -83,7 +84,6 @@ public class AdminController {
     }
     
     @RequestMapping("addhuser")
-    @ResponseBody
     public ServerResponse save(HuserRoleVO huserRoleVO){
         Huser huser = new Huser();
         RoleUser roleUser = new RoleUser();
@@ -98,7 +98,6 @@ public class AdminController {
     }
 
     @RequestMapping("edit")
-    @ResponseBody
     public ServerResponse edit(Huser huser, HttpSession session) {
         ServerResponse serverResponse = null;
         if(huser.getPwd() != null && !"".equals(huser.getPwd())) {
@@ -111,5 +110,7 @@ public class AdminController {
         serverResponse.setData(huser1);
         return serverResponse;
     }
+
+
 
 }

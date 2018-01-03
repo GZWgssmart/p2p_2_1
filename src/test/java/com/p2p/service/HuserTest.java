@@ -2,6 +2,7 @@ package com.p2p.service;
 
 import com.p2p.bean.Huser;
 import com.p2p.utils.EncryptUtils;
+import com.p2p.vo.HuserRoleVO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +13,8 @@ public class HuserTest extends BaseTest {
 
     @Autowired
     private HuserService huserService;
+
+    private HuserRoleVO huserRoleVO;
 
     @Test
     public void savetest(){
@@ -31,4 +34,8 @@ public class HuserTest extends BaseTest {
 //        huserService.getByPhone("15083562555");
     }
 
+    @Test
+    public void testListCir() {
+        huserService.listPagerCriteria(1,3,huserRoleVO);
+    }
 }

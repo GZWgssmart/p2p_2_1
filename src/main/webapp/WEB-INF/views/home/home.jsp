@@ -196,7 +196,7 @@
                         <a href="javascript:;"><span>角色权限</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i
+                                   data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i
                                     class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
