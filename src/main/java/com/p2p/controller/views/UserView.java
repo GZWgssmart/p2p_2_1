@@ -91,4 +91,30 @@ public class UserView {
         return "user/borrowManage";
     }
 
+    /**
+     * ChuYiming begin
+     * @return
+     */
+    @RequestMapping("userLogCz")
+    public String logCz() {
+        return "logCz/userLogCz";
+    }
+
+    @RequestMapping("userCzHistory")
+    public String czHistory(){
+        return "logCz/userCzHistory";
+    }
+
+    @RequestMapping("userBankCard")
+    public String bankCard() {
+        return "bankCard/userBankCard";
+    }
+
+    @RequestMapping("userAddCard")
+    public String bankCardAdd(){
+        return "bankCard/userAddCard";
+    }
+    /**
+     * end
+     */
 }
