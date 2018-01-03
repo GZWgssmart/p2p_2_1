@@ -20,12 +20,10 @@
         <h1>借款管理</h1>
         <hr/>
         <div class="layui-row">
-            <form id="borrowQuery">
+            <form id="borrowQuery" class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <input type="text" id="cpname" name="cpname" placeholder="请输入产品名称" class="layui-input layui">
-                        </div>
+                        <input type="text" id="cpname" name="cpname" placeholder="请输入产品名称" class="layui-input layui">
                     </div>
                     <div class="layui-inline">
                         <input type="text" id="nprofitMin" name="nprofitMin" placeholder="请输入最小利率" class="layui-input">
@@ -36,7 +34,7 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                        <select name="bzid" id="bzid">
+                        <select name="bzid" id="bzid" lay-filter="aihao">
                             <%--// TODO 标种从数据库循环--%>
                             <option value="">请选择标种</option>
                             <option value="1">恒金宝</option>
@@ -45,31 +43,27 @@
                             <option value="4">新手标</option>
                         </select>
                     </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-inline">
-                            <select name="term" id="term">
-                                <option value="">请选择借款期限</option>
-                                <option value="3">3个月</option>
-                                <option value="6">6个月</option>
-                                <option value="12">12个月</option>
-                            </select>
-                        </div>
+                    <div class="layui-input-inline">
+                        <select name="term" id="term" lay-filter="aihao">
+                            <option value="">请选择借款期限</option>
+                            <option value="3">3个月</option>
+                            <option value="6">6个月</option>
+                            <option value="12">12个月</option>
+                        </select>
                     </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-inline">
-                            <select name="ckstatus" id="ckstatus">
-                                <option value="">请选择借款状态</option>
-                                <option value="0">审核中</option>
-                                <option value="1">审核失败</option>
-                                <option value="2">投标中</option>
-                                <option value="3">已流标</option>
-                                <option value="4">还款中</option>
-                                <option value="5">已完成</option>
-                            </select>
-                        </div>
+                    <div class="layui-input-inline">
+                        <select name="ckstatus" id="ckstatus" lay-filter="aihao">
+                            <option value="">请选择借款状态</option>
+                            <option value="0">审核中</option>
+                            <option value="1">审核失败</option>
+                            <option value="2">投标中</option>
+                            <option value="3">已流标</option>
+                            <option value="4">还款中</option>
+                            <option value="5">已完成</option>
+                        </select>
                     </div>
+                    <a href="javascript:void(0);" class="layui-btn" id="searchBtn" data-type="reload">搜索</a>
                 </div>
-                <a href="javascript:void(0);" class="layui-btn" id="searchBtn" data-type="reload">搜索</a>
             </form>
         </div>
 
