@@ -292,6 +292,7 @@
             $('#tzmoney').val(maxInvest);
             return utils.alert('最少可投' + maxInvest + '元');
         }
+        return "success";
     }
 
     function allInvest() {
@@ -300,14 +301,15 @@
 
     function invest(ktmoney, maxInvest) {
         var tzmoney = $('#tzmoney').val();
-        investCheck(tzmoney, ktmoney, parseFloat(maxInvest));
-        $.post('<%=path %>/data/tz/invest'
-            ,{ baid:${requestScope.baid}
-                ,money: tzmoney
-            ,resint1:$('#term').text()}
-            , function (data) {
-
-            },'json');
+        if(investCheck(tzmoney, ktmoney, parseFloat(maxInvest)) === 'success') {
+            $.post('<%=path %>/data/tz/invest'
+                ,{ baid:${requestScope.baid}
+                    ,money: tzmoney
+                    ,resint1:$('#term').text()}
+                , function (data) {
+                    alert(data.message);
+                },'json');
+        }
     }
 </script>
 </html>

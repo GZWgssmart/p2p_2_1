@@ -25,7 +25,7 @@
   </select>
 
   <select id="getUserMoney" resultType="com.p2p.bean.UserMoney">
-    select uid, zmoney, kymoney, symoney, tzmoney, djmoney, dsmoney, jlmoney
+    select umid, uid, zmoney, kymoney, symoney, tzmoney, djmoney, dsmoney, jlmoney
     from usermoney where uid = #{uid,jdbcType=INTEGER}
   </select>
 

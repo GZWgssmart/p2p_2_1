@@ -201,9 +201,6 @@
             <if test="cpname != null">
                 cpname = #{cpname },
             </if>
-            <if test="baid != null">
-                baid = #{baid },
-            </if>
             <if test="resint1 != null">
                 resint1 = #{resint1 },
             </if>
@@ -217,6 +214,6 @@
                 resstr2 = #{resstr2 },
             </if>
         </set>
-        where bdid = #{bdid }
+        where baid = #{baid }
     </update>
 </mapper>

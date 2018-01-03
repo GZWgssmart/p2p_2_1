@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `borrowapply`;
 CREATE TABLE `borrowapply` (
   `baid` int(11) NOT NULL AUTO_INCREMENT,
   `rname` varchar(50) NOT NULL COMMENT '真实姓名',
-  `money` int(11) NOT NULL COMMENT '申请金额',
+  `money` decimal(15,2) NOT NULL COMMENT '申请金额',
   `uid` int(11) NOT NULL COMMENT '借款人id',
   `bzid` int(11) NOT NULL COMMENT '标种id',
   `cktime` datetime DEFAULT NULL COMMENT '审核时间',
@@ -80,7 +80,7 @@ CREATE TABLE `borrowdetail` (
   `suggest` varchar(300) DEFAULT NULL COMMENT '借款人介绍',
   `xmdes` varchar(300) DEFAULT NULL COMMENT '项目描述',
   `guarantee` varchar(200) DEFAULT NULL COMMENT '保障措施',
-  `money` int(11) NOT NULL COMMENT '金额',
+  `money` decimal(15,2) DEFAULT '0.00' COMMENT '已投金额',
   `nprofit` float(3,2) NOT NULL COMMENT '年化收益',
   `way` varchar(20) NOT NULL COMMENT '收益方式',
   `cpname` varchar(50) DEFAULT NULL COMMENT '产品名称',
@@ -607,7 +607,7 @@ CREATE TABLE `ticket` (
   `kid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '券名称',
   `type` int(11) NOT NULL,
-  `tkmoney` int(11) NOT NULL,
+  `tkmoney` decimal(15,2) NOT NULL,
   `tktime` datetime NOT NULL,
   PRIMARY KEY (`kid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
