@@ -24,8 +24,8 @@
     <div class="account-right">
         <div class="account-right-nav">
             <div class="sub-a-nav">
-                <a href="<%=path%>/page/logCz/userLogCz" class="active show-ipay">充值</a>
-                <a href="<%=path%>/page/logCz/userCzHistory" class="show-ipay-list">充值记录</a>
+                <a href="<%=path%>/page/user/userLogCz" class="active show-ipay">充值</a>
+                <a href="<%=path%>/page/user/userCzHistory" class="show-ipay-list">充值记录</a>
             </div>
             <em class="em-line"></em>
         </div>

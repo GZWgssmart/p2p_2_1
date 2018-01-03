@@ -14,7 +14,7 @@
     <title>前台用户中心模板</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
-    <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
+    <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css" media="all">
     <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
 </head>
 <body>
@@ -24,21 +24,23 @@
     <%@include file="../master/left.jsp" %>
     <div class="account-right">
         <%--<div class="searchType">--%>
-            <%--<div class="layui-inline">--%>
-                <%--<input class="layui-input" name="typeName" id="typeName" autocomplete="off" placeholder="搜索类别"/>--%>
-            <%--</div>--%>
-            <%--<div class="layui-inline">--%>
-                <%--<input class="layui-input" name="title" id="title" autocomplete="off" placeholder="搜索标题"/>--%>
-            <%--</div>--%>
-            <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
+        <%--<div class="layui-inline">--%>
+        <%--<input class="layui-input" name="typeName" id="typeName" autocomplete="off" placeholder="搜索类别"/>--%>
+        <%--</div>--%>
+        <%--<div class="layui-inline">--%>
+        <%--<input class="layui-input" name="title" id="title" autocomplete="off" placeholder="搜索标题"/>--%>
+        <%--</div>--%>
+        <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
         <%--</div>--%>
         <div class="layui-btn-group demoTable">
             <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
             <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
             <button class="layui-btn" data-type="isAll">全选</button>
-            <button class="layui-btn" data-type="delete">删除记录</button>
         </div>
         <table id="allArticle_table" lay-filter="demo"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
     </div>
 </div>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -49,7 +51,7 @@
         var $ = layui.$;
         table.render({
             elem: '#allArticle_table'
-            , url: '<%=path %>/data/logCz/listPagerCriteria?uid=' + ${user.uid}
+            , url: '<%=path %>/data/logCz/listPagerCriteria'
             , cols: [[
                 {checkbox: true, fixed: true}
                 , {field: 'bankcard', title: '银行卡号', width: 150, fixed: 'left'}
@@ -62,6 +64,7 @@
                     sort: true,
                     templet: '<div>{{ formatDate(d.createdTime)}}</div>'
                 }
+                ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
             ]]
             , id: 'idTest'
             , page: true
@@ -74,19 +77,13 @@
             }
         });
 
-        //监听表格复选框选择
-        table.on('checkbox(demo)', function (obj) {
-            console.log(obj)
-        });
         //监听工具条
         table.on('tool(demo)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'detail') {
-                layer.msg('ID：' + data.id + ' 的查看操作');
-            } else if (obj.event === 'del') {
+            if (obj.event === 'del') {
                 layer.confirm('真的删除行么', function (index) {
                     obj.del();
                     layer.close(index);
+                    //这里做你想做的事情.不用给用户提示
                 });
             }
         });
@@ -110,18 +107,6 @@
             , isAll: function () { //验证是否全选
                 var checkStatus = table.checkStatus('idTest');
                 layer.msg(checkStatus.isAll ? '全选' : '未全选')
-            }
-            , delete: function () { //验证是否全选
-                var checkStatus = table.checkStatus('idTest')
-                    , data = checkStatus.data;
-                if (data.length == 1) {
-                    layer.confirm('真的删除行么', function (index) {
-                        layer.msg('假装删除了');
-                        layer.close(index);
-                    });
-                } else {
-                    layer.msg('请选中一行！', {time: 1500});
-                }
             }
         };
 

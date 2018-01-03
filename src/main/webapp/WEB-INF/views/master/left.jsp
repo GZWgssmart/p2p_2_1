@@ -4,7 +4,7 @@
         <div class="navbar icon icon-account">我的账户</div>
         <ul class="sub-nav">
             <li class=""><a href="<%=path %>/page/user/account">账户总览</a></li>
-            <li class=""><a href="<%=path%>/page/logCz/userLogCz">充值</a></li>
+            <li class=""><a href="<%=path%>/page/user/userLogCz">充值</a></li>
             <li class=""><a href="https://www.pujinziben.com/account.html#cash">提现</a></li>
 
             <li class=""><a id="myCoupon" href="<%=path %>/page/user/taste">我的赠券<i id="couponCount"></i></a></li>
@@ -21,7 +21,7 @@
         </ul>
         <div class="navbar icon icon-settings">账户设置</div>
         <ul class="sub-nav">
-            <li class=""><a href="<%=path%>/page/bankCard/userBankCard" >我的银行卡</a></li>
+            <li class=""><a href="<%=path%>/page/user/userBankCard" >我的银行卡</a></li>
             <li class=""><a href="<%=path %>/page/user/safe">安全设置</a></li>
             <li class=""><a href="<%=path %>/page/user/notice">消息中心</a></li>
         </ul>
