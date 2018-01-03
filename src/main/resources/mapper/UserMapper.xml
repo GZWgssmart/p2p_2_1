@@ -60,6 +60,9 @@
             <if test="sex != null">
                 sex = #{sex},
             </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
         </set>
         where uid = #{uid}
     </update>
