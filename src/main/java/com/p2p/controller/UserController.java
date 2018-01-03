@@ -136,6 +136,13 @@ public class UserController {
         return serverResponse;
     }
 
+    @RequestMapping("vip")
+    public ServerResponse vip(String uid) {
+        System.out.println("uid:" + uid);
+        String[] strings = uid.split(",");
+        return userService.updateVip(strings);
+    }
+
     /**
      * 在系统退出后，重新进入登录页面，用户名自动填充.。
      * 在用户登录成功时调用此方法

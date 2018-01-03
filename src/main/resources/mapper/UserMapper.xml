@@ -78,4 +78,11 @@
         ]]>
     </select>
 
+    <update id="updateVip">
+            update t_user set isvip = 1 where uid in
+        <foreach collection="array" open="(" close=")" item="uid" separator=",">
+            #{uid}
+        </foreach>
+    </update>
+
 </mapper>

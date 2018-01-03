@@ -18,4 +18,6 @@ public interface UserService extends BaseService {
 
     ServerResponse saveRecommend(User user, Recommend recommend);
 
+    ServerResponse<Integer> updateVip(String[] uid);
+
 }

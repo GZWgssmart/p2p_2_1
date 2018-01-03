@@ -102,6 +102,19 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
         return ServerResponse.createBySuccess("保存成功");
     }
 
+    @Override
+    public ServerResponse<Integer> updateVip(String[] uid) {
+        try {
+            if(userMapper.updateVip(uid) != 0) {
+                return ServerResponse.createBySuccess("更新成功");
+            } else {
+                return ServerResponse.createByError("更新失败");
+            }
+        } catch (RuntimeException e) {
+            return ServerResponse.createByError("更新失败");
+        }
+    }
+
 
     @Autowired
     public void setUserMapper(UserMapper userMapper) {

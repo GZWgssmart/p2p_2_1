@@ -25,4 +25,9 @@ public class AdminView {
         return "Admin/huserList";
     }
 
+
+    @RequestMapping("vip")
+    public String isvip() {
+        return "Admin/vipCheck";
+    }
 }
