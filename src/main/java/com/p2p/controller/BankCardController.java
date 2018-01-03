@@ -34,7 +34,6 @@ public class BankCardController {
 
     @RequestMapping("allCards")
     public List<BankCard> allCards(Integer uid) {
-        System.out.println(uid);
         return bankCardService.bankCardsByUid(uid);
     }
     @RequestMapping("save")
