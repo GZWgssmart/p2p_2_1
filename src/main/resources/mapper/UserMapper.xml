@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.p2p.bean.User">
-        <constructor>
-            <idArg column="uid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="uname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="upwd" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="tzm" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="zpwd" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="idtype" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="idno" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="rname" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="tid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="face" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="sex" javaType="java.lang.Integer" jdbcType="VARCHAR"/>
-            <arg column="isvip" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="resint1" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="resint2" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="resstr1" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="resstr2" javaType="java.lang.String" jdbcType="VARCHAR"/>
-        </constructor>
-    </resultMap>
     <insert id="save" parameterType="com.p2p.bean.User">
         <selectKey keyColumn="uid" keyProperty="uid" resultType="integer" order="AFTER">
             SELECT LAST_INSERT_ID()
@@ -85,5 +63,16 @@
         </set>
         where uid = #{uid}
     </update>
+    <select id="listPagerCriteria" resultType="user">
+        <![CDATA[
+            select * from t_user where isvip = 1
+        ]]>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Dynamic">
+        <![CDATA[
+          select count(uid) from t_user where isvip = 1
+        ]]>
+    </select>
 
 </mapper>

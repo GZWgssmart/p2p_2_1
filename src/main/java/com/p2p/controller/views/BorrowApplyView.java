@@ -27,20 +27,6 @@ public class BorrowApplyView {
         return "user/front_home_model";
     }
 
-    @GetMapping("addPage")
-    public String borrowApplyAdd() {
-        return "user/borrowApply";
-    }
-
-    /**
-     * 用户借款管理列表页
-     * @return
-     */
-    @GetMapping("management")
-    public String borrowManagement() {
-        return "user/borrowManage";
-    }
-
     /**
      * 主页投资列表页
      * @return

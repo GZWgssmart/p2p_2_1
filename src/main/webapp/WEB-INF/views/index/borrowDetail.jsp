@@ -38,7 +38,7 @@
                     </div>
                     <div class="subject-submit-date">
                         <p>项目期限</p>
-                        <p class="text" id="date"><span>{{d.term}}</span>个月</p>
+                        <p class="text" id="date"><span id="term">{{d.term}}</span>个月</p>
                     </div>
                     <div class="subject-submit-amt">
                         <p class="title_amt">募集总金额</p>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="subject-s-r-c">
                     <p>可用余额：<span id="canUseSum">
-                    <c:if test="${sessionScope.user != null}"><p>${requestScope.userMoney.kymoney}元</p></c:if>
+                    <c:if test="${sessionScope.user != null}"><p id="kymoney">${requestScope.userMoney.kymoney}</p></c:if>
                     <c:if test="${sessionScope.user == null}"><p>登录后查看余额</p></c:if>
                     </span></p>
                     <p class="rate">预期收益：<span class="color" id="reckon">0.00</span></p>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="input">
                     <input type="text" placeholder="请输入投资金额" id="tzmoney">
-                    <button type="button" onclick="allInvest(${requestScope.userMoney.kymoney}, '{{d.money-d.moneyCount}}');">全投</button>
+                    <button type="button" onclick="allInvest();">全投</button>
                 </div>
                 <div class="quan">
                     <select id="selectQuan">
@@ -88,7 +88,7 @@
                     <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
                 {{# if((d.money-d.moneyCount)>0){ }}
-                <button type="button" class="btn" onclick="invest();">立即投标</button>
+                <button type="button" class="btn" onclick="invest(${requestScope.userMoney.kymoney}, '{{d.money-d.moneyCount}}');">立即投标</button>
                 {{# } else if(d.ckstatus === 5) { }}
                 <button type="button" class="btn disabled" onclick="">已完成</button>
                 {{# } else { }}
@@ -269,21 +269,45 @@
 
     });
     /**
-     * 全投按钮
+     *  投资金额验证
+     * @param money 输入框金额
      * @param ktmoney 可投金额
      * @param maxInvest 最大可投
      */
-    function allInvest(ktmoney, maxInvest) {
-        if(ktmoney < minInvest) {
-            return;
+    function investCheck(money, ktmoney, maxInvest) {
+        if(money === null || money.trim() === '') {
+            return utils.alert('请输入投资金额');
         }
-        if(ktmoney > maxInvest) {
-            return "最多可投" + maxInvest + '元';
+        if(money > ktmoney) {
+            return utils.alert('余额不足！请充值');
+        }
+        if(money < minInvest) {
+            return utils.alert('最少可投' + minInvest + '元');
+        }
+        if(money > maxInvest) {
+            $('#tzmoney').val(maxInvest);
+            return utils.alert('最多可投' + maxInvest + '元');
+        }
+        if((maxInvest - 100) < 100) {
+            $('#tzmoney').val(maxInvest);
+            return utils.alert('最少可投' + maxInvest + '元');
         }
     }
 
-    function invest() {
+    function allInvest() {
+        $('#tzmoney').val($('#kymoney').text());
+    }
 
+    function invest(ktmoney, maxInvest) {
+        var tzmoney = $('#tzmoney').val();
+        investCheck(tzmoney, ktmoney, parseFloat(maxInvest));
+        $.post('<%=path %>/data/tz/invest'
+            ,{ baid:${requestScope.baid}
+                ,money: tzmoney
+            ,resint1:$('#term').text()}
+            , function (data) {
+
+            },'json');
     }
 </script>
 </html>

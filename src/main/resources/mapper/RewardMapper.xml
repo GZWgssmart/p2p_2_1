@@ -14,30 +14,21 @@
   <sql id="Base_Column_List">
     rwid, uid, tmoney, money, status, reward_time
   </sql>
+
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from reward
     where rwid = #{rwid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from reward
-    where rwid = #{rwid,jdbcType=INTEGER}
+
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from reward where rwid = #{rwid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Reward">
-    insert into reward (rwid, uid, tmoney, 
-      money, status, reward_time
-      )
-    values (#{rwid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{tmoney,jdbcType=DECIMAL}, 
-      #{money,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{rewardTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Reward">
+
+  <insert id="save" parameterType="com.p2p.bean.Reward">
     insert into reward
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="rwid != null">
-        rwid,
-      </if>
       <if test="uid != null">
         uid,
       </if>
@@ -55,9 +46,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="rwid != null">
-        #{rwid,jdbcType=INTEGER},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
@@ -75,7 +63,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Reward">
+
+  <update id="update" parameterType="com.p2p.bean.Reward">
     update reward
     <set>
       <if test="uid != null">
@@ -94,15 +83,6 @@
         reward_time = #{rewardTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where rwid = #{rwid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Reward">
-    update reward
-    set uid = #{uid,jdbcType=INTEGER},
-      tmoney = #{tmoney,jdbcType=DECIMAL},
-      money = #{money,jdbcType=DECIMAL},
-      status = #{status,jdbcType=VARCHAR},
-      reward_time = #{rewardTime,jdbcType=TIMESTAMP}
     where rwid = #{rwid,jdbcType=INTEGER}
   </update>
 </mapper>

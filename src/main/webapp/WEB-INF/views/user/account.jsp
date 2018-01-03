@@ -50,38 +50,37 @@
                                 <p id="reset"></p>
                             </div>
                         </div>
-                        <div class="layui-col-md3">
-                            <p class="amt color"><span id="usableSum" style="font-size: 36px;">0.00</span>元</p>
-                            <p class="text"><i></i>可用余额</p>
-                            <p class="link">
-                                <a href="#" class="active">充值</a>
-                                <a href="#">提现</a>
-                            </p>
-                        </div>
-                        <div class="layui-col-md4">
-                            <p class="amt"><span id="earnSum" style="font-size: 36px;">0.00</span>元</p>
-                            <p class="text">收益总额</p>
-                            <p class="icon-quan" style="padding-top: 30px;">代金券 <b id="voucher" style="color: red">0</b>
-                                张，现金券 <b id="cashMap" style="color: dodgerblue">0</b> 张</p>
-                        </div>
-                        <div class="layui-col-md5">
-                            <div class="canvas">
-                                <div class="center-total">
-                                    <p id="allTotal">0.00</p>
-                                    <p class="text">总资产</p>
+
+                        <div id="moneyCont">
+                        <script id="userMoney" type="text/html">
+                            <div class="layui-col-md3">
+                                <p class="amt color"><span id="usableSum" style="font-size: 36px;">{{d.kymoney}}</span>元</p>
+                                <p class="text"><i></i>可用余额</p>
+                                <p class="link">
+                                    <a href="#" class="active">充值</a>
+                                    <a href="#">提现</a>
+                                </p>
+                            </div>
+                            <div class="layui-col-md4">
+                                <p class="amt"><span id="earnSum" style="font-size: 36px;">{{d.symoney}}</span>元</p>
+                                <p class="text">收益总额</p>
+                                <p class="icon-quan" style="padding-top: 30px;">代金券 <b id="voucher" style="color: red">0</b>
+                                    张，现金券 <b id="cashMap" style="color: dodgerblue">0</b> 张</p>
+                            </div>
+                            <div class="layui-col-md7">
+                                <div class="center-data">
+                                    <p><i class="color color1"></i>总资产：<span id="allTotal">{{d.zmoney}}</span>元</p>
+
+                                    <p><i class="color color1"></i>投资总额：<span id="investSum">{{d.tzmoney}}</span>元</p>
+
+                                    <p><i class="color color2"></i>冻结金额：<span id="freezeAmount">{{d.djmoney}}</span>元</p>
+
+                                    <p><i class="color color3"></i>待收总额：<span id="forPaySum">{{d.dsmoney}}</span>元</p>
+
+                                    <p><i class="color color4"></i>奖励金额：<span id="otherEarnAmount">{{d.jlmoney}}</span>元</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="layui-col-md7">
-                            <div class="center-data">
-                                <p><i class="color color1"></i>投资总额：<span id="investSum">0.00</span></p>
-
-                                <p><i class="color color2"></i>冻结金额：<span id="freezeAmount">0.00</span></p>
-
-                                <p><i class="color color3"></i>待收总额：<span id="forPaySum">0.00</span></p>
-
-                                <p><i class="color color4"></i>奖励金额：<span id="otherEarnAmount">0.00</span></p>
-                            </div>
+                        </script>
                         </div>
                     </div>
                 </div>
@@ -140,10 +139,28 @@
 <script>
     $(function () {
         var user = "${user}";
-        if(user == null || user == '') {
+        if(user === null || user === '') {
             alert("您未登录，请登录！");
         }
-    })
+
+        layui.use(['element', 'laytpl'], function () {
+            var $ = layui.$;
+            var element = layui.element;
+            var laytpl = layui.laytpl;
+
+            var getTpl = userMoney.innerHTML
+                , view = document.getElementById('moneyCont');
+            $.post('<%=path %>/data/user/money'
+                ,{uid : ${sessionScope.user.uid}}
+                , function (data) {
+                    laytpl(getTpl).render(data, function (html) {
+                        view.innerHTML = html;
+                    });
+                },'json');
+
+        });
+    });
+
     $("input[name='sex'][value=${user.sex}]").attr("checked",true);
     layui.use(['element', 'table', 'form', 'upload'], function () {
         var $ = layui.jquery

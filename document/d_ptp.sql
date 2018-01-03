@@ -172,14 +172,14 @@ CREATE TABLE `hkb` (
   `ytime` datetime NOT NULL COMMENT '应还时间',
   `rtime` datetime DEFAULT NULL COMMENT '实际还款时间',
   `bzname` varchar(255) NOT NULL COMMENT '标种',
-  `ybx` decimal(7,2) DEFAULT NULL COMMENT '应还本息',
-  `rbx` decimal(7,2) DEFAULT NULL COMMENT '已还本息',
-  `ylx` decimal(7,2) DEFAULT NULL COMMENT '应还利息',
-  `rlx` decimal(7,2) DEFAULT NULL COMMENT '已还利息',
-  `ybj` decimal(7,2) DEFAULT NULL COMMENT '应还本金',
-  `rbj` decimal(7,2) DEFAULT NULL COMMENT '已还本金',
-  `yfc` decimal(7,2) DEFAULT NULL COMMENT '应还罚息',
-  `rfc` decimal(7,2) DEFAULT NULL COMMENT '已还罚息',
+  `ybx` decimal(15,2) DEFAULT '0.00' COMMENT '应还本息',
+  `rbx` decimal(15,2) DEFAULT '0.00' COMMENT '已还本息',
+  `ylx` decimal(15,2) DEFAULT '0.00' COMMENT '应还利息',
+  `rlx` decimal(15,2) DEFAULT '0.00' COMMENT '已还利息',
+  `ybj` decimal(15,2) DEFAULT '0.00' COMMENT '应还本金',
+  `rbj` decimal(15,2) DEFAULT '0.00' COMMENT '已还本金',
+  `yfc` decimal(15,2) DEFAULT '0.00' COMMENT '应还罚息',
+  `rfc` decimal(15,2) DEFAULT '0.00' COMMENT '已还罚息',
   `yucount` int(11) DEFAULT NULL COMMENT '逾期次数',
   `status` int(11) DEFAULT '0' COMMENT '还款状态',
   `baid` int(11) NOT NULL COMMENT '借款id',
@@ -299,7 +299,7 @@ CREATE TABLE `log_cz` (
   `uid` int(11) NOT NULL,
   `bankcard` varchar(20) NOT NULL COMMENT '银行卡号',
   `banktype` varchar(50) NOT NULL COMMENT '银行卡类型',
-  `money` decimal(7,2) NOT NULL COMMENT '金额',
+  `money` decimal(15,2) NOT NULL COMMENT '金额',
   `created_time` datetime DEFAULT NULL,
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`czid`)
@@ -317,8 +317,8 @@ CREATE TABLE `log_money` (
   `lmid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
   `type` int(11) NOT NULL COMMENT '类型',
-  `income` decimal(7,2) DEFAULT NULL COMMENT '收入',
-  `outlay` decimal(7,2) DEFAULT NULL COMMENT '支出',
+  `income` decimal(15,2) DEFAULT '0.00' COMMENT '收入',
+  `outlay` decimal(15,2) DEFAULT '0.00' COMMENT '支出',
   `created_time` datetime DEFAULT NULL,
   PRIMARY KEY (`lmid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -336,7 +336,7 @@ CREATE TABLE `log_tx` (
   `uid` int(11) NOT NULL,
   `bankcard` varchar(20) NOT NULL COMMENT '银行卡号',
   `banktype` varchar(50) NOT NULL COMMENT '所属银行',
-  `money` decimal(7,2) NOT NULL COMMENT '金额',
+  `money` decimal(15,2) NOT NULL COMMENT '金额',
   `created_time` datetime DEFAULT NULL,
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`txid`)
@@ -422,8 +422,8 @@ DROP TABLE IF EXISTS `reward`;
 CREATE TABLE `reward` (
   `rwid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
-  `tmoney` decimal(7,2) DEFAULT NULL COMMENT '投资总额',
-  `money` decimal(7,2) DEFAULT NULL COMMENT '奖励金额',
+  `tmoney` decimal(15,2) DEFAULT '0.00' COMMENT '投资总额',
+  `money` decimal(15,2) DEFAULT '0.00' COMMENT '奖励金额',
   `status` varchar(255) DEFAULT '0',
   `reward_time` datetime DEFAULT NULL COMMENT '奖励发放时间',
   PRIMARY KEY (`rwid`)
@@ -439,8 +439,8 @@ CREATE TABLE `reward` (
 DROP TABLE IF EXISTS `reward_setting`;
 CREATE TABLE `reward_setting` (
   `rwsid` int(11) NOT NULL AUTO_INCREMENT,
-  `minmoney` decimal(7,2) NOT NULL,
-  `maxmoney` decimal(7,2) NOT NULL,
+  `minmoney` decimal(15,2) NOT NULL,
+  `maxmoney` decimal(15,2) DEFAULT NULL,
   `percent` double NOT NULL COMMENT '奖励百分比',
   PRIMARY KEY (`rwsid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -562,12 +562,12 @@ CREATE TABLE `skb` (
   `skid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
   `juid` int(11) NOT NULL COMMENT '借款人id',
-  `ybx` decimal(7,2) DEFAULT NULL COMMENT '应收本息',
-  `rbx` decimal(7,2) DEFAULT NULL COMMENT '已收本息',
-  `ylx` decimal(7,2) DEFAULT NULL COMMENT '应收利息',
-  `rlx` decimal(7,2) DEFAULT NULL COMMENT '已收利息',
-  `ybj` decimal(7,2) DEFAULT NULL COMMENT '应收本金',
-  `rbj` decimal(7,2) DEFAULT NULL COMMENT '已收本金',
+  `ybx` decimal(15,2) DEFAULT '0.00' COMMENT '应收本息',
+  `rbx` decimal(15,2) DEFAULT '0.00' COMMENT '已收本息',
+  `ylx` decimal(15,2) DEFAULT '0.00' COMMENT '应收利息',
+  `rlx` decimal(15,2) DEFAULT '0.00' COMMENT '已收利息',
+  `ybj` decimal(15,2) DEFAULT '0.00' COMMENT '应收本金',
+  `rbj` decimal(15,2) DEFAULT '0.00' COMMENT '已收本金',
   `rnum` int(11) DEFAULT NULL COMMENT '已还期数',
   `tnum` int(11) DEFAULT NULL COMMENT '总期数',
   `sktime` datetime DEFAULT NULL COMMENT '收款时间',
@@ -642,7 +642,7 @@ CREATE TABLE `tzb` (
   `tzid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
   `juid` int(11) NOT NULL COMMENT '借款人id',
-  `money` decimal(7,2) NOT NULL COMMENT '投资金额',
+  `money` decimal(15,2) NOT NULL COMMENT '投资金额',
   `tztime` datetime DEFAULT NULL COMMENT '投资时间',
   `nprofit` float(3,2) DEFAULT NULL COMMENT '利率',
   `cpname` varchar(50) NOT NULL COMMENT '产品名',
@@ -695,13 +695,13 @@ DROP TABLE IF EXISTS `usermoney`;
 CREATE TABLE `usermoney` (
   `umid` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户id',
-  `zmoney` decimal(7,2) DEFAULT NULL COMMENT '总资产',
-  `kymoney` decimal(7,2) DEFAULT NULL COMMENT '可用余额',
-  `symoney` decimal(7,2) DEFAULT NULL COMMENT '收益总额',
-  `tzmoney` decimal(7,2) DEFAULT NULL COMMENT '投资总额',
-  `djmoney` decimal(7,2) DEFAULT NULL COMMENT '冻结总额',
-  `dsmoney` decimal(7,2) DEFAULT NULL COMMENT '待收总额',
-  `jlmoney` decimal(7,2) DEFAULT NULL COMMENT '奖励总额',
+  `zmoney` decimal(15,2) DEFAULT '0.00' COMMENT '总资产',
+  `kymoney` decimal(15,2) DEFAULT '0.00' COMMENT '可用余额',
+  `symoney` decimal(15,2) DEFAULT '0.00' COMMENT '收益总额',
+  `tzmoney` decimal(15,2) DEFAULT '0.00' COMMENT '投资总额',
+  `djmoney` decimal(15,2) DEFAULT '0.00' COMMENT '冻结总额',
+  `dsmoney` decimal(15,2) DEFAULT '0.00' COMMENT '待收总额',
+  `jlmoney` decimal(15,2) DEFAULT '0.00' COMMENT '奖励总额',
   PRIMARY KEY (`umid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -731,8 +731,8 @@ CREATE TABLE `user_ticket` (
 DROP TABLE IF EXISTS `ydata`;
 CREATE TABLE `ydata` (
   `yid` int(11) NOT NULL AUTO_INCREMENT,
-  `tmoney` decimal(7,2) NOT NULL COMMENT '交易总额',
-  `mmoney` decimal(7,2) NOT NULL COMMENT '月交易总额',
+  `tmoney` decimal(15,2) NOT NULL COMMENT '交易总额',
+  `mmoney` decimal(15,2) NOT NULL COMMENT '月交易总额',
   `tuser` int(11) NOT NULL COMMENT '总用户数',
   `muser` int(11) NOT NULL COMMENT '月注册数',
   `ttzno` int(11) NOT NULL COMMENT '总投资人数',

@@ -2,6 +2,7 @@ package com.p2p.controller.views;
 
 import com.p2p.utils.DESUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
@@ -74,6 +75,20 @@ public class UserView {
     @RequestMapping("notice")
     public String notice(){
         return "user/notice";
+    }
+
+    @GetMapping("borrow/addPage")
+    public String borrowApplyAdd() {
+        return "user/borrowApply";
+    }
+
+    /**
+     * 用户借款管理列表页
+     * @return
+     */
+    @GetMapping("borrow/management")
+    public String borrowManagement() {
+        return "user/borrowManage";
     }
 
 }
