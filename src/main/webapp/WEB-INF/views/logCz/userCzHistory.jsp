@@ -32,15 +32,15 @@
         <%--</div>--%>
         <%--<button class="layui-btn" data-type="reload">搜索</button>--%>
         <%--</div>--%>
-        <div class="layui-btn-group demoTable">
-            <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-            <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-            <button class="layui-btn" data-type="isAll">全选</button>
-        </div>
+        <%--<div class="layui-btn-group demoTable">--%>
+            <%--<button class="layui-btn" data-type="getCheckData">获取选中行数据</button>--%>
+            <%--<button class="layui-btn" data-type="getCheckLength">获取选中数目</button>--%>
+            <%--<button class="layui-btn" data-type="isAll">全选</button>--%>
+        <%--</div>--%>
         <table id="allArticle_table" lay-filter="demo"></table>
-            <script type="text/html" id="barDemo">
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-            </script>
+        <%--<script type="text/html" id="barDemo">--%>
+            <%--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>--%>
+        <%--</script>--%>
     </div>
 </div>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -53,10 +53,10 @@
             elem: '#allArticle_table'
             , url: '<%=path %>/data/logCz/listPagerCriteria'
             , cols: [[
-                {checkbox: true, fixed: true}
-                , {field: 'bankcard', title: '银行卡号', width: 150, fixed: 'left'}
-                , {field: 'banktype', title: '所属银行', width: 150}
-                , {field: 'money', title: '充值金额', width: 100}
+//                {checkbox: true, fixed: true},
+                {field: 'bankcard', title: '银行卡号', width: 180, fixed: 'left'}
+                , {field: 'banktype', title: '所属银行', width: 180}
+                , {field: 'money', title: '充值金额', width: 180}
                 , {
                     field: 'created_time',
                     title: '充值时间',
@@ -64,7 +64,12 @@
                     sort: true,
                     templet: '<div>{{ formatDate(d.createdTime)}}</div>'
                 }
-                ,{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}
+                , {
+                    field: 'status',
+                    title: '充值状态',
+                    width: 180 ,
+                    templet: '<div>{{ formatState(d.status)}}</div>'
+            }
             ]]
             , id: 'idTest'
             , page: true
@@ -77,16 +82,20 @@
             }
         });
 
-        //监听工具条
-        table.on('tool(demo)', function (obj) {
-            if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                    //这里做你想做的事情.不用给用户提示
-                });
-            }
-        });
+//        //监听工具条
+//        table.on('tool(demo)', function (obj) {
+//            if (obj.event === 'del') {
+//                layer.confirm('真的删除行么', function (index) {
+//                    var data = obj.data;
+//                    obj.del();
+//                    layer.close(index);
+//                    //这里做你想做的事情.不用给用户提示
+//                    alert(data.czid);
+//                    alert(data.status);
+//
+//                });
+//            }
+//        });
 
         $('.demoTable .layui-btn').on('click', function () {
             var type = $(this).data('type');
@@ -140,4 +149,13 @@
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script>
+    function formatState(status) {
+        if(status === 0) {
+            return "充值失败";
+        } else {
+            return "充值成功";
+        }
+    }
+</script>
 </html>
