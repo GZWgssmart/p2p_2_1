@@ -112,7 +112,7 @@
 <script>
     $(function () {
         $(".uid").text(100000 +${user.uid});
-        $('#userCode').val('http://localhost:8080/page/user/reg?' + (100000 +${user.uid}));
+        $('#userCode').val('http://localhost:8080/page/reg?' + (100000 +${user.uid}));
     })
     layui.use(['element', 'table', 'laydate'], function () {
         var $ = layui.jquery

@@ -72,7 +72,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" id="info">基本资料</a></dd>
-                    <dd><a href="<%=path %>/data/admin/out">注销</a></dd>
+                    <dd><a href="javascript:;" id="out">注销</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
@@ -124,7 +124,7 @@
                                    data-options="{url:'#',icon:'&#xe658;',title:'vip用户',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
+                                   data-options="{url:'<%=path %>/page/admin/quan',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
                             </dd>
                         </dl>
                     </li>
@@ -292,8 +292,8 @@
         app.set({
             type: 'iframe'
         }).init();
-        $("input[name='sex'][value=${admin.sex}]").attr("checked",true);
 
+        $("input[name='sex'][value=${admin.sex}]").attr("checked",true);
         //信息
         $('#info').on('click', function () {
             layer.open({
@@ -306,6 +306,18 @@
                 area: ['890px', '560px'], //宽高
                 content: $("#editIndexMsg")  //弹窗内容
             });
+        });
+
+        $('#out').on('click', function () {
+            $.get('<%=path %>/data/admin/out',
+              function (data) {
+                  if(data.code == 0) {
+                      window.location = '/'
+                  } else {
+                      layer.msg('注销失败！');
+                  }
+              }
+            );
         });
 
         //修改信息

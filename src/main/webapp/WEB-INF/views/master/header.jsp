@@ -19,7 +19,7 @@
                 </c:if>
                 <c:if test="${sessionScope.user == null}">
                     <li class="icon icon-acc">
-                        <a href="javascript:void(0);" onclick="window.location.href='<%=path %>/page/user/login'">我的账户</a>
+                        <a href="javascript:void(0);" onclick="window.location.href='<%=path %>/page/login'">我的账户</a>
                     </li>
                 </c:if>
                 <!-- <li><a href="javascript:void(0);">信息披露</a></li> -->

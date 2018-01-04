@@ -30,4 +30,9 @@ public class AdminView {
     public String isvip() {
         return "Admin/vipCheck";
     }
+
+    @RequestMapping("quan")
+    public String quan() {
+        return "Admin/quan";
+    }
 }
