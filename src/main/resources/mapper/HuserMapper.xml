@@ -50,7 +50,7 @@
      ]]>
   </select>
 
-  <select id="listPagerCriteria" parameterType="com.p2p.common.Pager" resultType="com.p2p.vo.HuserJurVO">
+  <select id="listPagerCriteria" resultType="com.p2p.vo.HuserJurVO">
   <![CDATA[
 			select h.huid, r.rname as rolename, h.huname, h.rname, h.phone, h.email
 			from huser h,role r,roleuser ru
@@ -59,7 +59,7 @@
 		]]>
   </select>
 
-  <select id="countCriteria" parameterType="long" resultType="com.p2p.vo.HuserJurVO">
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Huser">
 	  <![CDATA[
           select count(huid) from huser
         ]]>

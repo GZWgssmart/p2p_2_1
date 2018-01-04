@@ -43,7 +43,7 @@ public class AdminController {
 
     @RequestMapping("adminList")
     @ResponseBody
-    public Pager HuserList(Integer page, Integer limit, HuserJurVO huserJurVO) {
+    public Pager HuserList(int page, int limit, HuserJurVO huserJurVO) {
         return huserService.listPagerCriteria(page,limit,huserJurVO);
     }
 

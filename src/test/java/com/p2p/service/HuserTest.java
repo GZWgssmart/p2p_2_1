@@ -36,6 +36,6 @@ public class HuserTest extends BaseTest {
     @Test
     public void testListCir() {
         HuserJurVO huserJurVO = new HuserJurVO();
-        huserService.listPagerCriteria(1,4,huserJurVO);
+        huserService.listPagerCriteria(1,10,huserJurVO);
     }
 }
