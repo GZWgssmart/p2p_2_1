@@ -11,11 +11,14 @@
   <sql id="Base_Column_List">
     lxid, lxname, status
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from jklx
-    where lxid = #{lxid,jdbcType=INTEGER}
+  <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select  j.lxid, j.lxname, j.status from jklx j
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Notice">
+    <![CDATA[
+          select count(j.lxid) from jklx j
+    ]]>
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from jklx

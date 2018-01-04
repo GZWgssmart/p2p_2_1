@@ -92,7 +92,7 @@
                         <a href="javascript:;"><span>借款管理</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'借款类型',id:'10'}"><i class="layui-icon">&#xe658;</i><span>借款类型</span></a>
+                                   data-options="{url:'<%=path %>/page/jklx/jklxTypeList',icon:'&#xe658;',title:'借款类型',id:'10'}"><i class="layui-icon">&#xe658;</i><span>借款类型</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/borrowApply/adminBorrowList',icon:'&#xe658;',title:'借款审核',id:'11'}"><i
