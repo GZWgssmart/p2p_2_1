@@ -56,6 +56,28 @@
     </trim>
   </insert>
 
+  <sql id="pageCriteria_common">
+    <if test="ticket != null and ticket.name != null and ticket.name != ''">
+      where t.name like concat('%', #{ticket.name}, '%')
+    </if>
+  </sql>
+
+  <select id="listPagerCriteria" resultType="com.p2p.bean.Ticket">
+    <![CDATA[
+          select * from ticket t
+        ]]>
+    <include refid="pageCriteria_common"/>
+    order by tktime desc
+    limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Ticket">
+    <![CDATA[
+          select count(t.kid) from ticket t
+        ]]>
+    <include refid="pageCriteria_common"/>
+  </select>
+
   <update id="update" parameterType="com.p2p.bean.Ticket">
     update ticket
     <set>

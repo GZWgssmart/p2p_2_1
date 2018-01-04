@@ -5,11 +5,7 @@ package com.p2p.vo;
  */
 public class HuserJurVO {
 
-    private Integer jid;
-
     private Integer huid;
-
-    private String jurl;
 
     private String rolename;
 
@@ -21,28 +17,12 @@ public class HuserJurVO {
 
     private String email;
 
-    public Integer getJid() {
-        return jid;
-    }
-
-    public void setJid(Integer jid) {
-        this.jid = jid;
-    }
-
     public Integer getHuid() {
         return huid;
     }
 
     public void setHuid(Integer huid) {
         this.huid = huid;
-    }
-
-    public String getJurl() {
-        return jurl;
-    }
-
-    public void setJurl(String jurl) {
-        this.jurl = jurl;
     }
 
     public String getRolename() {

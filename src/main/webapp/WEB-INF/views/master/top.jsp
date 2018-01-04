@@ -19,19 +19,19 @@
                         <li class="first"><a onclick="outUser();">退出</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li class="first"><a href="<%=path %>/page/user/reg">注册领红包</a></li>
+                        <li class="first"><a href="<%=path %>/page/reg">注册领红包</a></li>
                     </c:otherwise>
                 </c:choose>
                 <li><a href="https://www.pujinziben.com/account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
                 <li><a href="https://www.pujinziben.com/about.html#gdbj">关于我们</a></li>
-                <li><a href="https://www.pujinziben.com/help.html">帮助中心</a></li>
+                <li><a href="<%=path %>/index/help/helpPage">帮助中心</a></li>
                 <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
                 <c:choose>
                     <c:when test="${user != null}">
                         <li id="userName"><a href="<%=path %>/page/borrow_apply/page" class="user">${user.phone}</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li class="userName"><a href="<%=path %>/page/user/login">登录</a></li>
+                        <li class="userName"><a href="<%=path %>/page/login">登录</a></li>
                     </c:otherwise>
                 </c:choose>
                 <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>

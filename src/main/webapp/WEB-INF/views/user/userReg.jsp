@@ -130,7 +130,7 @@
             success: function (data) {
                 if (data.code == '0') {
                     utils.alert('注册成功！', function () {
-                        window.location.href = '<%=path %>/page/user/login';
+                        window.location.href = '<%=path %>/page/login';
                     })
                 } else {
                     utils.alert(data.message);

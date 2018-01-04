@@ -16,37 +16,6 @@ import java.net.URLDecoder;
 @RequestMapping("/page/user")
 public class UserView {
 
-    private DESUtils desUtils = new DESUtils();
-
-    public UserView() throws Exception {
-    }
-
-    @RequestMapping("reg")
-    public String userReg() {
-        return "user/userReg";
-    }
-
-    @RequestMapping("login")
-    public String userLogin(HttpServletRequest request) throws Exception {
-        // 从cookies中拿取数据并传到前台，密码解密
-        String phone = "";
-        String upwd = "";
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 0) {
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals("phone")) {
-                    phone = URLDecoder.decode(cookies[i].getValue(), "utf-8");
-                    request.setAttribute("phone", phone);
-                }
-                if(cookies[i].getName().equals("upwd")) {
-                    upwd = cookies[i].getValue();
-                    request.setAttribute("upwd", desUtils.decrypt(upwd));
-                }
-            }
-        }
-        return "user/userLogin";
-    }
-
     @RequestMapping("account")
     public String account() {
         return "user/account";

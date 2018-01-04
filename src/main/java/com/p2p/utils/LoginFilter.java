@@ -24,17 +24,15 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String uri = request.getRequestURI();
         if (isFilter(uri)) {
-            System.out.println("------------");
             HttpSession session = request.getSession();
             Object user = session.getAttribute(Constants.USER_IN_SESSION);
             if (user != null) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 HttpServletResponse response = (HttpServletResponse) servletResponse;
-                response.sendRedirect("/");
+                response.sendRedirect("/page/login");
             }
         } else {
-            System.out.println("+++++++++++");
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

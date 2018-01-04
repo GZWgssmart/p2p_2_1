@@ -8,6 +8,7 @@ import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.HuserService;
 import com.p2p.utils.EncryptUtils;
+import com.p2p.vo.HuserJurVO;
 import com.p2p.vo.HuserRoleVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -41,8 +42,9 @@ public class AdminController {
     }
 
     @RequestMapping("adminList")
-    public Pager HuserList(Integer pageNo, Integer limit, HuserRoleVO huserRoleVO) {
-        return huserService.listPagerCriteria(pageNo,limit,huserRoleVO);
+    @ResponseBody
+    public Pager HuserList(int page, int limit, HuserJurVO huserJurVO) {
+        return huserService.listPagerCriteria(page,limit,huserJurVO);
     }
 
     @PostMapping("login")
@@ -53,15 +55,6 @@ public class AdminController {
             subject.login(new UsernamePasswordToken(huser.getPhone(), EncryptUtils.md5(huser.getPwd() + Constants.SALT)));
             Huser huser1 =huserService.getByPhonePwd(huser.getPhone(), EncryptUtils.md5(huser.getPwd() + Constants.SALT));
             Session session = subject.getSession();
-            if(subject.hasRole("root")) {
-                System.out.println("我是root用户");
-            }
-            if(subject.hasRole("manage")) {
-                System.out.println("我是manage用户");
-            }
-            if(subject.hasRole("message")) {
-                System.out.println("我是message用户");
-            }
             session.setAttribute("admin",huser1);
             status = ServerResponse.createBySuccess();
         } catch (UnknownAccountException e) {
@@ -75,12 +68,16 @@ public class AdminController {
     }
 
     @RequestMapping("out")
-    public String outTest() {
+    public ServerResponse outTest() {
+        ServerResponse serverResponse = null;
         Subject subject = SecurityUtils.getSubject();
         if (subject.isAuthenticated()) {
             subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
+            serverResponse = ServerResponse.createBySuccess();
+        } else {
+            serverResponse = ServerResponse.createByError();
         }
-        return "index";
+        return serverResponse;
     }
     
     @RequestMapping("addhuser")

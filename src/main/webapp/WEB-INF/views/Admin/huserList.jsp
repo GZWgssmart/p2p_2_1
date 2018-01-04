@@ -15,20 +15,21 @@
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
 </head>
 <body>
+
 <table id="HuserList"></table>
-<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
+
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script>
     layui.use(['table'], function(){
         var table = layui.table;
+        var $ = layui.jquery;
+
         table.render({
             elem: '#HuserList'
             ,url: '<%=path %>/data/admin/adminList'
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'huid', title:'ID', width:70, fixed: 'left'}
-                ,{field:'jurl', title:'权限', width:100}
                 ,{field:'rolename', title:'角色名称', width:100}
                 ,{field:'huname', title:'用户名', width:100}
                 ,{field:'rname', title:'姓名', width:100}
@@ -46,24 +47,6 @@
                 ,dataName: 'rows'
             }
         });
-        var $ = layui.$, active = {
-            reload: function(){
-                table.reload('checkId', {
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
-                    ,where: {
-                        huid : $('#huid').val()
-                        ,jurl : $('#jurl').val()
-                        ,rolename : $('#rolename').val()
-                        ,huname : $('#huname').val()
-                        ,rname : $('#rname').val()
-                        ,phone : $('#phone').val()
-                        ,email : $('#email').val()
-                    }
-                });
-            }
-        };
     });
 </script>
 </body>

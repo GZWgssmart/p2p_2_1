@@ -18,4 +18,6 @@ public interface HuserMapper extends BaseDAO {
     @Override
     List<Object> listPagerCriteria(@Param("pager")Pager pager, @Param("obj")Object obj);
 
+    @Override
+    Long countCriteria(@Param("obj")Object obj);
 }
