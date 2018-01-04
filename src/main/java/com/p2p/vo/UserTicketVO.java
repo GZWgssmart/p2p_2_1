@@ -1,13 +1,17 @@
-package com.p2p.bean;
+package com.p2p.vo;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by 7025 on 2017/12/19.
- * 对应券
+ * Created by 娃娃鱼 on 2018/1/4.
  */
-public class Ticket {
+public class UserTicketVO {
+
+    private Integer ukid;
+
+    private Integer uid;
+
     private Integer kid;
 
     private String name;
@@ -18,26 +22,22 @@ public class Ticket {
 
     private Date tktime;
 
-    private Integer status;
+    private Date lqtime;
 
-    public Ticket(Integer kid, String name, Integer type, BigDecimal tkmoney, Date tktime) {
-        this.kid = kid;
-        this.name = name;
-        this.type = type;
-        this.tkmoney = tkmoney;
-        this.tktime = tktime;
+    public Integer getUkid() {
+        return ukid;
     }
 
-    public Ticket() {
-        super();
+    public void setUkid(Integer ukid) {
+        this.ukid = ukid;
     }
 
-    public Integer getKid() {
-        return kid;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setKid(Integer kid) {
-        this.kid = kid;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getName() {
@@ -45,7 +45,7 @@ public class Ticket {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public Integer getType() {
@@ -72,11 +72,19 @@ public class Ticket {
         this.tktime = tktime;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Date getLqtime() {
+        return lqtime;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setLqtime(Date lqtime) {
+        this.lqtime = lqtime;
+    }
+
+    public Integer getKid() {
+        return kid;
+    }
+
+    public void setKid(Integer kid) {
+        this.kid = kid;
     }
 }

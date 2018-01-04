@@ -27,7 +27,7 @@
     <div class="wrap cl">
         <div class="logo"><a href="https://www.pujinziben.com/"><img src="<%=path %>/static/images/logo.png" alt="普金资本"></a>
         </div>
-        <p class="to-login">已有账号，<a href="#">立即登录</a></p>
+        <p class="to-login">已有账号，<a href="<%=path %>/page/login">立即登录</a></p>
     </div>
 </div>
 <div class="regist-content">
@@ -133,7 +133,7 @@
                         window.location.href = '<%=path %>/page/login';
                     })
                 } else {
-                    utils.alert(data.message);
+                    utils.alert('注册失败，请重试！');
                 }
                 $('.btn').text('注册').removeClass('disabled');
             }
