@@ -8,6 +8,7 @@ import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.HuserService;
 import com.p2p.utils.EncryptUtils;
+import com.p2p.vo.HuserJurVO;
 import com.p2p.vo.HuserRoleVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -41,8 +42,9 @@ public class AdminController {
     }
 
     @RequestMapping("adminList")
-    public Pager HuserList(Integer pageNo, Integer limit, HuserRoleVO huserRoleVO) {
-        return huserService.listPagerCriteria(pageNo,limit,huserRoleVO);
+    @ResponseBody
+    public Pager HuserList(Integer page, Integer limit, HuserJurVO huserJurVO) {
+        return huserService.listPagerCriteria(page,limit,huserJurVO);
     }
 
     @PostMapping("login")
