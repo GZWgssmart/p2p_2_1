@@ -114,6 +114,10 @@ public class UserView {
     public String bankCardAdd(){
         return "bankCard/userAddCard";
     }
+    @RequestMapping("userLogTx")
+    public String logTx(){
+        return "logTx/userLogTx";
+    }
     /**
      * end
      */

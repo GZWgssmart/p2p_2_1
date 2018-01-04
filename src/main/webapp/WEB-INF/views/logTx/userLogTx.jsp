@@ -1,0 +1,155 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2018/1/4
+  Time: 8:46
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+%>
+<html>
+<head>
+    <title>前台用户中心模板</title>
+    <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
+    <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
+    <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
+    <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
+</head>
+<body>
+<%@include file="../master/top.jsp" %>
+<%@include file="../master/header.jsp" %>
+<div class="account cl">
+    <%@include file="../master/left.jsp" %>
+    <%--信息披露里的左侧边栏--%>
+    <%--<%@include file="../master/aboutLeft.jsp"%>--%>
+    <div class="account-right">
+        <%-- 在此处写用户后台模块代码--%>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">提现</li>
+                <li>提现记录</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <!-- 用户总览-->
+                <div class="layui-tab-item layui-show layui-row">
+                    <div class="layui-col-md12" style="padding-top: 50px;">
+                        <div class="ipay-pay">
+                            <p class="tips-title"><b>温馨提示：</b>凡是在普金资本充值未投标的用户，15天以内提现收取本金0.5%，15天以后提现免费 普金资本禁止信用卡套现、虚假交易
+                                等行为,一经发现将予以处罚,包括但不限于：限制收款、冻结账户、永久停止服务,并有可能影响相关信用记录。</p>
+                            <div class="pay-from">
+                                <div class="label cl">
+                                    <label>充值金额：</label>
+                                    <input type="text" id="money" name="money" maxlength="18" placeholder="请输入提现金额">
+                                    <input type="hidden" id="uid" name="uid">
+                                    <p class="roll">元</p>
+                                </div>
+                                <div class="label cl">
+                                    <label>卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
+                                    <select name="bankcard" id="bankcard" style="width: 298px;height: 38px;">
+                                        <script id="bankcardDemo" type="text/html">
+                                            {{#  layui.each(d, function(index, bankcard){ }}
+                                            <option value="{{ bankcard.cardno }}">{{ bankcard.cardno}}</option>
+                                            {{#  }); }}
+                                        </script>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn" id="ipay-submit" onclick="saveLogCz();">立即提现</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 用户信息-->
+                <div class="layui-tab-item">
+                    <div class="layui-row">
+                        <div class="layui-col-md12">
+                            <table id="allArticle_table" lay-filter="demo"></table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<%@include file="../master/footer.jsp" %>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script>
+    $(function () {
+        var user = "${user}";
+        if(user === null || user === '') {
+            alert("您未登录，请登录！");
+        }
+
+        layui.use(['element', 'form','laytpl'], function () {
+            var form = layui.form;
+            var $ = layui.$;
+            var element = layui.element;
+            var laytpl = layui.laytpl;
+
+            var getTpl = bankcardDemo.innerHTML,
+                view = document.getElementById('bankcard');
+            $.get('<%=path %>/data/bankCard/allCards?uid=' +${user.uid}, function (data) {
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+                form.render('select');
+            })
+        });
+
+        layui.use(['element', 'laytpl','table'] ,function () {
+            var table = layui.table;
+            var $ = layui.$;
+            table.render({
+                elem: '#allArticle_table'
+                , url: '<%=path %>/data/logCz/listPagerCriteria'
+                , cols: [[
+                    {field: 'bankcard', title: '银行卡号', width: 180, fixed: 'left'}
+                    , {field: 'banktype', title: '所属银行', width: 180}
+                    , {field: 'money', title: '提现金额', width: 180}
+                    , {
+                        field: 'created_time',
+                        title: '提现时间',
+                        width: 180,
+                        sort: true,
+                        templet: '<div>{{ formatDate(d.createdTime)}}</div>'
+                    }
+                    , {
+                        field: 'status',
+                        title: '提现状态',
+                        width: 180 ,
+                        templet: '<div>{{ formatState(d.status)}}</div>'
+                    }
+                ]]
+                , id: 'idTest'
+                , page: true
+                , response: {
+                    statusName: 'status'
+                    , statusCode: 0
+                    , msgName: 'message'
+                    , countName: 'total'
+                    , dataName: 'rows'
+                }
+            });
+
+        });
+    })
+</script>
+<script>
+    function formatState(status) {
+        if(status === 0) {
+            return "提现失败";
+        } else {
+            return "提现成功";
+        }
+    }
+</script>
+</body>
+</html>
+
+
+

@@ -96,28 +96,28 @@
 //                });
 //            }
 //        });
+//
+//        $('.demoTable .layui-btn').on('click', function () {
+//            var type = $(this).data('type');
+//            active[type] ? active[type].call(this) : '';
+//        });
 
-        $('.demoTable .layui-btn').on('click', function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
-
-        var active = {
-            getCheckData: function () { //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            , getCheckLength: function () { //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
-                    , data = checkStatus.data;
-                layer.msg('选中了：' + data.length + ' 个');
-            }
-            , isAll: function () { //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
-                layer.msg(checkStatus.isAll ? '全选' : '未全选')
-            }
-        };
+//        var active = {
+//            getCheckData: function () { //获取选中数据
+//                var checkStatus = table.checkStatus('idTest')
+//                    , data = checkStatus.data;
+//                layer.alert(JSON.stringify(data));
+//            }
+//            , getCheckLength: function () { //获取选中数目
+//                var checkStatus = table.checkStatus('idTest')
+//                    , data = checkStatus.data;
+//                layer.msg('选中了：' + data.length + ' 个');
+//            }
+//            , isAll: function () { //验证是否全选
+//                var checkStatus = table.checkStatus('idTest');
+//                layer.msg(checkStatus.isAll ? '全选' : '未全选')
+//            }
+//        };
 
 
         $('.searchType .layui-btn').on('click', function () {

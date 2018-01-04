@@ -5,7 +5,7 @@
         <ul class="sub-nav">
             <li class=""><a href="<%=path %>/page/user/account">账户总览</a></li>
             <li class=""><a href="<%=path%>/page/user/userLogCz">充值</a></li>
-            <li class=""><a href="https://www.pujinziben.com/account.html#cash">提现</a></li>
+            <li class=""><a href="<%=path%>/page/user/userLogTx">提现</a></li>
 
             <li class=""><a id="myCoupon" href="<%=path %>/page/user/taste">我的赠券<i id="couponCount"></i></a></li>
 

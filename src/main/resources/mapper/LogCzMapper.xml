@@ -125,10 +125,13 @@
         <if test="query!=null and query.uid !=null">
             where z.uid =#{query.uid}
         </if>
+        <!--<if test="query!=null and query.status!=0">-->
+            <!--and status=1-->
+        <!--</if>-->
     </sql>
   <select id="listPagerCriteria" resultType="com.p2p.bean.LogCz">
     <![CDATA[
-      select z.money,z.banktype,z.bankcard,z.created_time from log_cz z,t_user u
+      select z.czid, z.money,z.banktype,z.bankcard,z.created_time , z.status from log_cz z
     ]]>
       <include refid="logCz_query_criteria" />
        limit #{pager.beginIndex}, #{pager.pageSize}
@@ -138,4 +141,5 @@
             select count(z.czid) from log_cz z,t_user u where z.uid =u.uid
         ]]>
   </select>
+
 </mapper>
