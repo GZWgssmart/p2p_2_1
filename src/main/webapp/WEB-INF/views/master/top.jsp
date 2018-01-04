@@ -24,7 +24,7 @@
                 </c:choose>
                 <li><a href="https://www.pujinziben.com/account.html#tuijian" class="icon icon-inv">邀请有礼</a></li>
                 <li><a href="https://www.pujinziben.com/about.html#gdbj">关于我们</a></li>
-                <li><a href="https://www.pujinziben.com/help.html">帮助中心</a></li>
+                <li><a href="<%=path %>/index/help/helpPage">帮助中心</a></li>
                 <li><a href="https://www.pujinziben.com/account.html#ipay" class="pay">充值</a></li>
                 <c:choose>
                     <c:when test="${user != null}">
