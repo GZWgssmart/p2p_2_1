@@ -429,7 +429,6 @@
     layui.use(['element', 'layer'], function () {
         var $ = layui.jquery
             , element = layui.element
-        var layer = layui.layer;
 
     });
 </script>
