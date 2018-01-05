@@ -83,7 +83,7 @@
                 </div>
                 <div class="quan">
                     <select name="type" id="selectQuan">
-
+                        <option>选择优惠券</option>
                     </select>
                     <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
@@ -284,15 +284,16 @@
         $.post('<%=path %>/data/userticket/myticket',{uid:uid},
             function (data) {
                 var html = "";
+                var money = "";
                 if(data != null || data != '') {
                     for(var i = 0; i <= data.length; i++) {
-                        html += "<option value=''>" + data[i].name + "</option>";
-                        alert(html)
+                        html = data[i].name;
+                        money = data[i].tkmoney;
+                        $('#selectQuan').append("<option value='10'>" + html + "</option>");
                     }
                 } else {
-                    html = "<option>没有优惠券</option>";
+//                    $('#selectQuan').append("<option>没有优惠券</option>");
                 }
-                $('#selectQuan').append(html);
             },'json'
         );
 
