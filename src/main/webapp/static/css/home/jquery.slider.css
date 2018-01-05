@@ -10,7 +10,6 @@
 .jquery-slider-selector span{display:none;}
 .jquery-slider-control{display:none;right:50%;top:50%;position:absolute;cursor:pointer;width:48px;height:69px;margin-top:-34px;margin-right:-24px;z-index:4;}
 .jquery-slider-control span{display:none;}
-.jquery-slider-control-play{background:url(../../images/jquery-slider-theme.png) no-repeat -144px 0;}
 .jquery-slider-control-pause{background:url(../../images/jquery-slider-theme.png) no-repeat -96px 0;}
 .jquery-slider-hovered .jquery-slider-control{display:block;}
 .jquery-slider-navigation{display:block;}

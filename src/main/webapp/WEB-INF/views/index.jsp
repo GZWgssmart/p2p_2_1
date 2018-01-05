@@ -52,12 +52,12 @@
 
         $.get("<%=path %>/data/home/indexMsg?page=1&limit=1",
             function (data) {
-                    $('#url1').attr('src','/'+data[0].url1);
-                    $('#url2').attr('src','/'+data[0].url2);
-                    $('#url3').attr('src','/'+data[0].url3);
-                    $('#pic1').attr('src','/'+data[0].pic1);
-                    $('#pic2').attr('src','/'+data[0].pic2);
-                    $('#pic3').attr('src','/'+data[0].pic3);
+                    $('#url1').attr('src','/'+data.rows[0].url1);
+                    $('#url2').attr('src','/'+data.rows[0].url2);
+                    $('#url3').attr('src','/'+data.rows[0].url3);
+                    $('#pic1').attr('src','/'+data.rows[0].pic1);
+                    $('#pic2').attr('src','/'+data.rows[0].pic2);
+                    $('#pic3').attr('src','/'+data.rows[0].pic3);
             });
     })
 </script>

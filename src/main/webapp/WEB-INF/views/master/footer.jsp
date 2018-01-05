@@ -34,7 +34,10 @@
                     <a href="javascript:void(0);" class="about_wx line_02">
 						<span class="line_l_h">
 							<span class="line_l_sj"></span>
-							<span class="line_l_text">关注普金资本公众号</span>
+							<span class="line_l_text">
+                                关注普金资本公众号
+                                <img style="width: 110px;height: 105px;" src="<%=path%>/static/images/wechart.jpg">
+                            </span>
 							<span class="line_l_pic"></span>
 						</span>
                     </a>
