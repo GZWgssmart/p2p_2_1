@@ -7,6 +7,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    .apps{
+        display: none;
+    }
+</style>
 <div class="top" id="top">
     <div class="wrap">
         <div class="top-left icon icon-phone">
@@ -36,7 +41,7 @@
                 </c:choose>
                 <li class="no"><a href="javascript:;" class="icon icon-app" id="app">APP下载</a></li>
             </ul>
-            <div id="qrCodeDiv" style="display: none;">
+            <div id="qrCodeDiv" class="apps">
                 <div class="CodeDiv">
                     <img src="<%=path%>/static/images/qrCode_ios.png">
                     <p>IOS下载</p>

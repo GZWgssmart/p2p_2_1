@@ -11,14 +11,12 @@
     String path = request.getContextPath();
 %>
 <head>
-    <head>
         <title>公司动态</title>
         <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
         <link rel="stylesheet" href="<%=path%>/static/css/front/about.css">
         <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
         <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
         <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
-    </head>
 </head>
 <body>
 <%@include file="../../master/top.jsp" %>

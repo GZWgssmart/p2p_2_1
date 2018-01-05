@@ -10,6 +10,7 @@
         <ul class="sub-nav">
             <li class=""><a href="<%=path %>/page/about/partner">股东背景</a></li>
             <li class=""><a href="<%=path %>/page/about/company">公司简介</a></li>
+            <li class=""><a href="<%=path %>/page/about/platform">平台资质</a></li>
             <li class=""><a href="<%=path %>/page/about/team">顾问团队</a></li>
             <li class=""><a href="<%=path %>/page/dynamic/indexDynamic">公司动态</a></li>
             <li class=""><a href="#">平台公告</a></li>

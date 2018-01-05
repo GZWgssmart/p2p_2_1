@@ -248,6 +248,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/borrow/detail.js"></script>
 <script>
     var minInvest = 100;// 最小投资金额

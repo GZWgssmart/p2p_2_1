@@ -28,7 +28,7 @@
     <div class="account-right">
         <div class="about-right-nav">
             <div class="sub-a-nav">
-                <a href="javascript:void(0);" class="active">股东背景</a>
+                <a href="javascript:void(0);" class="active">顾问团队</a>
             </div>
             <em class="em-line"></em>
         </div>
@@ -69,6 +69,7 @@
 </div>
 <%@include file="../../master/footer.jsp" %>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
