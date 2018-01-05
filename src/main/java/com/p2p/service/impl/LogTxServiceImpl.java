@@ -1,5 +1,6 @@
 package com.p2p.service.impl;
 
+import com.p2p.common.Pager;
 import com.p2p.dao.LogTxMapper;
 import com.p2p.service.LogTxService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,13 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
     public void setLogTxMapper(LogTxMapper logTxMapper) {
         super.setBaseDAO(logTxMapper);
         this.logTxMapper = logTxMapper;
+    }
+    @Override
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(logTxMapper.listPagerCriteria(pager, obj));
+        pager.setTotal(logTxMapper.countCriteria(obj));
+        return pager;
     }
 
 }

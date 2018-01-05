@@ -35,33 +35,48 @@
                 <!-- 用户总览-->
                 <div class="layui-tab-item layui-show layui-row">
                     <div class="layui-col-md12" style="padding-top: 50px;">
-                        <div class="ipay-pay">
-                            <p class="tips-title"><b>温馨提示：</b>凡是在普金资本充值未投标的用户，15天以内提现收取本金0.5%，15天以后提现免费 普金资本禁止信用卡套现、虚假交易
-                                等行为,一经发现将予以处罚,包括但不限于：限制收款、冻结账户、永久停止服务,并有可能影响相关信用记录。</p>
-                            <div class="pay-from">
-                                <div class="label cl">
-                                    <label>充值金额：</label>
-                                    <input type="text" id="money" name="money" maxlength="18" placeholder="请输入提现金额">
-                                    <input type="hidden" id="uid" name="uid">
-                                    <p class="roll">元</p>
+                        <div class="account-content">
+                            <form id="addForm">
+                                <!-- 充值 -->
+                                <div class="ipay-pay">
+                                    <p class="tips-title"><b>温馨提示：</b>凡是在普金资本充值未投标的用户，15天以内提现收取本金0.5%，15天以后提现免费 普金资本禁止信用卡套现、虚假交易
+                                        等行为,一经发现将予以处罚,包括但不限于：限制收款、冻结账户、永久停止服务,并有可能影响相关信用记录。</p>
+                                    <div class="pay-from">
+                                        <div class="label cl">
+                                            <label>提现金额：</label>
+                                            <input type="text" id="money" name="money" maxlength="18" placeholder="请输入提现金额">
+                                            <input type="hidden" id="uid" name="uid">
+                                            <p class="roll">元</p>
+                                        </div>
+                                        <div class="label cl">
+                                            <label>卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
+                                            <select name="bankcard" id="bankcard" style="width: 298px;height: 38px;">
+                                                <script id="bankcardDemo" type="text/html">
+                                                    {{#  layui.each(d, function(index, bankcard){ }}
+                                                    <option value="{{ bankcard.cardno }}">{{ bankcard.cardno}}</option>
+                                                    {{#  }); }}
+                                                </script>
+                                            </select>
+                                        </div>
+                                        <div class="label cl">
+                                            <label>所属银行：</label>
+                                            <select name="banktype" id="banktype" style="width: 298px;height: 38px;">
+                                                <script id="banktypeDemo" type="text/html">
+                                                    {{#  layui.each(d, function(index, bankcard){ }}
+                                                    <option value="{{ bankcard.type }}">{{ bankcard.type}}</option>
+                                                    {{#  }); }}
+                                                </script>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn" id="ipay-submit" onclick="saveLogTx();">立即提现</button>
+                                    </div>
                                 </div>
-                                <div class="label cl">
-                                    <label>卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
-                                    <select name="bankcard" id="bankcard" style="width: 298px;height: 38px;">
-                                        <script id="bankcardDemo" type="text/html">
-                                            {{#  layui.each(d, function(index, bankcard){ }}
-                                            <option value="{{ bankcard.cardno }}">{{ bankcard.cardno}}</option>
-                                            {{#  }); }}
-                                        </script>
-                                    </select>
-                                </div>
-                                <button type="button" class="btn" id="ipay-submit" onclick="saveLogCz();">立即提现</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
 
-                <!-- 用户信息-->
+                <!-- 用户充值-->
                 <div class="layui-tab-item">
                     <div class="layui-row">
                         <div class="layui-col-md12">
@@ -76,6 +91,7 @@
 </div>
 <%@include file="../master/footer.jsp" %>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
@@ -84,7 +100,6 @@
         if(user === null || user === '') {
             alert("您未登录，请登录！");
         }
-
         layui.use(['element', 'form','laytpl'], function () {
             var form = layui.form;
             var $ = layui.$;
@@ -93,9 +108,14 @@
 
             var getTpl = bankcardDemo.innerHTML,
                 view = document.getElementById('bankcard');
+            var getTpl1 = banktypeDemo.innerText,
+                view1 = document.getElementById('banktype');
             $.get('<%=path %>/data/bankCard/allCards?uid=' +${user.uid}, function (data) {
                 laytpl(getTpl).render(data, function (html) {
                     view.innerHTML = html;
+                });
+                laytpl(getTpl1).render(data, function (html) {
+                    view1.innerHTML = html;
                 });
                 form.render('select');
             })
@@ -106,7 +126,7 @@
             var $ = layui.$;
             table.render({
                 elem: '#allArticle_table'
-                , url: '<%=path %>/data/logCz/listPagerCriteria'
+                , url: '<%=path %>/data/logTx/listPagerCriteria'
                 , cols: [[
                     {field: 'bankcard', title: '银行卡号', width: 180, fixed: 'left'}
                     , {field: 'banktype', title: '所属银行', width: 180}
@@ -146,6 +166,23 @@
         } else {
             return "提现成功";
         }
+    }
+</script>
+<script>
+    $("#uid").val('${user.uid}');
+    function saveLogTx() {
+        $.post('<%=path%>/data/logTx/save',
+            $('#addForm').serialize(),
+            function (data) {
+                if (data.code == 0) {
+                    layer.alert('添加成功！', function () {
+                        window.location.href = '<%=path %>/page/user/account';
+                    });
+                } else {
+                    layer.alert(data.message);
+                }
+            }, 'json'
+        )
     }
 </script>
 </body>

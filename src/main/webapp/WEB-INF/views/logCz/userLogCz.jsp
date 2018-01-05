@@ -65,15 +65,6 @@
                         <button type="button" class="btn" id="ipay-submit" onclick="saveLogCz();">立即充值</button>
                     </div>
                 </div>
-                <!-- 充值记录 -->
-                <div class="ipay-list">
-                    <div class="account-form cl">
-                        <input type="text" class="date icon icon-date" id="startDate">
-                        <p class="text">至</p>
-                        <input type="text" class="date icon icon-date" id="endDate">
-                        <button type="button" class="search" id="ipaySearch">搜索</button>
-                    </div>
-                </div>
             </form>
         </div>
     </div>

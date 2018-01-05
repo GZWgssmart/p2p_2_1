@@ -116,4 +116,29 @@
       status = #{status,jdbcType=INTEGER}
     where txid = #{txid,jdbcType=INTEGER}
   </update>
+  <insert id="save" parameterType="com.p2p.bean.LogTx">
+    <![CDATA[
+          insert into log_tx(uid, bankcard, banktype, money,created_time)
+          values(#{uid}, #{bankcard},#{banktype},#{money},#{createdTime})
+       ]]>
+  </insert>
+  <sql id="logTx_query_criteria">
+    <if test="query !=null and query.uid !=null ">
+      where t.uid =#{query.uid}
+    </if>
+  </sql>
+  <select id="listPagerCriteria" resultType="com.p2p.bean.LogTx">
+    <![CDATA[
+      select t.txid, t.uid,t.bankcard,t.banktype, t.money, t.created_time,t.status from log_tx t
+    ]]>
+    <include refid="logTx_query_criteria"/>
+      limit #{pager.beginIndex},#{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long">
+    <![CDATA[
+       select count(t.txid) from log_tx t,t_user u where t.uid = u.uid
+    ]]>
+  </select>
+
 </mapper>
