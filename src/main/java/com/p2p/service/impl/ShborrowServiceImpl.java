@@ -18,4 +18,9 @@ public class ShborrowServiceImpl extends AbstractServiceImpl implements Shborrow
         super.setBaseDAO(shborrowMapper);
         this.shborrowMapper = shborrowMapper;
     }
+
+    @Override
+    public Integer getIdByBaid(Integer baid) {
+        return shborrowMapper.getIdByBaid(baid);
+    }
 }

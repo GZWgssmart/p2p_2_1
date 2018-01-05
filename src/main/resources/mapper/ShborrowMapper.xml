@@ -21,6 +21,12 @@
     where shid = #{shid,jdbcType=INTEGER}
   </select>
 
+  <select id="getIdByBaid" resultType="java.lang.Integer">
+    <![CDATA[
+      select huid from shborrow where baid = #{baid}
+    ]]>
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from shborrow where shid = #{shid,jdbcType=INTEGER}
   </delete>
