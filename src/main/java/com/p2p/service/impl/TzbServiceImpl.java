@@ -146,7 +146,7 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
                     hkb.setStatus(HKStatusEnum.UNREPAY.getCode());
                     hkb.setHuid(huid);
                     hkb.setTnum(month);
-                    calendar.add(Calendar.MONTH, i);
+                    calendar.add(Calendar.MONTH, 1);
                     hkb.setYtime(calendar.getTime());
                     //每月利息金额
                     BigDecimal bigMonthNpro = BigDecimal.valueOf(monthNpro);
@@ -181,8 +181,6 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
                         hkb.setYbj(loanByMonth.getPayPrincipal());
                     }
                     hkb.setYbx(hkb.getYlx().add(hkb.getYbj()));
-                    calendar.add(Calendar.MONTH, i);
-                    hkb.setYtime(calendar.getTime());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

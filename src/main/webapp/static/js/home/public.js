@@ -102,3 +102,15 @@ function formatStatus(status) {
         return "已完成";
     }
 }
+/**
+ * 格式化还款状态
+ * @param status
+ * @returns {*}
+ */
+function formatHkStatus(status) {
+    if(status === 0) {
+        return "未还款";
+    } else if(status === 1) {
+        return "已还款";
+    }
+}

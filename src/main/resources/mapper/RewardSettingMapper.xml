@@ -20,7 +20,7 @@
   </select>
 
   <select id="getPercent" resultType="double">
-    select percent from reward_setting where #{money} <![CDATA[ >= ]]> minmoney and #{money} <![CDATA[ <= ]]> maxmoney
+    select percent from reward_setting where #{money} <![CDATA[ >= ]]> minmoney and #{money} <![CDATA[ < ]]> maxmoney
   </select>
 
   <delete id="removeById" parameterType="java.lang.Integer">

@@ -338,6 +338,7 @@
                     ,resint1:$('#term').text()}
                 , function (data) {
                     alert(data.message);
+                    window.href.reload();
                 },'json');
         }
     }
