@@ -17,7 +17,8 @@
 </head>
 <body style="padding-top: 20px">
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="edit"  lay-submit lay-filter="edit">编辑报道</button>
+    <button class="layui-btn" data-type="edit">编辑报道</button>
+    <button class="layui-btn" data-type="delete">删除</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
@@ -250,6 +251,23 @@
                     });
                     //给vue对象赋值
                     vue.msg=data[0];
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            },
+            delete:function () {
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                        $.get('<%=path %>/data/home/delete?homeId=' + data[0].hid,
+                            function (data) {
+                                    if(data.code==0){
+                                        layer.msg("删除成功！")
+                                        location.reload(true);
+                                    }else {
+                                     layer.msg("删除失败！")
+                                    }
+                            });
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }

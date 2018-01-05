@@ -423,13 +423,13 @@
 <%@include file="../../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
     layui.use(['element', 'layer'], function () {
         var $ = layui.jquery
             , element = layui.element
-        var layer = layui.layer;
 
     });
 </script>

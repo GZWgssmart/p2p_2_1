@@ -22,9 +22,8 @@
     delete from user_ticket
     where ukid = #{ukid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.UserTicket">
-    insert into user_ticket (ukid, uid, kid, 
-      tktime)
+  <insert id="save" parameterType="com.p2p.bean.UserTicket">
+    insert into user_ticket (ukid, uid, kid, tktime)
     values (#{ukid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{kid,jdbcType=INTEGER}, 
       #{tktime,jdbcType=TIMESTAMP})
   </insert>
@@ -81,4 +80,17 @@
       tktime = #{tktime,jdbcType=TIMESTAMP}
     where ukid = #{ukid,jdbcType=INTEGER}
   </update>
+
+  <select id="getByUidKid" resultType="int">
+    <![CDATA[
+      select * from user_ticket where uid = #{uid} and kid = #{kid}
+    ]]>
+  </select>
+
+  <select id="userAllTicket" parameterType="java.lang.Integer" resultType="com.p2p.vo.UserTicketVO">
+    <![CDATA[
+  select ut.*, t.name, t.tkmoney from user_ticket ut, ticket t where ut.uid = #{uid} and ut.kid = t.kid
+]]>
+  </select>
+
 </mapper>

@@ -41,4 +41,10 @@ public class HomeController {
     public ServerResponse update(Home home){
         return homeService.update(home);
     }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public ServerResponse delete(int  homeId){
+        return homeService.removeById(homeId);
+    }
 }

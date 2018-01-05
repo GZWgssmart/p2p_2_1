@@ -86,4 +86,9 @@ public class UserView {
     /**
      * end
      */
+
+    @RequestMapping("getticket")
+    public String getTicket() {
+        return "user/getTicket";
+    }
 }

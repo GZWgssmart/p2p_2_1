@@ -5,4 +5,6 @@ package com.p2p.service;
  */
 public interface ShborrowService extends BaseService {
 
+    Integer getIdByBaid(Integer baid);
+
 }

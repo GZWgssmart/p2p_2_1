@@ -15,4 +15,9 @@ public interface TicketMapper extends BaseDAO {
     @Override
     Long countCriteria(@Param("ticket") Object obj);
 
+    List<Object> listUserTicket(@Param("pager") Pager pager, @Param("query") Object obj);
+
+    Long countUserTicket(@Param("query") Object obj);
+
+
 }

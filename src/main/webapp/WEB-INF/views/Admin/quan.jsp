@@ -23,9 +23,10 @@
 </div>
 <div class="layui-btn-group demoTable">
     <button class="layui-btn" data-type="getCheckData">添加券</button>
+    <button class="layui-btn" data-type="jieshu">结束</button>
 </div>
 
-<table id="allTicket" lay-filter="demo"></table>
+<table id="allTicket" lay-filter="demo" lay-size="lg"></table>
 
 <!-- 添加-->
 <div style="display: none;" id="addTicket">
@@ -43,7 +44,8 @@
                 <select name="type" lay-verify="required">
                     <option value="0">现金券</option>
                     <option value="1">代金券</option>
-                    <option value="1">加息券</option>
+                    <option value="2">加息券</option>
+                    <option value="3">推荐奖励券</option>
                 </select>
             </div>
         </div>
@@ -76,7 +78,19 @@
     <span>代金券</span>
     {{# } else if(d.type == 2) { }}
     <span>加息券</span>
+    {{# } else if(d.type == 3) { }}
+    <span>推荐奖励券</span>
     {{# } }}
+</script>
+<script type="text/html" id="statusName">
+    {{# if(d.status == 0) { }}
+    <span>发放中</span>
+    {{# } else if(d.status == 1) { }}
+    <span>已结束</span>
+    {{# } }}
+</script>
+<script type="text/html" id="url">
+    <input value="http://localhost:8080/page/user/getticket?{{ d.kid }}" class="layui-input" />
 </script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
@@ -92,11 +106,13 @@
             elem: '#allTicket'
             , url: '<%=path %>/data/ticket/all'
             , cols: [[
-//                {checkbox: true, fixed: true},
+                {checkbox: true, fixed: true},
                 {field: 'name', title: '名字', width: 170}
                 , {field: 'type', title: '类型', width: 170, templet: '#typeName'}
-                , {field: 'tkmoney', title: '金额', width: 150}
+                , {field: 'tkmoney', title: '金额', width: 100}
                 , {field: 'tktime', title: '有效时间', width: 190, templet: '<div>{{ formatDate(d.tktime) }}</div>'}
+                , {field: 'status', title: '状态', width: 100, templet: '#statusName'}
+                , {field: 'right', title:'领券链接', width: 350, templet: '#url'}
             ]]
             , id: 'idTest'
             , page: true
@@ -133,6 +149,15 @@
                     area: ['700px', '500px'], //宽高
                     content: $("#addTicket"),  //弹窗内容
                 });
+            }
+            ,jieshu:function () {
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                if(data.length == 0) {
+                    layer.msg('请选中一行！');
+                } else {
+                    layer.alert(data);
+                }
             }
         };
 

@@ -18,6 +18,8 @@ public class Ticket {
 
     private Date tktime;
 
+    private Integer status;
+
     public Ticket(Integer kid, String name, Integer type, BigDecimal tkmoney, Date tktime) {
         this.kid = kid;
         this.name = name;
@@ -68,5 +70,13 @@ public class Ticket {
 
     public void setTktime(Date tktime) {
         this.tktime = tktime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

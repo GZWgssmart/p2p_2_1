@@ -1,21 +1,15 @@
 package com.p2p.service.impl;
 
-import com.p2p.bean.Recommend;
-import com.p2p.bean.Rzvip;
-import com.p2p.bean.User;
-import com.p2p.bean.UserMoney;
-import com.p2p.common.Pager;
+import com.p2p.bean.*;
 import com.p2p.common.ServerResponse;
 import com.p2p.common.ValidationResult;
 import com.p2p.common.ValidationUtils;
-import com.p2p.dao.RecommendMapper;
-import com.p2p.dao.RzvipMapper;
-import com.p2p.dao.UserMapper;
-import com.p2p.dao.UserMoneyMapper;
+import com.p2p.dao.*;
 import com.p2p.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +22,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
     private RzvipMapper rzvipMapper;
     private RecommendMapper recommendMapper;
     private UserMoneyMapper userMoneyMapper;
+    private UserTicketMapper userTicketMapper;
 
     @Override
     public User getByPhonePwd(String phone, String upwd) {
@@ -36,11 +31,14 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
 
     @Override
     public ServerResponse<Integer> getByPhone(String phone) {
-        if(userMapper.getByPhone(phone) != 0) {
-            return ServerResponse.createBySuccess("手机号存在");
-        } else {
+        try {
+            if(userMapper.getByPhone(phone) != 0) {
+                return ServerResponse.createBySuccess("手机号存在");
+            }
+        } catch (RuntimeException e) {
             return ServerResponse.createByError("手机号不存在");
         }
+        return ServerResponse.createByError("手机号不存在");
     }
 
     /**
@@ -78,6 +76,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
      */
     @Override
     public ServerResponse saveRecommend(User user, Recommend recommend) {
+        UserTicket userTicket = new UserTicket();
         ValidationResult validationResult = ValidationUtils.validateEntity(user);
         if(validationResult.isHasErrors()) {
             return ServerResponse.createByError("保存失败");
@@ -95,8 +94,14 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
             return ServerResponse.createByError("保存失败");
         }
         recommend.setUid(user.getUid());
-        recommend.setTname(user.getUid()+"");
+        recommend.setTname(recommend.getTid() + "");
         if(recommendMapper.save(recommend) == 0){
+            return ServerResponse.createByError("保存失败");
+        }
+        userTicket.setUid(recommend.getTid());
+        userTicket.setKid(1);
+        userTicket.setTktime(new Date());
+        if(userTicketMapper.save(userTicket) == 0){
             return ServerResponse.createByError("保存失败");
         }
         return ServerResponse.createBySuccess("保存成功");
@@ -146,4 +151,9 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
     public void setUserMoneyMapper(UserMoneyMapper userMoneyMapper) {
         this.userMoneyMapper = userMoneyMapper;
     }
+    @Autowired
+    public void setUserTicket(UserTicketMapper userTicketMapper) {
+        this.userTicketMapper = userTicketMapper;
+    }
+
 }

@@ -24,6 +24,7 @@
 <div class="account cl " style="background-color: white">
     <%@include file="left.jsp" %>
     <div class="account-right ">
+
         <div class="account-content" style="padding-top:0;">
             <div class="content nonu-list">
                 <a onclick="show(1)">绑定银行卡</a>
@@ -56,7 +57,6 @@
                 <a onclick="show(28)">账户余额</a>
                 <a onclick="show(29)">账户总资产</a>
                 <a onclick="show(30)">转让费用</a>
-
             </div>
             <div class="nonu-list-answer">
                 <div  id="d1" name="dv">在普金资本平台将以实名认证信息开户的银行卡添加到平台中，进行提现/充值需要。</div>
@@ -106,6 +106,7 @@
 <%@include file="../../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/help.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/jquery.lazyload.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
