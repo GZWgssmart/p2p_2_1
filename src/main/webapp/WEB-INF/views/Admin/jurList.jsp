@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: qingfeng
-  Date: 2018/1/2
-  Time: 19:36
+  Date: 2018/1/5
+  Time: 8:37
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,12 +11,12 @@
 %>
 <html>
 <head>
-    <title>后台用户管理</title>
+    <title>权限列表</title>
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
 </head>
 <body>
 
-<table id="HuserList"></table>
+<table id="JurList"></table>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
@@ -25,18 +25,15 @@
         var $ = layui.jquery;
 
         table.render({
-            elem: '#HuserList'
-            ,url: '<%=path %>/data/admin/adminList'
+            elem: '#JurList'
+            ,url: '<%=path %>/data/Jur/jurList'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'huid', title:'ID', width:70, fixed: 'left'}
-                ,{field:'rolename', title:'角色名称', width:100}
-                ,{field:'huname', title:'用户名', width:120}
-                ,{field:'rname', title:'姓名', width:120}
-                ,{field:'phone', title:'手机号', width:200}
-                ,{field:'email', title:'邮箱', width:200}
+                ,{field:'jid', title:'ID', width:70, fixed: 'left'}
+                ,{field:'jurl', title:'权限url', width:150}
+                ,{field:'content', title:'权限内容', width:200}
             ]]
-            ,id: 'idTest'
+            ,id: 'checkId'
             ,page: true
             ,height: 500
             ,response: {

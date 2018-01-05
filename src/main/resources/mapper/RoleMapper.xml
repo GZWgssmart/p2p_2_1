@@ -8,19 +8,36 @@
       <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
+
   <sql id="Base_Column_List">
     rid, rname, content
   </sql>
+
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from role
     where rid = #{rid,jdbcType=INTEGER}
   </select>
+
   <delete id="remove" parameterType="java.lang.Integer">
     delete from role
     where rid = #{rid,jdbcType=INTEGER}
   </delete>
+
+  <select id="listPagerCriteria" resultType="com.p2p.bean.Role">
+    <![CDATA[
+          select r.rid, r.rname, r.content
+           from role r
+           limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Role">
+    <![CDATA[
+          select count(r.rid) from role r
+        ]]>
+  </select>
 
   <insert id="save" parameterType="com.p2p.bean.Role">
     insert into role

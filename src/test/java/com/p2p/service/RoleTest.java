@@ -42,4 +42,11 @@ public class RoleTest extends BaseTest {
     public void testAll() {
         roleService.listAll();
     }
+
+    @Test
+    public void testPages(){
+        Role role = new Role();
+        roleService.listPagerCriteria(1,10,role);
+    }
+
 }

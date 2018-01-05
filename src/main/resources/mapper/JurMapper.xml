@@ -8,9 +8,26 @@
       <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
+
   <delete id="remove" parameterType="java.lang.Integer">
     delete from jur where jid = #{jid,jdbcType=INTEGER}
   </delete>
+
+  <select id="listPagerCriteria" resultType="com.p2p.bean.Jur">
+    <![CDATA[
+          select j.jid, j.jurl, j.content
+           from jur j
+           limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Jur">
+    <![CDATA[
+          select count(j.jid) from jur j
+        ]]>
+  </select>
+
+
   <insert id="save" parameterType="com.p2p.bean.Jur">
     insert into jur
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -30,6 +47,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="update" parameterType="com.p2p.bean.Jur">
     update jur
     <set>
