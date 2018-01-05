@@ -45,6 +45,7 @@
                     <option value="0">现金券</option>
                     <option value="1">代金券</option>
                     <option value="2">加息券</option>
+                    <option value="3">推荐奖励券</option>
                 </select>
             </div>
         </div>
@@ -77,6 +78,8 @@
     <span>代金券</span>
     {{# } else if(d.type == 2) { }}
     <span>加息券</span>
+    {{# } else if(d.type == 3) { }}
+    <span>推荐奖励券</span>
     {{# } }}
 </script>
 <script type="text/html" id="statusName">

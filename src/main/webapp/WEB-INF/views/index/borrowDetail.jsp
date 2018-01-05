@@ -82,8 +82,8 @@
                     <button type="button" onclick="allInvest();">全投</button>
                 </div>
                 <div class="quan">
-                    <select id="selectQuan">
-                        <option value="0">当前没有可用的优惠券</option>
+                    <select name="type" id="selectQuan">
+
                     </select>
                     <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
@@ -243,6 +243,15 @@
 </div>
 </div>
 
+<script id="ticketType" type="text/html">
+    {{# if(d == null || d == ''){ }}
+        <option>没有优惠券</option>
+    {{# } else { }}
+        {{#  layui.each(d, function(index, vo){ }}
+        <option value="{{ vo.kid }}">{{ vo.name }}</option>
+        {{#  }); }}
+    {{# } }}
+</script>
 <%@include file="../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
@@ -252,7 +261,10 @@
 <script type="text/javascript" src="<%=path %>/static/js/borrow/detail.js"></script>
 <script>
     var minInvest = 100;// 最小投资金额
-
+    var uid = "${user.uid}";
+    if(uid == null || uid == '') {
+        uid = 0;
+    }
     layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
         var element = layui.element;
@@ -267,6 +279,22 @@
                     view.innerHTML = html;
                 });
             },'json');
+
+        // 获取类别
+        $.post('<%=path %>/data/userticket/myticket',{uid:uid},
+            function (data) {
+                var html = "";
+                if(data != null || data != '') {
+                    for(var i = 0; i <= data.length; i++) {
+                        html += "<option value=''>" + data[i].name + "</option>";
+                        alert(html)
+                    }
+                } else {
+                    html = "<option>没有优惠券</option>";
+                }
+                $('#selectQuan').append(html);
+            },'json'
+        );
 
     });
     /**
