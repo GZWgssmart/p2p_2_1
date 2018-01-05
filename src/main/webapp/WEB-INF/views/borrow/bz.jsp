@@ -12,15 +12,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>借款类型</title>
+    <title>标种类型</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
 
 
 <div class="layui-btn-group demoTable" >
-    <button class="layui-btn" data-type="add">新增借款类型</button>
-    <button class="layui-btn" data-type="delete">删除借款类型</button>
+    <button class="layui-btn" data-type="add">新增标种类型</button>
+    <button class="layui-btn" data-type="delete">删除标种类型</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -34,11 +34,11 @@
 
         table.render({
             elem: '#allArticle_table'
-            ,url: '<%=path %>/date/jklxPage'
+            ,url: '<%=path %>/data/bzPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'lxid', title:'ID', width:50, fixed: 'left'}
-                ,{field:'lxname', title:'借款类型', width:150}
+                ,{field:'bzid', title:'ID', width:50, fixed: 'left'}
+                ,{field:'bzname', title:'标种', width:150}
                 ,{field:'status', title:'状态', width:100}
 
             ]]
@@ -76,11 +76,11 @@
 
                 layer.open({
                     type: 2,
-                    title: '借款类型添加',
+                    title: '标种增加',
                     shadeClose: true,
                     shade: true,
                     area: ['700px', '400px'],
-                    content: '<%=path %>/page/jklx/addjklx'
+                    content: '<%=path %>/page/bz/addBz'
                 });
             }
             ,delete: function(){ //验证是否全选
