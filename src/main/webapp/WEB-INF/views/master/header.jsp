@@ -23,7 +23,7 @@
                     </li>
                 </c:if>
                 <!-- <li><a href="javascript:void(0);">信息披露</a></li> -->
-                <li><a href="#">信息披露</a></li>
+                <li><a href="<%=path %>/page/about/aboutwe">信息披露</a></li>
                 <!-- <li><a href="javascript:void(0);" onclick="newPointer()">新手指导</a></li> -->
                 <li><a href="<%=path%>/statically/insurance">安全保障</a></li>
                 <li>

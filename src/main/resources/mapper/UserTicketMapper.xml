@@ -22,9 +22,8 @@
     delete from user_ticket
     where ukid = #{ukid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.UserTicket">
-    insert into user_ticket (ukid, uid, kid, 
-      tktime)
+  <insert id="save" parameterType="com.p2p.bean.UserTicket">
+    insert into user_ticket (ukid, uid, kid, tktime)
     values (#{ukid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{kid,jdbcType=INTEGER}, 
       #{tktime,jdbcType=TIMESTAMP})
   </insert>

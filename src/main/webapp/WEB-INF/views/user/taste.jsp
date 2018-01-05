@@ -27,53 +27,110 @@
         <%-- 在此处写用户后台模块代码--%>
             <div class="layui-tab layui-tab-brief" lay-filter="zhuanqian" style="float: left;">
                 <ul class="layui-tab-title">
-                    <li class="layui-this">代金券</li>
-                    <li>加息券</li>
-                    <li>现金券</li>
-                    <li>体验金</li>
+                    <li class="layui-this">我的赠券</li>
                 </ul>
                 <div class="layui-tab-content" style="height: 100px;width: 100%;padding-top: 40px;">
                     <div class="layui-tab-item layui-show">
-                        <div class="searchType">
-                            <div class="layui-inline">
-                                <button class="layui-btn layui-bg-orange">未使用</button>
-                            </div>
-                            <div class="layui-inline">
-                                <button class="layui-btn layui-bg-orange">已使用</button>
-                            </div>
-                            <button class="layui-btn layui-bg-orange" data-type="reload">已过期</button>
+                        <div class="layui-row">
+                            <form id="borrowQuery" class="layui-form">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <input type="text" id="name" name="cpname" placeholder="请输入券的名字" class="layui-input layui">
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <select name="type" id="type">
+                                            <%--// TODO 标种从数据库循环--%>
+                                            <option value="">所有券</option>
+                                            <option value="0">现金券</option>
+                                            <option value="1">代金券</option>
+                                            <option value="2">加息券</option>
+                                        </select>
+                                    </div>
+                                    <a href="javascript:void(0);" class="layui-btn" id="searchBtn" data-type="reload">搜索</a>
+                                </div>
+                            </form>
                         </div>
-                        <table class="layui-table" lay-data="{height:400, url:'#', page:true, id:'daijinquan', skin: 'row', even: true}">
-                            <thead>
-                            <tr>
-                                <th lay-data="{field:'username', width:200}">金额</th>
-                                <th lay-data="{field:'sex', width:200, sort: true}">获得日期</th>
-                                <th lay-data="{field:'sign', width:200}">过期日期</th>
-                                <th lay-data="{field:'xinxi', width:300}">说明</th>
-                            </tr>
-                            </thead>
-                        </table>
+
+                        <table id="allTicket" lay-filter="demo"></table>
+
                     </div>
-                    <div class="layui-tab-item">内容2</div>
-                    <div class="layui-tab-item">内容3</div>
                 </div>
             </div>
     </div>
 </div>
+
+<script type="text/html" id="typeName">
+    {{# if(d.type == 0) { }}
+    <span>现金券</span>
+    {{# } else if(d.type == 1) { }}
+    <span>代金券</span>
+    {{# } else if(d.type == 2) { }}
+    <span>加息券</span>
+    {{# } }}
+</script>
+<script type="text/html" id="money">
+    {{# if(d.type == 2) { }}
+    <span>{{ d.tkmoney }}%</span>
+    {{# } else { }}
+    <span>{{ d.tkmoney }} 元</span>
+    {{# } }}
+</script>
 <%@include file="../master/footer.jsp"%>
 </body>
-<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script>
-    $('.sidebar-top').click(function(){
-        $('body').scrollTop(0);
-    });
-    layui.use(['element','layer','table'], function () {
+    layui.use(['element','layer','table','form'], function () {
         var $ = layui.jquery
             , element = layui.element,
             layer = layui.layer
             ,table = layui.table;
+        var form = layui.form;
+
+        table.render({
+            elem: '#allTicket'
+            , url: '<%=path %>/data/ticket/userAll?uid=' + ${user.uid}
+            , cols: [[
+//                {checkbox: true, fixed: true},
+                {field: 'name', title: '券名', width: 176}
+                , {field: 'type', title: '类型', width: 176, templet: '#typeName'}
+                , {field: 'tkmoney', title: '金额', width: 150, templet: '#money'}
+                , {field: 'lqtime', title: '领券时间', width: 190, templet: '<div>{{ formatDate(d.lqtime) }}</div>'}
+                , {field: 'tktime', title: '有效时间', width: 190, templet: '<div>{{ formatDate(d.tktime) }}</div>'}
+            ]]
+            , id: 'idTest'
+            , page: true
+            , width: 889
+            , response: {
+                statusName: 'status'
+                , statusCode: 0
+                , msgName: 'message'
+                , countName: 'total'
+                , dataName: 'rows'
+            }
+        });
+
+        $('#searchBtn').on('click', function(){
+            var type = $(this).data('type');
+            active[type].call(this);
+        });
+
+        var active = {
+            reload: function(){
+                table.reload('idTest', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        name : $('#name').val()
+                        ,type : $('#type').val()
+                    }
+                });
+            }
+        };
+
+
 
     });
 </script>

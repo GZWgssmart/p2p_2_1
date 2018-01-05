@@ -3,8 +3,10 @@ package com.p2p.controller;
 import com.p2p.bean.Ticket;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
+import com.p2p.dao.UserTicketMapper;
 import com.p2p.service.TicketService;
 import com.p2p.utils.DateUtil;
+import com.p2p.vo.UserTicketVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,20 @@ public class TicketController {
     @ResponseBody
     public Pager all(int page, int limit, Ticket ticket) {
         return ticketService.listPagerCriteria(page, limit, ticket);
+    }
+
+    @RequestMapping("userAll")
+    @ResponseBody
+    public Pager userAll(int page, int limit, UserTicketVO userTicket) {
+        return ticketService.listUserTicket(page,limit,userTicket);
+    }
+
+    @RequestMapping("getById")
+    @ResponseBody
+    public Ticket getById(Integer kid) {
+        Object obj = ticketService.getById(kid);
+        Ticket ticket = (Ticket) obj;
+        return ticket;
     }
 
 }

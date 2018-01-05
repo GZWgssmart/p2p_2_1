@@ -1,7 +1,12 @@
 package com.p2p.dao;
 
-import com.p2p.bean.Hkb;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface HkbMapper extends BaseDAO {
+
+    Integer saveList(List hkbList);
 
 }

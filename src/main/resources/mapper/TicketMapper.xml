@@ -20,6 +20,12 @@
     where kid = #{kid,jdbcType=INTEGER}
   </select>
 
+  <select id="getById" parameterType="java.lang.Integer" resultType="com.p2p.bean.Ticket">
+    <![CDATA[
+  select * from ticket where kid = #{id}
+]]]>
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from ticket where kid = #{kid,jdbcType=INTEGER}
   </delete>
@@ -39,6 +45,9 @@
       <if test="tktime != null">
         tktime,
       </if>
+      <if test="status != null">
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -52,6 +61,9 @@
       </if>
       <if test="tktime != null">
         #{tktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -96,4 +108,30 @@
     </set>
     where kid = #{kid,jdbcType=INTEGER}
   </update>
+
+  <sql id="userTicket">
+    <if test="query != null and query.name != null and query.name != ''">
+      and t.name like concat('%', #{query.name}, '%')
+    </if>
+    <if test="query != null and query.type != null">
+      and t.type = #{query.type}
+    </if>
+  </sql>
+
+  <select id="listUserTicket" resultType="com.p2p.vo.UserTicketVO">
+    <![CDATA[
+          select ut.tktime as lqtime, t.* from user_ticket ut, ticket t where ut.kid = t.kid and ut.uid = #{query.uid}
+        ]]>
+    <include refid="userTicket"/>
+    order by tktime desc
+    limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countUserTicket" resultType="long" parameterType="com.p2p.vo.UserTicketVO">
+    <![CDATA[
+          select count(ut.ukid) from user_ticket ut, ticket t where ut.kid = t.kid and ut.uid = #{query.uid}
+        ]]>
+    <include refid="userTicket"/>
+  </select>
+
 </mapper>
