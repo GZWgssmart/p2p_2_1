@@ -23,13 +23,12 @@
 <%@include file="master/header.jsp"%>
     <div class="layui-row">
         <!-- banner -->
-        <div class="banner">
-            <div class="slider">
-                <div><a href="www.baidu.com"><img src="<%=path %>/static/images/slide1.jpg" alt="" style="width:100%;height:340px"></a></div>
-                <div><a href="www.youtube.com"><img src="<%=path %>/static/images/slide2.jpg" alt="" style="width:100%;height:340px"></a></div>
-                <div><a href="www.bilibili.com"><img src="<%=path %>/static/images/slide3.jpg" alt="" style="width:100%;height:340px"></a></div>
-                <div><a href="www.weibo.com"><img src="<%=path %>/static/images/slide4.jpg" alt="" style="width:100%;height:340px"></a></div>
-            </div>
+        <div class="banner" id="view">
+                 <div class="slider">
+                    <div><a href="" id="url1"><img src=""  id="pic1"alt="" style="width:100%;height:340px"></a></div>
+                    <div><a href="" id="url2"><img src="" id="pic2" alt="" style="width:100%;height:340px"></a></div>
+                    <div><a href="" id="url3"><img src="" id="pic3" alt="" style="width:100%;height:340px"></a></div>
+                 </div>
         </div>
     </div>
 <%@include file="master/footer.jsp"%>
@@ -48,5 +47,18 @@
             transition: ['bar', 'Rain', 'square', 'squareRandom', 'explode']
         });
     });
+    layui.use(['laytpl'], function () {
+        var $ = layui.$;
+
+        $.get("<%=path %>/data/home/indexMsg?page=1&limit=1",
+            function (data) {
+                    $('#url1').attr('src','/'+data[0].url1);
+                    $('#url2').attr('src','/'+data[0].url2);
+                    $('#url3').attr('src','/'+data[0].url3);
+                    $('#pic1').attr('src','/'+data[0].pic1);
+                    $('#pic2').attr('src','/'+data[0].pic2);
+                    $('#pic3').attr('src','/'+data[0].pic3);
+            });
+    })
 </script>
 </html>

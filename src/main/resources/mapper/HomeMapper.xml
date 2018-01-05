@@ -38,4 +38,11 @@
           select * from home h where h.hid = #{hid}
         ]]>
   </select>
+
+  <delete id="removeById" parameterType="com.p2p.bean.Home">
+    <![CDATA[
+          delete from home where hid = #{homeId}
+    ]]>
+  </delete>
+
 </mapper>
