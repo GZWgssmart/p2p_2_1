@@ -25,4 +25,9 @@ public class JurTest extends BaseTest{
         jurService.removeById(1);
     }
 
+    @Test
+    public void testPages(){
+        Jur jur = new Jur();
+        jurService.listPagerCriteria(1,10,jur);
+    }
 }

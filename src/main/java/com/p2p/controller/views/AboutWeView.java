@@ -40,4 +40,9 @@ public class AboutWeView {
         return "index/aboutwe/findFriend";
     }
 
+    @RequestMapping("platform")
+    public String platform(){
+        return "index/aboutwe/platformMsg";
+    }
+
 }

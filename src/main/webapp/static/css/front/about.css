@@ -40,11 +40,11 @@
 	text-indent:48px;
 }
 .icon-about{
-	background-image: url(../images/about/icon-about-gray.png);
+	background-image: url(/static/images/about/icon-about-gray.png);
     background-repeat: no-repeat;
 }
 .active .icon-about,.about-left-nav .sub-nav>li a:hover.icon-about{
-	background-image: url(../images/about/icon-about-white.png);
+	background-image: url(/static/images/about/icon-about-white.png);
 	background-color:#eb2a2b;
 	color:#fff;
 }

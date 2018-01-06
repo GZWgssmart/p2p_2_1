@@ -20,7 +20,7 @@
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
-    layui.use(['table'], function(){
+    layui.use('table', function(){
         var table = layui.table;
         var $ = layui.jquery;
 
@@ -31,12 +31,12 @@
                 {checkbox: true, fixed: true}
                 ,{field:'huid', title:'ID', width:70, fixed: 'left'}
                 ,{field:'rolename', title:'角色名称', width:100}
-                ,{field:'huname', title:'用户名', width:100}
-                ,{field:'rname', title:'姓名', width:100}
-                ,{field:'phone', title:'手机号', width:100}
-                ,{field:'email', title:'邮箱', width:100}
+                ,{field:'huname', title:'用户名', width:120}
+                ,{field:'rname', title:'姓名', width:120}
+                ,{field:'phone', title:'手机号', width:200}
+                ,{field:'email', title:'邮箱', width:200}
             ]]
-            ,id: 'checkId'
+            ,id: 'idTest'
             ,page: true
             ,height: 500
             ,response: {

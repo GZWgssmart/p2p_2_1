@@ -43,7 +43,7 @@ public class TicketController {
 
     @RequestMapping("getById")
     @ResponseBody
-    public Ticket getById(Integer kid) {
+    public Ticket getById(int kid) {
         Object obj = ticketService.getById(kid);
         Ticket ticket = (Ticket) obj;
         return ticket;

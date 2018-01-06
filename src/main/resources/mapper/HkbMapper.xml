@@ -59,6 +59,25 @@
     </foreach>
   </insert>
 
+  <sql id="plan_criteria">
+    <if test="query != null and query.baid != null">
+      and hk.baid = #{query.baid}
+    </if>
+  </sql>
+
+  <select id="listPagerCriteria" resultType="com.p2p.vo.HkbPlanVO">
+    <![CDATA[
+      select hk.*, hu.huname from hkb hk, huser hu where hk.huid = hu.huid
+    ]]>
+    <include refid="plan_criteria"/>
+    order by hk.ytime desc limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long">
+    select count(hk.hkid) from hkb hk, huser hu where hk.huid = hu.huid
+    <include refid="plan_criteria" />
+  </select>
+
   <insert id="save" parameterType="com.p2p.bean.Hkb">
     insert into hkb
     <trim prefix="(" suffix=")" suffixOverrides=",">

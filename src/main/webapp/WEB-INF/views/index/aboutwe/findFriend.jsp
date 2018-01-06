@@ -5,7 +5,7 @@
 %>
 <head>
     <head>
-        <title>公司简介</title>
+        <title>招贤纳士</title>
         <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
         <link rel="stylesheet" href="<%=path%>/static/css/front/about.css">
         <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
@@ -145,6 +145,7 @@
 </div>
 <%@include file="../../master/footer.jsp" %>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>

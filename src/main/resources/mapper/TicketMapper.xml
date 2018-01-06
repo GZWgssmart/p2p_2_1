@@ -23,7 +23,7 @@
   <select id="getById" parameterType="java.lang.Integer" resultType="com.p2p.bean.Ticket">
     <![CDATA[
   select * from ticket where kid = #{id}
-]]]>
+]]>
   </select>
 
   <delete id="removeById" parameterType="java.lang.Integer">

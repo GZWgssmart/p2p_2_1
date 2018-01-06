@@ -43,7 +43,7 @@ public abstract class AbstractServiceImpl implements BaseService {
 
     @Override
     public ServerResponse<Integer> removeById(Integer id) {
-        if(baseDAO.remove(id) == 1) {
+        if(baseDAO.removeById(id) == 1) {
             return ServerResponse.createBySuccess("删除成功");
         } else {
             return ServerResponse.createByError("删除失败");

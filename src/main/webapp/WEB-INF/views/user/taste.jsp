@@ -66,6 +66,8 @@
     <span>代金券</span>
     {{# } else if(d.type == 2) { }}
     <span>加息券</span>
+    {{# } else if(d.type == 3) { }}
+    <span>推荐奖励券</span>
     {{# } }}
 </script>
 <script type="text/html" id="money">

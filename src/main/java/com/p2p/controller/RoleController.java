@@ -1,6 +1,7 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Role;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.dao.RoleMapper;
 import com.p2p.service.RoleService;
@@ -16,44 +17,46 @@ import java.util.List;
  * Created by qingfeng on 2017/12/26.
  */
 @Controller
-@RequestMapping("/data/role")
+@RequestMapping("/data/Role")
 public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    private Role role;
-
     /**
-     *
+     *添加角色
      * @return
      */
-    @RequestMapping("save")
-    public ServerResponse saveRole(){
+    @RequestMapping("addRole")
+    public ServerResponse saveRole(Role role){
         return roleService.save(role);
     }
 
     /**
-     *
+     *更新角色
      * @return
      */
     @RequestMapping("update")
-    public ServerResponse updateRole(Integer id){
-        role = new Role();
-        role.setRname(role.getRname());
-        role.setContent(role.getContent());
-        role.setRid(id);
+    public ServerResponse updateRole(Role role){
         return roleService.update(role);
     }
 
     /**
-     * 删除
+     * 删除角色
      * @return
      */
     @RequestMapping("remove")
-    public ServerResponse removeByIdRole(Integer id){
-        role = new Role();
-        role.setRid(id);
+    public ServerResponse removeByIdRole(Role role){
         return roleService.removeById(role.getRid());
+    }
+
+    /**
+     * 角色分页
+     * @return
+     */
+    @RequestMapping("roleList")
+    @ResponseBody
+    public Pager HuserList(int page, int limit, Role role) {
+        return roleService.listPagerCriteria(page,limit,role);
     }
 
     @RequestMapping("listAll")

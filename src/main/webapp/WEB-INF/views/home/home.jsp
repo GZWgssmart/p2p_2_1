@@ -99,7 +99,7 @@
                                     class="layui-icon">&#xe658;</i><span>借款审核</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'标种',id:'12'}"><i class="layui-icon">&#xe658;</i><span>标种</span></a>
+                                   data-options="{url:'<%=path %>/page/bz/bzList',icon:'&#xe658;',title:'标种',id:'12'}"><i class="layui-icon">&#xe658;</i><span>标种</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'#',icon:'&#xe658;',title:'还款方式',id:'13'}"><i class="layui-icon">&#xe658;</i><span>还款方式</span></a>
@@ -191,20 +191,33 @@
                     </li>
                 </shiro:hasPermission>
                 <%--root用户可见--%>
+                    <shiro:hasPermission name="root">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;"><span>权限</span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" kit-target
+                                       data-options="{url:'<%=path%>/page/Jur/List',icon:'&#xe658;',title:'权限管理',id:'50'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </shiro:hasPermission>
+                <%--root用户可见--%>
                 <shiro:hasPermission name="root">
                     <li class="layui-nav-item">
-                        <a href="javascript:;"><span>角色权限</span></a>
+                        <a href="javascript:;"><span>角色管理</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'50'}"><i
+                                   data-options="{url:'<%=path%>/page/Role/List',icon:'&#xe658;',title:'角色管理',id:'51'}"><i
+                                    class="layui-icon">&#xe658;</i><span>角色管理</span></a>
+                            </dd>
+                            <dd><a href="javascript:;" kit-target
+                                   data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'52'}"><i
                                     class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'权限管理',id:'51'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a>
+                                   data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe658;',title:'添加后台用户',id:'53'}"><i
+                                    class="layui-icon">&#xe658;</i><span>添加后台用户</span></a>
                             </dd>
-                            <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe658;',title:'添加后台用户',id:'52'}"><i
-                                    class="layui-icon">&#xe658;</i><span>添加后台用户</span></a></dd>
                         </dl>
                     </li>
                 </shiro:hasPermission>

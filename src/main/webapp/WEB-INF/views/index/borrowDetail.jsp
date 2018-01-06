@@ -82,8 +82,8 @@
                     <button type="button" onclick="allInvest();">全投</button>
                 </div>
                 <div class="quan">
-                    <select id="selectQuan">
-                        <option value="0">当前没有可用的优惠券</option>
+                    <select name="type" id="selectQuan">
+                        <option>选择优惠券</option>
                     </select>
                     <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
@@ -243,15 +243,28 @@
 </div>
 </div>
 
+<script id="ticketType" type="text/html">
+    {{# if(d == null || d == ''){ }}
+        <option>没有优惠券</option>
+    {{# } else { }}
+        {{#  layui.each(d, function(index, vo){ }}
+        <option value="{{ vo.kid }}">{{ vo.name }}</option>
+        {{#  }); }}
+    {{# } }}
+</script>
 <%@include file="../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/borrow/detail.js"></script>
 <script>
     var minInvest = 100;// 最小投资金额
-
+    var uid = "${user.uid}";
+    if(uid == null || uid == '') {
+        uid = 0;
+    }
     layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
         var element = layui.element;
@@ -266,6 +279,23 @@
                     view.innerHTML = html;
                 });
             },'json');
+
+        // 获取类别
+        $.post('<%=path %>/data/userticket/myticket',{uid:uid},
+            function (data) {
+                var html = "";
+                var money = "";
+                if(data != null || data != '') {
+                    for(var i = 0; i <= data.length; i++) {
+                        html = data[i].name;
+                        money = data[i].tkmoney;
+                        $('#selectQuan').append("<option value='10'>" + html + "</option>");
+                    }
+                } else {
+//                    $('#selectQuan').append("<option>没有优惠券</option>");
+                }
+            },'json'
+        );
 
     });
     /**
@@ -308,6 +338,7 @@
                     ,resint1:$('#term').text()}
                 , function (data) {
                     alert(data.message);
+                    window.href.reload();
                 },'json');
         }
     }
