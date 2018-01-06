@@ -10,6 +10,7 @@
 <%
     String path = request.getContextPath();
 %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>投资详情</title>
@@ -396,16 +397,14 @@
         // 获取类别
         $.post('<%=path %>/data/userticket/myticket',{uid:uid},
             function (data) {
-                var html = "";
-                var money = "";
-                if(data != null || data != '') {
-                    for(var i = 0; i <= data.length; i++) {
-                        html = data[i].name;
-                        money = data[i].tkmoney;
-                        $('#selectQuan').append("<option value='10'>" + html + "</option>");
+                var html = '';
+                if(data.length != 0) {
+                    for(var i = 0; i < data.length; i++) {
+                        html += "<option value='" + data[i].tkmoney + "'>" + data[i].name + "</option>"
                     }
+                    $('#selectQuan').append(html);
                 } else {
-//                    $('#selectQuan').append("<option>没有优惠券</option>");
+
                 }
             },'json'
         );
