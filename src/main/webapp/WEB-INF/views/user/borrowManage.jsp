@@ -156,9 +156,10 @@
                     closeBtn: 1,         //是否显示关闭按钮
                     shadeClose: true, //显示模态窗口
                     fixed:false,    //层是否固定在可视区域
-                    move: true,//禁止拖拽
+                    offset: 't',//快捷设置顶部坐标
+                    move: false,//禁止拖拽
                     area: ['890px', '560px'], //宽高
-                    content: $("#planListShow")  //弹窗内容
+                    content: $("#planListShow"),  //弹窗内容
                 });
                 table.render({
                     elem: '#planList'
