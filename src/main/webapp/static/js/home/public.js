@@ -1,6 +1,6 @@
 // 格式化时间 年-月-日 时：分：秒
 function formatDate(value) {
-    if (value == undefined || value == null || value == '') {
+    if (value === undefined || value === null || value === '') {
         return "";
     } else {
         var date = new Date(value);
@@ -26,6 +26,25 @@ function formatDate(value) {
             seconds = "0" + seconds;
         }
         return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+    }
+}
+
+// 格式化时间 年-月-日
+function formatDateTime(value) {
+    if (value === undefined || value === null || value === '') {
+        return "";
+    } else {
+        var date = new Date(value);
+        var year = date.getFullYear().toString();
+        var month = (date.getMonth() + 1);
+        var day = date.getDate().toString();
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+        return year + "-" + month + "-" + day;
     }
 }
 

@@ -3,6 +3,7 @@ package com.p2p.service.impl;
 import com.p2p.bean.*;
 import com.p2p.calc.*;
 import com.p2p.common.BeanCopyUtils;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.dao.*;
 import com.p2p.enums.BorrowStatusEnum;
@@ -40,6 +41,14 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
     private HkbMapper hkbMapper;
 
     private ShborrowMapper shborrowMapper;
+
+    @Override
+    public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(tzbMapper.listPagerCriteria(pager, obj));
+        pager.setTotal(tzbMapper.countCriteria(obj));
+        return pager;
+    }
 
     @Override
     @Transactional

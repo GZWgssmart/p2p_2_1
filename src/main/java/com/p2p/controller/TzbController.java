@@ -2,6 +2,7 @@ package com.p2p.controller;
 
 import com.p2p.bean.Tzb;
 import com.p2p.bean.User;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.TzbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,17 @@ public class TzbController {
             return tzbService.save(tzb);
         }
         return ServerResponse.createByError("投资失败");
+    }
+
+    /**
+     * 投资人列表
+     * @param page
+     * @param limit
+     * @param tzb
+     * @return
+     */
+    @RequestMapping("investUsers")
+    public Pager getInvestList(int page, int limit, Tzb tzb) {
+        return tzbService.listPagerCriteria(page, limit, tzb);
     }
 }
