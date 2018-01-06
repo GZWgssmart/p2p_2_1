@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <!-- 用户充值-->
+                <!-- 提现记录-->
                 <div class="layui-tab-item">
                     <div class="layui-row">
                         <div class="layui-col-md12">
@@ -90,7 +90,6 @@
     </div>
 </div>
 <%@include file="../master/footer.jsp" %>
-<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -155,18 +154,8 @@
                     , dataName: 'rows'
                 }
             });
-
         });
     })
-</script>
-<script>
-    function formatState(status) {
-        if(status === 0) {
-            return "提现失败";
-        } else {
-            return "提现成功";
-        }
-    }
 </script>
 <script>
     $("#uid").val('${user.uid}');
@@ -183,6 +172,14 @@
                 }
             }, 'json'
         )
+    }
+
+    function formatState(status) {
+        if(status === 0) {
+            return "提现失败";
+        } else {
+            return "提现成功";
+        }
     }
 </script>
 </body>

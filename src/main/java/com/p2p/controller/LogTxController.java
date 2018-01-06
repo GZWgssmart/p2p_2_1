@@ -1,9 +1,11 @@
 package com.p2p.controller;
 
+import com.p2p.bean.LogMoney;
 import com.p2p.bean.LogTx;
 import com.p2p.bean.User;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
+import com.p2p.service.LogMoneyService;
 import com.p2p.service.LogTxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +25,20 @@ public class LogTxController {
     @Autowired
     private LogTxService logTxService;
 
+    @Autowired
+    private LogMoneyService logMoneyService;
+
     @RequestMapping("save")
     public ServerResponse addCard(LogTx logTx){
         ServerResponse serverResponse = null;
         if(logTx!=null){
             logTx.setCreatedTime(Calendar.getInstance().getTime());
+            LogMoney logMoney = new LogMoney();
+            logMoney.setCreatedTime(Calendar.getInstance().getTime());
+            logMoney.setUid(logTx.getUid());
+            logMoney.setType(1);
+            logMoney.setOutlay(logTx.getMoney());
+            logMoneyService.save(logMoney);
             logTxService.save(logTx);
             serverResponse = ServerResponse.createBySuccess();
         } else {
