@@ -121,7 +121,7 @@
                         <a href="javascript:;"><span>奖励管理</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/admin/reward',icon:'&#xe658;',title:'投资奖励',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励</span></a>
+                                   data-options="{url:'<%=path %>/page/rewardSet/rewardSet',icon:'&#xe658;',title:'投资奖励',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/admin/quan',icon:'&#xe658;',title:'优惠券',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
@@ -164,7 +164,7 @@
                                 <i class="layui-icon">&#xe658;</i><span>添加公告</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'#',icon:'&#xe658;',title:'站内信',id:'41'}">
+                                   data-options="{url:'<%=path %>/page/message/allLetter',icon:'&#xe658;',title:'站内信',id:'41'}">
                                 <i class="layui-icon">&#xe658;</i><span>站内信</span></a>
                             </dd>
                             <dd>
