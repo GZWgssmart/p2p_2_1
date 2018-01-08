@@ -18,7 +18,7 @@
     umid, uid, zmoney, kymoney, symoney, tzmoney, djmoney, dsmoney, jlmoney
   </sql>
   <select id="selectById" parameterType="java.lang.Integer" resultType="userMoney">
-    select 
+    select
     <include refid="Base_Column_List" />
     from usermoney
     where umid = #{umid,jdbcType=INTEGER}
