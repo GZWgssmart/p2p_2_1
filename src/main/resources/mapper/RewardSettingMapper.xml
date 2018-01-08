@@ -69,4 +69,17 @@
     </set>
     where rwsid = #{rwsid,jdbcType=INTEGER}
   </update>
+
+  <select id="listPager" resultType="com.p2p.bean.RewardSetting">
+    <![CDATA[
+      select * from reward_setting limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+  </select>
+
+  <select id="count" resultType="long">
+    <![CDATA[
+          select count(rwsid) from reward_setting
+        ]]>
+  </select>
+
 </mapper>

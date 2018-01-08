@@ -25,7 +25,7 @@
 <!-- top -->
 <div class="nav-out">
     <div class="wrap cl">
-        <div class="logo"><a href="https://www.pujinziben.com/"><img src="<%=path %>/static/images/logo.png" alt="普金资本"></a>
+        <div class="logo"><a href="/"><img src="<%=path %>/static/images/logo.png" alt="普金资本"></a>
         </div>
         <p class="to-login">已有账号，<a href="<%=path %>/page/login">立即登录</a></p>
     </div>

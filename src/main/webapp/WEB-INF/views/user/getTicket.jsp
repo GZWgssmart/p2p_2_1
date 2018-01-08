@@ -22,7 +22,7 @@
 <%@include file="../master/header.jsp" %>
 
 <div class="account cl">
-    <div class="layui-container" style="background-color: #ffffff">
+    <div class="layui-container" style="background-color: #ffffff;padding-top: 50px;">
         <div class="layui-row">
             <div class="layui-col-md4 layui-col-md-offset4">
                 <div id="view" style="text-align:center">
