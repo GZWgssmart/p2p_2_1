@@ -21,7 +21,7 @@
 </head>
 <style type="text/css">
     <!--
-    #demo {overflow:hidden;width:1200px; }
+    #demo {overflow:hidden;width:1180px; }
     #demos { float: left; width: 800%;}
     #demo1 { float: left; }
     #demo2 { float: left;margin-left:7px;}
@@ -184,7 +184,7 @@
         <!-- news -->
         <div class="layui-fluid" style="width: 89%;margin-top: 30px;">
             <div class="layui-col-sm8"  style="background-color: white;  width: auto;height: 400px">
-                    <div class="grid-demo grid-demo-bg1"style="margin-top: 20px;">
+                    <div class="grid-demo grid-demo-bg1"style="margin-top: 20px;margin-left: 5px">
                                 <span style="font-size: 20px;">媒体报道</span>
                                 <a href="<%=path %>/page/dynamic/indexDynamic#test1=1" style="float: right">更多</a>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
@@ -210,7 +210,7 @@
                         </div>
                 </div>
                 <div class="layui-col-sm4"  style="background-color: white;height: 400px">
-                    <div class="grid-demo" style="margin-left: 40px; margin-top: 20px;">
+                    <div class="grid-demo" style="margin-left: 40px;margin-right: 20px; margin-top: 20px;">
                         <span style="font-size: 20px;">最新公告</span>
                         <a href="https://www.pujinziben.com/about.html#ptgg" style="float: right">更多</a>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
@@ -231,7 +231,7 @@
                                 {{#  }); }}
                             </script>
                         </div>
-                        <div class="news-main-top ptop" style="margin-top: 20px">
+                        <div class="news-main-top ptop" style="margin-top: 20px;margin-right: 20px;">
                             <span style="font-size: 20px;">公司动态</span>
                             <a href="<%=path %>/page/dynamic/indexDynamic" style="float: right">更多</a>
                         </div>
@@ -261,9 +261,7 @@
                 </div>
                 <div id="demo">
                     <div id="demos">
-                        <div id="demo1">
-
-                        </div>
+                        <div id="demo1"></div>
                         <div id="demo2"></div>
                     </div>
                 </div>
@@ -347,7 +345,6 @@
                 document.getElementById("demo1").innerHTML = html;
                 document.getElementById("demo2").innerHTML = html;
         })
-
     })
 </script>
 <script>
