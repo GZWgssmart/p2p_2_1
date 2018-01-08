@@ -27,6 +27,11 @@
   </delete>
 
   <insert id="save" parameterType="com.p2p.bean.RewardSetting">
+    insert into reward_setting (minmoney, maxmoney, percent) VALUES
+     (#{minmoney,jdbcType=DECIMAL},#{maxmoney,jdbcType=DECIMAL},#{percent,jdbcType=DOUBLE})
+  </insert>
+
+  <insert id="save1" parameterType="com.p2p.bean.RewardSetting">
     insert into reward_setting
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="minmoney != null">
@@ -58,13 +63,6 @@
         select count(rws.rwsid) from reward_setting rws
     ]]>
   </select>
-
-  <insert id="save" parameterType="com.p2p.bean.RewardSetting">
-    insert into reward_setting ( minmoney, maxmoney,
-      percent)
-    values (#{minmoney,jdbcType=DECIMAL}, #{maxmoney,jdbcType=DECIMAL},
-      #{percent,jdbcType=DOUBLE})
-  </insert>
 
   <select id="getById" resultType="com.p2p.bean.RewardSetting">
     <![CDATA[
