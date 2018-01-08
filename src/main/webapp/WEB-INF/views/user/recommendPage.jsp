@@ -153,6 +153,7 @@
         laydate.render({
             elem: '#end'
             , type: 'datetime'
+            ,min:$('#first').val()-6
         })
         $('.searchType .layui-btn').on('click', function () {
             var type = $(this).data('type');
