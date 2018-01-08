@@ -20,12 +20,12 @@
     </head>
 </head>
 <body>
-<%@include file="../master/top.jsp" %>
-<%@include file="../master/header.jsp" %>
+<%@include file="../../master/top.jsp" %>
+<%@include file="../../master/header.jsp" %>
 <div class="account cl">
     <%--<%@include file="../master/left.jsp" %>--%>
     <%--信息披露里的左侧边栏--%>
-    <%@include file="../master/aboutLeft.jsp" %>
+    <%@include file="../../master/aboutLeft.jsp" %>
     <div class="account-right">
         <div class="layui-tab layui-tab-brief" lay-filter="test1" style="float: left;">
             <ul class="layui-tab-title">
@@ -104,7 +104,7 @@
         </div>
     </div>
 </div>
-<%@include file="../master/footer.jsp" %>
+<%@include file="../../master/footer.jsp" %>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
@@ -129,7 +129,7 @@
 
         var getTpl0 = $('#demoDynamic').html()
             , view0 = document.getElementById('allDynamic');
-        // 获取公司動態数据
+        // 获取公司动态数据
         $.get('<%=path %>/data/dynamic/pagerCriteria', {
             page: page,
             limit: limit
@@ -167,7 +167,7 @@
 
         var getTpl = $('#mediaDemo').html()
             , view = document.getElementById('allMediaReport');
-        // 获取媒體報道数据
+        // 获取媒体报道数据
         $.get('<%=path %>/data/company/pagerCriteria', {
             page: page,
             limit: limit

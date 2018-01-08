@@ -28,11 +28,16 @@ public class AdminView {
 
     @RequestMapping("vip")
     public String isvip() {
-        return "Admin/vipCheck";
+        return "checkmanage/vipCheck";
     }
 
     @RequestMapping("quan")
     public String quan() {
-        return "Admin/quan";
+        return "setting/quan";
+    }
+
+    @RequestMapping("reward")
+    public String reward() {
+        return "setting/reward";
     }
 }

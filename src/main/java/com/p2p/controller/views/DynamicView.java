@@ -32,6 +32,6 @@ public class DynamicView {
 
     @RequestMapping("indexDynamic")
     public String indexDynamic(){
-        return "index/dynamic";
+        return "index/aboutwe/dynamic";
     }
 }

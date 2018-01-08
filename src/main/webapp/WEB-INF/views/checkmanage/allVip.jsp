@@ -38,7 +38,7 @@
 
         table.render({
             elem: '#allVIP'
-            ,url: '<%=path %>/data/user/pagerCriteria'
+            ,url: '<%=path %>/data/vip/userVip'
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'uid', title:'ID', width:50, fixed: 'left'}

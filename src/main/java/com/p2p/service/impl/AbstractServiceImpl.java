@@ -85,6 +85,7 @@ public abstract class AbstractServiceImpl implements BaseService {
     public Pager listPager(int pageNo, int pageSize) {
         Pager pager = new Pager(pageNo, pageSize);
         pager.setRows(baseDAO.listPager(pager));
+        pager.setTotal(baseDAO.count());
         return pager;
     }
 
