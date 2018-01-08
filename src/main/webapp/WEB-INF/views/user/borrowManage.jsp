@@ -150,56 +150,61 @@
             var checkStatus = table.checkStatus('checkId')
                 ,data = checkStatus.data;
             if(data.length === 1) {
-                layer.open({
-                    type: 1,                //弹窗类型
-                    title: '还款计划',     //显示标题
-                    closeBtn: 1,         //是否显示关闭按钮
-                    shadeClose: true, //显示模态窗口
-                    fixed:false,    //层是否固定在可视区域
-                    offset: 't',//快捷设置顶部坐标
-                    move: false,//禁止拖拽
-                    area: ['890px', '560px'], //宽高
-                    content: $("#planListShow"),  //弹窗内容
-                });
-                table.render({
-                    elem: '#planList'
-                    ,url: '<%=path %>/data/hkb/planList'
-                    ,where:{
-                        baid:data[0].baid
-                    }
-                    ,cols: [[
-                        {checkbox: true, fixed: true}
-                        ,{field:'hkid', title:'ID', width:50, fixed: 'left'}
-                        ,{field:'rname', title:'真实姓名', width:90}
-                        ,{field:'cpname', title:'产品名称', width:80}
-                        ,{field:'bzname', title:'标种', width:80}
-                        ,{field:'rnum', title:'已还期数', width:90}
-                        ,{field:'tnum', title:'总期数', width:90}
-                        ,{field:'ytime', title:'应还时间', width:120, templet:'<div>{{ formatDate(d.ytime)}}</div>'}
-                        ,{field:'rtime', title:'实还时间', width:90, templet:'<div>{{ formatDate(d.rtime)}}</div>'}
-                        ,{field:'ybx', title:'应还本息', width:90}
-                        ,{field:'rbx', title:'已还本息', width:60}
-                        ,{field:'ybj', title:'应还本金', width:60}
-                        ,{field:'rbj', title:'已还本金', width:60}
-                        ,{field:'ylx', title:'应还利息', width:60}
-                        ,{field:'rlx', title:'已还利息', width:60}
-                        ,{field:'yfc', title:'应还罚息', width:60}
-                        ,{field:'rfc', title:'已还罚息', width:60}
-                        ,{field:'yucount', title:'逾期次数', width:60}
-                        ,{field:'status', title:'还款状态', width:180, sort: true, templet:'<div>{{formatHkStatus(d.status)}}</div>'}
-                        ,{field:'huname', title:'负责人', width:180, sort: true}
-                    ]]
-                    ,id: 'planId'
-                    ,page: true
-                    ,height: 500
-                    ,response: {
-                        statusName: 'status'
-                        ,statusCode: 0
-                        ,msgName: 'message'
-                        ,countName: 'total'
-                        ,dataName: 'rows'
-                    }
-                });
+                var ckstatus = data[0].ckstatus;
+                if(ckstatus === 5 || ckstatus === 4) {
+                    layer.open({
+                        type: 1,                //弹窗类型
+                        title: '还款计划',     //显示标题
+                        closeBtn: 1,         //是否显示关闭按钮
+                        shadeClose: true, //显示模态窗口
+                        fixed:false,    //层是否固定在可视区域
+                        offset: 't',//快捷设置顶部坐标
+                        move: false,//禁止拖拽
+                        area: ['890px', '560px'], //宽高
+                        content: $("#planListShow")  //弹窗内容
+                    });
+                    table.render({
+                        elem: '#planList'
+                        ,url: '<%=path %>/data/hkb/planList'
+                        ,where:{
+                            baid:data[0].baid
+                        }
+                        ,cols: [[
+                            {checkbox: true, fixed: true}
+                            ,{field:'hkid', title:'ID', width:50, fixed: 'left'}
+                            ,{field:'rname', title:'真实姓名', width:90}
+                            ,{field:'cpname', title:'产品名称', width:80}
+                            ,{field:'bzname', title:'标种', width:80}
+                            ,{field:'rnum', title:'已还期数', width:90}
+                            ,{field:'tnum', title:'总期数', width:90}
+                            ,{field:'ytime', title:'应还时间', width:120, templet:'<div>{{ formatDate(d.ytime)}}</div>'}
+                            ,{field:'rtime', title:'实还时间', width:90, templet:'<div>{{ formatDate(d.rtime)}}</div>'}
+                            ,{field:'ybx', title:'应还本息', width:90}
+                            ,{field:'rbx', title:'已还本息', width:60}
+                            ,{field:'ybj', title:'应还本金', width:60}
+                            ,{field:'rbj', title:'已还本金', width:60}
+                            ,{field:'ylx', title:'应还利息', width:60}
+                            ,{field:'rlx', title:'已还利息', width:60}
+                            ,{field:'yfc', title:'应还罚息', width:60}
+                            ,{field:'rfc', title:'已还罚息', width:60}
+                            ,{field:'yucount', title:'逾期次数', width:60}
+                            ,{field:'status', title:'还款状态', width:180, sort: true, templet:'<div>{{formatHkStatus(d.status)}}</div>'}
+                            ,{field:'huname', title:'负责人', width:180, sort: true}
+                        ]]
+                        ,id: 'planId'
+                        ,page: true
+                        ,height: 500
+                        ,response: {
+                            statusName: 'status'
+                            ,statusCode: 0
+                            ,msgName: 'message'
+                            ,countName: 'total'
+                            ,dataName: 'rows'
+                        }
+                    });
+                } else {
+                    layer.msg('该借款状态下无还款计划！', {time:1500});
+                }
             } else {
                 layer.msg('请选中一行！', {time:1500});
             }

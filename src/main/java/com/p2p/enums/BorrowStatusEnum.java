@@ -33,7 +33,11 @@ public enum BorrowStatusEnum {
     /**
      * 前台列表不需要显示审核中、审核失败、已流标的特殊状态标记
      */
-    OTHER(6,"前台特殊情况");
+    OTHER(6,"前台特殊情况"),
+    /**
+     * 审核成功
+     */
+    CK_SUCCESS(7, "审核成功");
 
     private int code;
     private String message;

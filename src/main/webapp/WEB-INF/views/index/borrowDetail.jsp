@@ -88,6 +88,7 @@
                     </select>
                     <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
+                <input type="hidden" id="ckstatus" value="{{d.ckstatus}}">
                 {{# if((d.money-d.moneyCount)>0){ }}
                 <button type="button" class="btn" onclick="invest(${requestScope.userMoney.kymoney}, '{{d.money-d.moneyCount}}');">立即投标</button>
                 {{# } else if(d.ckstatus === 5) { }}
@@ -298,7 +299,10 @@
         $('.sub-a-box').hide();
         $(obj).addClass('active').siblings().removeClass('active');
         $('#plan').show();
-        pagerCommon('#planList','content','<%=path %>/data/hkb/planList','planDemo');
+        var ckstatus = $('#ckstatus').val();
+        if(ckstatus === 5 || ckstatus === 4) {
+            pagerCommon('#planList','content','<%=path %>/data/hkb/planList','planDemo');
+        }
     }
 
     //投资记录

@@ -119,6 +119,8 @@ function formatStatus(status) {
         return "还款中";
     } else if(status === 5) {
         return "已完成";
+    } else if(status === 7) {
+        return "审核通过";
     }
 }
 /**

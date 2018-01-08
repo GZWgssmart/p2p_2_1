@@ -179,7 +179,7 @@
 
   <update id="updateChecked" parameterType="com.p2p.bean.BorrowApply">
     <![CDATA[
-      update borrowapply set status = #{status},cktime = #{cktime} where baid = #{baid}
+      update borrowapply set ckstatus = #{status},cktime = #{cktime} where baid = #{baid}
     ]]>
   </update>
 
