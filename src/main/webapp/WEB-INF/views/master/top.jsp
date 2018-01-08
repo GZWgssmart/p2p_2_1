@@ -33,7 +33,7 @@
                 <li><a href="<%=path%>/page/user/userBankCard" class="pay">充值</a></li>
                 <c:choose>
                     <c:when test="${user != null}">
-                        <li id="userName"><a href="<%=path %>/page/borrow_apply/page" class="user">${user.phone}</a></li>
+                        <li id="userName"><a href="<%=path %>/page/user/account" class="user">${user.phone}</a></li>
                     </c:when>
                     <c:otherwise>
                         <li class="userName"><a href="<%=path %>/page/login">登录</a></li>

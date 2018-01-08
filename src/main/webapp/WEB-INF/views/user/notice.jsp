@@ -55,6 +55,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);

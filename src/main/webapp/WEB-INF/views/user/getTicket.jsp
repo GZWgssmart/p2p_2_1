@@ -63,6 +63,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
     <%--获取url ？后面的值--%>
     var url = window.location.search;

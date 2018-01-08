@@ -175,6 +175,7 @@
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/current.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
     var nowDate = new Date();
     layui.use(['form', 'laydate', 'upload'], function() {
