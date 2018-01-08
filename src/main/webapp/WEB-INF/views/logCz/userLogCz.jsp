@@ -178,9 +178,9 @@
 
     function formatState(status) {
         if(status === 0) {
-            return "提现失败";
+            return "充值失败";
         } else {
-            return "提现成功";
+            return "充值成功";
         }
     }
 </script>

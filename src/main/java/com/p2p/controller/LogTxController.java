@@ -7,6 +7,8 @@ import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.LogMoneyService;
 import com.p2p.service.LogTxService;
+import com.p2p.service.UserMoneyService;
+import com.p2p.vo.UserMoneyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,8 @@ public class LogTxController {
 
     @Autowired
     private LogMoneyService logMoneyService;
+    @Autowired
+    private UserMoneyService userMoneyService;
 
     @RequestMapping("save")
     public ServerResponse addCard(LogTx logTx){
@@ -39,6 +43,11 @@ public class LogTxController {
             logMoney.setType(1);
             logMoney.setOutlay(logTx.getMoney());
             logMoneyService.save(logMoney);
+            UserMoneyVO userMoneyVO = new UserMoneyVO();
+            userMoneyVO.setUid(logTx.getUid()); 
+            userMoneyVO.setzMoney(logTx.getMoney());
+            userMoneyVO.setKyMoney(logTx.getMoney());
+            userMoneyService.save(userMoneyVO);
             logTxService.save(logTx);
             serverResponse = ServerResponse.createBySuccess();
         } else {

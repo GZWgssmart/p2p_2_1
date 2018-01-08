@@ -7,6 +7,8 @@ import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.LogCzService;
 import com.p2p.service.LogMoneyService;
+import com.p2p.service.UserMoneyService;
+import com.p2p.vo.UserMoneyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,8 @@ public class LogCzController {
     private LogCzService logCzService;
     @Autowired
     private LogMoneyService logMoneyService;
+    @Autowired
+    private UserMoneyService userMoneyService;
 
     @RequestMapping("save")
     public ServerResponse addCard(LogCz logCz){
@@ -40,6 +44,11 @@ public class LogCzController {
             logMoney.setType(0);
             logMoney.setIncome(logCz.getMoney());
             logMoneyService.save(logMoney);
+            UserMoneyVO userMoneyVO = new UserMoneyVO();
+            userMoneyVO.setUid(logCz.getUid());
+            userMoneyVO.setzMoney(logCz.getMoney());
+            userMoneyVO.setKyMoney(logCz.getMoney());
+            userMoneyService.save(userMoneyVO);
             logCzService.save(logCz);
               serverResponse = ServerResponse.createBySuccess();
         } else {
@@ -58,4 +67,5 @@ public class LogCzController {
         }
         return logCzService.listPagerCriteria(page, limit, logCz);
     }
+
 }

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public class UserMoneyVO {
     private Integer uid;
     private BigDecimal kyMoney;
+    private BigDecimal zMoney;
 
     public Integer getUid() {
         return uid;
@@ -24,5 +25,13 @@ public class UserMoneyVO {
 
     public void setKyMoney(BigDecimal kyMoney) {
         this.kyMoney = kyMoney;
+    }
+
+    public BigDecimal getzMoney() {
+        return zMoney;
+    }
+
+    public void setzMoney(BigDecimal zMoney) {
+        this.zMoney = zMoney;
     }
 }
