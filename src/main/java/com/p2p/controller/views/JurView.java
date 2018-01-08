@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page/Jur")
 public class JurView {
 
-    @RequestMapping("addJurPage")
+    @RequestMapping("add")
     public String addJurPage(){
-        return "company/addJur";
+        return "Jur/addJur";
     }
 
     @RequestMapping("List")

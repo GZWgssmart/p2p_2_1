@@ -5,26 +5,22 @@ import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.JurService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by qingfeng on 2017/12/22.
  */
-@Controller
+@RestController
 @RequestMapping("/data/Jur")
 public class JurController {
     @Autowired
     private JurService jurService;
-
-    private ServerResponse serverResponse;
-
     /**
      *添加权限
      * @param jur
      * @return
      */
-    @RequestMapping("addJur")
+    @RequestMapping("save")
     public ServerResponse save(Jur jur){
         return jurService.save(jur);
     }
@@ -43,7 +39,6 @@ public class JurController {
      * @return
      */
     @RequestMapping("jurList")
-    @ResponseBody
     public Pager HuserList(int page, int limit, Jur jur) {
         return jurService.listPagerCriteria(page,limit,jur);
     }

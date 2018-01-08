@@ -190,37 +190,54 @@
                         </dl>
                     </li>
                 </shiro:hasPermission>
-                <%--root用户可见--%>
+                    <%--root用户可见--%>
                     <shiro:hasPermission name="root">
                         <li class="layui-nav-item">
-                            <a href="javascript:;"><span>权限</span></a>
+                            <a href="javascript:;"><span>权限管理</span></a>
                             <dl class="layui-nav-child">
                                 <dd><a href="javascript:;" kit-target
                                        data-options="{url:'<%=path%>/page/Jur/List',icon:'&#xe658;',title:'权限管理',id:'50'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a>
                                 </dd>
+                                <dd><a href="javascript:;" kit-target
+                                       data-options="{url:'<%=path%>/page/Jur/add',icon:'&#xe658;',title:'添加权限',id:'52'}"><i
+                                        class="layui-icon">&#xe658;</i><span>添加权限</span></a>
+                                </dd>
                             </dl>
                         </li>
                     </shiro:hasPermission>
-                <%--root用户可见--%>
-                <shiro:hasPermission name="root">
-                    <li class="layui-nav-item">
-                        <a href="javascript:;"><span>角色管理</span></a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/Role/List',icon:'&#xe658;',title:'角色管理',id:'51'}"><i
-                                    class="layui-icon">&#xe658;</i><span>角色管理</span></a>
-                            </dd>
-                            <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'52'}"><i
-                                    class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
-                            </dd>
-                            <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe658;',title:'添加后台用户',id:'53'}"><i
-                                    class="layui-icon">&#xe658;</i><span>添加后台用户</span></a>
-                            </dd>
-                        </dl>
-                    </li>
-                </shiro:hasPermission>
+                    <%--root用户可见--%>
+                    <shiro:hasPermission name="root">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;"><span>角色管理</span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" kit-target
+                                       data-options="{url:'<%=path%>/page/Role/List',icon:'&#xe658;',title:'角色管理',id:'51'}"><i
+                                        class="layui-icon">&#xe658;</i><span>角色管理</span></a>
+                                </dd>
+                                <dd><a href="javascript:;" kit-target
+                                       data-options="{url:'<%=path%>/page/Role/addRole',icon:'&#xe658;',title:'添加角色',id:'52'}"><i
+                                        class="layui-icon">&#xe658;</i><span>添加角色</span></a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </shiro:hasPermission>
+                    <%--root用户可见--%>
+                    <shiro:hasPermission name="root">
+                        <li class="layui-nav-item">
+                            <a href="javascript:;"><span>用户管理</span></a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" kit-target
+                                       data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'53'}"><i
+                                        class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
+                                </dd>
+                                <dd><a href="javascript:;" kit-target
+                                       data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe658;',title:'添加后台用户',id:'54'}"><i
+                                        class="layui-icon">&#xe658;</i><span>添加后台用户</span></a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </shiro:hasPermission>
+
             </ul>
         </div>
     </div>

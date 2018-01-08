@@ -110,7 +110,7 @@
             <a href="javascript:void(0);" onclick="getInvest(this)" id="getInvest" class="">投资记录</a>
             <a href="javascript:void(0);" onclick="dangger(this)" class="">风险提示</a>
         </div>
-        <em class="em-line"></em>
+        <em class="em-line"></em> 
         <div id="borrowCont2">
             <script id="borrowDetail2" type="text/html">
                 <div class="sub-a-box" id="project" style="display: block;">
@@ -187,36 +187,34 @@
         <div class="sub-a-box plan" id="plan">
             <ul class="">
                 <li class="title"><div class="children0">序号</div><div class="children1">计划还款日期</div><div class="children2">实际还款日期</div><div class="children3">应还本息</div><div class="children4">已还本息</div><div class="children5">应付罚息</div><div class="children6">已还罚息</div><div class="children7">状态</div></li>
+            </ul>     
+            <ul class="listData" id="content">
+			<script type="text/html" id="planList">
+				{{#  layui.each(d, function(index, plan){ }}
+				<li class="interval">
+					<div class="children0">{{index+1}}</div><div class="children1">{{formatDateTime(plan.ytime)}}</div><div class="children2">{{formatDateTime(plan.rtime)}}&nbsp;</div><div class="children3">{{plan.ybx}}</div><div class="children4">{{plan.rbx}}</div><div class="children5">{{plan.yfc}}</div><div class="children6">{{plan.rfc}}</div><div class="children7">{{formatHkStatus(plan.status)}}</div>
+				</li>
+				{{#  }); }}
+			</script>
             </ul>
-            <div id="content">
-                <script type="text/html" id="planList">
-                    {{#  layui.each(d, function(index, plan){ }}
-                    <ul class="">
-                        <li class="title"><div class="children0">{{index}}</div><div class="children1">{{formatDateTime(plan.ytime)}}</div><div class="children2">{{formatDateTime(plan.rtime)}}</div><div class="children3">{{plan.ybx}}</div><div class="children4">{{plan.rbx}}</div><div class="children5">{{plan.yfc}}</div><div class="children6">{{plan.rfc}}</div><div class="children7">{{formatHkStatus(plan.status)}}</div></li>
-                    </ul>
-                    {{#  }); }}
-                </script>
-            </div>
-            <div id="planDemo"></div>
-            <ul class="listData">
-            </ul>
+			<div id="planDemo"></div>
+			<ul class="paging"></ul>
         </div>
         <div class="sub-a-box invest" id="invest">
             <ul class="">
                 <li class="title"><div class="children0">投资人</div><div class="children1">金额</div><div class="children2">投资时间</div></li>
             </ul>
-            <div id="userContent">
-                <script type="text/html" id="investList">
+            
+            <ul class="listData" id="userContent">
+			<script type="text/html" id="investList">
                     {{#  layui.each(d, function(index, users){ }}
                     <ul class="">
-                        <li class="title"><div class="children0">{{users.rname}}</div><div class="children1">{{users.money}}</div><div class="children2">{{formatDateTime(users.tztime)}}</div></li>
+                        <li class="interval"><div class="children0">{{users.rname}}</div><div class="children1">{{users.money}}</div><div class="children2">{{formatDateTime(users.tztime)}}</div></li>
                     </ul>
                     {{#  }); }}
-                </script>
-            </div>
-            <div id="investDemo"></div>
-            <ul class="listData">
+            </script>
             </ul>
+			<div id="investDemo"></div>
             <ul class="paging"></ul>
         </div>
         <div class="sub-a-box dangger" id="tips">
