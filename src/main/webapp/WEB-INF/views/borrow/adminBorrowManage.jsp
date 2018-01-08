@@ -80,18 +80,18 @@
 
         <%--审核弹框--%>
         <div style="display: none;" id="checkFrame">
-            <form id="ckForm" name="shborrow">
+            <form id="ckForm" name="shborrow" class="layui-form">
                 <input type="hidden" id="baid" name="baid">
-                <div class="layui-form-item">
+                <div class="layui-form-item layui-col-md11">
                     <label class="layui-form-label">审核状态</label>
-                    <div class="layui-input-block">
+                    <div class="layui-input-block ">
                         <select name="isok">
                             <option value="7">通过</option>
                             <option value="1">驳回</option>
                         </select>
                     </div>
                 </div>
-                <div class="layui-form-item layui-form-text">
+                <div class="layui-form-item layui-form-text layui-col-md11">
                     <label class="layui-form-label">审核理由</label>
                     <div class="layui-input-block">
                         <textarea name="excuse" placeholder="请输入审核理由" class="layui-textarea"></textarea>
@@ -182,7 +182,7 @@
                         shadeClose: true, //显示模态窗口
                         fixed:false,    //层是否固定在可视区域
                         move: true,//禁止拖拽
-                        area: ['890px', '560px'], //宽高
+                        area: ['400px', '270px'], //宽高
                         content: $("#checkFrame")  //弹窗内容
                     });
                     $('#baid').val(data[0].baid);
@@ -202,7 +202,7 @@
                     layer.msg(data.message);
                 },'json');
             layer.closeAll();
-            $('#searchBtn').click();
+            $('#searchBtn').trigger('click');
         });
 
          // 查看还款计划按钮
