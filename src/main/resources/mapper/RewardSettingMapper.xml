@@ -57,7 +57,6 @@
     </trim>
   </insert>
 
-
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.RewardSetting">
     <![CDATA[
         select count(rws.rwsid) from reward_setting rws

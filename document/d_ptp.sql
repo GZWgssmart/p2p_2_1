@@ -756,7 +756,11 @@ alter table huser add constraint uk_huser unique(phone);
 alter table huser add constraint uk_hemail unique(email);
 alter table bankcard add constraint uk_bankcard unique(cardno);
 alter table bankcard add constraint uk_idno unique(idno);
-alter table log_cz add constraint uk_bankcard1 unique(bankcard);
-alter table log_tx add constraint uk_bankcard2 unique(bankcard);
+# alter table log_cz add constraint uk_bankcard1 unique(bankcard);
+# alter table log_tx add constraint uk_bankcard2 unique(bankcard);
 alter table t_user add constraint uk_tzm unique(tzm);
 alter table borrowdetail add constraint uk_cpname unique(cpname);
+
+-- 解除唯一性约束
+ALTER TABLE log_cz DROP INDEX uk_bankcard1;
+ALTER TABLE log_tx DROP INDEX uk_bankcard2;
