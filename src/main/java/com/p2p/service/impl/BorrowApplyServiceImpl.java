@@ -65,11 +65,26 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
             return ServerResponse.createByError("保存失败");
         }
         borrowDetail.setBaid(borrowApply.getBaid());
-        // TODO 产品名称生成
-        borrowDetail.setCpname("PJ" + Calendar.getInstance().get(Calendar.YEAR) + "BZ" + borrowApply.getBaid());
+        borrowDetail.setCpname("PJ" + Calendar.getInstance().get(Calendar.YEAR) + "BZ" + getCpName(borrowApply.getBaid()));
         if(borrowDetailMapper.save(borrowDetail) == 0){
             return ServerResponse.createByError("保存失败");
         }
         return ServerResponse.createBySuccess("保存成功");
+    }
+
+    private String getCpName(Integer baid) {
+        if(baid / 1000 % 10 > 0) {
+            return "" + baid;
+        }
+        if(baid / 100 % 10 > 0) {
+            return "0" + baid;
+        }
+        if(baid / 10 > 0) {
+            return "00" + baid;
+        }
+        if(baid % 10 > 0) {
+            return "000" + baid;
+        }
+        return getCpName(Math.round(baid / 10));
     }
 }
