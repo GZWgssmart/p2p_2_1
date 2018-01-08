@@ -10,63 +10,48 @@
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List">
-    lid, title, content, created_time, status
+
+  <sql id="common_letter">
+   <if test="letter !=null and letter.title != null and letter.title !=''">
+        where l.title like concat('%',#{letter.title},'%')
+   </if>
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from letter
-    where lid = #{lid,jdbcType=INTEGER}
+
+  <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <![CDATA[
+        SELECT l.lid,l.title,l.content,l.created_time, l.status from letter l
+    ]]>
+    <include refid="common_letter"/>
+    order by created_time DESC
+    limit #{pager.beginIndex},#{pager.pageSize}
   </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Letter">
+    <![CDATA[
+          select count(l.lid) from letter l
+    ]]>
+    <include refid="common_letter"/>
+  </select>
+
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from letter
     where lid = #{lid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Letter">
-    insert into letter (lid, title, content, 
+
+  <insert id="save" parameterType="com.p2p.bean.Letter">
+    insert into letter (title, content,
       created_time, status)
-    values (#{lid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
       #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Letter">
-    insert into letter
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="lid != null">
-        lid,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="lid != null">
-        #{lid,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Letter">
+
+  <select id="getById" resultType="com.p2p.bean.Letter">
+    <![CDATA[
+        select * from  letter l where l.lid = #{letterId}
+      ]]>
+  </select>
+
+  <update id="update" parameterType="com.p2p.bean.Letter">
     update letter
     <set>
       <if test="title != null">
@@ -75,21 +60,10 @@
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="createdTime != null">
-        created_time = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
     </set>
-    where lid = #{lid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Letter">
-    update letter
-    set title = #{title,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER}
     where lid = #{lid,jdbcType=INTEGER}
   </update>
 </mapper>

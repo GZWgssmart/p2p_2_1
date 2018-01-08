@@ -1,11 +1,10 @@
-<%--
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: ccf
-  Date: 2017/12/28
-  Time: 15:29
+  Date: 2018/1/5
+  Time: 14:44
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,50 +16,58 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>公告详情</title>
+    <title>站内信详情</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view">
-            <form id="noticeDetail" class="layui-form" action="">
+            <form id="letterDetail" class="layui-form" action="">
 
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label"></label>
                     <div class="layui-input-block">
-                        <input type="hidden" name="nid" id="nid" lay-verify autocomplete="off"
+                        <input type="hidden" name="lid" id="lid" lay-verify autocomplete="off"
                                class="layui-input" readonly/>
                     </div>
                 </div>
 
                 <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label">标题</label>
+                    <label class="layui-form-label">标题：</label>
                     <div class="layui-input-block">
                         <input type="text" name="title" id="title" lay-verify="title" autocomplete="off"
-                               class="layui-input"  style="border:none" readonly/>
+                               class="layui-input" lay-verify="title" style="border:none" readonly/>
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label">内容</label>
+                    <label class="layui-form-label">内容：</label>
                     <div class="layui-input-block">
                         <textarea class="layui-textarea" name="content" id="content" lay-verify="content" style="border:none" readonly></textarea>
                     </div>
                 </div>
 
                 <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label">创建时间</label>
+                    <label class="layui-form-label">创建时间：</label>
                     <div class="layui-input-block">
-                        <input type="text" name="createdTime" id="createdTime" lay-verify="createdTime" autocomplete="off"
-                               class="layui-input" style="border:none" readonly/>
+                        <input type="datetime" class="layui-input" name="createdTime" id="createdTime" autocomplete="off" style="border:none" readonly/>
                     </div>
                 </div>
 
+
+                <div class="layui-form-item" style="margin-top: 40px;">
+                    <label class="layui-form-label">状态：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="status" id="status" lay-verify="status" autocomplete="off"
+                               class="layui-input" lay-verify="status" style="border:none" readonly/>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
+<script type="text/javascript" src="<%=path %>/static/layui/lay/modules/laydate.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script src="<%=path %>/static/js/home/public.js"></script>
 <script>
@@ -73,7 +80,7 @@
         }
         return null;
     }
-    var noticeId = GetQueryString("noticeId");
+    var letterId = GetQueryString("letterId");
     layui.use(['form', 'laytpl', 'layedit'], function () {
 
         var form = layui.form;
@@ -82,30 +89,24 @@
         var laytpl = layui.laytpl;
         var layedit = layui.layedit;
 
-        $.get('<%=path %>/data/message/noticeDetail?noticeId=' + noticeId,
+        $.get('<%=path %>/data/message/letterDetail?letterId=' + letterId,
             function (data) {
-                $('#nid').val(data.nid);
+                $('#lid').val(data.lid);
                 $('#title').val(data.title);
                 $('#content').val(data.content);
+                if(data.status==1){
+                    $('#status').val("激活");
+                }else{
+                    $('#status').val("冻结");
+                }
                 if(data.createdTime) {
                     $('#createdTime').val(formatDate(data.createdTime));
                 }
             });
-        form.verify({
-            title: function(value){
-                if(value.length < 1){
-                    return '需要填写标题';
-                }
-            },content: function(value){
-                if(value.length < 1){
-                    return '需要填写内容';
-                }
-            }
-        });
 
     });
-</script>
 
+</script>
 </body>
 </html>
 

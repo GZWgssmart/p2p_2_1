@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by ccf on 2017/12/26.
  */
 @Controller
-@RequestMapping("data/message")
+@RequestMapping("/data/message")
 public class FriendController {
     @Autowired
     private FriendService friendService;
