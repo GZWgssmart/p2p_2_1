@@ -1,6 +1,7 @@
 package com.p2p.service.impl;
 
 import com.p2p.common.Pager;
+import com.p2p.common.ServerResponse;
 import com.p2p.dao.TicketMapper;
 import com.p2p.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,19 @@ public class TicketServiceImpl extends AbstractServiceImpl implements TicketServ
         pager.setRows(ticketMapper.listUserTicket(pager, obj));
         pager.setTotal(ticketMapper.countUserTicket(obj));
         return pager;
+    }
+
+    @Override
+    public ServerResponse<Integer> updateStatus(String[] kid) {
+//        try {
+            if(ticketMapper.updateStatus(kid) != 0) {
+                return ServerResponse.createBySuccess("更新成功");
+            } else {
+                return ServerResponse.createByError("更新失败");
+            }
+//        } catch (RuntimeException e) {
+//            return ServerResponse.createByError("更新失败");
+//        }
     }
 
     @Autowired

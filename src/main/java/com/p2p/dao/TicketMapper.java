@@ -19,5 +19,5 @@ public interface TicketMapper extends BaseDAO {
 
     Long countUserTicket(@Param("query") Object obj);
 
-
+    int updateStatus(String[] kid);
 }

@@ -134,4 +134,11 @@
     <include refid="userTicket"/>
   </select>
 
+  <update id="updateStatus">
+    update ticket set status = 1 where kid in
+    <foreach collection="array" open="(" close=")" item="kid" separator=",">
+      #{kid}
+    </foreach>
+  </update>
+
 </mapper>

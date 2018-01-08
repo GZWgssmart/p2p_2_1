@@ -49,4 +49,12 @@ public class TicketController {
         return ticket;
     }
 
+    @RequestMapping("status")
+    @ResponseBody
+    public ServerResponse vip(String kid) {
+        System.out.println("kid:" + kid);
+        String[] strings = kid.split(",");
+        return ticketService.updateStatus(strings);
+    }
+
 }

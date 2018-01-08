@@ -153,10 +153,29 @@
             ,jieshu:function () {
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
+                var kid = '';
                 if(data.length == 0) {
                     layer.msg('请选中一行！');
                 } else {
-                    layer.alert(data);
+                    for(var i = 0; i < data.length; i++) {
+                        kid +=data[i].kid + ",";
+                    }
+                    $.post('<%=path %>/data/ticket/status',{kid:kid},
+                        function (res) {
+                            if(res.code == 0) {
+                                layer.msg('审核成功！',function () {
+                                    //执行重载
+                                    table.reload('idTest', {
+                                        page: {
+                                            curr: 1 //重新从第 1 页开始
+                                        }
+                                    });
+                                });
+                            } else {
+                                layer.msg('失败');
+                            }
+                        }
+                    );
                 }
             }
         };
