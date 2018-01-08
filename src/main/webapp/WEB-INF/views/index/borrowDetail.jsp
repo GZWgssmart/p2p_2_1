@@ -10,6 +10,7 @@
 <%
     String path = request.getContextPath();
 %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>投资详情</title>
@@ -22,8 +23,8 @@
 <%@include file="../master/top.jsp" %>
 <%@include file="../master/header.jsp" %>
 <div class="layui-container">
-<div id="borrowCont">
-    <script id="borrowDetail" type="text/html">
+<div id="borrowCont1">
+    <script id="borrowDetail1" type="text/html">
     <div class="subject">
         <div class="subject-submit">
             <div class="subject-submit-l" style="display: block;">
@@ -99,6 +100,8 @@
             </div>
         </div>
     </div>
+    </script>
+</div>
     <div class="sub-about">
         <div class="sub-a-nav">
             <a href="javascript:void(0);" class="active" onclick="getDetail(this)">项目详情</a>
@@ -108,86 +111,110 @@
             <a href="javascript:void(0);" onclick="dangger(this)" class="">风险提示</a>
         </div>
         <em class="em-line"></em>
-        <div class="sub-a-box" id="project" style="display: block;">
-            <div class="detail cl">
-                <p class="title">产品名称：</p><p class="content" id="projectTitle">{{d.cpname}}</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">募集资金：</p><p class="content" id="projectAmount">{{d.money}}元</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">预期年化收益：</p><p class="content" id="projectRate">{{d.nprofit}}%</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">起息日期：</p><p class="content">满标计息</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">资金用途：</p><p class="content" id="moneyPurposes">{{d.mpurpose}}</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">收益方式：</p><p class="content" id="projectType">按月付息，到期还本</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">还款来源：</p><p class="content" id="retsource">{{d.hksource}}</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">借款人介绍：</p><p class="content" id="projectIntro">{{d.suggest}}</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">项目描述：</p><p class="content" id="projectDetail">{{d.xmdes}}</p>
-            </div>
-            <div class="detail cl">
-                <p class="title">保障措施：</p><p class="content" id="safeMeasures">{{d.guarantee}}</p>
-            </div>
-        </div>
-        <div class="sub-a-box files" id="files">
-            <p class="icon icon-danger files-title">互联金融将以客观、公正的原则，最大程度地核实借入者信息的真实性，但不保证审核信息100%真实。如果借入者长期逾期，其提供的信息将被公布。</p>
-            <ul class="files-box">
-                <li class="layui-col-md2">
-                    {{# if(d.fpic != null && d.fpic != ''){ }}
-                    <img alt="" width="320" height="200" src="<%=path %>/{{d.fpic}}">
-                    <p>
-                        <span class="icon icon-true">法人身份认证</span>
-                    </p>
-                    {{# } }}
-                </li>
-                <li class="layui-col-md2">
-                    {{# if(d.ypic != null && d.ypic != ''){ }}
-                    <img alt="" width="320" height="200" src="<%=path %>/{{d.ypic}}">
-                    <p>
-                        <span class="icon icon-true">营业执照</span>
-                    </p>
-                    {{# } }}
-                </li>
-                <li class="layui-col-md2">
-                    {{# if(d.qpic != null && d.qpic != ''){ }}
-                    <img alt="" width="320" height="200" src="<%=path %>/{{d.qpic}}">
-                    <p>
-                        <span class="icon icon-true">银行账号</span>
-                    </p>
-                    {{# } }}
-                </li>
-                <li class="layui-col-md2">
-                    {{# if(d.tpic != null && d.tpic != ''){ }}
-                    <img alt="" width="320" height="200" src="<%=path %>/{{d.tpic}}">
-                    <p>
-                        <span class="icon icon-true">其他资料</span>
-                    </p>
-                    {{# } }}
-                </li>
-            </ul>
+        <div id="borrowCont2">
+            <script id="borrowDetail2" type="text/html">
+                <div class="sub-a-box" id="project" style="display: block;">
+                    <div class="detail cl">
+                        <p class="title">产品名称：</p><p class="content" id="projectTitle">{{d.cpname}}</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">募集资金：</p><p class="content" id="projectAmount">{{d.money}}元</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">预期年化收益：</p><p class="content" id="projectRate">{{d.nprofit}}%</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">起息日期：</p><p class="content">满标计息</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">资金用途：</p><p class="content" id="moneyPurposes">{{d.mpurpose}}</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">收益方式：</p><p class="content" id="projectType">按月付息，到期还本</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">还款来源：</p><p class="content" id="retsource">{{d.hksource}}</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">借款人介绍：</p><p class="content" id="projectIntro">{{d.suggest}}</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">项目描述：</p><p class="content" id="projectDetail">{{d.xmdes}}</p>
+                    </div>
+                    <div class="detail cl">
+                        <p class="title">保障措施：</p><p class="content" id="safeMeasures">{{d.guarantee}}</p>
+                    </div>
+                </div>
+                <div class="sub-a-box files" id="files">
+                    <p class="icon icon-danger files-title">互联金融将以客观、公正的原则，最大程度地核实借入者信息的真实性，但不保证审核信息100%真实。如果借入者长期逾期，其提供的信息将被公布。</p>
+                    <ul class="files-box">
+                        <li class="layui-col-md2">
+                            {{# if(d.fpic != null && d.fpic != ''){ }}
+                            <img alt="" width="320" height="200" src="<%=path %>/{{d.fpic}}">
+                            <p>
+                                <span class="icon icon-true">法人身份认证</span>
+                            </p>
+                            {{# } }}
+                        </li>
+                        <li class="layui-col-md2">
+                            {{# if(d.ypic != null && d.ypic != ''){ }}
+                            <img alt="" width="320" height="200" src="<%=path %>/{{d.ypic}}">
+                            <p>
+                                <span class="icon icon-true">营业执照</span>
+                            </p>
+                            {{# } }}
+                        </li>
+                        <li class="layui-col-md2">
+                            {{# if(d.qpic != null && d.qpic != ''){ }}
+                            <img alt="" width="320" height="200" src="<%=path %>/{{d.qpic}}">
+                            <p>
+                                <span class="icon icon-true">银行账号</span>
+                            </p>
+                            {{# } }}
+                        </li>
+                        <li class="layui-col-md2">
+                            {{# if(d.tpic != null && d.tpic != ''){ }}
+                            <img alt="" width="320" height="200" src="<%=path %>/{{d.tpic}}">
+                            <p>
+                                <span class="icon icon-true">其他资料</span>
+                            </p>
+                            {{# } }}
+                        </li>
+                    </ul>
+                </div>
+            </script>
         </div>
         <div class="sub-a-box plan" id="plan">
             <ul class="">
-                <li class="title"><div class="children0">序号</div><div class="children1">计划还款日期</div><div class="children2">实际还款日期</div><div class="children3">已还本息</div><div class="children4">待还本息</div><div class="children5">已付罚息</div><div class="children6">待还罚息</div><div class="children7">状态</div></li>
+                <li class="title"><div class="children0">序号</div><div class="children1">计划还款日期</div><div class="children2">实际还款日期</div><div class="children3">应还本息</div><div class="children4">已还本息</div><div class="children5">应付罚息</div><div class="children6">已还罚息</div><div class="children7">状态</div></li>
             </ul>
+            <div id="content">
+                <script type="text/html" id="planList">
+                    {{#  layui.each(d, function(index, plan){ }}
+                    <ul class="">
+                        <li class="title"><div class="children0">{{index}}</div><div class="children1">{{formatDateTime(plan.ytime)}}</div><div class="children2">{{formatDateTime(plan.rtime)}}</div><div class="children3">{{plan.ybx}}</div><div class="children4">{{plan.rbx}}</div><div class="children5">{{plan.yfc}}</div><div class="children6">{{plan.rfc}}</div><div class="children7">{{formatHkStatus(plan.status)}}</div></li>
+                    </ul>
+                    {{#  }); }}
+                </script>
+            </div>
+            <div id="planDemo"></div>
             <ul class="listData">
             </ul>
         </div>
         <div class="sub-a-box invest" id="invest">
             <ul class="">
-                <li class="title"><div class="children0">投资人</div><div class="children1">金额</div><div class="children2">投资时间</div><div class="children3">投资方式</div></li>
+                <li class="title"><div class="children0">投资人</div><div class="children1">金额</div><div class="children2">投资时间</div></li>
             </ul>
+            <div id="userContent">
+                <script type="text/html" id="investList">
+                    {{#  layui.each(d, function(index, users){ }}
+                    <ul class="">
+                        <li class="title"><div class="children0">{{users.rname}}</div><div class="children1">{{users.money}}</div><div class="children2">{{formatDateTime(users.tztime)}}</div></li>
+                    </ul>
+                    {{#  }); }}
+                </script>
+            </div>
+            <div id="investDemo"></div>
             <ul class="listData">
             </ul>
             <ul class="paging"></ul>
@@ -239,8 +266,6 @@
 
         </div>
     </div>
-    </script>
-</div>
 </div>
 
 <script id="ticketType" type="text/html">
@@ -257,6 +282,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/borrow/detail.js"></script>
 <script>
@@ -265,34 +291,120 @@
     if(uid == null || uid == '') {
         uid = 0;
     }
+    //还款计划
+    function getPlan(obj){
+        if($(obj).hasClass('active')){
+            return;
+        }
+        $('.em-line').animate({'left':'280px'},500);
+        $('.sub-a-box').hide();
+        $(obj).addClass('active').siblings().removeClass('active');
+        $('#plan').show();
+        pagerCommon('#planList','content','<%=path %>/data/hkb/planList','planDemo');
+    }
+
+    //投资记录
+    function getInvest(obj){
+        if($(obj).hasClass('active')){
+            return;
+        }
+        if($('.plan').is(':visible')){
+            $('.em-line').animate({'left':'400px'},500);
+        }else{
+            $('.em-line').animate({'left':'280px'},500);
+        }
+        $('.sub-a-box').hide();
+        $(obj).addClass('active').siblings().removeClass('active');
+        $('#invest').show();
+        pagerCommon('#investList','userContent','<%=path %>/data/tz/investUsers','investDemo');
+    }
+
+    function pagerCommon(scriptId, contentId, url, toolBar) {
+        layui.use(['element', 'laypage', 'laytpl'], function () {
+            var $ = layui.$;
+            var element = layui.element;
+            var laypage = layui.laypage;
+            var laytpl = layui.laytpl;
+
+            var page = 1; // 第一页开始
+            var limit = 10; // 每页十个数据，laypage默认也是十个
+            var getTpl = $(scriptId).html()
+                , view = document.getElementById(contentId);
+            // 获取数据
+            $.get(url, {
+                page: page
+                , limit: limit
+                ,baid: ${requestScope.baid}
+            }, function (data) {
+                fenye(data.rows);
+                pageTotal(data.total)
+            });
+
+            // 渲染数据
+            function fenye(data) {
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            }
+
+            // 分页组件
+            function pageTotal(total) {
+                laypage.render({
+                    elem: toolBar
+                    , count: total
+                    , curr: location.hash.replace('#!page=', '') //获取起始页
+                    , hash: 'page' //自定义hash值
+                    , jump: function (obj, first) {
+                        //obj包含了当前分页的所有参数，比如：
+                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        console.log(obj.limit); //得到每页显示的条数
+
+                        //在点击页号和上下页的时候重新加载数据
+                        if (!first) {
+                            $.get(url, {
+                                page: obj.curr,
+                                limit: obj.limit
+                            }, function (data) {
+                                fenye(data.rows);
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
+
     layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
         var element = layui.element;
         var laytpl = layui.laytpl;
 
-        var getTpl = borrowDetail.innerHTML
-            , view = document.getElementById('borrowCont');
+        var getTpl1 = borrowDetail1.innerHTML
+            ,getTpl2 = borrowDetail2.innerHTML
+            , view1 = document.getElementById('borrowCont1')
+            , view2 = document.getElementById('borrowCont2');
         $.post('<%=path %>/data/borrow/detail'
             ,{ baid:${requestScope.baid} }
             , function (data) {
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
+                laytpl(getTpl1).render(data, function (html) {
+                    view1.innerHTML = html;
+                });
+                laytpl(getTpl2).render(data, function (html) {
+                    view2.innerHTML = html;
                 });
             },'json');
 
         // 获取类别
         $.post('<%=path %>/data/userticket/myticket',{uid:uid},
             function (data) {
-                var html = "";
-                var money = "";
-                if(data != null || data != '') {
-                    for(var i = 0; i <= data.length; i++) {
-                        html = data[i].name;
-                        money = data[i].tkmoney;
-                        $('#selectQuan').append("<option value='10'>" + html + "</option>");
+                var html = '';
+                if(data.length != 0) {
+                    for(var i = 0; i < data.length; i++) {
+                        html += "<option value='" + data[i].tkmoney + "'>" + data[i].name + "</option>"
                     }
+                    $('#selectQuan').append(html);
                 } else {
-//                    $('#selectQuan').append("<option>没有优惠券</option>");
+
                 }
             },'json'
         );

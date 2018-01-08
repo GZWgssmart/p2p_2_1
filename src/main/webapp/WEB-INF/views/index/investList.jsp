@@ -27,29 +27,33 @@
                 <div class="invest-top-list">
                     <p>项目期限：</p>
                     <ul id="term">
-                        <li class="active"><a href="javascript:void(0);" onclick="searchBorrow('term', null, null, null, null);">全部</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('term', 3, null, null, null);">3个月</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('term', 6, null, null, null);">6个月</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('term', 12, null, null, null);">12个月</a></li>
+                        <li class="active"><a href="javascript:void(0);" id="searchTerm">全部</a></li>
+                        <li><a href="javascript:void(0);" id="searchTerm1">3个月</a></li>
+                        <li><a href="javascript:void(0);" id="searchTerm2">6个月</a></li>
+                        <li><a href="javascript:void(0);" id="searchTerm3">12个月</a></li>
+                        <input type="hidden" id="termCount">
                     </ul>
                 </div>
                 <div class="invest-top-list">
                     <p>年化收益：</p>
                     <ul id="nprofit">
-                        <li class="active"><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, null, null, null);">全部</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, 0, 10, null);"><=10%</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, 10, 15, null);">10%-15%</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('nprofit', null, 15, 25, null);">15%-25%</a></li>
+                        <li class="active"><a href="javascript:void(0);" id="searchNpro">全部</a></li>
+                        <li><a href="javascript:void(0);" id="searchNpro1"><=10%</a></li>
+                        <li><a href="javascript:void(0);" id="searchNpro2">10%-15%</a></li>
+                        <li><a href="javascript:void(0);" id="searchNpro3">15%-25%</a></li>
+                        <input type="hidden" id="minNpro">
+                        <input type="hidden" id="MaxNpro">
                     </ul>
                 </div>
                 <div class="invest-top-list">
                     <p>项目类型：</p>
                     <ul id="bz">
-                        <li class="active"><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, null);">全部</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 3);">多金宝</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 2);">普金保</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 1);">恒金保</a></li>
-                        <li><a href="javascript:void(0);" onclick="searchBorrow('bz', null, null, null, 4);">新手标</a></li>
+                        <li class="active"><a href="javascript:void(0);" id="searchBz">全部</a></li>
+                        <li><a href="javascript:void(0);" id="searchBz3">多金宝</a></li>
+                        <li><a href="javascript:void(0);" id="searchBz2">普金保</a></li>
+                        <li><a href="javascript:void(0);" id="searchBz1">恒金保</a></li>
+                        <li><a href="javascript:void(0);" id="searchBz4">新手标</a></li>
+                        <input type="hidden" id="bzid">
                     </ul>
                 </div>
             </div>
@@ -57,7 +61,7 @@
                 <div class="invest-top-list">
                     <div class="textmiddle">借款标题</div>
                     <input type="text" name="cpname" class="text" id="cpname"/>
-                    <a href="javascript:void(0);" class="layui-btn layui-btn-normal" onclick="searchBorrow(null, null, null, null, null);">搜索</a>
+                    <a href="javascript:void(0);" class="layui-btn layui-btn-normal" id="searchCpname">搜索</a>
                 </div>
             </div>
         </div>
@@ -108,15 +112,11 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
-    $(function(){
-        search(null, null, null, null, null);
-    });
-
     function borrowDetail(baid) {
         window.location.href='<%=path %>/page/borrowApply/detail/'+ baid;
     }
 
-    function searchBorrow(demoId, term, min, max, bzid) {
+    function searchBorrow(demoId) {
         if(demoId !== '') {
             $('#'+ demoId +' li').removeClass('active');
             $('a').click(
@@ -124,67 +124,149 @@
                     $(this).parent().attr('class','active');
                 });
         }
-        var cpname = $('#cpname').val();
-        search(term, min, max, cpname, bzid);
     }
 
-    function search(term, min, max, cpname, bzid) {
-        layui.use(['element', 'laypage', 'laytpl'], function () {
-            var $ = layui.$;
-            var element = layui.element;
-            var laypage = layui.laypage;
-            var laytpl = layui.laytpl;
+    layui.use(['element', 'laypage', 'laytpl'], function () {
+        var $ = layui.$;
+        var element = layui.element;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl;
 
-            var page = 1; // 第一页开始
-            var limit = 10; // 每页十个数据，laypage默认也是十个
-            var getTpl = $('#borrowList').html()
-                , view = document.getElementById('content');
+        var page = 1; // 第一页开始
+        var limit = 10; // 每页十个数据，laypage默认也是十个
+        var getTpl = $('#borrowList').html()
+            , view = document.getElementById('content');
+        $(function () {
+            doSearch();
+        });
+
+        function doSearch() {
             // 获取数据
             $.get('<%=path %>/data/borrow/frontList', {
                 page: page
                 , limit: limit
-                , term : term
-                , nprofitMax:max
-                ,nprofitMin:min
-                ,cpname: cpname
-                ,bzid: bzid
+                , term : $('#termCount').val()
+                , nprofitMax:$('#maxNpro').val()
+                ,nprofitMin:$('#minNpro').val()
+                ,cpname: $('#cpname').val()
+                ,bzid: $('#bzid').val()
             }, function (data) {
                 fenye(data.rows);
                 pageTotal(data.total)
             });
+        }
 
-            // 渲染数据
-            function fenye(data) {
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
+        // 渲染数据
+        function fenye(data) {
+            laytpl(getTpl).render(data, function (html) {
+                view.innerHTML = html;
+            });
+        }
+
+        $('#searchCpname').on('click', function(){
+            var cpname = $('#cpname').val();
+            if(cpname === null || cpname.trim() === '') {
+                return;
             }
-
-            // 分页组件
-            function pageTotal(total) {
-                laypage.render({
-                    elem: 'borrowDemo'
-                    , count: total
-                    , curr: location.hash.replace('#!page=', '') //获取起始页
-                    , hash: 'page' //自定义hash值
-                    , jump: function (obj, first) {
-                        //obj包含了当前分页的所有参数，比如：
-                        console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-                        console.log(obj.limit); //得到每页显示的条数
-
-                        //在点击页号和上下页的时候重新加载数据
-                        if (!first) {
-                            $.get('<%=path %>/data/borrow/frontList', {
-                                page: obj.curr,
-                                limit: obj.limit
-                            }, function (data) {
-                                fenye(data.rows);
-                            });
-                        }
-                    }
-                });
-            }
+            doSearch();
         });
-    }
+
+        $('#searchBz1').on('click', function(){
+            searchBorrow('bz');
+            $('#bzid').val(1);
+            doSearch();
+        });
+        $('#searchBz2').on('click', function(){
+            searchBorrow('bz');
+            $('#bzid').val(2);
+            doSearch();
+        });
+        $('#searchBz3').on('click', function(){
+            searchBorrow('bz');
+            $('#bzid').val(3);
+            doSearch();
+        });
+        $('#searchBz4').on('click', function(){
+            searchBorrow('bz');
+            $('#bzid').val(4);
+            doSearch();
+        });
+        $('#searchBz').on('click', function(){
+            searchBorrow('bz');
+            $('#bzid').val(null);
+            doSearch();
+        });
+
+        $('#searchNpro').on('click', function(){
+            searchBorrow('nprofit');
+            $('#maxNpro').val(null);
+            $('#minNpro').val(null);
+            doSearch();
+        });
+        $('#searchNpro1').on('click', function(){
+            searchBorrow('nprofit');
+            $('#maxNpro').val(10);
+            $('#minNpro').val(0);
+            doSearch();
+        });
+        $('#searchNpro2').on('click', function(){
+            searchBorrow('nprofit');
+            $('#maxNpro').val(15);
+            $('#minNpro').val(10);
+            doSearch();
+        });
+        $('#searchNpro3').on('click', function(){
+            searchBorrow('nprofit');
+            $('#maxNpro').val(25);
+            $('#minNpro').val(15);
+            doSearch();
+        });
+
+        $('#searchTerm').on('click', function(){
+            searchBorrow('term');
+            $('#termCount').val(null);
+            doSearch();
+        });
+        $('#searchTerm1').on('click', function(){
+            searchBorrow('term');
+            $('#termCount').val(3);
+            doSearch();
+        });
+        $('#searchTerm2').on('click', function(){
+            searchBorrow('term');
+            $('#termCount').val(6);
+            doSearch();
+        });
+        $('#searchTerm3').on('click', function(){
+            searchBorrow('term');
+            $('#termCount').val(12);
+            doSearch();
+        });
+
+        // 分页组件
+        function pageTotal(total) {
+            laypage.render({
+                elem: 'borrowDemo'
+                , count: total
+                , curr: location.hash.replace('#!page=', '') //获取起始页
+                , hash: 'page' //自定义hash值
+                , jump: function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //在点击页号和上下页的时候重新加载数据
+                    if (!first) {
+                        $.get('<%=path %>/data/borrow/frontList', {
+                            page: obj.curr,
+                            limit: obj.limit
+                        }, function (data) {
+                            fenye(data.rows);
+                        });
+                    }
+                }
+            });
+        }
+    });
 </script>
 </html>

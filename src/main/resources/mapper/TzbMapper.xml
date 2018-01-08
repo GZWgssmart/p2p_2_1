@@ -28,6 +28,16 @@
     where tzid = #{tzid,jdbcType=INTEGER}
   </select>
 
+  <select id="listPagerCriteria" resultType="com.p2p.vo.InvestListVO">
+    select tz.money, tz.tztime, u.rname from tzb tz, t_user u where tz.uid = u.uid
+    and tz.baid = #{query.baid}
+    order by tz.tztime desc limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long">
+    select count(tz.tzid) from tzb tz, t_user u where tz.uid = u.uid and tz.baid = #{query.baid}
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from tzb where tzid = #{tzid,jdbcType=INTEGER}
   </delete>

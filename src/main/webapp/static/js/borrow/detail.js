@@ -18,30 +18,6 @@ function getFile(obj){
     $(obj).addClass('active').siblings().removeClass('active');
     $('#files').show();
 }
-//还款计划
-function getPlan(obj){
-    if($(obj).hasClass('active')){
-        return;
-    };
-    $('.em-line').animate({'left':'280px'},500);
-    $('.sub-a-box').hide();
-    $(obj).addClass('active').siblings().removeClass('active');
-    $('#plan').show();
-}
-//投资记录
-function getInvest(obj){
-    if($(obj).hasClass('active')){
-        return;
-    };
-    if($('.plan').is(':visible')){
-        $('.em-line').animate({'left':'400px'},500);
-    }else{
-        $('.em-line').animate({'left':'280px'},500);
-    }
-    $('.sub-a-box').hide();
-    $(obj).addClass('active').siblings().removeClass('active');
-    $('#invest').show();
-};
 
 function dangger(obj){
     if($(obj).hasClass('active')){

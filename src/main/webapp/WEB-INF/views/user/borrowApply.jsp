@@ -210,7 +210,7 @@
                         location.reload(true);
                     });
                 } else {
-                    layer.msg(res.message);
+                    layer.msg("提交失败！");
                 }
             }, 'json'
         );
