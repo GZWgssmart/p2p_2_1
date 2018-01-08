@@ -35,7 +35,6 @@
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
                         <select name="bzid" id="bzid" lay-filter="aihao">
-                            <%--// TODO 标种从数据库循环--%>
                             <option value="">请选择标种</option>
                             <option value="1">恒金宝</option>
                             <option value="2">普金宝</option>

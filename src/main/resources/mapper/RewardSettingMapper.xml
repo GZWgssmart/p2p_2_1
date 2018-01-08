@@ -52,19 +52,11 @@
     </trim>
   </insert>
 
-
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.RewardSetting">
     <![CDATA[
         select count(rws.rwsid) from reward_setting rws
     ]]>
   </select>
-
-  <insert id="save" parameterType="com.p2p.bean.RewardSetting">
-    insert into reward_setting ( minmoney, maxmoney,
-      percent)
-    values (#{minmoney,jdbcType=DECIMAL}, #{maxmoney,jdbcType=DECIMAL},
-      #{percent,jdbcType=DOUBLE})
-  </insert>
 
   <select id="getById" resultType="com.p2p.bean.RewardSetting">
     <![CDATA[
