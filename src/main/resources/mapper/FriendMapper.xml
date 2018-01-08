@@ -67,4 +67,7 @@
       fpic = #{fpic,jdbcType=VARCHAR}
     where fid = #{fid,jdbcType=INTEGER}
   </update>
+  <select id="listAll" resultType="com.p2p.bean.Friend">
+    select * from friend
+  </select>
 </mapper>

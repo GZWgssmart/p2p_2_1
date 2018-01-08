@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ccf on 2017/12/26.
  */
@@ -27,5 +30,17 @@ public class FriendController {
     @ResponseBody
     public ServerResponse addFriend(Friend friend){
         return friendService.save(friend);
+    }
+
+    @RequestMapping("allIndexfriend")
+    @ResponseBody
+    public List<Friend> allIndexfriend(){
+        List<Friend> friends = new ArrayList<>();
+        List<Object> objects =  friendService.listAll();
+        for(Object obj : objects) {
+            Friend friend = (Friend) obj;
+            friends.add(friend);
+        }
+        return friends;
     }
 }

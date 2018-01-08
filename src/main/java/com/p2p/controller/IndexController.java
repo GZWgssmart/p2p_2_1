@@ -20,4 +20,9 @@ public class IndexController {
         return "statically/insurance";
     }
 
+    @RequestMapping("test")
+    public String test(){
+        return "test";
+    }
+
 }

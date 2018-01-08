@@ -19,6 +19,14 @@
     <link rel="stylesheet" href="<%=path%>/static/css/front/index.css">
     <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
 </head>
+<style type="text/css">
+    <!--
+    #demo {overflow:hidden;width:1200px; }
+    #demos { float: left; width: 800%;}
+    #demo1 { float: left; }
+    #demo2 { float: left;margin-left:7px;}
+    -->
+</style>
 <body>
 <%@include file="master/top.jsp"%>
 <%@include file="master/header.jsp"%>
@@ -175,10 +183,10 @@
 
         <!-- news -->
         <div class="layui-fluid" style="width: 89%;margin-top: 30px;">
-            <div class="layui-col-sm8"  style="background-color: white;  width: auto; ">
-                    <div class="grid-demo grid-demo-bg1">
+            <div class="layui-col-sm8"  style="background-color: white;  width: auto;height: 400px">
+                    <div class="grid-demo grid-demo-bg1"style="margin-top: 20px;">
                                 <span style="font-size: 20px;">媒体报道</span>
-                                <a href="https://www.pujinziben.com/about.html#gsdt?type=1" style="float: right">更多</a>
+                                <a href="<%=path %>/page/dynamic/indexDynamic#test1=1" style="float: right">更多</a>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
                         </fieldset>
                         <div class="news-main-content"  id="media">
@@ -201,8 +209,8 @@
                             </div>
                         </div>
                 </div>
-                <div class="layui-col-sm4"  style="background-color: white;">
-                    <div class="grid-demo" style="margin-left: 40px;">
+                <div class="layui-col-sm4"  style="background-color: white;height: 400px">
+                    <div class="grid-demo" style="margin-left: 40px; margin-top: 20px;">
                         <span style="font-size: 20px;">最新公告</span>
                         <a href="https://www.pujinziben.com/about.html#ptgg" style="float: right">更多</a>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
@@ -210,7 +218,7 @@
                         <div   id="notice">
                             <script type="text/html" id="noticeDemo">
                                 {{#layui.each(d, function(index, notice){ }}
-                            <div class="news-main-content">
+                            <div class="news-main-content"  style="margin-top: 10px;">
                                 <ul class="news-main-list" id="newsContent">
                                     <li>
                                         <a href="<%=path %>/page/message/noticeDetail?noticeId={{notice.nid}}" target="_blank">
@@ -225,16 +233,16 @@
                         </div>
                         <div class="news-main-top ptop" style="margin-top: 20px">
                             <span style="font-size: 20px;">公司动态</span>
-                            <p class="more icon icon-more"><a href="https://www.pujinziben.com/about.html#gsdt">更多</a></p>
+                            <a href="<%=path %>/page/dynamic/indexDynamic" style="float: right">更多</a>
                         </div>
                         <div class="news-main-content" id="dynamic">
                             <script type="text/html" id="dynamicDemo">
-                                {{#layui.each(d, function(index, dynamic){ }}
-                            <ul class="news-main-list" id="news-part">
+                                {{# layui.each(d, function(index, dynamic){ }}
+                            <ul class="news-main-list" id="news-part" style="margin-top: 10px;">
                                 <li>
                                     <a href="<%=path %>/page/dynamic/dynamicDetail?dynamicId={{dynamic.dyid}}"target="_blank">{{dynamic.title}}
                                     </a>
-                                    <span>{{ formatDate(dynamic.createdTime) }}</span>
+                                    <span style="float: right">{{ formatDate(dynamic.createdTime) }}</span>
                                 </li>
                             </ul>
                                 {{#  }); }}
@@ -251,14 +259,12 @@
                 <div class="link-title">
                     合作伙伴
                 </div>
-                <div class="link-list">
-                    <div class="link-list-box" style="width: 5840px;">
-                        <ul class="cl" id="linkList" style="width: 2920px;">
-                            <li><a target="view_frame" href="http://www.gzctgroup.cn/" title="赣州城投集团">
-                                <img src="./普金资本-安全可靠专注于供应链金融的国资背景P2P理财平台_files/201612290824108901.jpg" alt="赣州城投集团">
-                            </a>
-                            </li>
-                        </ul>
+                <div id="demo">
+                    <div id="demos">
+                        <div id="demo1">
+
+                        </div>
+                        <div id="demo2"></div>
                     </div>
                 </div>
             </div>
@@ -285,7 +291,7 @@
     layui.use(['laytpl','element'], function () {
         var $ = layui.$;
         var laytpl = layui.laytpl;
-        
+
 
         $.get("<%=path %>/data/home/indexMsg?page=1&limit=1",
             function (data) {
@@ -329,7 +335,36 @@
                 dynamicview.innerHTML = html;
             });
         })
+        //渲染合作伙伴
+        var friendgetTpl = $('#friendDemo').html()
+            , friendview = document.getElementById('friend');
+        $.post("<%=path %>/data/message/allIndexfriend",
+            function (data) {
+                var html = "";
+                for(var i = 0; i<data.length; i++) {
+                   html +="<a href='" +data[i].furl+ "'><img style='border: 1px solid #f0e8df;margin-left: 20px;' src='" + data[i].fpic + "' /></a>";
+                }
+                document.getElementById("demo1").innerHTML = html;
+                document.getElementById("demo2").innerHTML = html;
+        })
 
     })
+</script>
+<script>
+    var speed=30; //数字越大速度越慢
+    var tab=document.getElementById("demo");
+    var tab1=document.getElementById("demo1");
+    var tab2=document.getElementById("demo2");
+    tab2.innerHTML=tab1.innerHTML;
+    function Marquee(){
+        if(tab2.offsetWidth-tab.scrollLeft<=0)
+            tab.scrollLeft-=tab1.offsetWidth
+        else{
+            tab.scrollLeft++;
+        }
+    }
+    var MyMar=setInterval(Marquee,speed);
+    tab.onmouseover=function() {clearInterval(MyMar)};
+    tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
 </script>
 </html>
