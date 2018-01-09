@@ -70,9 +70,8 @@ public class UserController {
                 return userService.save(user);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            return ServerResponse.createByError();
         }
-        return ServerResponse.createBySuccess();
     }
 
     @RequestMapping("login")

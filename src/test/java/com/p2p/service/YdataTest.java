@@ -39,8 +39,8 @@ public class YdataTest extends BaseTest {
 //        //月贷款笔数
 //        ydata.setMdkbno(2);
 //        ydata.setYid(1);
-        ydata.setCreatedTime(new Date());
-        ydataService.save(ydata);
+        ydata.setYid(2);
+        ydataService.update(ydata);
     }
 
     @Test

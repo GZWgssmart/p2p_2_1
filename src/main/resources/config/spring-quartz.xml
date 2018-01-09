@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.p2p.quartz" />
+
+
+    <bean id="cronJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="cronJobDetail" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.p2p.quartz.YdataUpdateJob" />
+        <property name="durability" value="true" />
+        <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
+            <map>
+                <entry key ="ydataService" value-ref="ydataService"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="cronJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="cronJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="cronJobDetail" />
+        <property name="cronExpression" value="0 */1 * * * ?" />
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+                <ref bean="cronJobDetail" />
+        </property>
+        <property name="triggers">
+                <ref bean="cronJobTrigger" />
+        </property>
+    </bean>
+
+</beans>

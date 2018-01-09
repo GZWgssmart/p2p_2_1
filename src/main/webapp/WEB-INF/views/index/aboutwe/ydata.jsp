@@ -93,7 +93,9 @@
                     </div>
                 </div>
                 <div class="layui-tab-item">
-                    876543
+                    <a href="http://pujinziben.com/upload/operatereport/front/2018/1/20180103141623751.pdf" target="_blank">
+                        <img src="/static/images/ydata/12.jpg" />
+                    </a>
                 </div>
             </div>
         </div>
