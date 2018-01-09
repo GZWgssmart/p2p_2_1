@@ -151,16 +151,17 @@
                 </div>
             </div>
             <!-- 恒金保 -->
-            <div class="product-h" id="pj_hengjin">
+            <div class="product-h" id="pj_hengjin" style="width: 100%;height: 400px;margin-top: 30px;background-color: #fff;overflow: hidden;">
                 <div class="product-h-l">
                     <img src="<%=path %>static/images/index/product_01.png" alt="恒金保">
                     <a href="<%=path%>/page/borrowApply/investList" class="top"></a>
                     <a href="<%=path%>/page/borrowApply/investList" class="bottom"></a>
                 </div>
-                <div class="product-h-m" id="hjbCont">
-                    <ul class="product-list" id="product-h">
+                <div class="product-h-m" id="hjbCont" style="width: 980px;height: 400px;float: left;">
+
                         <script type="text/html" id="hjbList">
                             {{# layui.each(d, function(index, hjb){ }}
+                            <ul class="product-list" id="product-h">
                             <li>
                                 <div class="product-content">
                                     <div class="top">
@@ -192,9 +193,10 @@
                                     </div>
                                 </div>
                             </li>
+                            </ul>
                             {{# }); }}
                         </script>
-                    </ul>
+
                 </div>
             </div>
             <!-- 普金保 -->
@@ -205,9 +207,10 @@
                     <a href="<%=path%>/page/borrowApply/investList" class="bottom"></a>
                 </div>
                 <div class="product-h-m" id="pjbCont">
-                    <ul class="product-list" id="product-p">
+
                         <script type="text/html" id="pjbList">
                             {{# layui.each(d, function(index, pjb){ }}
+                            <ul class="product-list" id="product-p">
                                 <li>
                                     <div class="product-content">
                                         <div class="top">
@@ -239,9 +242,10 @@
                                         </div>
                                     </div>
                                 </li>
+                            </ul>
                             {{# }); }}
                         </script>
-                    </ul>
+
                 </div>
             </div>
             <!-- 多金宝 -->
