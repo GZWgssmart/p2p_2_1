@@ -20,15 +20,11 @@ public class YdataJob implements Job {
 
     private Ydata ydata;
 
-    public void query() {
-        ydata = new Ydata();
-        ydata.setCreatedTime(new Date());
-        ServerResponse serverResponse = ydataService.save(ydata);
-    }
-
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        query();
-        System.out.println("1312312312");
+        ydataService = (YdataService) jobExecutionContext.getJobDetail().getJobDataMap().get("ydataService");
+        ydata = new Ydata();
+        ydata.setCreatedTime(new Date());
+        ydataService.save(ydata);
     }
 }

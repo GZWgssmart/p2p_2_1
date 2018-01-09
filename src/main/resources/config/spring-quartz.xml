@@ -9,33 +9,59 @@
 
     <context:component-scan base-package="com.p2p.quartz" />
 
-
-    <bean id="cronJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="name" value="cronJobDetail" />
+<!--每日更新实时数据，只更新最后一条-->
+    <bean id="ydataUpdateJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="ydataUpdateJobDetail" />
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.YdataUpdateJob" />
         <property name="durability" value="true" />
         <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
             <map>
-                <entry key ="ydataService" value-ref="ydataService"/>
+                <entry key ="ydataService" value-ref="ydateServiceImpl"/>
                 <entry key="timeout" value="5" />
             </map>
         </property>
     </bean>
-
-    <bean id="cronJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="name" value="cronJobTrigger" />
+    <bean id="ydataUpdateJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="ydataUpdateJobTrigger" />
         <property name="group" value="group1" />
-        <property name="jobDetail" ref="cronJobDetail" />
-        <property name="cronExpression" value="0 */1 * * * ?" />
+        <property name="jobDetail" ref="ydataUpdateJobDetail" />
+        <!-- 每天凌晨两点更新实时数据-->
+        <property name="cronExpression" value="0 0 2 * * ?" />
+    </bean>
+<!--每月第一日初始化当月的数据-->
+    <bean id="ydataSaveJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="ydataSaveJobDetail" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.p2p.quartz.YdataJob" />
+        <property name="durability" value="true" />
+        <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
+            <map>
+                <entry key ="ydataService" value-ref="ydateServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
+    </bean>
+    <bean id="ydataSaveJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="ydataSaveJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="ydataSaveJobDetail" />
+        <!-- 每月第一日0时初始化当月数据  -->
+        <property name="cronExpression" value="0 0 0 1* ?" />
     </bean>
 
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="jobDetails">
-                <ref bean="cronJobDetail" />
+            <list>
+                <ref bean="ydataUpdateJobDetail" />
+                <ref bean="ydataSaveJobDetail" />
+            </list>
         </property>
         <property name="triggers">
-                <ref bean="cronJobTrigger" />
+            <list>
+                <ref bean="ydataUpdateJobTrigger" />
+                <ref bean="ydataSaveJobTrigger" />
+            </list>
         </property>
     </bean>
 

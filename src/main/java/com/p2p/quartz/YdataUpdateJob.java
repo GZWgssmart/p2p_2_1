@@ -23,15 +23,11 @@ public class YdataUpdateJob implements Job {
 
     private Ydata ydata;
 
-    public void query() {
-
-    }
-
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         ydataService = (YdataService) jobExecutionContext.getJobDetail().getJobDataMap().get("ydataService");
         ydata = new Ydata();
-        ydata.setYid(2);
+        ydata.setYid(ydataService.selectEnd().getYid());
         ydataService.update(ydata);
     }
 }
