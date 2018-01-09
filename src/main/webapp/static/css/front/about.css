@@ -860,12 +860,11 @@
 }
 .item_Div {
 	margin:0 auto;
-	width: 60px;
+	width: 400px;
 	height: 90px;
 	border: 1px solid #f7bdc3;
 	border-radius: 10px;
 	text-align: center;
-	float: left;
 }
 .marginLeft {
 	width: 26px;
@@ -902,7 +901,7 @@
 	height:44px;
 	width:44px;
 	margin:0 auto;
-	background: url(../images/about/item-icon.png) no-repeat;
+	background: url(/static/images/item-icon.png) no-repeat;
 	margin-bottom:14px;
 }
 .sjList .item .icon-dealNumber{
@@ -948,14 +947,14 @@
 	float: left;
 	text-align: center;
 	margin-bottom:51px;
-	margin-left:30px;
+	margin-left:20px;
 }
 .about-content .sjList-2 .item-yh i{
 	display: block;
 	width:57px;
 	height:57px;
 	float:left;
-	background: url(../images/about/item-icon.png) no-repeat;
+	background: url(/static/images/item-icon.png) no-repeat;
 }
 .about-content .sjList-2 .item-yh .icon-userTotal{
 	background-position: 0 -103px;

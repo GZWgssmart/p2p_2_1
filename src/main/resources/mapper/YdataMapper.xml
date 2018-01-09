@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.p2p.dao.YdataMapper">
-  <resultMap id="BaseResultMap" type="com.p2p.bean.Ydata">
-    <constructor>
-      <idArg column="yid" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tmoney" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
-      <arg column="mmoney" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
-      <arg column="tuser" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="muser" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="ttzno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="mtzno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tdkno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="mdkno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tdkbno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="mdkbno" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="created_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.p2p.bean.Ydata">
+        <constructor>
+            <idArg column="yid" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="tmoney" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="mmoney" javaType="java.math.BigDecimal" jdbcType="DECIMAL"/>
+            <arg column="tuser" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="muser" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="ttzno" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="mtzno" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="tdkno" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="mdkno" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="tdkbno" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="mdkbno" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="created_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
     yid, tmoney, mmoney, tuser, muser, ttzno, mtzno, tdkno, mdkno, tdkbno, mdkbno, created_time
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from ydata
-    where yid = #{yid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ydata
+        where yid = #{yid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Integer">
     delete from ydata
     where yid = #{yid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.bean.Ydata">
+    <insert id="save" parameterType="com.p2p.bean.Ydata">
     insert into ydata (yid, tmoney, mmoney, 
       tuser, muser, ttzno, 
       mtzno, tdkno, mdkno, 
@@ -42,125 +42,125 @@
       #{tdkbno,jdbcType=INTEGER}, #{mdkbno,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Ydata">
-    insert into ydata
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="yid != null">
-        yid,
-      </if>
-      <if test="tmoney != null">
-        tmoney,
-      </if>
-      <if test="mmoney != null">
-        mmoney,
-      </if>
-      <if test="tuser != null">
-        tuser,
-      </if>
-      <if test="muser != null">
-        muser,
-      </if>
-      <if test="ttzno != null">
-        ttzno,
-      </if>
-      <if test="mtzno != null">
-        mtzno,
-      </if>
-      <if test="tdkno != null">
-        tdkno,
-      </if>
-      <if test="mdkno != null">
-        mdkno,
-      </if>
-      <if test="tdkbno != null">
-        tdkbno,
-      </if>
-      <if test="mdkbno != null">
-        mdkbno,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="yid != null">
-        #{yid,jdbcType=INTEGER},
-      </if>
-      <if test="tmoney != null">
-        #{tmoney,jdbcType=DECIMAL},
-      </if>
-      <if test="mmoney != null">
-        #{mmoney,jdbcType=DECIMAL},
-      </if>
-      <if test="tuser != null">
-        #{tuser,jdbcType=INTEGER},
-      </if>
-      <if test="muser != null">
-        #{muser,jdbcType=INTEGER},
-      </if>
-      <if test="ttzno != null">
-        #{ttzno,jdbcType=INTEGER},
-      </if>
-      <if test="mtzno != null">
-        #{mtzno,jdbcType=INTEGER},
-      </if>
-      <if test="tdkno != null">
-        #{tdkno,jdbcType=INTEGER},
-      </if>
-      <if test="mdkno != null">
-        #{mdkno,jdbcType=INTEGER},
-      </if>
-      <if test="tdkbno != null">
-        #{tdkbno,jdbcType=INTEGER},
-      </if>
-      <if test="mdkbno != null">
-        #{mdkbno,jdbcType=INTEGER},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Ydata">
-    update ydata
-    <set>
-      <if test="tmoney != null">
-        tmoney = #{tmoney,jdbcType=DECIMAL},
-      </if>
-      <if test="mmoney != null">
-        mmoney = #{mmoney,jdbcType=DECIMAL},
-      </if>
-      <if test="tuser != null">
-        tuser = #{tuser,jdbcType=INTEGER},
-      </if>
-      <if test="muser != null">
-        muser = #{muser,jdbcType=INTEGER},
-      </if>
-      <if test="ttzno != null">
-        ttzno = #{ttzno,jdbcType=INTEGER},
-      </if>
-      <if test="mtzno != null">
-        mtzno = #{mtzno,jdbcType=INTEGER},
-      </if>
-      <if test="tdkno != null">
-        tdkno = #{tdkno,jdbcType=INTEGER},
-      </if>
-      <if test="mdkno != null">
-        mdkno = #{mdkno,jdbcType=INTEGER},
-      </if>
-      <if test="tdkbno != null">
-        tdkbno = #{tdkbno,jdbcType=INTEGER},
-      </if>
-      <if test="mdkbno != null">
-        mdkbno = #{mdkbno,jdbcType=INTEGER},
-      </if>
-      <if test="createdTime != null">
-        created_time = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where yid = #{yid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.Ydata">
+    <insert id="insertSelective" parameterType="com.p2p.bean.Ydata">
+        insert into ydata
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="yid != null">
+                yid,
+            </if>
+            <if test="tmoney != null">
+                tmoney,
+            </if>
+            <if test="mmoney != null">
+                mmoney,
+            </if>
+            <if test="tuser != null">
+                tuser,
+            </if>
+            <if test="muser != null">
+                muser,
+            </if>
+            <if test="ttzno != null">
+                ttzno,
+            </if>
+            <if test="mtzno != null">
+                mtzno,
+            </if>
+            <if test="tdkno != null">
+                tdkno,
+            </if>
+            <if test="mdkno != null">
+                mdkno,
+            </if>
+            <if test="tdkbno != null">
+                tdkbno,
+            </if>
+            <if test="mdkbno != null">
+                mdkbno,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="yid != null">
+                #{yid,jdbcType=INTEGER},
+            </if>
+            <if test="tmoney != null">
+                #{tmoney,jdbcType=DECIMAL},
+            </if>
+            <if test="mmoney != null">
+                #{mmoney,jdbcType=DECIMAL},
+            </if>
+            <if test="tuser != null">
+                #{tuser,jdbcType=INTEGER},
+            </if>
+            <if test="muser != null">
+                #{muser,jdbcType=INTEGER},
+            </if>
+            <if test="ttzno != null">
+                #{ttzno,jdbcType=INTEGER},
+            </if>
+            <if test="mtzno != null">
+                #{mtzno,jdbcType=INTEGER},
+            </if>
+            <if test="tdkno != null">
+                #{tdkno,jdbcType=INTEGER},
+            </if>
+            <if test="mdkno != null">
+                #{mdkno,jdbcType=INTEGER},
+            </if>
+            <if test="tdkbno != null">
+                #{tdkbno,jdbcType=INTEGER},
+            </if>
+            <if test="mdkbno != null">
+                #{mdkbno,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.p2p.bean.Ydata">
+        update ydata
+        <set>
+            <if test="tmoney != null">
+                tmoney = #{tmoney,jdbcType=DECIMAL},
+            </if>
+            <if test="mmoney != null">
+                mmoney = #{mmoney,jdbcType=DECIMAL},
+            </if>
+            <if test="tuser != null">
+                tuser = #{tuser,jdbcType=INTEGER},
+            </if>
+            <if test="muser != null">
+                muser = #{muser,jdbcType=INTEGER},
+            </if>
+            <if test="ttzno != null">
+                ttzno = #{ttzno,jdbcType=INTEGER},
+            </if>
+            <if test="mtzno != null">
+                mtzno = #{mtzno,jdbcType=INTEGER},
+            </if>
+            <if test="tdkno != null">
+                tdkno = #{tdkno,jdbcType=INTEGER},
+            </if>
+            <if test="mdkno != null">
+                mdkno = #{mdkno,jdbcType=INTEGER},
+            </if>
+            <if test="tdkbno != null">
+                tdkbno = #{tdkbno,jdbcType=INTEGER},
+            </if>
+            <if test="mdkbno != null">
+                mdkbno = #{mdkbno,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where yid = #{yid,jdbcType=INTEGER}
+    </update>
+    <update id="updateById" parameterType="com.p2p.bean.Ydata">
     update ydata
     set tmoney = #{tmoney,jdbcType=DECIMAL},
       mmoney = #{mmoney,jdbcType=DECIMAL},
@@ -175,4 +175,55 @@
       created_time = #{createdTime,jdbcType=TIMESTAMP}
     where yid = #{yid,jdbcType=INTEGER}
   </update>
+    <!--交易总额-->
+    <select id="selectMoney" resultType="java.math.BigDecimal">
+        <![CDATA[
+      select  sum(money) from tzb
+    ]]>
+        <if test="month != null and month != 0">
+            where month(tztime)= #{month}
+        </if>
+    </select>
+    <!--注册人数-->
+    <select id="selectUser" resultType="int">
+        <![CDATA[
+      select count(uid) from t_user
+    ]]>
+        <if test="month != null and month != 0">
+            where month(resstr1) = #{month}
+        </if>
+    </select>
+    <!--投资人数-->
+    <select id="selectTzno" resultType="int">
+        <![CDATA[
+      select count(tzid) from tzb
+    ]]>
+        <if test="month != null and month != 0">
+            where month(tztime)= #{month}
+        </if>
+    </select>
+    <!--贷款人数-->
+    <select id="selectDkno" resultType="int">
+        <![CDATA[
+      Select count(uid) From borrowapply Where baid In (Select Max(baid) From borrowapply Group By uid)
+    ]]>
+        <if test="month != null and month != 0">
+            and month(resstr1) = #{month}
+        </if>
+    </select>
+    <!--贷款笔数-->
+    <select id="selectDkbno" resultType="int">
+        <![CDATA[
+      select count(baid) from borrowapply
+    ]]>
+        <if test="month != null and month != 0">
+            where month(resstr1) = #{month}
+        </if>
+    </select>
+
+    <select id="selectEnd" resultType="com.p2p.bean.Ydata">
+    <![CDATA[
+      SELECT * from ydata ORDER BY yid DESC LIMIT 1
+     ]]>
+  </select>
 </mapper>
