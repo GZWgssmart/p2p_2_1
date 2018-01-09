@@ -13,9 +13,7 @@
         </ul>
         <div class="navbar icon icon-self">我的管理</div>
         <ul class="sub-nav">
-            <li class=""><a href="https://www.pujinziben.com/account.html#invest">投资管理</a></li>
-            <li class=""><a href="https://www.pujinziben.com/account.html#claimm">债权管理</a></li>
-            <li class=""><a href="https://www.pujinziben.com/account.html#claimb">债权购买</a></li>
+            <li class=""><a href="<%=path %>/page/user/invest/management">投资管理</a></li>
             <li class=""><a href="<%=path %>/page/user/borrow/addPage">申请借款</a></li>
             <li class=""><a href="<%=path %>/page/user/borrow/management">借款管理</a></li>
         </ul>
