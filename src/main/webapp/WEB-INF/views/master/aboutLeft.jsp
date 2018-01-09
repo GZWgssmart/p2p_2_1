@@ -3,7 +3,7 @@
     <div class="account-left-nav">
         <ul class="sub-nav">
             <li class=""><a href="<%=path %>/page/about/aboutwe">从业机构信息</a></li>
-            <li class=""><a href="#">平台运营信息</a></li>
+            <li class=""><a href="<%=path %>/page/ydata/ydataPage">平台运营信息</a></li>
             <li class=""><a href="<%=path %>/page/about/borrowmessage">借款项目信息</a></li>
         </ul>
         <div style="border: 0.5px #afafaf solid"></div>
