@@ -42,6 +42,10 @@
       )
   </insert>
 
+  <select id="listAll" resultType="com.p2p.bean.Bz">
+    select * from bz
+  </select>
+
   <insert id="save" parameterType="com.p2p.bean.Bz">
     insert into bz
     <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -2,18 +2,20 @@ package com.p2p.service.impl;
 
 import com.p2p.bean.BorrowApply;
 import com.p2p.bean.BorrowDetail;
+import com.p2p.bean.Bz;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.common.ValidationResult;
 import com.p2p.common.ValidationUtils;
 import com.p2p.dao.BorrowApplyMapper;
 import com.p2p.dao.BorrowDetailMapper;
+import com.p2p.dao.BzMapper;
 import com.p2p.service.BorrowApplyService;
+import com.p2p.vo.IndexBorrowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by 7025 on 2017/12/21.
@@ -23,6 +25,7 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
 
     private BorrowApplyMapper borrowApplyMapper;
     private BorrowDetailMapper borrowDetailMapper;
+    private BzMapper bzMapper;
 
     @Autowired
     public void setBorrowApplyMapper(BorrowApplyMapper borrowApplyMapper) {
@@ -33,6 +36,11 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
     @Autowired
     public void setBorrowDetailMapper(BorrowDetailMapper borrowDetailMapper) {
         this.borrowDetailMapper = borrowDetailMapper;
+    }
+
+    @Autowired
+    public void setBzMapper(BzMapper bzMapper) {
+        this.bzMapper = bzMapper;
     }
 
     @Override
@@ -70,6 +78,14 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
             return ServerResponse.createByError("保存失败");
         }
         return ServerResponse.createBySuccess("保存成功");
+    }
+
+    @Override
+    public Pager listPagerByBzid(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(borrowApplyMapper.listPagerByBzid(pager, obj));
+        pager.setTotal(Long.valueOf(3));
+        return pager;
     }
 
     private String getCpName(Integer baid) {

@@ -9,6 +9,7 @@ import com.p2p.common.ServerResponse;
 import com.p2p.query.BorrowQuery;
 import com.p2p.service.BorrowApplyService;
 import com.p2p.vo.BorrowApplyDetail;
+import com.p2p.vo.IndexBorrowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 7025 on 2017/12/21.
@@ -46,6 +49,10 @@ public class BorrowApplyController {
         return (BorrowApplyDetail) borrowApplyService.getById(baid);
     }
 
+    @RequestMapping("indexList")
+    public Pager getBorrowByBzid(Integer page, Integer limit, IndexBorrowVO indexBorrowVO) {
+        return borrowApplyService.listPagerByBzid(page, limit, indexBorrowVO);
+    }
     /**
      * 个人用户查看借款列表
      * @return

@@ -74,6 +74,15 @@
     order by ba.baid desc limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
+  <select id="listPagerByBzid" resultType="com.p2p.vo.BorrowVO">
+    <![CDATA[
+      select ba.baid, ba.money, ba.ckstatus, ba.type, ba.term,
+      bd.cpname, bd.nprofit, bd.money as moneyCount from borrowapply ba, borrowdetail bd
+      where bd.baid = ba.baid and ba.ckstatus in (2, 4, 5)
+      and ba.bzid = #{query.bzid} order by RAND() limit #{pager.pageSize}
+    ]]>
+  </select>
+
   <select id="countCriteria" resultType="long" parameterType="com.p2p.query.BorrowQuery">
       select count(ba.baid)
       <include refid="borrow_query" />
