@@ -9,12 +9,22 @@
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List">
-    sid, way, fw, status
-  </sql>
+
+
+  <select id="listPagerCriteria"  resultType="com.p2p.bean.Sway">
+    <![CDATA[select  s.sid, s.way, s.fw, s.status  from sway s
+    ]]>
+    order by sid desc
+
+    limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Sway">
+    <![CDATA[
+          select count(s.sid) from sway s
+    ]]>
+  </select>
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
     from sway
     where sid = #{sid,jdbcType=INTEGER}
   </select>

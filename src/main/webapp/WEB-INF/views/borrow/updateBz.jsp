@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>添加标种</title>
+    <title>修改标种</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
@@ -23,9 +23,17 @@
             <form id="addBz" class="layui-form">
 
                 <div class="layui-form-item" style="margin-top: 20px;">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-block">
+                        <input type="hidden" name="bzid" id="bzid" lay-verify="bzid" autocomplete="off"
+                               class="layui-input" readonly/>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">标种</label>
                     <div class="layui-input-block">
-                        <input type="text" name="bzname" lay-verify autocomplete="off" placeholder="请输入标种"
+                        <input type="text" name="bzname" lay-verify="bzname" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
@@ -39,7 +47,7 @@
 
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+                        <button class="layui-btn" lay-submit lay-filter="update">立即提交</button>
                     </div>
                 </div>
             </form>
@@ -57,7 +65,7 @@
         var laytpl = layui.laytpl;
         var upload = layui.upload;
         var laydate = layui.laydate;
-        form.on('submit(add)', function (data) {
+        form.on('submit(update)', function (data) {
             $.post('<%=path %>/data/bz/addBz',
                 $('#addBz').serialize(),
                 function (res) {

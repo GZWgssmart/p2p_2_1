@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("data")
+@RequestMapping("/data/bz")
 public class BzController {
     @Autowired
     private BzService bzService;

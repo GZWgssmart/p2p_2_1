@@ -34,7 +34,7 @@
 
         table.render({
             elem: '#allArticle_table'
-            ,url: '<%=path %>/data/jklxPage'
+            ,url: '<%=path %>/data/jklx/jklxPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'lxid', title:'ID', width:50, fixed: 'left'}

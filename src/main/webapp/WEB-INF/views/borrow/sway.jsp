@@ -12,15 +12,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>标种类型</title>
+    <title>还款方式</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
 
 
 <div class="layui-btn-group demoTable" >
-    <button class="layui-btn" data-type="add">新增标种类型</button>
-    <button class="layui-btn" data-type="update">修改标种类型</button>
+    <button class="layui-btn" data-type="add">新增还款方式</button>
+    <button class="layui-btn" data-type="delete">删除还款方式</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -34,11 +34,12 @@
 
         table.render({
             elem: '#allArticle_table'
-            ,url: '<%=path %>/data/bz/bzPage'
+            ,url: '<%=path %>/data/sway/swayPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'bzid', title:'ID', width:50, fixed: 'left'}
-                ,{field:'bzname', title:'标种', width:150}
+                ,{field:'sid', title:'ID', width:50, fixed: 'left'}
+                ,{field:'way', title:'还款方式', width:150}
+                ,{field:'fw', title:'利率', width:150}
                 ,{field:'status', title:'状态', width:100}
 
             ]]
@@ -76,28 +77,24 @@
 
                 layer.open({
                     type: 2,
-                    title: '标种增加',
+                    title: '还款方式',
                     shadeClose: true,
                     shade: true,
                     area: ['700px', '400px'],
-                    content: '<%=path %>/page/bz/addBz'
+                    content: '<%=path %>/page/sway/addsway'
                 });
             }
-            ,update: function(){ //验证是否全选
-
+            ,delete: function(){ //验证是否全选
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    layer.open({
-                        type: 2,
-                        area: ['700px', '400px'],
-                        maxmin:true,
-                        content:"<%=path %>/page/bz/update?bzId="+data[0].bzid
-                    })
+                    layer.confirm('真的要删除', function(index){
+                        layer.msg('假装删除了');
+                        layer.close(index);
+                    });
                 } else {
-                    layer.msg("请选择一行！");
+                    layer.msg('请选中一行！', {time:1500});
                 }
-
             }
         };
     });

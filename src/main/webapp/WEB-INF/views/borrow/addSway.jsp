@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>添加标种</title>
+    <title>添加还款方式</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
@@ -20,12 +20,19 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12">
-            <form id="addBz" class="layui-form">
+            <form id="addSway" class="layui-form">
 
                 <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label">标种</label>
+                    <label class="layui-form-label">还款方式</label>
                     <div class="layui-input-block">
-                        <input type="text" name="bzname" lay-verify autocomplete="off" placeholder="请输入标种"
+                        <input type="text" name="way" lay-verify autocomplete="off" placeholder="请输入还款方式"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="margin-top: 20px;">
+                    <label class="layui-form-label">还款利率</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="fw" lay-verify autocomplete="off" placeholder="请输入还款利率"
                                class="layui-input">
                     </div>
                 </div>
@@ -58,8 +65,8 @@
         var upload = layui.upload;
         var laydate = layui.laydate;
         form.on('submit(add)', function (data) {
-            $.post('<%=path %>/data/bz/addBz',
-                $('#addBz').serialize(),
+            $.post('<%=path %>/data/sway/addSway',
+                $('#addSway').serialize(),
                 function (res) {
                     if (res.code === 0) {
                         layer.msg('添加成功', {

@@ -13,6 +13,9 @@
   </sql>
   <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select  b.bzid, b.bzname, b.status from bz b
+    order by bzid desc
+
+    limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Bz">
     <![CDATA[

@@ -13,9 +13,12 @@
   </sql>
   <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select  j.lxid, j.lxname, j.status from jklx j
+    order by lxid desc
+
+    limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
-  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Notice">
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Jklx">
     <![CDATA[
           select count(j.lxid) from jklx j
     ]]>
