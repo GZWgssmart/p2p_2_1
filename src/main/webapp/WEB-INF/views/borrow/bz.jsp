@@ -78,7 +78,7 @@
                     type: 2,
                     title: '标种增加',
                     shadeClose: true,
-                    shade: true,
+                    scrollbar: false,
                     area: ['700px', '400px'],
                     content: '<%=path %>/page/bz/addBz'
                 });

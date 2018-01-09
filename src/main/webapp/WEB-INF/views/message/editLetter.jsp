@@ -22,7 +22,7 @@
 <body>
 <div class="layui-container">
     <div class="layui-row">
-        <div class="layui-col-md12" id="view">
+        <div class="layui-col-md12" id="view" style="margin-right: 60px;">
             <%-- <script id="demo" type="text/html">--%>
             <form id="editLetter" class="layui-form" action="">
 

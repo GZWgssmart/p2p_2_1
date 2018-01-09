@@ -65,9 +65,9 @@
                         layer.msg('添加成功', {
                             time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
-                            location.reload(true);
+                           parent.location.reload(true);
                         });
-                        layer.closeAll("iframe");
+                        layer.closeAll(index);
                     } else {
                         layer.msg(res.message);
                     }

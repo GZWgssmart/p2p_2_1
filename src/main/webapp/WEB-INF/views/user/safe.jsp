@@ -147,7 +147,7 @@
                                    class="layui-input" lay-verify="required">
                             <input type="hidden" name="uid" value="${user.uid}"/>
                         </div>
-                        <button type="button" class="btn" id="button_id" lay-submit lay-filter="phoneSubmit">修改</button>
+                        <button type="button" class="btn layui-btn" id="button_id" lay-submit lay-filter="phoneSubmit">修改</button>
                     </form>
                 </div>
                 <div class="popup-result">

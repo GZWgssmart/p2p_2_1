@@ -17,7 +17,7 @@
 </head>
 <body style="padding-top: 20px">
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="edit">编辑报道</button>
+    <button class="layui-btn" data-type="edit">编辑</button>
     <button class="layui-btn" data-type="delete">删除</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
@@ -85,7 +85,7 @@
                             <button type="button" class="layui-btn" id="test1">轮播图一</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" :src="'/' + msg.pic1" id="pic1" width="200" height="200" name="pic1">
+                            <img class="layui-upload-img" :src="'/' + msg.pic1" id="pic1" width="600" height="200" name="pic1">
                             <p id="demoText1"></p>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                             <button type="button" class="layui-btn" id="test2">轮播图二</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img"  :src="'/' + msg.pic2" id="pic2" width="200" height="200" name="pic2">
+                            <img class="layui-upload-img"  :src="'/' + msg.pic2" id="pic2" width="600" height="200" name="pic2">
                             <p id="demoText2"></p>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                             <button type="button" class="layui-btn" id="test3">轮播图三</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img"  :src="'/' + msg.pic3" id="pic3" width="200" height="200" name="pic2">
+                            <img class="layui-upload-img"  :src="'/' + msg.pic3" id="pic3" width="600" height="200" name="pic2">
                             <p id="demoText3"></p>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                             <button type="button" class="layui-btn" id="testEwm">二维码</button>
                         </label>
                         <div class="layui-upload-list">
-                            <img class="layui-upload-img" :src="'/' + msg.ewm" width="200" height="200">
+                            <img class="layui-upload-img" :src="'/' + msg.ewm" width="120" height="120">
                             <p id="ewmText"></p>
                         </div>
                     </div>

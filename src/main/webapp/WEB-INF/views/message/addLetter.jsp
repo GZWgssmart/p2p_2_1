@@ -27,7 +27,7 @@
 <body>
 <div class="layui-container">
     <div class="layui-row">
-        <div class="layui-col-md12">
+        <div class="layui-col-md12" style="margin-right: 60px;">
             <form id="addLetter" class="layui-form">
 
                 <div class="layui-form-item" style="margin-top: 20px;">
@@ -101,7 +101,7 @@
                         layer.msg('提交成功', {
                             time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
-                            location.reload(true);
+                           parent.location.reload(true);
                         });
                     } else {
                         layer.msg(res.message);

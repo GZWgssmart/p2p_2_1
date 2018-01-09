@@ -21,7 +21,7 @@
 <body>
 <div class="layui-container">
     <div class="layui-row">
-        <div class="layui-col-md12" id="view">
+        <div class="layui-col-md12" id="view" style="margin-right: 60px;">
            <%-- <script id="demo" type="text/html">--%>
                 <form id="editNotice" class="layui-form" action="">
 
@@ -32,8 +32,6 @@
                                class="layui-input" readonly/>
                         </div>
                     </div>
-
-
 
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">公告标题</label>

@@ -17,7 +17,6 @@
 </head>
 <body style="padding-top: 20px">
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="detail">查看详情</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
@@ -65,19 +64,6 @@
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
-
-        var active = {
-            detail: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                if(data.length==1){
-                    window.open("<%=path %>/page/dynamic/dynamicDetail?dynamicId="+data[0].dyid);
-                }
-            }
-            ,refresh:function () {
-                location.reload(true);
-            }
-        };
     });
 </script>
 </body>

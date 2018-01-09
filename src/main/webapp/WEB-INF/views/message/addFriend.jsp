@@ -31,19 +31,17 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-upload">
-                        <label class="layui-label" style="float: left;display: block;padding: 9px 15px;width: 80px;
+                        <label class="layui-label" style="float: left;padding: 12px 15px;width: 80px;
                                 font-weight: 400;text-align: right;">
-                            <button type="button" class="layui-btn" id="test0">点击添加合作商图</button>
+                            <button type="button" class="layui-btn" id="test0">合作商图</button>
                         </label>
-                        <br/><br/><br/>
-                        <div class="layui-upload-list">
+                        <div class="layui-upload-list" >
                             <img class="layui-upload-img" id="fpic" width="200" height="200">
                             <p id="demoText"></p>
                         </div>
                     </div>
                     <input type="hidden" name="fpic" id="firstImg"/>
                 </div>
-
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
                         <button class="layui-btn" lay-submit lay-filter="fabu">立即提交</button>

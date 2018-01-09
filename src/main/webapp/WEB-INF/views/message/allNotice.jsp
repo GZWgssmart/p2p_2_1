@@ -26,7 +26,6 @@
 </div>
 <br/>
 <div class="layui-btn-group demoTable" id="barDemo">
-    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
     <button class="layui-btn" data-type="detail">查看</button>
     <button class="layui-btn" data-type="edit">编辑</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
@@ -74,12 +73,7 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,edit: function(){ //先获取行数据，将数据跳转到编辑页。
+            edit: function(){ //先获取行数据，将数据跳转到编辑页。
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
@@ -87,6 +81,7 @@
                         type: 2,
                         area: ['600px', '500px'],
                         maxmin:true,
+                        scrollbar:false,
                         content:"<%=path %>/page/message/editNotice?noticeId="+data[0].nid
                     })
                 } else {
@@ -102,6 +97,7 @@
                         type: 2,
                         area: ['800px', '600px'],
                         maxmin:true,
+                        scrollbar:false,
                         content:"<%=path %>/page/message/noticeDetail?noticeId="+data[0].nid
                     })
                 } else {

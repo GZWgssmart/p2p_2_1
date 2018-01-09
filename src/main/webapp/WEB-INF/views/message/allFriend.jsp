@@ -19,7 +19,6 @@
 <body style="padding-top: 20px">
 
 <div class="layui-btn-group demoTable">
-    <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
@@ -90,12 +89,7 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,refresh:function () {
+           refresh:function () {
                 location.reload(true);
             }
 

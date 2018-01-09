@@ -99,6 +99,7 @@
                     type: 2,
                     area: ['600px', '500px'],
                     maxmin:true,
+                    scrollbar:false,
                     content:"<%=path %>/page/message/addLetter"
                 })
             }
@@ -110,6 +111,7 @@
                         type: 2,
                         area: ['600px', '500px'],
                         maxmin:true,
+                        scrollbar:false,
                         content:"<%=path %>/page/message/editLetter?letterId="+data[0].lid
                     })
                 } else {
@@ -125,6 +127,7 @@
                         type: 2,
                         area: ['800px', '600px'],
                         maxmin:true,
+                        scrollbar:false,
                         content:"<%=path %>/page/message/letterDetail?letterId="+data[0].lid
                     })
                 } else {
