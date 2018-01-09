@@ -9,7 +9,7 @@
 
     <context:component-scan base-package="com.p2p.quartz" />
 
-<!--每日更新实时数据，只更新最后一条-->
+<!--每天凌晨两点更新数据-->
     <bean id="ydataUpdateJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="ydataUpdateJobDetail" />
         <property name="group" value="group1" />
@@ -26,10 +26,9 @@
         <property name="name" value="ydataUpdateJobTrigger" />
         <property name="group" value="group1" />
         <property name="jobDetail" ref="ydataUpdateJobDetail" />
-        <!-- 每天凌晨两点更新实时数据-->
         <property name="cronExpression" value="0 0 2 * * ?" />
     </bean>
-<!--每月第一日初始化当月的数据-->
+<!--每月第一天00：00初始化当月实时数据-->
     <bean id="ydataSaveJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="ydataSaveJobDetail" />
         <property name="group" value="group1" />
@@ -46,8 +45,7 @@
         <property name="name" value="ydataSaveJobTrigger" />
         <property name="group" value="group1" />
         <property name="jobDetail" ref="ydataSaveJobDetail" />
-        <!-- 每月第一日0时初始化当月数据  -->
-        <property name="cronExpression" value="0 0 0 1* ?" />
+        <property name="cronExpression" value="0 0 0 1 * ?" />
     </bean>
 
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
