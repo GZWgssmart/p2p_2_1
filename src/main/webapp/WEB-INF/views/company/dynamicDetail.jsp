@@ -48,7 +48,7 @@
             {{#  if(d.pic !== null){ }}
             <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 800px;height: auto;margin-left: 180px"/>
             {{#  } else { }}
-            <span>-----------------</span>
+            <span></span>
             {{#  } }}
             <div style="margin-left: 20px;margin-right: 20px;">
                 {{ d.content }}

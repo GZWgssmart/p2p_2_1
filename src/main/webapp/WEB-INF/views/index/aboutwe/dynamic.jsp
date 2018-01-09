@@ -44,7 +44,7 @@
                                     <img src="<%=path %>/{{ dynamic.pic }}" alt="dynamic.pic"
                                          style="width: 200px;height: 120px;"/>
                                     {{# } else { }}
-                                    <span>-----------------</span>
+                                    <span></span>
                                     {{# } }}
                                 </div>
                                 <div class="layui-col-md8 layui-col-md-offset1">

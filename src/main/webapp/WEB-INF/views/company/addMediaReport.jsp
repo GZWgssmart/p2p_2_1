@@ -25,14 +25,14 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">标题</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" lay-verify autocomplete="off" placeholder="请输入标题"
+                        <input type="text" name="title"  lay-verify="required" autocomplete="off" placeholder="请输入标题"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">摘要</label>
                     <div class="layui-input-block">
-                        <input type="text" name="summary" lay-verify autocomplete="off" placeholder="请输入摘要"
+                        <input type="text" name="summary"  lay-verify="required" autocomplete="off" placeholder="请输入摘要"
                                class="layui-input" id="editTest">
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label"></label>
                     <div class="layui-input-block">
-                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                        <textarea class="layui-textarea layui-hide" name="content"
                                   id="content"></textarea>
                     </div>
                 </div>
@@ -60,14 +60,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">地址</label>
                     <div class="layui-input-block">
-                        <input type="text" name="url" lay-verify autocomplete="off" placeholder="请输入地址"
+                        <input type="text" name="url"  lay-verify="required" autocomplete="off" placeholder="请输入地址"
                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">时间</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="whatTime" id="test1" lay-verify="laydate" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                        <input type="text" name="whatTime" id="test1" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 20px;">
