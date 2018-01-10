@@ -44,8 +44,8 @@
                 <label class="layui-form-label">还款方式</label>
                 <div class="layui-input-inline" style="width: 120px">
                     <select name="type" id="type">
-                        <option value="0" selected="">等额本息</option>
-                        <option value="1">等额本金</option>
+                        <option value="1" selected="">等额本息</option>
+                        <option value="0">等额本金</option>
                     </select>
                 </div>
             </div>
@@ -95,8 +95,7 @@
                     ,month : $('#month').val()
                 }
                 ,cols: [[
-                    {checkbox: true, fixed: true}
-                    ,{field:'repayment', title:'本月还款金额', width:120, fixed: 'left'}
+                    {field:'repayment', title:'本月还款金额', width:120, fixed: 'left'}
                     ,{field:'payPrincipal', title:'支付本金', width:120}
                     ,{field:'interest', title:'利息', width:120}
                     ,{field:'remainTotal', title:'剩余本金', width:120}

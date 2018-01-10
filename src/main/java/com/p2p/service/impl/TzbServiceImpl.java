@@ -59,20 +59,16 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
     }
 
     @Override
-    public Pager getAdminInvest(Integer page, Integer limit, Object obj) {
-        Pager pager = new Pager(page, limit);
-        pager.setRows(tzbMapper.getAdminInvest(pager, obj));
-        pager.setTotal(tzbMapper.countAdminInvest(obj));
-        return pager;
-    }
-
-    @Override
     @Transactional
     public ServerResponse<Integer> save(Object obj) {
         Tzb tzb = (Tzb)obj;
         BorrowApplyDetail bAD = (BorrowApplyDetail)borrowApplyMapper.getById(tzb.getBaid());
         if(bAD.getUid().equals(tzb.getUid())) {
             return ServerResponse.createByError("投资失败！不能给自己投资");
+        }
+        //如果已经满标
+        if(bAD.getMoneyCount().compareTo(bAD.getMoney()) == 0) {
+            return ServerResponse.createByError("已满标");
         }
         tzb.setJuid(bAD.getUid());
         tzb.setNprofit(bAD.getNprofit());

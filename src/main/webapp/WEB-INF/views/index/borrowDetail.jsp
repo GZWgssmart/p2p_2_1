@@ -86,7 +86,7 @@
                     <select name="type" id="selectQuan">
                         <option>选择优惠券</option>
                     </select>
-                    <a href="calculator.html?repayWay=3&amp;showRate=9+1&amp;time=6" class="icon icon-cal" id="calculator">详细收益明细</a>
+                    <a href="<%=path %>/calc/calc" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
                 <input type="hidden" id="ckstatus" value="{{d.ckstatus}}">
                 {{# if((d.money-d.moneyCount)>0){ }}

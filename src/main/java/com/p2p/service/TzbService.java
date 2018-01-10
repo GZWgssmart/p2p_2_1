@@ -9,5 +9,4 @@ public interface TzbService extends BaseService {
 
     Pager getUserInvest(Integer page, Integer limit, Object obj);
 
-    Pager getAdminInvest(Integer page, Integer limit, Object obj);
 }
