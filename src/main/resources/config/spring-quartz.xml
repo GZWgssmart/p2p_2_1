@@ -9,13 +9,13 @@
 
     <context:component-scan base-package="com.p2p.quartz" />
 
-<!--æ¯å¤©å‡Œæ™¨ä¸¤ç‚¹æ›´æ–°æ•°æ®-->
+<!--Ã¿ÌìÁè³¿Á½µã¸üÐÂÊý¾Ý-->
     <bean id="ydataUpdateJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="ydataUpdateJobDetail" />
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.YdataUpdateJob" />
         <property name="durability" value="true" />
-        <property name="jobDataAsMap"><!-- éžå¸¸é‡è¦ï¼Œç”¨æ¥å‘JobDetailä¼ å‚ -->
+        <property name="jobDataAsMap"><!-- ·Ç³£ÖØÒª£¬ÓÃÀ´ÏòJobDetail´«²Î -->
             <map>
                 <entry key ="ydataService" value-ref="ydateServiceImpl"/>
                 <entry key="timeout" value="5" />
@@ -28,13 +28,13 @@
         <property name="jobDetail" ref="ydataUpdateJobDetail" />
         <property name="cronExpression" value="0 0 2 * * ?" />
     </bean>
-<!--æ¯æœˆç¬¬ä¸€å¤©00ï¼š00åˆå§‹åŒ–å½“æœˆå®žæ—¶æ•°æ®-->
+<!--Ã¿ÔÂµÚÒ»Ìì00£º00³õÊ¼»¯µ±ÔÂÊµÊ±Êý¾Ý-->
     <bean id="ydataSaveJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="ydataSaveJobDetail" />
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.YdataJob" />
         <property name="durability" value="true" />
-        <property name="jobDataAsMap"><!-- éžå¸¸é‡è¦ï¼Œç”¨æ¥å‘JobDetailä¼ å‚ -->
+        <property name="jobDataAsMap"><!-- ·Ç³£ÖØÒª£¬ÓÃÀ´ÏòJobDetail´«²Î -->
             <map>
                 <entry key ="ydataService" value-ref="ydateServiceImpl"/>
                 <entry key="timeout" value="5" />

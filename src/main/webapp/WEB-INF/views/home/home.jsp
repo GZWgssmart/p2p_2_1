@@ -96,7 +96,11 @@
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/borrowApply/adminBorrowList',icon:'&#xe658;',title:'借款审核',id:'11'}"><i
-                                    class="layui-icon">&#xe658;</i><span>借款审核</span></a>
+                                    class="layui-icon">&#xe658;</i><span>借款管理</span></a>
+                            </dd>
+                            <dd><a href="javascript:;" kit-target
+                                   data-options="{url:'<%=path %>/page/borrowApply/investManage',icon:'&#xe658;',title:'投资管理',id:'14'}"><i
+                                    class="layui-icon">&#xe658;</i><span>投资管理</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/bz/bzList',icon:'&#xe658;',title:'标种',id:'12'}"><i class="layui-icon">&#xe658;</i><span>标种</span></a>

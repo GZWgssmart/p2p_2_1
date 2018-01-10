@@ -69,6 +69,7 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
         if(validationResult.isHasErrors()) {
             return ServerResponse.createByError("保存失败");
         }
+        borrowApply.setResstr1(Calendar.getInstance().getTime() + "");
         if(borrowApplyMapper.save(borrowApply) == 0) {
             return ServerResponse.createByError("保存失败");
         }

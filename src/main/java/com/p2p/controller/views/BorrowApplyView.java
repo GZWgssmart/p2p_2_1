@@ -56,4 +56,9 @@ public class BorrowApplyView {
         }
         return "index/borrowDetail";
     }
+
+    @RequestMapping("investManage")
+    public String investManage() {
+        return "borrow/adminInvestManage";
+    }
 }

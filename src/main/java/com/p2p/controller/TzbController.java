@@ -44,4 +44,20 @@ public class TzbController {
     public Pager getInvestList(int page, int limit, Tzb tzb) {
         return tzbService.listPagerCriteria(page, limit, tzb);
     }
+
+    @RequestMapping("userInvest")
+    public Pager getUserInvest(int page, int limit, Tzb tzb, HttpSession session) {
+        Object obj = session.getAttribute("user");
+        if(obj != null) {
+            User user = (User)obj;
+            tzb.setUid(user.getUid());
+            return tzbService.getUserInvest(page, limit, tzb);
+        }
+        return new Pager(page, limit);
+    }
+
+    @RequestMapping("adminInvest")
+    public Pager getAdminInvest(int page, int limit, Tzb tzb) {
+        return tzbService.getUserInvest(page, limit, tzb);
+    }
 }

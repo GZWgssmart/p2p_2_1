@@ -61,6 +61,15 @@ public class UserView {
     }
 
     /**
+     * 用户投资管理列表页
+     * @return
+     */
+    @GetMapping("invest/management")
+    public String investManagement() {
+        return "user/investManage";
+    }
+
+    /**
      * ChuYiming begin
      * @return
      */

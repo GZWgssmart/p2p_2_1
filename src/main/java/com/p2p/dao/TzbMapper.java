@@ -12,6 +12,14 @@ public interface TzbMapper extends BaseDAO {
     @Override
     List<Object> listPagerCriteria(@Param("pager") Pager pager, @Param("query") Object obj);
 
+    List<Object> getUserInvest(@Param("pager") Pager pager, @Param("query") Object obj);
+
+    List<Object> getAdminInvest(@Param("pager") Pager pager, @Param("query") Object obj);
+
     @Override
     Long countCriteria(@Param("query") Object obj);
+
+    Long countAdminInvest(@Param("query") Object obj);
+
+    Long countUserInvest(@Param("query") Object obj);
 }
