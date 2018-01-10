@@ -76,6 +76,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
      */
     @Override
     public ServerResponse saveRecommend(User user, Recommend recommend) {
+         user.setResstr1(new Date() + "");
         UserTicket userTicket = new UserTicket();
         ValidationResult validationResult = ValidationUtils.validateEntity(user);
         if(validationResult.isHasErrors()) {
@@ -130,6 +131,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
     @Override
     public ServerResponse<Integer> save(Object obj) {
         User user = (User)obj;
+        user.setResstr1(new Date() + "");
         super.save(user);
         UserMoney userMoney = new UserMoney();
         userMoney.setUid(user.getUid());
