@@ -43,10 +43,10 @@
                                 <p class="name">${user.phone}</p>
                                 <p class="safety">安全等级： <span id="safeLevel">低</span></p>
                                 <p class="center-icon">
-                                    <a href="#" class="icon icon-c-phone"></a>
-                                    <a href="#" class="icon icon-c-mail"></a>
+                                    <a href="/page/user/safe" class="icon icon-c-phone"></a>
+                                    <a href="/page/user/safe" class="icon icon-c-mail"></a>
                                 </p>
-                                <p id="registpay"><a href="javascript:;">注册汇付</a></p>
+                                <p id="registpay"><a href="javascript:;"></a></p>
                                 <p id="reset"></p>
                             </div>
                         </div>
@@ -141,7 +141,9 @@
     $(function () {
         var user = "${user}";
         if(user === null || user === '') {
-            alert("您未登录，请登录！");
+            layer.msg("您未登录，请登录！",function () {
+                window.location = '/page/login';
+            });
         }
 
         layui.use(['element', 'laytpl'], function () {
