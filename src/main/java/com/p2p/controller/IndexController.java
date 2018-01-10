@@ -20,6 +20,11 @@ public class IndexController {
         return "statically/insurance";
     }
 
+    @RequestMapping("calc/calc")
+    public String jis(){
+        return "index/Calc";
+    }
+
     @RequestMapping("test")
     public String test(){
         return "test";
