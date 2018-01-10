@@ -3,12 +3,11 @@ package com.p2p.controller;
 import com.p2p.bean.Role;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
-import com.p2p.dao.RoleMapper;
 import com.p2p.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  * Created by qingfeng on 2017/12/26.
  */
-@Controller
+@RestController
 @RequestMapping("/data/Role")
 public class RoleController {
     @Autowired
@@ -26,7 +25,7 @@ public class RoleController {
      *添加角色
      * @return
      */
-    @RequestMapping("addRole")
+    @RequestMapping("save")
     public ServerResponse saveRole(Role role){
         return roleService.save(role);
     }

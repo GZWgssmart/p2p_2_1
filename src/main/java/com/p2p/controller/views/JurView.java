@@ -13,7 +13,7 @@ public class JurView {
 
     @RequestMapping("add")
     public String addJurPage(){
-        return "Jur/addJur";
+        return "JurRole/addJur";
     }
 
     @RequestMapping("List")

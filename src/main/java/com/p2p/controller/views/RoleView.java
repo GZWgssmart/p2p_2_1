@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page/Role")
 public class RoleView {
 
+    @RequestMapping("add")
+    public String addRolePage(){
+        return "JurRole/addRole";
+    }
+
     @RequestMapping("List")
     public String RoleList() {
         return "Admin/roleList";

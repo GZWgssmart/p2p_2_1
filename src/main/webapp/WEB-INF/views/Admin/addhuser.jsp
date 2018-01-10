@@ -85,7 +85,7 @@
         // 获取类别
         var getTpl = demo.innerHTML
             , view = document.getElementById('type');
-        $.get('<%=path %>/data/role/listAll', function (data) {
+        $.get('<%=path %>/data/Role/listAll', function (data) {
             laytpl(getTpl).render(data, function (html) {
                 view.innerHTML = html;
             });
