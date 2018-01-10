@@ -78,7 +78,7 @@
                                 <li class="row1"><p class="row-top">预期年化收益率</p><p class="row-bottom color">{{borrow.nprofit}}<span>%</span></p></li>
                                 <li class="row2"><p class="row-top">项目期限</p><p class="row-bottom">{{borrow.term}}个月</p></li>
                                 <li class="row3"><p class="row-top">还款方式</p><p class="row-bottom">按月付息，到期还本</p></li>
-                                <li class="row4"><p class="row-top">可投金额 / 募集总额</p><p class="row-bottom">{{borrow.money-borrow.moneyCount}}万元 / {{borrow.money}}万元</p></li>
+                                <li class="row4"><p class="row-top">可投金额 / 募集总额</p><p class="row-bottom">{{borrow.money-borrow.moneyCount}}元 / {{borrow.money}}元</p></li>
                                 <li class="row5">
                                     <div class="line">
                                         <div class="layui-progress" style="float: left;width: 150px;margin-top: 13px" lay-showPercent="true">

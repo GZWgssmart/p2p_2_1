@@ -256,9 +256,9 @@
                     <a href="<%=path%>/page/borrowApply/investList" class="bottom"></a>
                 </div>
                 <div class="product-h-m" id="djbCont">
-                    <ul class="product-list" id="product-d">
                         <script type="text/html" id="djbList">
                         {{# layui.each(d, function(index, djb){ }}
+                        <ul class="product-list" id="product-d">
                             <li>
                                 <div class="product-content">
                                     <div class="top">
@@ -290,9 +290,10 @@
                                     </div>
                                 </div>
                             </li>
+                        </ul>
                         {{# }); }}
                         </script>
-                    </ul>
+
                 </div>
             </div>
         </div>
