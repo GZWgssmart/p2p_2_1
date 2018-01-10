@@ -68,6 +68,7 @@
         <div id="manageBtn" class="layui-row">
             <a href="javascript:void(0);" class="layui-btn" id="checkBorrow" data-type="edit">审核</a>
             <a href="javascript:void(0);" class="layui-btn" id="planShow" data-type="edit">查看还款计划</a>
+            <a href="javascript:void(0);" class="layui-btn" id="investShow" data-type="edit">查看投资列表</a>
         </div>
 
         <table id="borrowList"></table>
@@ -75,6 +76,11 @@
         <%--还款计划弹窗--%>
         <div style="display: none;" id="planListShow">
             <table id="planList"></table>
+        </div>
+
+        <%--投资列表弹窗--%>
+        <div style="display: none;" id="investListShow">
+            <table id="investList"></table>
         </div>
 
         <%--审核弹框--%>
@@ -202,6 +208,53 @@
                 },'json');
             layer.closeAll();
             $('#searchBtn').trigger('click');
+        });
+
+        // 查看投资列表按钮
+        $('#investShow').on('click', function () {
+            var checkStatus = table.checkStatus('checkId')
+                ,data = checkStatus.data;
+            if(data.length === 1) {
+                var ckstatus = data[0].ckstatus;
+                if(ckstatus === 2 || ckstatus === 4 || ckstatus === 5 || ckstatus === 3) {
+                    layer.open({
+                        type: 1,                //弹窗类型
+                        title: '投资列表',     //显示标题
+                        closeBtn: 1,         //是否显示关闭按钮
+                        shadeClose: true, //显示模态窗口
+                        fixed:false,    //层是否固定在可视区域
+                        move: true,//禁止拖拽
+                        area: ['600px', '400px'], //宽高
+                        content: $("#investListShow")  //弹窗内容
+                    });
+                    table.render({
+                        elem: '#investList'
+                        ,url: '<%=path %>/data/tz/investUsers'
+                        ,where:{
+                            baid:data[0].baid
+                        }
+                        ,cols: [[
+                            {field:'rname', title:'投资人', width:90}
+                            ,{field:'money', title:'投资金额', width:120}
+                            ,{field:'tztime', title:'投资时间', width:200, templet:'<div>{{ formatDate(d.tztime)}}</div>'}
+                        ]]
+                        ,id: 'investId'
+                        ,page: true
+                        ,height: 360
+                        ,response: {
+                            statusName: 'status'
+                            ,statusCode: 0
+                            ,msgName: 'message'
+                            ,countName: 'total'
+                            ,dataName: 'rows'
+                        }
+                    });
+                } else {
+                    layer.msg('该借款状态下无投资记录！', {time:1500});
+                }
+            } else {
+                layer.msg('请选中一行！', {time:1500});
+            }
         });
 
          // 查看还款计划按钮

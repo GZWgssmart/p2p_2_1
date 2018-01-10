@@ -31,7 +31,7 @@
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script>
     layui.use(['table','form', 'layer'], function(){
         var table = layui.table;
