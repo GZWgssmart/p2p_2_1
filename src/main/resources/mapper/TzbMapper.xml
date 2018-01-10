@@ -38,6 +38,23 @@
     select count(tz.tzid) from tzb tz, t_user u where tz.uid = u.uid and tz.baid = #{query.baid}
   </select>
 
+  <sql id="tzQuery">
+    <if test="query != null and query.uid != null">
+      and tz.uid = #{query.uid}
+    </if>
+  </sql>
+  <select id="getUserInvest" resultType="com.p2p.vo.LogTzVO">
+    select tz.cpname, tz.nprofit, tz.money, tz.baid, tz.tztime, tz.tzid,tz.resint1 as term, u.rname, tz.uid
+    from tzb tz, t_user u where tz.uid = u.uid
+    <include refid="tzQuery"/>
+    order by tz.tztime desc limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countUserInvest" resultType="long">
+    select count(tz.tzid) from tzb tz, t_user u where tz.uid = u.uid
+    <include refid="tzQuery"/>
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from tzb where tzid = #{tzid,jdbcType=INTEGER}
   </delete>

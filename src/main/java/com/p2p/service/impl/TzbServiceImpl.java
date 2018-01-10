@@ -51,6 +51,22 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
     }
 
     @Override
+    public Pager getUserInvest(Integer page, Integer limit, Object obj) {
+        Pager pager = new Pager(page, limit);
+        pager.setRows(tzbMapper.getUserInvest(pager, obj));
+        pager.setTotal(tzbMapper.countUserInvest(obj));
+        return pager;
+    }
+
+    @Override
+    public Pager getAdminInvest(Integer page, Integer limit, Object obj) {
+        Pager pager = new Pager(page, limit);
+        pager.setRows(tzbMapper.getAdminInvest(pager, obj));
+        pager.setTotal(tzbMapper.countAdminInvest(obj));
+        return pager;
+    }
+
+    @Override
     @Transactional
     public ServerResponse<Integer> save(Object obj) {
         Tzb tzb = (Tzb)obj;
