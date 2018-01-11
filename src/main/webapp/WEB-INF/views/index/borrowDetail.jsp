@@ -48,7 +48,7 @@
                 </div>
                 <div class="subject-submit-bottom">
                     <div class="subject-submit-b-l">
-                        <p>还款方式：<span id="paymentMode">按月付息，到期还本</span></p>
+                        <p>还款方式：<span id="paymentMode">{{formatWay(d.way)}}</span></p>
                         <p>最小投标金额：<span id="minTenderedSum">100.00元</span></p>
                     </div>
                     <div class="subject-submit-b-l">
@@ -131,7 +131,7 @@
                         <p class="title">资金用途：</p><p class="content" id="moneyPurposes">{{d.mpurpose}}</p>
                     </div>
                     <div class="detail cl">
-                        <p class="title">收益方式：</p><p class="content" id="projectType">按月付息，到期还本</p>
+                        <p class="title">收益方式：</p><p class="content" id="projectType">{{formatWay(d.way)}}</p>
                     </div>
                     <div class="detail cl">
                         <p class="title">还款来源：</p><p class="content" id="retsource">{{d.hksource}}</p>
