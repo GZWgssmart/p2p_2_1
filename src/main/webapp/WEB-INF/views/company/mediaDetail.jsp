@@ -50,8 +50,8 @@
             {{#  } }}
             <span><a href="<%=path %>/page/dynamic/indexDynamic#test1=1" style="color: #319bff;">返回列表</a></span><span><div>{{ formatDate(d.createdTime) }}</div></span>
             <p style="margin-left: 20px;">&nbsp;&nbsp;&nbsp;{{ d.summary }}</p>
-            {{#  if(d.pic !== null){ }}
-            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 800px;height: auto;margin-left: 180px"/>
+            {{#  if(d.pic !== null && d.pic !== ''){ }}
+            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto;margin-left: 180px"/>
             {{#  } else { }}
             <span></span>
             {{#  } }}

@@ -45,8 +45,8 @@
             <h3 style="font-weight: normal;text-align: center;font-size: 18px;">【普金资本】{{ d.title }}</h3>
             <span><a href="<%=path %>/page/dynamic/indexDynamic" style="color: #319bff;">返回列表</a></span><span><div>{{ formatDate(d.createdTime) }}</div></span></br>
             <p style="margin-left: 20px;">&nbsp;&nbsp;&nbsp;{{ d.summary }}</p>
-            {{#  if(d.pic !== null){ }}
-            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 800px;height: auto;margin-left: 180px"/>
+            {{#  if(d.pic !== null && d.pic !== ''){ }}
+            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto;margin-left: 180px"/>
             {{#  } else { }}
             <span></span>
             {{#  } }}

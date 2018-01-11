@@ -9,56 +9,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>平台一览</title>
+    <link rel="stylesheet" href="<%=path%>/static/css/front/about.css">
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
     
     <style>
-        .info-box {
-            height: 85px;
-            background-color: white;
-            background-color: #ecf0f5;
-        }
-        
-        .info-box .info-box-icon {
-            border-top-left-radius: 2px;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 2px;
-            display: block;
-            float: left;
-            height: 85px;
-            width: 85px;
-            text-align: center;
-            font-size: 45px;
-            line-height: 85px;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .info-box .info-box-content {
-            padding: 5px 10px;
-            margin-left: 85px;
-        }
-        
-        .info-box .info-box-content .info-box-text {
-            display: block;
-            font-size: 14px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-transform: uppercase;
-        }
-        
-        .info-box .info-box-content .info-box-number {
-            display: block;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .major {
-            font-weight:10px;
-            color: #01AAED;
-        }
-        
         .main {
             margin-top: 25px;
         }
@@ -70,58 +25,91 @@
 </head>
 
 <body>
+<div style="text-align: center;width: 100%;">
+    <h2>平台数据每天凌晨2：00更新，每月数据每月第一天初始化。</h2>
+</div>
     <div class="layui-fluid main">
         <div class="layui-row layui-col-space15">
-            <div class="layui-col-md3">
-                <div class="info-box">
-                    <span class="info-box-icon" style="background-color:#00c0ef !important;color:white;"><i class="fa fa-ambulance" aria-hidden="true"></i></span>
-                    <div class="info-box-content">
-					<a href="form.html" kit-target data-id='1'><span class="info-box-text">借款管理</span></a>
-                        <span class="info-box-number">90%</span>
+            <div class="about-content" id="sssjDiv" style="display: block;">
+                <script id="demo" type="text/html">
+                    <div class="btnDiv">
+                        撮合交易总额（元）
                     </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="info-box">
-                    <span class="info-box-icon" style="background-color:#dd4b39 !important;color:white;"><i class="fa fa-google-plus" aria-hidden="true"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">资金管理</span>
-                        <span class="info-box-number">25,412</span>
+                    <div class="moneyDiv" style="text-align:center;">
+                        <div class="item_Div">{{ d.tmoney }}.00</div>
                     </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="info-box">
-                    <span class="info-box-icon" style="background-color:#00a65a !important;color:white;"><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">贷后管理</span>
-                        <span class="info-box-number">654</span>
+                    <div class="btnDiv">平台数据总览</div>
+                    <div class="sjList sjList-2">
+                        <div class="item-yh">
+                            <i class="icon-userTotal"></i>
+                            <div class="itemText">总注册用户数（人）</div>
+                            <div class="itemSJ color-b" id="userTotal">{{ d.tuser }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-investorCount"></i>
+                            <div class="itemText">月注册人数（人）</div>
+                            <div class="itemSJ color-g" id="investorCount">{{ d.muser }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-borrowerCount"></i>
+                            <div class="itemText">总投资人数（人）</div>
+                            <div class="itemSJ color-y" id="borrowerCount">{{ d.ttzno }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-avgUserInvest"></i>
+                            <div class="itemText">月投资人数（人）</div>
+                            <div class="itemSJ color-b" id="avgUserInvest">{{ d.mtzno }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-avgInvest"></i>
+                            <div class="itemText">总贷款人数（人）</div>
+                            <div class="itemSJ color-g" id="avgInvest">{{ d.tdkno }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-investorNew"></i>
+                            <div class="itemText">月贷款人数（人）</div>
+                            <div class="itemSJ color-y" id="investorNew">{{ d.mdkno }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-borrowerNew"></i>
+                            <div class="itemText">总贷款笔数（笔）</div>
+                            <div class="itemSJ color-b" id="borrowerNew">{{ d.tdkbno }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-AssociationNumber"></i>
+                            <div class="itemText">月贷款笔数（笔）</div>
+                            <div class="itemSJ color-g" id="AssociationNumber">{{ d.mdkbno }}</div>
+                        </div>
+                        <div class="item-yh">
+                            <i class="icon-AssociationSum"></i>
+                            <div class="itemText">月交易总额（元）</div>
+                            <div class="itemSJ color-y" id="AssociationSum">{{ d.mmoney }}</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="layui-col-md3">
-                <div class="info-box">
-                    <span class="info-box-icon" style="background-color:#f39c12 !important;color:white;"><i class="fa fa-users" aria-hidden="true"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">申请管理</span>
-                        <span class="info-box-number">85</span>
-                    </div>
-                </div>
+                </script>
             </div>
         </div>
         
     </div>
     <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+    <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
     <script>
-        layui.use('jquery', function() {
-            var $ = layui.jquery;
-            $('#test').on('click', function() {
-                parent.message.show({
-                    skin: 'cyan'
-                });
-            });
+        layui.use(['element','laytpl'], function () {
+            var $ = layui.jquery
+            var element = layui.element;
+            var laytpl = layui.laytpl;
+
+            var getTpl = demo.innerHTML
+                , view = document.getElementById('sssjDiv');
+            $.get('/data/ydata/new',
+                function (data) {
+                    laytpl(getTpl).render(data, function (html) {
+                        view.innerHTML = html;
+                    });
+                }
+            );
+
         });
     </script>
 </body>
-
 </html>

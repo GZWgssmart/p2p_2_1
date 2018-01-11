@@ -132,10 +132,6 @@
             ,type: 'datetime'
         });
 
-        // 选择框
-        form.on('select(typeId)', function (data) {
-            console.log(data.value) //得到被选中的值
-        });
         //提交媒体报道
         form.on('submit(fabu)', function (data) {
             $('#content').val(layedit.getContent(editIndex));
