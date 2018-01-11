@@ -32,6 +32,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.10.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.10.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.10.RELEASE" />

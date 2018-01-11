@@ -24,7 +24,7 @@
     insert into dxmodel (dxid, content)
     values (#{dxid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.Dxmodel">
+  <insert id="save" parameterType="com.p2p.bean.Dxmodel">
     insert into dxmodel
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dxid != null">
