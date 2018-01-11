@@ -31,7 +31,7 @@ public class BorrowApplyController {
     private BorrowApplyService borrowApplyService;
 
     @RequestMapping(value="save", method = RequestMethod.POST)
-    public ServerResponse save(BorrowApplyDetail borrowApplyDetail) {
+    public ServerResponse save(BorrowApplyDetail borrowApplyDetail, HttpSession session) {
         BorrowApply borrowApply = new BorrowApply();
         BorrowDetail borrowDetail = new BorrowDetail();
         try {
@@ -40,8 +40,13 @@ public class BorrowApplyController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        borrowApply.setUid(1);
-        return borrowApplyService.saveBorrow(borrowApply, borrowDetail);
+        Object object = session.getAttribute("user");
+        if(object != null) {
+            User user = (User)object;
+            borrowApply.setUid(user.getUid());
+            return borrowApplyService.saveBorrow(borrowApply, borrowDetail);
+        }
+        return ServerResponse.createByError("借款失败");
     }
 
     @RequestMapping("detail")
