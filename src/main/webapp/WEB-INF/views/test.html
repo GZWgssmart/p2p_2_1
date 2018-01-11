@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all"/>
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+    <legend>动态改变进度</legend>
+</fieldset>
+
+<div class="layui-progress" lay-filter="demo" style="width: 200px;">
+    <div class="layui-progress-bar layui-bg-red"></div>
+</div>
+<div class="layui-progress" style="width:500px;">
+    <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>
+</div>
+
+<div class="site-demo-button" style="margin-top: 20px; margin-bottom: 0;">
+    <button class="layui-btn site-demo-active" data-type="setPercent">设置90%</button>
+    <button class="layui-btn site-demo-active" data-type="loading">模拟loading</button>
+</div>
+
+<script type="text/javascript" src="../../static/layui/layui.js"></script>
+<script>
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element;
+
+        element.progress('demo', '50%');
+    });
+</script>
+</body>
+</html>

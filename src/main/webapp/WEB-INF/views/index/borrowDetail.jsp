@@ -84,7 +84,7 @@
                 </div>
                 <div class="quan">
                     <select name="type" id="selectQuan">
-                        <option>选择优惠券</option>
+                        <option value="0">选择优惠券</option>
                     </select>
                     <a href="<%=path %>/calc/calc" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
@@ -267,19 +267,10 @@
     </div>
 </div>
 
-<script id="ticketType" type="text/html">
-    {{# if(d == null || d == ''){ }}
-        <option>没有优惠券</option>
-    {{# } else { }}
-        {{#  layui.each(d, function(index, vo){ }}
-        <option value="{{ vo.kid }}">{{ vo.name }}</option>
-        {{#  }); }}
-    {{# } }}
-</script>
 <%@include file="../master/footer.jsp" %>
 </body>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script type="text/javascript" src="<%=path %>/static/layui/layui.all.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
@@ -339,7 +330,7 @@
                 ,baid: ${requestScope.baid}
             }, function (data) {
                 fenye(data.rows);
-                pageTotal(data.total)
+                pageTotal(data.total);
             });
 
             // 渲染数据
@@ -444,15 +435,17 @@
     }
 
     function invest(ktmoney, maxInvest) {
+        var quan = $('#selectQuan').val();
         var tzmoney = $('#tzmoney').val();
         if(investCheck(tzmoney, ktmoney, parseFloat(maxInvest)) === 'success') {
             $.post('<%=path %>/data/tz/invest'
                 ,{ baid:${requestScope.baid}
-                    ,money: tzmoney
+                    ,money: (tzmoney - quan)
                     ,resint1:$('#term').text()}
                 , function (data) {
-                    alert(data.message);
-                    window.href.reload();
+                    layer.alert(data.message,function () {
+                        window.location;
+                    });
                 },'json');
         }
     }

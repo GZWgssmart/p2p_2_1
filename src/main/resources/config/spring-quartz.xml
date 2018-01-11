@@ -47,6 +47,19 @@
         <property name="jobDetail" ref="ydataSaveJobDetail" />
         <property name="cronExpression" value="0 0 0 1 * ?" />
     </bean>
+    <!--每月第一天00：00初始化当月实时数据-->
+    <!--<bean id="cronJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">-->
+        <!--<property name="name" value="cronJobDetail" />-->
+        <!--<property name="group" value="group1" />-->
+        <!--<property name="jobClass" value="com.p2p.quartz.CronJob" />-->
+        <!--<property name="durability" value="true" />-->
+    <!--</bean>-->
+    <!--<bean id="cronJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+        <!--<property name="name" value="cronJobTrigger" />-->
+        <!--<property name="group" value="group1" />-->
+        <!--<property name="jobDetail" ref="cronJobDetail" />-->
+        <!--<property name="cronExpression" value="0 */1 * * * ?" />-->
+    <!--</bean>-->
 
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="jobDetails">
