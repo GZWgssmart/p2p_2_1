@@ -11,10 +11,14 @@ public class JklxView {
     public String jklxType(){
         return "borrow/jklxType";
     }
+
     @RequestMapping("addjklx")
     public String addjklx(){
         return "borrow/addJklx";
-
+    }
+    @RequestMapping("update")
+    public String update(){
+        return "borrow/updateJklx";
     }
 
 

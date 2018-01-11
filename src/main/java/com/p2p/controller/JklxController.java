@@ -23,10 +23,24 @@ public class JklxController {
     public Pager jklxTypeList(int page, int limit, Jklx jklx){
         return jklxService.listPagerCriteria(page,limit,jklx);
     }
+
     @RequestMapping("addJklx")
     @ResponseBody
     public ServerResponse addJklx(Jklx jklx){
         return jklxService.save(jklx);
+    }
+
+    @RequestMapping("jklxDetail")
+    @ResponseBody
+    public Jklx jklxDetail(Integer leixingId){
+        Object obj = jklxService.getById(leixingId);
+        return (Jklx) obj;
+    }
+
+    @RequestMapping("updateJklx")
+    @ResponseBody
+    public ServerResponse updateJklx(Jklx jklx){
+        return jklxService.update(jklx);
     }
 
 

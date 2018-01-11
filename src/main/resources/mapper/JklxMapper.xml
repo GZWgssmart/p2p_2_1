@@ -58,6 +58,11 @@
       </if>
     </trim>
   </insert>
+  <select id="getById" resultType="com.p2p.bean.Jklx">
+    <![CDATA[
+        select * from  jklx j where j.lxid = #{lxId}
+      ]]>
+  </select>
   <update id="update" parameterType="com.p2p.bean.Jklx">
     update jklx
     <set>
