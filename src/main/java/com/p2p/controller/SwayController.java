@@ -1,7 +1,7 @@
 package com.p2p.controller;
 
-import com.p2p.bean.Sway;
 import com.p2p.common.Pager;
+import com.p2p.bean.Sway;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.SwayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +26,18 @@ public class SwayController {
     @ResponseBody
     public Pager bzList(int page, int limit, Sway sway){
         return swayService.listPagerCriteria(page,limit,sway);
+    }
+
+    @RequestMapping("updateSway")
+    @ResponseBody
+    public ServerResponse updateSway(Sway sway){
+        return swayService.update(sway);
+
+    }
+    @RequestMapping("swayDetail")
+    @ResponseBody
+    public Sway updateSway(Integer huankuanId){
+        Object obj = swayService.getById(huankuanId);
+        return (Sway) obj;
     }
 }

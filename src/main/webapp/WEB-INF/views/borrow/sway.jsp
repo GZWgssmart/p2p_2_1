@@ -20,7 +20,7 @@
 
 <div class="layui-btn-group demoTable" >
     <button class="layui-btn" data-type="add">新增还款方式</button>
-    <button class="layui-btn" data-type="delete">删除还款方式</button>
+    <button class="layui-btn" data-type="update">修改还款方式</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -84,17 +84,20 @@
                     content: '<%=path %>/page/sway/addsway'
                 });
             }
-            ,delete: function(){ //验证是否全选
+            ,update: function(){ //验证是否全选
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    layer.confirm('真的要删除', function(index){
-                        layer.msg('假装删除了');
-                        layer.close(index);
-                    });
+                    layer.open({
+                        type: 2,
+                        area: ['700px', '400px'],
+                        maxmin:true,
+                        content:"<%=path %>/page/sway/updateSway?huankuanId="+data[0].sid
+                    })
                 } else {
-                    layer.msg('请选中一行！', {time:1500});
+                    layer.msg("请选择一行！");
                 }
+
             }
         };
     });

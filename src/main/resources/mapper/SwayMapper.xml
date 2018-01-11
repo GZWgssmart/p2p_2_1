@@ -69,6 +69,11 @@
       </if>
     </trim>
   </insert>
+  <select id="getById" resultType="com.p2p.bean.Sway">
+    <![CDATA[
+        select * from  sway s where s.sid = #{sId}
+      ]]>
+  </select>
   <update id="update" parameterType="com.p2p.bean.Sway">
     update sway
     <set>

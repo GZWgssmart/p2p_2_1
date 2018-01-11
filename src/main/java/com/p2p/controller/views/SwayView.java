@@ -12,8 +12,15 @@ public class SwayView {
     public String swayList(){
         return "borrow/sway";
     }
+
     @RequestMapping("addsway")
     public String addSway(){
         return "borrow/addSway";
+    }
+
+    @RequestMapping("updateSway")
+    public String updateSway(){
+        return "borrow/updateSway";
+
     }
 }
