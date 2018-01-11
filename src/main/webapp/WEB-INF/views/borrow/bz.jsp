@@ -78,13 +78,12 @@
                     type: 2,
                     title: '标种增加',
                     shadeClose: true,
-                    scrollbar: false,
+                    shade: true,
                     area: ['700px', '400px'],
                     content: '<%=path %>/page/bz/addBz'
                 });
             }
             ,update: function(){ //验证是否全选
-
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
@@ -92,7 +91,7 @@
                         type: 2,
                         area: ['700px', '400px'],
                         maxmin:true,
-                        content:"<%=path %>/page/bz/update?bzId="+data[0].bzid
+                        content:"<%=path %>/page/bz/update?biaozhongId="+data[0].bzid
                     })
                 } else {
                     layer.msg("请选择一行！");

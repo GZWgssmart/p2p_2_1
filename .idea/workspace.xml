@@ -7,16 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="234938ae-d08a-457b-ab68-8e0ef7380f18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/p2p/controller/DxmodelConteller.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/p2p/controller/views/DxmodelView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/p2p/service/DxmodelService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/p2p/service/impl/DxmodelServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message/addDxmodel.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/p2p_2_1_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/p2p_2_1_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/p2p_2_1.iml" afterPath="$PROJECT_DIR$/p2p_2_1.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/DxmodelMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DxmodelMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/home.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/home.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java" afterPath="$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/p2p/controller/views/BzView.java" afterPath="$PROJECT_DIR$/src/main/java/com/p2p/controller/views/BzView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapper/BzMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/BzMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/bz.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/bz.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/updateBz.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/updateBz.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,46 +76,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DxmodelService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/service/DxmodelService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DxmodelServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/service/impl/DxmodelServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DxmodelConteller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/DxmodelConteller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DxmodelView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/views/DxmodelView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="addDxmodel.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/message/addDxmodel.jsp">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,11 +96,69 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
               <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="updateBz.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/updateBz.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bz.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/bz.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BzMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BzMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <marker date="1515497798084" expanded="true" signature="692:809" ph="select b.bzi... bz" />
+                <marker date="1515497798084" expanded="true" signature="926:956" ph="select count... bz" />
+                <marker date="1515497798084" expanded="true" signature="1053:1095" ph="select * fro... bz" />
+                <marker date="1515497798084" expanded="true" signature="1184:1240" ph="delete from " />
+                <marker date="1515497798084" expanded="true" signature="1313:1458" ph="insert into bz... " />
+                <marker date="1515497798084" expanded="true" signature="2171:2435" ph="update bz bz... " />
+                <marker date="1515497798084" expanded="true" signature="2512:2650" ph="update bz se... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BzController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BzView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/views/BzView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -252,7 +266,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/jklxType.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/views/BzView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/views/JklxView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/JklxController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/SwayController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/p2p/dao/JklxMapper.java" />
@@ -262,6 +275,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/DxmodelConteller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home/home.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/DxmodelMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java" />
       </list>
     </option>
   </component>
@@ -468,11 +482,11 @@
       <recent name="com.p2p.service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\p2p_2_1\src\main\java\com\p2p\controller" />
+      <recent name="C:\Users\Administrator\Desktop\p2p_2_1\src\main\resources\mapper" />
+      <recent name="C:\Users\Administrator\Desktop\p2p_2_1\src\main\webapp\WEB-INF\views\borrow" />
       <recent name="C:\Users\Administrator\Desktop\p2p_2_1\src\main\webapp\WEB-INF\views\message" />
       <recent name="F:\p2p_2_1\src\main\resources\mapper" />
-      <recent name="F:\p2p_2_1\src\main\webapp\WEB-INF\views\home" />
-      <recent name="F:\p2p_2_1\src\main\java\com\p2p\dao" />
-      <recent name="F:\p2p_2_1\src\main\webapp\WEB-INF\views\borrow" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1082,7 +1096,7 @@
       <workItem from="1515065386562" duration="327000" />
       <workItem from="1515119605113" duration="1045000" />
       <workItem from="1515459399163" duration="2068000" />
-      <workItem from="1515640909935" duration="434000" />
+      <workItem from="1515640909935" duration="1068000" />
     </task>
     <servers />
   </component>
@@ -1104,11 +1118,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16682000" />
+    <option name="totallyTimeSpent" value="17316000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1128,10 +1141,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3607908" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15321252" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24711697" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28895614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28895614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1162,20 +1175,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/dao/TxCheckMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="46" lean-forward="false" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/dao/TzbMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/dao/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -1338,22 +1337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/bz.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/views/BzView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/views/JklxView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1366,14 +1349,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1422,14 +1397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BzMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1518,6 +1485,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/updateBz.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/borrow/bz.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/BzMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BzMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <marker date="1515497798084" expanded="true" signature="692:809" ph="select b.bzi... bz" />
+            <marker date="1515497798084" expanded="true" signature="926:956" ph="select count... bz" />
+            <marker date="1515497798084" expanded="true" signature="1053:1095" ph="select * fro... bz" />
+            <marker date="1515497798084" expanded="true" signature="1184:1240" ph="delete from " />
+            <marker date="1515497798084" expanded="true" signature="1313:1458" ph="insert into bz... " />
+            <marker date="1515497798084" expanded="true" signature="2171:2435" ph="update bz bz... " />
+            <marker date="1515497798084" expanded="true" signature="2512:2650" ph="update bz se... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/BzController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/p2p/controller/views/BzView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding />
         </state>
       </provider>

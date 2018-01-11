@@ -16,4 +16,8 @@ public class BzView {
     public String addBz(){
         return "borrow/addBz";
     }
+    @RequestMapping("update")
+    public String ypdateBz(){
+        return "borrow/updateBz";
+    }
 }

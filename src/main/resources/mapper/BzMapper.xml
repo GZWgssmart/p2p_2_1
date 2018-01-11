@@ -23,11 +23,10 @@
     ]]>
   </select>
 
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from bz
-    where bzid = #{bzid,jdbcType=INTEGER}
+  <select id="getById" resultType="com.p2p.bean.Bz">
+    <![CDATA[
+        select * from  bz b where b.bzid = #{bzId}
+      ]]>
   </select>
 
   <delete id="deleteById" parameterType="java.lang.Integer">
@@ -41,10 +40,6 @@
     values (#{bzid,jdbcType=INTEGER}, #{bzname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
-
-  <select id="listAll" resultType="com.p2p.bean.Bz">
-    select * from bz
-  </select>
 
   <insert id="save" parameterType="com.p2p.bean.Bz">
     insert into bz

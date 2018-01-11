@@ -26,4 +26,16 @@ public class BzController {
     public Pager bzList(int page, int limit, Bz bz){
         return bzService.listPagerCriteria(page,limit,bz);
     }
+
+    @RequestMapping("bzDetail")
+    @ResponseBody
+    public Bz bzDetail(Integer biaozhongId){
+        Object obj = bzService.getById(biaozhongId);
+        return (Bz) obj;
+    }
+    @RequestMapping("bzUpdate")
+    @ResponseBody
+    public ServerResponse updateBz(Bz bz){
+        return bzService.update(bz);
+    }
 }

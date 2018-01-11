@@ -20,7 +20,7 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12">
-            <form id="addBz" class="layui-form">
+            <form id="update" class="layui-form">
 
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label"></label>
@@ -47,7 +47,7 @@
 
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="update">立即提交</button>
+                        <button class="layui-btn" lay-submit lay-filter="update">修改提交</button>
                     </div>
                 </div>
             </form>
@@ -56,26 +56,53 @@
 </div>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script src="<%=path %>/static/js/home/public.js"></script>
 <script>
-    layui.use(['form', 'laytpl', 'upload','laydate'], function () {
+    //获取url上的值,获取页面传过来的值
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+    var biaozhongId = GetQueryString("biaozhongId");
+    layui.use(['form', 'laytpl', 'layedit'], function () {
 
         var form = layui.form;
         var $ = layui.jquery;
         var layer = layui.layer;
         var laytpl = layui.laytpl;
-        var upload = layui.upload;
-        var laydate = layui.laydate;
+        var layedit = layui.layedit;
+
+        $.get('<%=path %>/data/bz/bzDetail?biaozhongId=' + biaozhongId,
+            function (data) {
+                $('#bzid').val(data.bzid);
+                $('#bzname').val(data.bzname);
+//                $('#status').val(data.status);
+            });
+        form.verify({
+            bzname: function(value){
+                if(value.length < 1){
+                    return '需要填写标种';
+                }
+
+            }
+        });
+
+
+        //修改媒体报道
         form.on('submit(update)', function (data) {
-            $.post('<%=path %>/data/bz/addBz',
-                $('#addBz').serialize(),
+            $.post('<%=path %>/data/bz/bzUpdate',
+                $('#update').serialize(),
                 function (res) {
                     if (res.code === 0) {
-                        layer.msg('添加成功', {
+                        layer.msg('修改成功', {
                             time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
                             location.reload(true);
                         });
-                        layer.closeAll("iframe");
                     } else {
                         layer.msg(res.message);
                     }
@@ -83,7 +110,8 @@
             );
             return false;
         });
-    })
+
+    });
 </script>
 </body>
 </html>
