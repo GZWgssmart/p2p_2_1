@@ -11,6 +11,7 @@ import com.p2p.enums.HKStatusEnum;
 import com.p2p.enums.WayEnum;
 import com.p2p.service.TzbService;
 import com.p2p.vo.BorrowApplyDetail;
+import com.p2p.vo.TzCountVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +43,10 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
 
     private ShborrowMapper shborrowMapper;
 
+    private UserTicketMapper userTicketMapper;
+
+    private TicketMapper ticketMapper;
+
     @Override
     public Pager listPagerCriteria(int pageNo, int pageSize, Object obj) {
         Pager pager = new Pager(pageNo, pageSize);
@@ -70,6 +75,45 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
         if(bAD.getMoneyCount().compareTo(bAD.getMoney()) == 0) {
             return ServerResponse.createByError("已满标");
         }
+        // 查出投资人的资产
+        UserMoney userMoney = userMoneyMapper.getUserMoney(tzb.getUid());
+        //可用余额小于投资金额
+        if(userMoney.getKymoney().compareTo(tzb.getMoney()) == -1) {
+            return ServerResponse.createByError("余额不足！请充值");
+        }
+        // 查出借款人的资产
+        UserMoney juserMoney = userMoneyMapper.getUserMoney(tzb.getJuid());
+        BigDecimal syMoney = BigDecimal.valueOf(0);
+        // 如果投标时间超过截止时间,则流标
+        if(bAD.getDeadline().compareTo(Calendar.getInstance().getTime()) == -1) {
+            //更新借款状态为已流标
+            borrowApplyMapper.updateChecked(bAD.getBdid(), BorrowStatusEnum.BORROW_FAIL.getCode(), bAD.getCktime());
+            // 将借款人的冻结金额减去已筹金额，总资产减去已筹金额
+            juserMoney.setDjmoney(juserMoney.getDjmoney().subtract(bAD.getMoneyCount()));
+            juserMoney.setZmoney(bAD.getMoneyCount());
+            userMoneyMapper.update(juserMoney);
+            // 将原先所有投资人的投资金额减去投资金额，待收总额减去收益，可用余额增加投资金额，总资产减利息，收益总额减去利息
+            List<TzCountVO> tzCounts = tzbMapper.getTotalTzMoney(tzb.getBaid());
+            for(TzCountVO tzCount : tzCounts) {
+                syMoney = getSyMoney(bAD.getWay(), tzCount.getTotalMoney(), bAD.getTerm(), bAD.getNprofit());
+                UserMoney userMoney1 = userMoneyMapper.getUserMoney(tzCount.getUid());
+                Double percent = rewardSettingMapper.getPercent(userMoney1.getTzmoney());
+                userMoney1.setTzmoney(userMoney1.getTzmoney().subtract(tzCount.getTotalMoney()));
+                userMoney1.setDsmoney(userMoney1.getDsmoney().subtract(syMoney.add(tzCount.getTotalMoney())));
+                userMoney1.setKymoney(userMoney1.getKymoney().add(tzCount.getTotalMoney()));
+                userMoney1.setZmoney(userMoney1.getZmoney().subtract(syMoney));
+                userMoney1.setSymoney(userMoney1.getSymoney().subtract(syMoney));
+                userMoneyMapper.update(userMoney1);
+                // 减去投资奖励
+                Reward reward = rewardMapper.getByUid(tzb.getUid());
+                reward.setTmoney(reward.getTmoney().subtract(tzCount.getTotalMoney()));
+                BigDecimal rewardMoney = reward.getTmoney().multiply(BigDecimal.valueOf(percent / 100))
+                        .setScale(2, BigDecimal.ROUND_HALF_UP);
+                reward.setMoney(rewardMoney);
+                rewardMapper.update(reward);
+            }
+            return ServerResponse.createByError("投标已截止");
+        }
         tzb.setJuid(bAD.getUid());
         tzb.setNprofit(bAD.getNprofit());
         tzb.setCpname(bAD.getCpname());
@@ -77,55 +121,56 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
         tzbMapper.save(tzb);
         // tzb.getResint1()为还款期数
         Integer month = tzb.getResint1();
-        //修改投资人的资产
-        UserMoney userMoney = userMoneyMapper.getUserMoney(tzb.getUid());
-        //可用余额小于投资金额
-        if(userMoney.getKymoney().compareTo(tzb.getMoney()) == -1) {
-            return ServerResponse.createByError("余额不足！请充值");
+        //用户券id 用户如果使用券，则把券删除
+        Integer ukid = tzb.getResint2();
+        BigDecimal ticketMoney = BigDecimal.valueOf(0);
+        if(ukid != null && ukid != 0) {
+            UserTicket userTicket = (UserTicket) userTicketMapper.getById(ukid);
+            Ticket ticket = (Ticket)ticketMapper.getById(userTicket.getKid());
+            ticketMoney = ticket.getTkmoney();
+            userTicketMapper.removeById(ukid);
         }
+        //修改投资人的资产
         userMoney.setTzmoney(userMoney.getTzmoney().add(tzb.getMoney()));
         //获取投资总额所对应的投资奖励百分比
         Double percent = rewardSettingMapper.getPercent(userMoney.getTzmoney());
-        BigDecimal rewardMoney = userMoney.getTzmoney().multiply(BigDecimal.valueOf(percent / 100)).setScale(2, BigDecimal.ROUND_HALF_UP);
         //添加投资奖励记录
-        Reward reward = new Reward();
-        reward.setMoney(rewardMoney);
-        reward.setUid(tzb.getUid());
-        reward.setTmoney(userMoney.getTzmoney());
-        rewardMapper.save(reward);
-        // 更新用户资产
-        userMoney.setKymoney(userMoney.getKymoney().subtract(tzb.getMoney()));
+        Reward reward = rewardMapper.getByUid(tzb.getUid());
+        if(reward == null) {
+            reward = new Reward();
+            reward.setTmoney(tzb.getMoney());
+            BigDecimal rewardMoney = reward.getMoney().multiply(BigDecimal.valueOf(percent / 100))
+                    .setScale(2, BigDecimal.ROUND_HALF_UP);
+            reward.setMoney(rewardMoney);
+            reward.setUid(tzb.getUid());
+            rewardMapper.save(reward);
+        } else {
+            reward.setTmoney(reward.getTmoney().add(tzb.getMoney()));
+            BigDecimal rewardMoney = reward.getMoney().multiply(BigDecimal.valueOf(percent / 100))
+                    .setScale(2, BigDecimal.ROUND_HALF_UP);
+            reward.setMoney(rewardMoney);
+            rewardMapper.update(reward);
+        }
+        // 更新用户资产 可用余额减（投资总额减券价值）
+        userMoney.setKymoney(userMoney.getKymoney().subtract(tzb.getMoney().subtract(ticketMoney)));
         //初始化收益
         Float yearNpro = bAD.getNprofit();
         //月利率
         Float monthNpro = yearNpro / 12;
-        BigDecimal syMoney = BigDecimal.valueOf(0);
-        //一次还清和先息后本的用户收益计息方式
-        if(bAD.getWay().equals(WayEnum.PAYOFF_ONCE.getCode())|| bAD.getWay().equals(WayEnum.XIAN_XI.getCode())) {
-            //投资金额乘以年利率
-            syMoney = tzb.getMoney().multiply(BigDecimal.valueOf(yearNpro/100))
-                    .setScale(2, BigDecimal.ROUND_HALF_UP);
-        }
-        // 等额本金的用户收益计息
-        if(bAD.getWay().equals(WayEnum.EQUAL_BJ.getCode())) {
-            syMoney = new ACMLoanCalculator().calLoan(tzb.getMoney(), month, yearNpro, LoanUtil.RATE_TYPE_YEAR).getTotalInterest();
-        }
-        //等额本息的用户收益计息
-        if(bAD.getWay().equals(WayEnum.EQUAL_BX.getCode())) {
-            syMoney = new ACPIMLoanCalculator().calLoan(tzb.getMoney(), month,yearNpro,LoanUtil.RATE_TYPE_YEAR).getTotalInterest();
-        }
+        // 获取用户总利息
+        syMoney = getSyMoney(bAD.getWay(), tzb.getMoney(), month, yearNpro);
         //用户待收总额等于原待收加（投资加用户利息收益）   .setScale(2, BigDecimal.ROUND_HALF_UP)设置精度为两位小数点
         userMoney.setDsmoney(userMoney.getDsmoney().add(tzb.getMoney().add(syMoney)));
-        //用户收益总额等于原收益总额加（用户利息收益）
+        //用户收益总额等于原收益总额加（用户利息）
         userMoney.setSymoney(userMoney.getSymoney().add(syMoney));
-        // 用户总资产等于原先总资产加投资收益
+        // 用户总资产等于原先总资产加投资利息
         userMoney.setZmoney(userMoney.getZmoney().add(syMoney));
         userMoneyMapper.update(userMoney);
         // 如果已筹金额等于目标金额,则更新借款表中的状态为还款中、更新借款人冻结金额为可用余额
         BorrowDetail borrowDetail = new BorrowDetail();
         //修改借款人的资产
-        UserMoney juserMoney = userMoneyMapper.getUserMoney(tzb.getJuid());
         juserMoney.setZmoney(juserMoney.getZmoney().add(tzb.getMoney()));
+        juserMoney.setDjmoney(juserMoney.getDjmoney().add(tzb.getMoney()));
         //如果已经满标
         if((bAD.getMoneyCount().add(tzb.getMoney())).compareTo(bAD.getMoney()) == 0) {
             BorrowApply borrowApply = new BorrowApply();
@@ -133,7 +178,7 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
             borrowApply.setCkstatus(BorrowStatusEnum.REPAYMENT.getCode());
             borrowApplyMapper.update(borrowApply);
             //满标时将借款人的冻结金额变成可用余额
-            juserMoney.setDjmoney(juserMoney.getDjmoney().add(tzb.getMoney()).subtract(bAD.getMoney()));
+            juserMoney.setDjmoney(juserMoney.getDjmoney().subtract(bAD.getMoney()));
             juserMoney.setKymoney(juserMoney.getKymoney().add(bAD.getMoney()));
             // 生成还款清单
             //查找贷后负责人id
@@ -210,8 +255,6 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
             }
             //批量保存
             hkbMapper.saveList(hkbList);
-        } else {
-            juserMoney.setDjmoney(juserMoney.getDjmoney().add(tzb.getMoney()));
         }
         userMoneyMapper.update(juserMoney);
         //修改借款详情里的已筹金额
@@ -219,6 +262,32 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
         borrowDetail.setMoney(bAD.getMoneyCount().add(tzb.getMoney()));
         borrowDetailMapper.update(borrowDetail);
         return ServerResponse.createBySuccess("投资成功");
+    }
+
+    /**
+     * 计算用户投资利息
+     * @param way 计息方式
+     * @param tzMoney 投资金额
+     * @param month 回款月数
+     * @param yearNpro 年利率
+     * @return 利息
+     */
+    private BigDecimal getSyMoney(String way, BigDecimal tzMoney, Integer month, Float yearNpro) {
+        //一次还清和先息后本的用户收益计息方式
+        if(way.equals(WayEnum.PAYOFF_ONCE.getCode())|| way.equals(WayEnum.XIAN_XI.getCode())) {
+            //投资金额乘以年利率
+            return tzMoney.multiply(BigDecimal.valueOf(yearNpro/100))
+                    .setScale(2, BigDecimal.ROUND_HALF_UP);
+        }
+        // 等额本金的用户收益计息
+        if(way.equals(WayEnum.EQUAL_BJ.getCode())) {
+            return new ACMLoanCalculator().calLoan(tzMoney, month, yearNpro, LoanUtil.RATE_TYPE_YEAR).getTotalInterest();
+        }
+        //等额本息的用户收益计息
+        if(way.equals(WayEnum.EQUAL_BX.getCode())) {
+            return new ACPIMLoanCalculator().calLoan(tzMoney, month,yearNpro,LoanUtil.RATE_TYPE_YEAR).getTotalInterest();
+        }
+        return BigDecimal.valueOf(0);
     }
 
     @Autowired
@@ -260,5 +329,15 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
     @Autowired
     public void setShborrowMapper(ShborrowMapper shborrowMapper) {
         this.shborrowMapper = shborrowMapper;
+    }
+
+    @Autowired
+    public void setTicketMapper(TicketMapper ticketMapper) {
+        this.ticketMapper = ticketMapper;
+    }
+
+    @Autowired
+    public void setUserTicketMapper(UserTicketMapper userTicketMapper) {
+        this.userTicketMapper = userTicketMapper;
     }
 }

@@ -55,6 +55,11 @@
     <include refid="tzQuery"/>
   </select>
 
+  <select id="getTotalTzMoney" resultType="com.p2p.vo.TzCountVO">
+    select sum(tz.money) as totalMoney, tz.uid from tzb tz, t_user u
+    where u.uid = tz.uid and tz.baid = #{baid} GROUP BY tz.uid
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from tzb where tzid = #{tzid,jdbcType=INTEGER}
   </delete>

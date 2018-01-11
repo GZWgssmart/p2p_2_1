@@ -9,25 +9,23 @@
       <arg column="tktime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
+
   <sql id="Base_Column_List">
     ukid, uid, kid, tktime
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_ticket
     where ukid = #{ukid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
+
+  <delete id="removeById" parameterType="java.lang.Integer">
     delete from user_ticket
     where ukid = #{ukid,jdbcType=INTEGER}
   </delete>
+
   <insert id="save" parameterType="com.p2p.bean.UserTicket">
-    insert into user_ticket (ukid, uid, kid, tktime)
-    values (#{ukid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{kid,jdbcType=INTEGER}, 
-      #{tktime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.UserTicket">
     insert into user_ticket
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="ukid != null">
@@ -58,7 +56,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.UserTicket">
+
+  <update id="updateById" parameterType="com.p2p.bean.UserTicket">
     update user_ticket
     <set>
       <if test="uid != null">
@@ -71,13 +70,6 @@
         tktime = #{tktime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where ukid = #{ukid,jdbcType=INTEGER}
-  </update>
-  <update id="updateById" parameterType="com.p2p.bean.UserTicket">
-    update user_ticket
-    set uid = #{uid,jdbcType=INTEGER},
-      kid = #{kid,jdbcType=INTEGER},
-      tktime = #{tktime,jdbcType=TIMESTAMP}
     where ukid = #{ukid,jdbcType=INTEGER}
   </update>
 

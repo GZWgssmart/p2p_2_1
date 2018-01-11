@@ -15,6 +15,7 @@ import com.p2p.vo.IndexBorrowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -25,7 +26,6 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
 
     private BorrowApplyMapper borrowApplyMapper;
     private BorrowDetailMapper borrowDetailMapper;
-    private BzMapper bzMapper;
 
     @Autowired
     public void setBorrowApplyMapper(BorrowApplyMapper borrowApplyMapper) {
@@ -36,11 +36,6 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
     @Autowired
     public void setBorrowDetailMapper(BorrowDetailMapper borrowDetailMapper) {
         this.borrowDetailMapper = borrowDetailMapper;
-    }
-
-    @Autowired
-    public void setBzMapper(BzMapper bzMapper) {
-        this.bzMapper = bzMapper;
     }
 
     @Override
@@ -75,6 +70,7 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
         }
         borrowDetail.setBaid(borrowApply.getBaid());
         borrowDetail.setCpname("PJ" + Calendar.getInstance().get(Calendar.YEAR) + "BZ" + getCpName(borrowApply.getBaid()));
+        borrowDetail.setMoney(BigDecimal.valueOf(0));
         if(borrowDetailMapper.save(borrowDetail) == 0){
             return ServerResponse.createByError("保存失败");
         }

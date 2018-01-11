@@ -22,6 +22,10 @@
     where rwid = #{rwid,jdbcType=INTEGER}
   </select>
 
+  <select id="getByUid" resultType="com.p2p.bean.Reward">
+    select * from reward where uid = #{uid} and status = 0
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from reward where rwid = #{rwid,jdbcType=INTEGER}
   </delete>

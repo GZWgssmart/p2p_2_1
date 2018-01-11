@@ -59,6 +59,11 @@ public class BorrowApplyDetail {
 
     private String cpname;
 
+    private Integer ckstatus;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date cktime;
+
     public String getRname() {
         return rname;
     }
@@ -234,5 +239,22 @@ public class BorrowApplyDetail {
 
     public void setCpname(String cpname) {
         this.cpname = cpname;
+    }
+
+    public Integer getCkstatus() {
+        return ckstatus;
+    }
+
+    public void setCkstatus(Integer ckstatus) {
+        this.ckstatus = ckstatus;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    public Date getCktime() {
+        return cktime;
+    }
+
+    public void setCktime(Date cktime) {
+        this.cktime = cktime;
     }
 }

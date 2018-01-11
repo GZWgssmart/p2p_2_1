@@ -394,7 +394,7 @@
                 var html = '';
                 if(data.length != 0) {
                     for(var i = 0; i < data.length; i++) {
-                        html += "<option value='" + data[i].tkmoney + "'>" + data[i].name + "</option>"
+                        html += "<option value='" + data[i].ukid + "'>" + data[i].name + "</option>"
                     }
                     $('#selectQuan').append(html);
                 } else {
@@ -436,17 +436,19 @@
     }
 
     function invest(ktmoney, maxInvest) {
-        var quan = $('#selectQuan').val();
         var tzmoney = $('#tzmoney').val();
         if(investCheck(tzmoney, ktmoney, parseFloat(maxInvest)) === 'success') {
             $.post('<%=path %>/data/tz/invest'
                 ,{ baid:${requestScope.baid}
-                    ,money: (tzmoney - quan)
+                    ,money: tzmoney
+                    // 用户领的券的ukid
+                    ,resint2:$('#selectQuan').val()
                     ,resint1:$('#term').text()}
                 , function (data) {
                     layer.alert(data.message,function () {
                         window.location;
                     });
+                    window.href.reload();
                 },'json');
         }
     }

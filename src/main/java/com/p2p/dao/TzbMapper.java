@@ -1,6 +1,7 @@
 package com.p2p.dao;
 
 import com.p2p.common.Pager;
+import com.p2p.vo.TzCountVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -18,4 +19,6 @@ public interface TzbMapper extends BaseDAO {
     Long countCriteria(@Param("query") Object obj);
 
     Long countUserInvest(@Param("query") Object obj);
+
+    List<TzCountVO> getTotalTzMoney(Integer baid);
 }
