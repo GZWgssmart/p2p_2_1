@@ -127,7 +127,7 @@
                                     <div class="date-item">
                                         <div class="line icon icon-progress">
                                             <p>募集进度：</p>
-                                            <p class="progress"><em style="width: 100%;"></em></p>
+                                            <p class="progress"><em class="xsbjindu"></em></p>
                                             <p class="progress-text"><span id="xs-schedules">{{xsb.moneyCount / xsb.money * 100}}</span>%</p>
                                         </div>
                                         <p class="icon icon-doll">项目金额：<span id="xs-doll">{{xsb.money}}元</span></p>
@@ -176,7 +176,7 @@
                                     <div class="bottom">
                                         <div class="line icon icon-progress">
                                             <p>募集进度：</p>
-                                            <p class="progress"><em style="width:100.00%"></em></p>
+                                            <p class="progress"><em class="hjbjindu"></em></p>
                                             <p class="progress-text">{{hjb.moneyCount / hjb.money * 100}}%</p>
                                         </div>
                                         <p class="icon icon-doll">项目金额：{{hjb.money}}元</p>
@@ -225,7 +225,7 @@
                                         <div class="bottom">
                                             <div class="line icon icon-progress">
                                                 <p>募集进度：</p>
-                                                <p class="progress"><em style="width:100.00%"></em></p>
+                                                <p class="progress"><em class="pjbjindu"></em></p>
                                                 <p class="progress-text">{{pjb.moneyCount / pjb.money * 100}}%</p>
                                             </div>
                                             <p class="icon icon-doll">项目金额：{{pjb.money}}元</p>
@@ -273,7 +273,7 @@
                                     <div class="bottom">
                                         <div class="line icon icon-progress">
                                             <p>募集进度：</p>
-                                            <p class="progress"><em style="width:100.00%"></em></p>
+                                            <p class="progress"><em class="djbjindu"></em></p>
                                             <p class="progress-text">{{djb.moneyCount / djb.money * 100}}%</p>
                                         </div>
                                         <p class="icon icon-doll">项目金额：{{djb.money}}元</p>
@@ -423,6 +423,10 @@
                 laytpl(getXsbTpl).render(data.rows, function (html) {
                     xsbView.innerHTML = html;
                 });
+                for(var i = 0; i < data.rows.length; i++) {
+                    $('.xsbjindu')[i].id = "xsbjindu" + i;
+                    $('#xsbjindu' + [i]).css({ "width": (data.rows[i].moneyCount / data.rows[i].money * 100) + "%"});
+                }
             });
         // 恒金宝渲染
         var getHjbTpl = $('#hjbList').html()
@@ -436,6 +440,10 @@
                 laytpl(getHjbTpl).render(data.rows, function (html) {
                     hjbView.innerHTML = html;
                 });
+                for(var i = 0; i < data.rows.length; i++) {
+                    $('.hjbjindu')[i].id = "hjbjindu" + i;
+                    $('#hjbjindu' + [i]).css({ "width": (data.rows[i].moneyCount / data.rows[i].money * 100) + "%"});
+                }
             });
         // 普金宝渲染
         var getPjbTpl = $('#pjbList').html()
@@ -449,6 +457,10 @@
                 laytpl(getPjbTpl).render(data.rows, function (html) {
                     pjbView.innerHTML = html;
                 });
+                for(var i = 0; i < data.rows.length; i++) {
+                    $('.pjbjindu')[i].id = "pjbjindu" + i;
+                    $('#pjbjindu' + [i]).css({ "width": (data.rows[i].moneyCount / data.rows[i].money * 100) + "%"});
+                }
             });
         // 多金宝渲染
         var getDjbTpl = $('#djbList').html()
@@ -462,6 +474,10 @@
                 laytpl(getDjbTpl).render(data.rows, function (html) {
                     djbView.innerHTML = html;
                 });
+                for(var i = 0; i < data.rows.length; i++) {
+                    $('.djbjindu')[i].id = "djbjindu" + i;
+                    $('#djbjindu' + [i]).css({ "width": (data.rows[i].moneyCount / data.rows[i].money * 100) + "%"});
+                }
         });
 
         $.get("<%=path %>/data/home/indexMsg?page=1&limit=1",

@@ -81,9 +81,7 @@
                                 <li class="row4"><p class="row-top">可投金额 / 募集总额</p><p class="row-bottom">{{borrow.money-borrow.moneyCount}}元 / {{borrow.money}}元</p></li>
                                 <li class="row5">
                                     <div class="line">
-                                        <div class="layui-progress" style="float: left;width: 150px;margin-top: 13px" lay-showPercent="true">
-                                            <div class="layui-progress-bar layui-bg-red" lay-percent="{{borrow.moneyCount/borrow.money*100}}%"></div>
-                                        </div>
+                                        <p class="progress"><em class="jindu"></em></p><p class="progress-text">{{borrow.moneyCount / borrow.money * 100}}%</p>
                                     </div>
                                     <p class="row-top">募集进度</p></li>
                                 <li class="row6">
@@ -152,15 +150,21 @@
                 ,bzid: $('#bzid').val()
             }, function (data) {
                 fenye(data.rows);
-                pageTotal(data.total)
+                pageTotal(data.total);
+                for(var i = 0; i < data.rows.length; i++) {
+                    $('.jindu')[i].id = "jindu" + i;
+                    $('#jindu' + [i]).css({ "width": (data.rows[i].moneyCount / data.rows[i].money * 100) + "%"});
+                }
             });
         }
+
 
         // 渲染数据
         function fenye(data) {
             laytpl(getTpl).render(data, function (html) {
                 view.innerHTML = html;
             });
+
         }
 
         $('#searchCpname').on('click', function(){
