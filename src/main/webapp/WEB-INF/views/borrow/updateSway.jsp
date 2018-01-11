@@ -33,7 +33,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">还款方式</label>
                     <div class="layui-input-block">
-                        <input type="text" name="way" lay-verify="way" autocomplete="off"
+                        <input type="text" name="way" id="way" lay-verify="way" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">算法</label>
                     <div class="layui-input-block">
-                        <input type="text" name="fw" lay-verify="fw" autocomplete="off"
+                        <input type="text" name="fw" id="fw" lay-verify="fw" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
@@ -88,7 +88,7 @@
         $.get('<%=path %>/data/sway/swayDetail?huankuanId=' + huankuanId,
             function (data) {
                 $('#sid').val(data.sid);
-                $('#name').val(data.way);
+                $('#way').val(data.way);
                 $('#fw').val(data.fw);
 //                $('#status').val(data.status);
             });

@@ -33,7 +33,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">标种</label>
                     <div class="layui-input-block">
-                        <input type="text" name="bzname" lay-verify="bzname" autocomplete="off"
+                        <input type="text" name="bzname" id="bzname" lay-verify="bzname" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>

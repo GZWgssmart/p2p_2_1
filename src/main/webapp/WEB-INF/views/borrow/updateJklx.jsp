@@ -33,7 +33,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">借款类型</label>
                     <div class="layui-input-block">
-                        <input type="text" name="lxname" lay-verify="lxname" autocomplete="off"
+                        <input type="text" name="lxname" id="lxname" lay-verify="lxname" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
