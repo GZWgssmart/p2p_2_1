@@ -205,6 +205,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="layui-tab-item">
                     <div class="about-content" id="wzptDiv">
                         <div class="content">
@@ -230,62 +231,23 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="layui-tab-item">
                     <div class="about-content" id="hzhbDiv">
-                        <div class="content">
+                        <div class="content" id="friend">
+                            <script type="text/html" id="friendDemo">
+                                {{# layui.each(d, function(index, friend){ }}
                             <div class="logoDiv">
-                                <a href="https://www.fadada.com/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/fadadaLogo.png">
+                                <a href="{{friend.furl}}">
+                                    <img alt="logo" src="<%=path %>/{{friend.fpic}}">
                                 </a>
                             </div>
-                            <div class="logoDiv">
-                                <a href="http://www.evergrande.com/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/hddcLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv logoDiv2">
-                                <a href="http://www.erongtu.com/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/rtwLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv">
-                                <a href="http://www.gzctgroup.cn/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/ctLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv">
-                                <a href="http://www.chinapnr.com/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/hftxLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv logoDiv2">
-                                <a href="http://www.heimadc.com/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/hmLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv">
-                                <a href="http://www.cgfae.cn/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/jyzxLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv">
-                                <a href="http://www.chinacsfl.cn/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/fwlmLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv logoDiv2">
-                                <a href="http://www.wdzj.com/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/wdzjLogo.png">
-                                </a>
-                            </div>
-                            <div class="logoDiv">
-                                <a href="http://www.jxifa.org.cn/">
-                                    <img alt="logo" src="<%=path %>/static/images/about/jrxhLogo.png">
-                                </a>
-                            </div>
+                                {{#  }); }}
+                            </script>
                         </div>
                     </div>
                 </div>
+
                 <div class="layui-tab-item">
                     <div class="about-content" id="zdsxDiv">
                         <div class="content">
@@ -327,9 +289,19 @@
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
-    layui.use(['element', 'laypage', 'laytpl'], function () {
+    layui.use(['element', 'laytpl'], function () {
         var $ = layui.$;
+        var laytpl = layui.laytpl;
         var element = layui.element;
+        //渲染合作伙伴
+        var friendgetTpl = $('#friendDemo').html()
+            , friendview = document.getElementById('friend');
+        $.post("<%=path %>/data/message/allIndexfriend",
+        function (data) {
+            laytpl(friendgetTpl).render(data, function (html) {
+                friendview.innerHTML = html;
+            });
+        });
     });
 </script>
 </body>
