@@ -68,7 +68,7 @@
                         <li class="center">
                             <p>
                                 累计投资金额：
-                                <span id="investAmount">33,888,145.00</span>
+                                <span id="investAmount"></span>
                                 <span class="small">元</span>
                             </p>
                         </li>
@@ -76,7 +76,7 @@
                         <li class="last">
                             <p>
                                 累计注册投资人：
-                                <span id="userTotal">11,219</span>
+                                <span id="userTotal"></span>
                                 <span class="small">人</span>
                             </p>
                         </li>
@@ -533,8 +533,16 @@
                 }
                 document.getElementById("demo1").innerHTML = html;
                 document.getElementById("demo2").innerHTML = html;
-        })
-    })
+        });
+
+        $.get('/data/ydata/new',
+            function (data) {
+                $('#investAmount').text(data.tmoney);
+                $('#userTotal').text(data.tuser);
+            }
+        );
+
+    });
 </script>
 <script>
     var speed=30; //数字越大速度越慢

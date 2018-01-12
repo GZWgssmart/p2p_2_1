@@ -20,23 +20,11 @@
         <property name="permissionsQuery" value="select j.jurl from role r, rolejur rp, jur j where r.rid = rp.rid and rp.jid = j.jid and r.rname = ?" />
         <property name="permissionsLookupEnabled" value="true" />
     </bean>
-    <!-- 配置权限管理器 // TODO 在此配置多个数据源 -->
-    <!--<bean id="jdbcRealm1" class="org.apache.shiro.realm.jdbc.JdbcRealm">-->
-        <!--<property name="dataSource" ref="dataSource"></property>-->
-        <!--&lt;!&ndash; 根据用户邮箱查找用户密码 &ndash;&gt;-->
-        <!--<property name="authenticationQuery" value="select password from huser where name = ?"></property>-->
-        <!--&lt;!&ndash; 根据用户的邮箱查找用户的角色名称 &ndash;&gt;-->
-        <!--<property name="userRolesQuery" value="select r.name from huser u, t_user_role ur, t_role r where u.id = ur.user_id and ur.role_id = r.id and u.name = ?" />-->
-        <!--&lt;!&ndash; 根据用户的邮箱查找用户的权限 &ndash;&gt;-->
-        <!--<property name="permissionsQuery" value="select p.permission from t_role r, t_role_permission rp, t_permission p where r.id = rp.role_id and rp.permission_id = p.id and r.name = ?" />-->
-        <!--<property name="permissionsLookupEnabled" value="true" />-->
-    <!--</bean>-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!-- 我们自定义的realm -->
         <property name="realms">
             <set>
                 <ref bean="jdbcRealm" />
-                <!--<ref bean="jdbcRealm1" />-->
             </set>
         </property>
         <!-- 缓存管理器 -->
@@ -49,17 +37,41 @@
         <!-- 权限管理器 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 登录地址 -->
-        <property name="loginUrl" value="/home/login.jsp"/>
+        <property name="loginUrl" value="/page/admin/login"/>
         <!-- 错误页面 -->
         <property name="unauthorizedUrl" value="/error.jsp"/>
         <!-- 权限配置 -->
         <property name="filterChainDefinitions">
             <value>
                 /login = anon
-                /css/**=anon
-                /images/**=anon
-                /js/**=anon
-                /layui/**=anon
+                /static/** = anon
+                <!--/css/**=anon-->
+                <!--/images/**=anon-->
+                <!--/js/**=anon-->
+                <!--/layui/**=anon-->
+                /home/**=authc
+                <!--manage角色-->
+                /page/jklx/jklxTypeList = authc,perms["rname:manage,rname:root"]
+                /page/borrowApply/adminBorrowList = authc,perms["rname:manage,rname:root"]
+                /page/borrowApply/investManage = authc,perms["rname:manage,rname:root"]
+                /page/bz/** = authc,perms["rname:manage,rname:root"]
+                /page/sway/** = authc,perms["rname:manage,rname:root"]
+                /page/vip/** = authc,perms["rname:manage,rname:root"]
+                <!--message-->
+                /page/home/addIndexMsgPage = authc,perms["rname:message,rname:root"]
+                /page/home/indexMsg = authc,perms["rname:message,rname:root"]
+                /page/dynamic/addDynamicPage = authc,perms["rname:message,rname:root"]
+                /page/dynamic/dynamicPage = authc,perms["rname:message,rname:root"]
+                /page/dynamic/editPage = authc,perms["rname:message,rname:root"]
+                /page/company/addMediaReportPage = authc,perms["rname:message,rname:root"]
+                /page/company/mediaReport = authc,perms["rname:message,rname:root"]
+                /page/company/editPage = authc,perms["rname:message,rname:root"]
+                /page/message/** = perms["rname:message,rname:root"]
+                <!--root-->
+                /page/Jur/** = authc,perms["rname:root"]
+                /page/Role/** = authc,perms["rname:root"]
+                /page/admin/add = authc,perms["rname:root"]
+                /page/admin/List = authc,perms["rname:root"]
             </value>
         </property>
     </bean>
