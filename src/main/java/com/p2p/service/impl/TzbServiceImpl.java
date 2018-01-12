@@ -87,10 +87,10 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
         // 如果投标时间超过截止时间,则流标
         if(bAD.getDeadline().compareTo(Calendar.getInstance().getTime()) == -1) {
             //更新借款状态为已流标
-            borrowApplyMapper.updateChecked(bAD.getBdid(), BorrowStatusEnum.BORROW_FAIL.getCode(), bAD.getCktime());
+            borrowApplyMapper.updateChecked(tzb.getBaid(), BorrowStatusEnum.BORROW_FAIL.getCode(), bAD.getCktime());
             // 将借款人的冻结金额减去已筹金额，总资产减去已筹金额
             juserMoney.setDjmoney(juserMoney.getDjmoney().subtract(bAD.getMoneyCount()));
-            juserMoney.setZmoney(bAD.getMoneyCount());
+            juserMoney.setZmoney(juserMoney.getZmoney().subtract(bAD.getMoneyCount()));
             userMoneyMapper.update(juserMoney);
             // 将原先所有投资人的投资金额减去投资金额，待收总额减去收益，可用余额增加投资金额，总资产减利息，收益总额减去利息
             List<TzCountVO> tzCounts = tzbMapper.getTotalTzMoney(tzb.getBaid());

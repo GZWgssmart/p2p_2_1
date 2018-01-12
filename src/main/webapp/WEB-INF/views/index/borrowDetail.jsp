@@ -70,9 +70,8 @@
                 <div class="subject-s-r-c">
                     <p>可用余额：<span id="canUseSum">
                     <c:if test="${sessionScope.user != null}"><p id="kymoney">${requestScope.userMoney.kymoney}</p></c:if>
-                    <c:if test="${sessionScope.user == null}"><p>登录后查看余额</p></c:if>
+                    <c:if test="${sessionScope.user == null}"><p><a href="<%=path %>/page/login">登录后查看余额</a></p></c:if>
                     </span></p>
-                    <p class="rate">预期收益：<span class="color" id="reckon">0.00</span></p>
                 </div>
                 <div class="subject-s-r-c">
                     <p>剩余可投：<span id="investAmount">{{d.money-d.moneyCount}}元</span></p>
