@@ -22,6 +22,16 @@
     where rwid = #{rwid,jdbcType=INTEGER}
   </select>
 
+  <select id="getAllReward" resultType="com.p2p.bean.Reward">
+    select * from reward where status = 0
+  </select>
+
+  <update id="batchUpdate"  parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" separator=";">
+      update reward set reward_time = now(), status = 1 where uid = #{item.uid}
+    </foreach>
+  </update>
+
   <select id="getByUid" resultType="com.p2p.bean.Reward">
     select * from reward where uid = #{uid} and status = 0
   </select>

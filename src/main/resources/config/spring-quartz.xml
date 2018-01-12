@@ -75,12 +75,27 @@
         <property name="cronExpression" value="0 0 0 * * ?" />
     </bean>
 
+    <!--每月1号凌晨2点发放投资奖励-->
+    <bean id="rewardJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="rewardJob" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.p2p.quartz.RewardJob" />
+        <property name="durability" value="true" />
+    </bean>
+    <bean id="rewardJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="rewardJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="rewardJob" />
+        <property name="cronExpression" value="0 0 2 1 * ?" />
+    </bean>
+
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="jobDetails">
             <list>
                 <ref bean="ydataUpdateJobDetail" />
                 <ref bean="ydataSaveJobDetail" />
                 <ref bean="lostBorrowJob" />
+                <ref bean="rewardJob" />
                 <ref bean="cronJobDetail" />
             </list>
         </property>
