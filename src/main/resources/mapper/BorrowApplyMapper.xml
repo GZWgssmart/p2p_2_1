@@ -32,6 +32,12 @@
     where b.bzid = ba.bzid and bd.baid = ba.baid and ba.baid = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="borrowingList" resultType="com.p2p.vo.BorrowingVO">
+    select ba.baid, ba.uid as juid, ba.cktime, ba.term,
+    ba.deadline, bd.way, bd.nprofit, bd.money as moneyCount from borrowapply ba, borrowdetail bd
+    where bd.baid = ba.baid and ba.ckstatus = 2
+  </select>
+
   <sql id="borrow_query_criteria">
       <if test="query != null and query.bzid != null">
         and ba.bzid = #{query.bzid}

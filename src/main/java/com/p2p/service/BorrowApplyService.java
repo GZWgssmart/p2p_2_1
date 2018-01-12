@@ -4,11 +4,10 @@ import com.p2p.bean.BorrowApply;
 import com.p2p.bean.BorrowDetail;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
-import com.p2p.vo.IndexBorrowVO;
+import com.p2p.vo.BorrowingVO;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public interface BorrowApplyService extends BaseService {
 
@@ -17,4 +16,6 @@ public interface BorrowApplyService extends BaseService {
     ServerResponse saveBorrow(BorrowApply borrowApply, BorrowDetail borrowDetail);
 
     Pager listPagerByBzid(int pageNo, int pageSize, Object obj);
+
+    List<BorrowingVO> borrowingList();
 }

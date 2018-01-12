@@ -11,6 +11,7 @@ import com.p2p.dao.BorrowApplyMapper;
 import com.p2p.dao.BorrowDetailMapper;
 import com.p2p.dao.BzMapper;
 import com.p2p.service.BorrowApplyService;
+import com.p2p.vo.BorrowingVO;
 import com.p2p.vo.IndexBorrowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,6 +84,11 @@ public class BorrowApplyServiceImpl extends AbstractServiceImpl implements Borro
         pager.setRows(borrowApplyMapper.listPagerByBzid(pager, obj));
         pager.setTotal(Long.valueOf(3));
         return pager;
+    }
+
+    @Override
+    public List<BorrowingVO> borrowingList() {
+        return borrowApplyMapper.borrowingList();
     }
 
     private String getCpName(Integer baid) {
