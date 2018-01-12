@@ -77,13 +77,7 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    layer.open({
-                        type: 2,
-                        area: ['600px', '500px'],
-                        maxmin:true,
-                        scrollbar:false,
-                        content:"<%=path %>/page/message/editNotice?noticeId="+data[0].nid
-                    })
+                    window.open("<%=path %>/page/message/editNotice?noticeId="+data[0].nid)
                 } else {
                     layer.msg("请选择一行！");
                 }
@@ -93,13 +87,7 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    layer.open({
-                        type: 2,
-                        area: ['800px', '600px'],
-                        maxmin:true,
-                        scrollbar:false,
-                        content:"<%=path %>/page/message/noticeDetail?noticeId="+data[0].nid
-                    })
+                    window.open("<%=path %>/page/message/noticeDetail?noticeId="+data[0].nid)
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }

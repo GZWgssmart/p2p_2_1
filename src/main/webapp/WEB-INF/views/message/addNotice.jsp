@@ -32,10 +32,11 @@
                 </div>
 
 
-                <div class="layui-form-item" style="margin-top: 20px;">
+                <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">公告内容</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容"  type="text" name="content" lay-verify="content" placeholder="请输入公告内容" class="layui-textarea"></textarea>
+                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                         id="content"></textarea>
                     </div>
                 </div>
 
@@ -53,14 +54,27 @@
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
 
-    layui.use(['form', 'laytpl', 'upload','laydate'], function () {
+    layui.use(['form', 'laytpl', 'layedit','laydate'], function () {
 
         var form = layui.form;
         var $ = layui.jquery;
         var layer = layui.layer;
         var laytpl = layui.laytpl;
-        var upload = layui.upload;
+        var layedit = layui.layedit;
         var laydate = layui.laydate;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('content', {
+            tool: [
+                'strong' //加粗
+                , 'left' //左对齐
+                , 'center' //居中对齐
+                , 'link' //超链接
+                , 'unlink' //清除链接
+                , 'face' //表情
+                , 'image' //插入图片
+            ]
+        });
 
         form.verify({
             title: function(value){
@@ -68,7 +82,7 @@
                     return '需要填写标题';
                 }
             },content: function(value){
-                if(value.length < 1){
+                if(value){
                     return '需要填写内容';
                 }
             }
@@ -76,6 +90,7 @@
 
         //提交媒体报道
         form.on('submit(fabu)', function (data) {
+            $('#content').val(layedit.getContent(editIndex));
             $.post('<%=path %>/data/message/addNotice',
                 $('#addNotice').serialize(),
                 function (res) {

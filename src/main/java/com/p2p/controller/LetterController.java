@@ -46,4 +46,11 @@ public class LetterController {
         return (Letter) obj;
     }
 
+    @RequestMapping("letterDetailPage")
+    @ResponseBody
+    public Letter letterDetails (Integer letterId){
+        Object obj = letterService.getById(letterId);
+        return (Letter)obj;
+    }
+
 }

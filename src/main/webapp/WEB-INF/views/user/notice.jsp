@@ -34,14 +34,9 @@
                 <!-- 消息中心-->
                 <div class="layui-tab-item layui-show layui-row">
                     <div class="layui-btn-group demoTable">
-                        <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-                        <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-                        <button class="layui-btn" data-type="isAll">验证是否全选</button>
-                        <button class="layui-btn" data-type="">删除</button>
-                        <button class="layui-btn" data-type="">标记已读</button>
-                        <button class="layui-btn" data-type="">标记未读</button>
+                        <button class="layui-btn" data-type="detail">查看</button>
                     </div>
-                    <table id="allArticle_table" lay-filter="demo"></table>
+                    <table id="allLetter_table" lay-filter="demo"></table>
 
                 </div>
 
@@ -60,15 +55,14 @@
         var $ = layui.jquery
             , element = layui.element
             , table = layui.table
-
         table.render({
-            elem: '#allArticle_table'
-            ,url: '#'
+            elem: '#allLetter_table'
+            ,url: '<%=path %>/data/message/pagerLetter'
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'id', title:'ID', width:50, fixed: 'left'}
-                ,{field:'laiyuan', title:'来源', width:250}
                 ,{field:'title', title:'标题', width:250}
+                ,{field:'content', title:'内容', width:250}
                 ,{field:'createdTime', title:'创建时间', width:250, sort: true, templet:'<div>{{ formatDate(d.createdTime)}}</div>'}
             ]]
             ,id: 'idTest'
@@ -87,21 +81,22 @@
             active[type] ? active[type].call(this) : '';
         });
 
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+
         var active = {
-            getCheckData: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+            detail: function(){ //获取选中数据
+            var checkStatus = table.checkStatus('idTest')
+                ,data = checkStatus.data;
+            if(data.length == 1) {
+                window.open("<%=path %>/page/message/letterDetailPage?letterId="+data[0].lid)
+            } else {
+                layer.msg('请选中一行！', {time:1500});
             }
-            ,getCheckLength: function(){ //获取选中数目
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.msg('选中了：'+ data.length + ' 个');
-            }
-            ,isAll: function(){ //验证是否全选
-                var checkStatus = table.checkStatus('idTest');
-                layer.msg(checkStatus.isAll ? '全选': '未全选')
-            }
+        }
+
         };
 
     });

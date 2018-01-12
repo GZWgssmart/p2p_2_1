@@ -171,6 +171,10 @@
                                    data-options="{url:'<%=path%>/page/message/addDx',icon:'&#xe658;',title:'站内信',id:'41'}">
                                 <i class="layui-icon">&#xe658;</i><span>站内信</span></a>
                             </dd>
+                            <dd><a href="javascript:;" kit-target
+                                   data-options="{url:'<%=path %>/page/message/addLetter',icon:'&#xe658;',title:'添加站内信',id:'48'}">
+                                <i class="layui-icon">&#xe658;</i><span>添加站内信</span></a>
+                            </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/message/allFriend',icon:'&#xe62d;',title:'合作伙伴',id:'42'}">

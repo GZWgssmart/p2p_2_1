@@ -93,7 +93,6 @@
             function (data) {
                 $('#lid').val(data.lid);
                 $('#title').val(data.title);
-                $('#content').val(data.content);
                 if(data.status==1){
                     $('#status').val("激活");
                 }else{
@@ -102,7 +101,22 @@
                 if(data.createdTime) {
                     $('#createdTime').val(formatDate(data.createdTime));
                 }
+                layedit.setContent(editIndex,data.content);
+
             });
+
+        var editIndex = layedit.build('content', {
+            tool: [
+                'strong' //加粗
+                , 'left' //左对齐
+                , 'center' //居中对齐
+                , 'link' //超链接
+                , 'unlink' //清除链接
+                , 'face' //表情
+                , 'image' //插入图片
+            ]
+        });
+
 
     });
 

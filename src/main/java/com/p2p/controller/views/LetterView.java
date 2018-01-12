@@ -25,4 +25,8 @@ public class LetterView {
     public String letterDetail(){
         return "message/letterDetail";
     }
+    @RequestMapping("letterDetailPage")
+    public String letterDetailPage(){
+        return"message/letterDetailPage";
+    }
 }

@@ -19,19 +19,12 @@
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
+
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view" style="margin-right: 60px;">
            <%-- <script id="demo" type="text/html">--%>
                 <form id="editNotice" class="layui-form" action="">
-
-                    <div class="layui-form-item" style="margin-top: 20px;">
-                        <label class="layui-form-label"></label>
-                        <div class="layui-input-block">
-                            <input type="hidden" name="nid" id="nid" lay-verify autocomplete="off"
-                               class="layui-input" readonly/>
-                        </div>
-                    </div>
 
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">公告标题</label>
@@ -45,6 +38,14 @@
                         <label class="layui-form-label">公告内容</label>
                         <div class="layui-input-block">
                         <textarea class="layui-textarea" name="content" id="content" lay-verify="content"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <input type="hidden" name="nid" id="nid" lay-verify autocomplete="off"
+                                   class="layui-input" readonly/>
                         </div>
                     </div>
 
@@ -74,30 +75,39 @@
     }
     var noticeId = GetQueryString("noticeId");
     layui.use(['form', 'laytpl', 'layedit'], function () {
-
         var form = layui.form;
         var $ = layui.jquery;
         var layer = layui.layer;
         var laytpl = layui.laytpl;
         var layedit = layui.layedit;
 
-        $.get('<%=path %>/data/message/noticeDetail?noticeId=' + noticeId,
+       $.get('<%=path %>/data/message/noticeDetail?noticeId=' + noticeId,
             function (data) {
                 $('#nid').val(data.nid);
                 $('#title').val(data.title);
-                $('#content').val(data.content);
-            });
+                layedit.setContent(editIndex,data.content);
+       });
+
         form.verify({
             title: function(value){
                 if(value.length < 1){
                     return '需要填写标题';
                 }
-            },content: function(value){
-                if(value.length < 1){
-                    return '需要填写内容';
-                }
             }
          });
+
+
+        var editIndex = layedit.build('content', {
+            tool: [
+                'strong' //加粗
+                , 'left' //左对齐
+                , 'center' //居中对齐
+                , 'link' //超链接
+                , 'unlink' //清除链接
+                , 'face' //表情
+                , 'image' //插入图片
+            ]
+        });
 
         /*var getTpl = demo.innerHTML
             , view = document.getElementById('view');*/
@@ -110,6 +120,8 @@
 
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
+            //增加这句话，才可以准确，的获取到，编辑器里的数据。
+            $('#content').val(layedit.getContent(editIndex));
             $.post('<%=path %>/data/message/editNotice',
                 $('#editNotice').serialize(),
                 function (res) {

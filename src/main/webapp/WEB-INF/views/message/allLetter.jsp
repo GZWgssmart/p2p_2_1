@@ -33,7 +33,6 @@
 </div>
 <br/>
 <div class="layui-btn-group demoTable" id="barDemo">
-    <button class="layui-btn" data-type="add">添加</button>
     <button class="layui-btn" data-type="detail">查看</button>
     <button class="layui-btn" data-type="edit">编辑</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
@@ -94,26 +93,12 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 layer.alert(JSON.stringify(data));
-            },add:function () {
-                layer.open({
-                    type: 2,
-                    area: ['600px', '500px'],
-                    maxmin:true,
-                    scrollbar:false,
-                    content:"<%=path %>/page/message/addLetter"
-                })
             }
             ,edit: function(){ //先获取行数据，将数据跳转到编辑页。
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    layer.open({
-                        type: 2,
-                        area: ['600px', '500px'],
-                        maxmin:true,
-                        scrollbar:false,
-                        content:"<%=path %>/page/message/editLetter?letterId="+data[0].lid
-                    })
+                    window.open("<%=path %>/page/message/editLetter?letterId="+data[0].lid)
                 } else {
                     layer.msg("请选择一行！");
                 }
@@ -123,13 +108,7 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    layer.open({
-                        type: 2,
-                        area: ['800px', '600px'],
-                        maxmin:true,
-                        scrollbar:false,
-                        content:"<%=path %>/page/message/letterDetail?letterId="+data[0].lid
-                    })
+                    window.open("<%=path %>/page/message/letterDetail?letterId="+data[0].lid)
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }

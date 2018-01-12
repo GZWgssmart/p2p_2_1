@@ -325,26 +325,28 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-col-sm4"  style="background-color: white;height: 400px">
-                <div class="grid-demo" style="margin-left: 40px;margin-right: 20px; margin-top: 20px;">
-                    <span style="font-size: 20px;">最新公告</span>
-                    <a href="https://www.pujinziben.com/about.html#ptgg" style="float: right">更多</a>
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
-                    </fieldset>
-                    <div   id="notice">
-                        <script type="text/html" id="noticeDemo">
-                            {{#layui.each(d, function(index, notice){ }}
+
+                <div class="layui-col-sm4"  style="background-color: white;height: 400px">
+                    <div class="grid-demo" style="margin-left: 40px;margin-right: 20px; margin-top: 20px;">
+                        <span style="font-size: 20px;">最新公告</span>
+                        <a href="<%=path %>/page/message/indexNotice" style="float: right">更多</a>
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
+                        </fieldset>
+                        <div   id="notice">
+                            <script type="text/html" id="noticeDemo">
+                                {{#layui.each(d, function(index, notice){ }}
                                 <div class="news-main-content"  style="margin-top: 10px;">
                                     <ul class="news-main-list" id="newsContent">
                                         <li>
                                             <a href="<%=path %>/page/message/noticeDetail?noticeId={{notice.nid}}" target="_blank">
-                                            {{notice.title}}
-                                        </a>
+                                                {{notice.title}}
+                                            </a>
                                             <span style="float: right">{{ formatDate(notice.createdTime) }}</span>
                                         </li>
                                     </ul>
                                 </div>
                             {{#  }); }}
+
                         </script>
                     </div>
                     <div class="news-main-top ptop" style="margin-top: 20px;margin-right: 20px;">
@@ -502,7 +504,7 @@
         });
         //渲染最新公告
         var noticegetTpl = $('#noticeDemo').html()
-            , noticeview = document.getElementById('notice');
+        noticeview = document.getElementById('notice');
         $.post("<%=path %>/data/message/pagerNotice",{
             page:1,
             limit:4

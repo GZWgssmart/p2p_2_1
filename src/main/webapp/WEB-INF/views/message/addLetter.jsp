@@ -42,7 +42,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">内容</label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容"  type="text" name="content" lay-verify="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea placeholder="请输入内容"  type="text" id="content" name="content" lay-verify="content" placeholder="请输入内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
@@ -72,28 +72,39 @@
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
 
-    layui.use(['form', 'laytpl','laydate'], function () {
+    layui.use(['form', 'laytpl','layedit','laydate'], function () {
 
         var form = layui.form;
         var $ = layui.jquery;
         var layer = layui.layer;
         var laytpl = layui.laytpl;
+        var layedit = layui.layedit;
         var laydate = layui.laydate;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('content', {
+            tool: [
+                'strong' //加粗
+                , 'left' //左对齐
+                , 'center' //居中对齐
+                , 'link' //超链接
+                , 'unlink' //清除链接
+                , 'face' //表情
+                , 'image' //插入图片
+            ]
+        });
 
         form.verify({
             title: function(value){
                 if(value.length < 1){
                     return '需要填写标题';
                 }
-            },content: function(value){
-                if(value.length < 1){
-                    return '需要填写内容';
-                }
             }
         });
 
         //提交媒体报道
         form.on('submit(fabu)', function (data) {
+            $('#content').val(layedit.getContent(editIndex));
             $.post('<%=path %>/data/message/addLetter',
                 $('#addLetter').serialize(),
                 function (res) {

@@ -26,30 +26,22 @@
             <%-- <script id="demo" type="text/html">--%>
             <form id="editLetter" class="layui-form" action="">
 
-                <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label"></label>
-                    <div class="layui-input-block">
-                        <input type="hidden" name="lid" id="lid" lay-verify autocomplete="off"
-                               class="layui-input" readonly/>
-                    </div>
-                </div>
-
-                <div class="layui-form-item" style="margin-top: 20px;">
+                <div class="layui-form-item">
                     <label class="layui-form-label">标题</label>
                     <div class="layui-input-block">
                         <input type="text" name="title" id="title" lay-verify="title" autocomplete="off"
                                class="layui-input" lay-verify="title"/>
                     </div>
                 </div>
-                <div class="layui-form-item" style="margin-top: 20px;">
-                    <label class="layui-form-label">内容</label>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公告内容</label>
                     <div class="layui-input-block">
-                        <input type="text" name="content" id="content" lay-verify="content" autocomplete="off"
-                               class="layui-input" lay-verify="content"/>
+                        <textarea class="layui-textarea" name="content" id="content" lay-verify="content"></textarea>
                     </div>
                 </div>
 
-                <div class="layui-form-item" style="margin-top: 20px;">
+                <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
                         <select name="status" lay-filter="status" lay-verify="status">
@@ -57,6 +49,14 @@
                             <option value="1">激活</option>
                             <option value="0">冻结</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-block">
+                        <input type="hidden" name="lid" id="lid" lay-verify autocomplete="off"
+                               class="layui-input" readonly/>
                     </div>
                 </div>
 
@@ -98,17 +98,26 @@
             function (data) {
                 $('#lid').val(data.lid);
                 $('#title').val(data.title);
-                $('#content').val(data.content);
+                layedit.setContent(editIndex,data.content);
                 $('#status').val(data.status);
             });
+
+        var editIndex = layedit.build('content', {
+            tool: [
+                'strong' //加粗
+                , 'left' //左对齐
+                , 'center' //居中对齐
+                , 'link' //超链接
+                , 'unlink' //清除链接
+                , 'face' //表情
+                , 'image' //插入图片
+            ]
+        });
+
         form.verify({
             title: function(value){
                 if(value.length < 1){
                     return '需要填写标题';
-                }
-            },content: function(value){
-                if(value.length < 1){
-                    return '需要填写内容';
                 }
             }
         });
@@ -124,6 +133,7 @@
 
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
+            $('#content').val(layedit.getContent(editIndex));
             $.post('<%=path %>/data/message/editLetter',
                 $('#editLetter').serialize(),
                 function (res) {
