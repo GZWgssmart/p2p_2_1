@@ -15,13 +15,21 @@
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
 </head>
 <body>
+    <div class="layui-btn-group demoTable">
+        <a href="<%=path%>/page/Role/add" class="layui-btn" data-type="edit">添加角色</a>
+        <button class="layui-btn" data-type="edit">编辑</button>
+        <a href="<%=path%>/page/Role/add" class="layui-btn" data-type="edit">删除角色</a>
+    </div>
 
-<table id="RoleList"></table>
+    <table id="RoleList"></table>
 
+<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
-    layui.use('table', function(){
+    layui.use(['form', 'table','layer'], function(){
         var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
         var $ = layui.jquery;
 
         table.render({
@@ -44,6 +52,53 @@
                 ,dataName: 'rows'
             }
         });
+
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        var active = {
+            edit: function(){ //先获取行数据，将数据跳转到编辑页。
+                var checkStatus = table.checkStatus('checkId')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    layer.open({
+                        type: 2,
+                        area: ['600px', '500px'],
+                        maxmin:true,
+                        scrollbar:false,
+                        content:"<%=path %>/page/Role/update?roleId="+data[0].rid
+                    })
+                } else {
+                    layer.msg("请选择一行！");
+                }
+
+            }
+            ,detail: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('checkId')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    layer.open({
+                        type: 2,
+                        area: ['800px', '600px'],
+                        maxmin:true,
+                        scrollbar:false,
+                        content:"<%=path %>/page/Role/roleDetail?roleId="+data[0].rid
+                    })
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            }
+            ,refresh:function () {
+                location.reload(true);
+            }
+        };
     });
 </script>
 </body>

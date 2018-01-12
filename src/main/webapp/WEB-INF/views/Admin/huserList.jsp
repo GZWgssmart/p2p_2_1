@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
 </head>
 <body>
-
+<a href="javascript:void(0);" class="layui-btn" id="" data-type="edit">分配角色</a>
 <table id="HuserList"></table>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>

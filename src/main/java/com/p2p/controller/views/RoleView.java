@@ -16,6 +16,11 @@ public class RoleView {
         return "JurRole/addRole";
     }
 
+    @RequestMapping("update")
+    public String updateRolePage(){
+        return "JurRole/upRole";
+    }
+
     @RequestMapping("List")
     public String RoleList() {
         return "Admin/roleList";

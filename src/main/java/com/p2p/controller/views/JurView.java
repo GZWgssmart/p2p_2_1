@@ -16,6 +16,11 @@ public class JurView {
         return "JurRole/addJur";
     }
 
+    @RequestMapping("update")
+    public String updateJurPage(){
+        return "JurRole/upJur";
+    }
+
     @RequestMapping("List")
     public String jurList() {
         return "Admin/jurList";

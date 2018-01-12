@@ -27,8 +27,16 @@
         ]]>
   </select>
 
+  <select id="getById" resultType="com.p2p.bean.Jur">
+    <![CDATA[
+        select * from  jur j where j.jid = #{jurId}
+      ]]>
+  </select>
 
   <insert id="save" parameterType="com.p2p.bean.Jur">
+    <selectKey keyColumn="jid" keyProperty="jid" resultType="integer" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into jur
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="jurl != null">
@@ -60,5 +68,11 @@
     </set>
     where jid = #{jid,jdbcType=INTEGER}
   </update>
+
+  <select id="listAll" resultType="jur">
+    <![CDATA[
+      select * from jur
+    ]]>
+  </select>
 
 </mapper>

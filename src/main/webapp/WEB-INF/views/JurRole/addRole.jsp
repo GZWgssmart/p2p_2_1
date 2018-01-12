@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>添加权限</title>
+    <title>添加角色</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body>
@@ -34,6 +34,18 @@
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 10px;">
+                    <label class="layui-form-label">选择权限</label>
+                    <div class="layui-input-block">
+                        <select name="jid" id="type">
+                            <script id="demo" type="text/html">
+                                {{#  layui.each(d, function(index, jur){ }}
+                                <option value="{{ jur.jid }}">{{ jur.content }}</option>
+                                {{#  }); }}
+                            </script>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="margin-top: 10px;">
                     <div class="layui-input-block">
                         <button class="layui-btn layui-btn-normal" lay-submit lay-filter="add">添加</button>
                     </div>
@@ -50,10 +62,24 @@
         var $ = layui.jquery;
         var laytpl = layui.laytpl;
 
+        // 获取类别
+        var getTpl = demo.innerHTML
+            , view = document.getElementById('type');
+        $.get('<%=path %>/data/Jur/listAll', function (data) {
+            laytpl(getTpl).render(data, function (html) {
+                view.innerHTML = html;
+            });
+            form.render('select');
+        });
+
         //添加角色
         form.on('submit(add)', function (data) {
             $.post('<%=path %>/data/Role/save',
-                $('#addRole').serialize(),
+                {
+                    rname:$('#rname').val()
+                    ,content:$('#content').val()
+                    ,jid:$('#type').val()
+                },
                 function (res) {
                     if (res.code === 0) {
                         layer.msg('提交成功', {

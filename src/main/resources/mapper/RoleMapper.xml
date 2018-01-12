@@ -39,7 +39,16 @@
         ]]>
   </select>
 
+  <select id="getById" resultType="com.p2p.bean.Role">
+    <![CDATA[
+        select * from  role r where r.rid = #{roleId}
+      ]]>
+  </select>
+
   <insert id="save" parameterType="com.p2p.bean.Role">
+    <selectKey keyColumn="rid" keyProperty="rid" resultType="integer" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="rname != null">
