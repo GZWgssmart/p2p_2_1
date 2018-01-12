@@ -545,7 +545,7 @@
     });
 </script>
 <script>
-    var speed=30; //数字越大速度越慢
+    var speed=50; //数字越大速度越慢
     var tab=document.getElementById("demo");
     var tab1=document.getElementById("demo1");
     var tab2=document.getElementById("demo2");
