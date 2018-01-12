@@ -1,6 +1,7 @@
 package com.p2p.dao;
 
 import com.p2p.common.Pager;
+import com.p2p.vo.BorrowingVO;
 import com.p2p.vo.IndexBorrowVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -21,4 +22,6 @@ public interface BorrowApplyMapper extends BaseDAO {
     Long countCriteria(@Param("query") Object obj);
 
     List<Object> listPagerByBzid(@Param("pager") Pager pager, @Param("query") Object obj);
+
+    List<BorrowingVO> borrowingList();
 }

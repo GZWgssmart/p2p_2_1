@@ -61,11 +61,26 @@
         <property name="cronExpression" value="0 */1 * * * ?" />
     </bean>
 
+    <!--每天凌晨0点判断是否流标-->
+    <bean id="lostBorrowJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="lostBorrowJob" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.p2p.quartz.LostBorrowJob" />
+        <property name="durability" value="true" />
+    </bean>
+    <bean id="lostBorrowJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="lostBorrowJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="lostBorrowJob" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
+    </bean>
+
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="jobDetails">
             <list>
                 <ref bean="ydataUpdateJobDetail" />
                 <ref bean="ydataSaveJobDetail" />
+                <ref bean="lostBorrowJob" />
                 <ref bean="cronJobDetail" />
             </list>
         </property>
@@ -73,6 +88,7 @@
             <list>
                 <ref bean="ydataUpdateJobTrigger" />
                 <ref bean="ydataSaveJobTrigger" />
+                <ref bean="lostBorrowJobTrigger" />
                 <ref bean="cronJobTrigger" />
             </list>
         </property>

@@ -273,7 +273,7 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
      * @param yearNpro 年利率
      * @return 利息
      */
-    private BigDecimal getSyMoney(String way, BigDecimal tzMoney, Integer month, Float yearNpro) {
+    public static BigDecimal getSyMoney(String way, BigDecimal tzMoney, Integer month, Float yearNpro) {
         //一次还清和先息后本的用户收益计息方式
         if(way.equals(WayEnum.PAYOFF_ONCE.getCode())|| way.equals(WayEnum.XIAN_XI.getCode())) {
             //投资金额乘以年利率
