@@ -14,4 +14,19 @@ public class rzvipView {
     public String userVipPage(){
         return "checkmanage/allVip";
     }
+
+    @RequestMapping("vip")
+    public String isvip() {
+        return "checkmanage/vipCheck";
+    }
+
+    @RequestMapping("quan")
+    public String quan() {
+        return "setting/quan";
+    }
+
+    @RequestMapping("reward")
+    public String reward() {
+        return "setting/reward";
+    }
 }

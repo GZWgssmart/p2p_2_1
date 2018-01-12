@@ -117,7 +117,7 @@
                                    data-options="{url:'<%=path %>/page/vip/userVipPage',icon:'&#xe658;',title:'vip用户',id:'20'}"><i class="layui-icon">&#xe658;</i><span>vip用户</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/admin/vip',icon:'&#xe658;',title:'认证审核',id:'21'}"><i class="layui-icon">&#xe658;</i><span>认证审核</span></a>
+                                   data-options="{url:'<%=path %>/page/vip/vip',icon:'&#xe658;',title:'认证审核',id:'21'}"><i class="layui-icon">&#xe658;</i><span>认证审核</span></a>
                             </dd>
                         </dl>
                     </li>
@@ -128,7 +128,7 @@
                                    data-options="{url:'#',icon:'&#xe658;',title:'vip用户',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/admin/quan',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
+                                   data-options="{url:'<%=path %>/page/vip/quan',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
                             </dd>
                         </dl>
                     </li>
