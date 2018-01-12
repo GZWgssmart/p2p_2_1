@@ -290,7 +290,7 @@
         $(obj).addClass('active').siblings().removeClass('active');
         $('#plan').show();
         var ckstatus = $('#ckstatus').val();
-        if(ckstatus === 5 || ckstatus === 4) {
+        if(ckstatus == 5 || ckstatus == 4) {
             pagerCommon('#planList','content','<%=path %>/data/hkb/planList','planDemo');
         }
     }
@@ -444,10 +444,9 @@
                     ,resint2:$('#selectQuan').val()
                     ,resint1:$('#term').text()}
                 , function (data) {
-                    layer.alert(data.message,function () {
-                        window.location;
+                    layer.msg(data.message,{time: 2000},function () {
+                        window.location.reload(true);
                     });
-                    window.href.reload();
                 },'json');
         }
     }
