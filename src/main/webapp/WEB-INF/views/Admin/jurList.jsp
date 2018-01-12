@@ -17,7 +17,8 @@
 <body>
     <div class="layui-btn-group demoTable">
         <a href="<%=path%>/page/Jur/add" class="layui-btn" data-type="add">添加权限</a>
-        <button class="layui-btn" data-type="edit">编辑</button>
+        <button class="layui-btn" data-type="edit">编辑权限</button>
+        <button class="layui-btn" data-type="remove">删除权限</button>
         <a href="<%=path%>/page/Jur/List" class="layui-btn" data-type="add">分配</a>
     </div>
 
@@ -96,6 +97,32 @@
             }
             ,refresh:function () {
                 location.reload(true);
+            }
+        };
+        active = {
+            remove:function () {
+                var checkStatus = table.checkStatus('checkId')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    $.post('<%=path %>/data/Jur/remove'
+                        ,{
+                            jid:data[0].jid
+                        },
+                        function (res) {
+                            if (res.code === 0) {
+                                layer.msg('删除成功', {
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function () {
+                                    location.reload(true);
+                                });
+                            } else {
+                                layer.msg(res.message);
+                            }
+                        }, 'json'
+                    );
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
             }
         };
     });
