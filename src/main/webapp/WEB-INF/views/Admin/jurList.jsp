@@ -95,12 +95,7 @@
                     layer.msg('请选中一行！', {time:1500});
                 }
             }
-            ,refresh:function () {
-                location.reload(true);
-            }
-        };
-        active = {
-            remove:function () {
+            ,remove:function () {
                 var checkStatus = table.checkStatus('checkId')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
