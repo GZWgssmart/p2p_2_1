@@ -40,6 +40,15 @@
         <property name="loginUrl" value="/page/admin/login"/>
         <!-- 错误页面 -->
         <property name="unauthorizedUrl" value="/error.jsp"/>
+
+        <property name="filters">
+            <map>
+                <entry key="role">
+                    <bean class="com.p2p.filter.HuserRolesAuthorizationFilter" />
+                </entry>
+            </map>
+        </property>
+
         <!-- 权限配置 -->
         <property name="filterChainDefinitions">
             <value>
@@ -47,30 +56,29 @@
                 /static/** = anon
                 /home/**=authc
                 <!--manage角色-->
-                <!--/jklx/jklxTypeList = authc,perms["role:manage"]-->
-                <!--/borrowApply/adminBorrowList = authc,perms["role:manage"]-->
-                <!--/borrowApply/investManage = authc,perms["role:manage"]-->
-                <!--/bz/** = authc,perms["role:manage"]-->
-                <!--/sway/** = authc,perms["role:manage"]-->
-                <!--/vip/** = authc,perms["role:manage"]-->
-                <!--&lt;!&ndash;message&ndash;&gt;-->
-                <!--/home/addIndexMsgPage = authc,perms["role:message"]-->
-                <!--/home/indexMsg = authc,perms["role:message"]-->
-                <!--/dynamic/addDynamicPage = authc,perms["role:message"]-->
-                <!--/dynamic/dynamicPage = authc,perms["role:message"]-->
-                <!--/dynamic/editPage = authc,perms["role:message"]-->
-                <!--/company/addMediaReportPage = authc,perms["role:message"]-->
-                <!--/company/mediaReport = authc,perms["role:message"]-->
-                <!--/company/editPage = authc,perms["role:message"]-->
-                <!--/message/** = perms["role:message"]-->
+                /page/jklx/jklxTypeList = authc,role["manage,root"]
+                /page/borrowApply/adminBorrowList = authc,role["manage,root"]
+                /page/borrowApply/investManage = authc,role["manage,root"]
+                /page/bz/** = authc,role["manage,root"]
+                /page/sway/** = authc,role["manage,root"]
+                /page/vip/** = authc,role["manage,root"]
+                <!--message-->
+                /page/home/addIndexMsgPage = authc,role["message,root"]
+                /page/home/indexMsg = authc,role["message,root"]
+                /page/dynamic/addDynamicPage = authc,role["message,root"]
+                /page/dynamic/dynamicPage = authc,role["message,root"]
+                /page/dynamic/editPage = authc,role["message,root"]
+                /page/company/addMediaReportPage = authc,role["message,root"]
+                /page/company/mediaReport = authc,role["message,root"]
+                /page/company/editPage = authc,role["message,root"]
+                /page/message/** = role["message,root"]
                 <!--root-->
-                <!--/Jur/** = role["root"]-->
-                <!--/Role/** = role["root"]-->
-                <!--/admin/add = role["root"]-->
-                <!--/admin/List = role["root"]-->
+                /page/Jur/** = role["root"]
+                /page/Role/** = role["root"]
+                /page/admin/add = role["root"]
+                /page/admin/List = role["root"]
             </value>
         </property>
     </bean>
 
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 </beans>
