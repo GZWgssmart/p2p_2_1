@@ -31,7 +31,7 @@
                     <label class="layui-form-label">角色名称</label>
                     <div class="layui-input-block">
                         <input type="text" name="rname" id="rname" lay-verify="rname" autocomplete="off"
-                               class="layui-input" lay-verify="title"/>
+                               class="layui-input"/>
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                 $('#content').val(data.content);
             });
         form.verify({
-            jurl: function(value){
+            rname: function(value){
                 if(value.length < 1){
                     return '需要填写角色名称';
                 }

@@ -47,7 +47,7 @@
                 </div>
                 <div class="layui-form-item" style="margin-top: 10px;">
                     <div class="layui-input-block">
-                        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="add">添加</button>
+                        <button class="layui-btn" lay-submit lay-filter="add">添加</button>
                     </div>
                 </div>
             </form>

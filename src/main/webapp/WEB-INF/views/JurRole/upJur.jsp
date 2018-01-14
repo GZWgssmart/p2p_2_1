@@ -31,7 +31,7 @@
                     <label class="layui-form-label">权限url</label>
                     <div class="layui-input-block">
                         <input type="text" name="jurl" id="jurl" lay-verify="jurl" autocomplete="off"
-                               class="layui-input" lay-verify="title"/>
+                               class="layui-input"/>
                     </div>
                 </div>
 

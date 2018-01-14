@@ -16,10 +16,9 @@
 </head>
 <body>
     <div class="layui-btn-group demoTable">
-        <a href="<%=path%>/page/Jur/add" class="layui-btn" data-type="add">添加权限</a>
+        <button class="layui-btn" data-type="add">添加权限</button>
         <button class="layui-btn" data-type="edit">编辑权限</button>
         <button class="layui-btn" data-type="remove">删除权限</button>
-        <a href="<%=path%>/page/Jur/List" class="layui-btn" data-type="add">分配</a>
     </div>
 
     <table id="JurList"></table>
@@ -64,13 +63,24 @@
         });
 
         var active = {
+            add: function(){ //先获取行数据，将数据跳转到编辑页。
+                var checkStatus = table.checkStatus('checkId')
+                    ,data = checkStatus.data;
+                    layer.open({
+                        type: 2,
+                        area: ['600px', '400px'],
+                        maxmin:true,
+                        scrollbar:false,
+                        content:"<%=path %>/page/Jur/add"
+                    })
+            },
             edit: function(){ //先获取行数据，将数据跳转到编辑页。
                 var checkStatus = table.checkStatus('checkId')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
                     layer.open({
                         type: 2,
-                        area: ['600px', '500px'],
+                        area: ['600px', '400px'],
                         maxmin:true,
                         scrollbar:false,
                         content:"<%=path %>/page/Jur/update?jurId="+data[0].jid

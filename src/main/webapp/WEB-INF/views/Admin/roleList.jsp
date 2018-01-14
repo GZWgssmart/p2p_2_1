@@ -16,9 +16,10 @@
 </head>
 <body>
     <div class="layui-btn-group demoTable">
-        <a href="<%=path%>/page/Role/add" class="layui-btn" data-type="edit">添加角色</a>
+        <button class="layui-btn" data-type="add">添加角色</button>
         <button class="layui-btn" data-type="edit">编辑角色</button>
         <button class="layui-btn" data-type="remove">删除角色</button>
+        <button class="layui-btn" data-type="fpJur">分配权限</button>
     </div>
 
     <table id="RoleList"></table>
@@ -64,13 +65,24 @@
         });
 
         var active = {
+            add: function(){ //先获取行数据，将数据跳转到编辑页。
+                var checkStatus = table.checkStatus('checkId')
+                    ,data = checkStatus.data;
+                layer.open({
+                    type: 2,
+                    area: ['600px', '400px'],
+                    maxmin:true,
+                    scrollbar:false,
+                    content:"<%=path %>/page/Role/add"
+                })
+            },
             edit: function(){ //先获取行数据，将数据跳转到编辑页。
                 var checkStatus = table.checkStatus('checkId')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
                     layer.open({
                         type: 2,
-                        area: ['600px', '500px'],
+                        area: ['600px', '400px'],
                         maxmin:true,
                         scrollbar:false,
                         content:"<%=path %>/page/Role/update?roleId="+data[0].rid
