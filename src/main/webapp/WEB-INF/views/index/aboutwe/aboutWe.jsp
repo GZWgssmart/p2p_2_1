@@ -238,9 +238,11 @@
                             <script type="text/html" id="friendDemo">
                                 {{# layui.each(d, function(index, friend){ }}
                             <div class="logoDiv">
+                                {{#  if(friend.fpic !== null && friend.fpic != ''){ }}
                                 <a href="{{friend.furl}}">
                                     <img alt="logo" src="<%=path %>/{{friend.fpic}}">
                                 </a>
+                                {{#  } }}
                             </div>
                                 {{#  }); }}
                             </script>

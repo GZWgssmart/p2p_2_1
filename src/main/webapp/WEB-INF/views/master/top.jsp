@@ -15,7 +15,7 @@
 <div class="top" id="top">
     <div class="wrap">
         <div class="top-left icon icon-phone">
-            <span><a href="/page/admin/login">后台用户登录</a></span>
+            <span><a href="/page/home/homePage">后台用户</a></span>
         </div>
         <div class="top-right cl">
             <ul class="top-list" id="navigation">

@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>所有媒体报道</title>
+    <title>所有公司动态</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
 </head>
 <body style="padding-top: 20px">
@@ -82,6 +82,8 @@
                     ,data = checkStatus.data;
                 if(data.length==1){
                     window.open("<%=path %>/page/dynamic/editPage?dynamicId="+data[0].dyid);
+                }else {
+                    layer.msg('请选中一行！', {time:1500});
                 }
             },
             detail: function(){ //获取选中数据
@@ -89,6 +91,8 @@
                     ,data = checkStatus.data;
                 if(data.length==1){
                     window.open("<%=path %>/page/dynamic/dynamicDetail?dynamicId="+data[0].dyid);
+                }else {
+                    layer.msg('请选中一行！', {time:1500});
                 }
             }
             ,refresh:function () {

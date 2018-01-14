@@ -164,8 +164,8 @@
                                 <i class="layui-icon">&#xe658;</i><span>最新公告</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/message/addNotice',icon:'&#xe658;',title:'添加公告',id:'44'}">
-                                <i class="layui-icon">&#xe658;</i><span>添加公告</span></a>
+                                   data-options="{url:'<%=path %>/page/message/addNotice',icon:'&#xe61f;',title:'添加公告',id:'44'}">
+                                <i class="layui-icon">&#xe61f;</i><span>添加公告</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path%>/page/message/addDx',icon:'&#xe658;',title:'站内信',id:'41'}">
@@ -182,17 +182,17 @@
                             </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/message/addFriend',icon:'&#xe62d;',title:'添加合作伙伴',id:'43'}">
-                                    <i class="layui-icon">&#xe62d;</i><span>添加合作伙伴</span></a>
+                                   data-options="{url:'<%=path %>/page/message/addFriend',icon:'&#xe61f;',title:'添加合作伙伴',id:'43'}">
+                                    <i class="layui-icon">&#xe61f;</i><span>添加合作伙伴</span></a>
                             </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/home/indexMsg',icon:'&#xe62d;',title:'首页信息',id:'42'}">
+                                   data-options="{url:'<%=path %>/page/home/indexMsg',icon:'&#xe62d;',title:'首页信息',id:'45'}">
                                     <i class="layui-icon">&#xe62d;</i><span>首页信息</span></a>
                             </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/home/addIndexMsgPage',icon:'&#xe61f;',title:'添加首页信息',id:'43'}">
+                                   data-options="{url:'<%=path %>/page/home/addIndexMsgPage',icon:'&#xe61f;',title:'添加首页信息',id:'46'}">
                                     <i class="layui-icon">&#xe61f;</i><span>添加首页信息</span></a>
                             </dd>
                         </dl>
@@ -222,8 +222,8 @@
                                     class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe658;',title:'添加后台用户',id:'52'}"><i
-                                    class="layui-icon">&#xe658;</i><span>添加后台用户</span></a></dd>
+                                   data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe61f;',title:'添加后台用户',id:'52'}"><i
+                                    class="layui-icon">&#xe61f;</i><span>添加后台用户</span></a></dd>
                         </dl>
                     </li>
                 </shiro:hasPermission>

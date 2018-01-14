@@ -57,8 +57,8 @@
                                 <p class="amt color"><span id="usableSum" style="font-size: 36px;">{{d.kymoney}}</span>元</p>
                                 <p class="text"><i></i>可用余额</p>
                                 <p class="link">
-                                    <a href="#" class="active">充值</a>
-                                    <a href="#">提现</a>
+                                    <a href="<%=path %>/page/user/userLogCz" class="active">充值</a>
+                                    <a href="<%=path %>/page/user/userLogTx">提现</a>
                                 </p>
                             </div>
                             <div class="layui-col-md4">
