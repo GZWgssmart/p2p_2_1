@@ -26,4 +26,9 @@ public class RoleView {
         return "Admin/roleList";
     }
 
+    @RequestMapping("rolejur")
+    public String rolejur() {
+        return "JurRole/addrolejur";
+    }
+
 }

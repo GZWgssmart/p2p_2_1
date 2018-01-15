@@ -130,6 +130,15 @@
                     layer.msg('请选中一行！', {time:1500});
                 }
             }
+            ,fpJur:function () {
+                var checkStatus = table.checkStatus('checkId')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    layer.msg(JSOn.stringify(data));
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            }
         };
     });
 </script>
