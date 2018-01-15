@@ -1,5 +1,6 @@
 package com.p2p.dao;
 
+import com.p2p.bean.Hkb;
 import com.p2p.common.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,5 @@ public interface HkbMapper extends BaseDAO {
     @Override
     Long countCriteria(@Param("query") Object obj);
 
+    int updateByBaid(Hkb hkb);
 }

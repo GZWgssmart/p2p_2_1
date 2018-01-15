@@ -78,6 +78,7 @@
         <table id="borrowList"></table>
 
         <div style="display: none;" id="planListShow">
+            <a href="javascript:void(0);" class="layui-btn" id="confirmHK" data-type="edit">立即还款</a>
             <table id="planList"></table>
         </div>
     </div>
@@ -143,6 +144,27 @@
         $('#searchBtn').on('click', function(){
             var type = $(this).data('type');
             active[type].call(this);
+        });
+
+        $('#confirmHK').on('click', function(){
+            var checkStatus = table.checkStatus('planId')
+                ,data = checkStatus.data;
+            if(data.length === 1) {
+                if(data[0].status === 0) {
+                    $.post('<%=path %>/data/hkb/confirm'
+                        ,{
+                            hkid : data[0].hkid
+                        }
+                        , function (data) {
+                            alert(data.message);
+                            layer.closeAll();
+                        },'json');
+                } else {
+                    layer.msg('已还款，无需重复还款', {time:1500});
+                }
+            } else {
+                layer.msg('请选中一行！', {time:1500});
+            }
         });
 
         $('#planShow').on('click', function () {

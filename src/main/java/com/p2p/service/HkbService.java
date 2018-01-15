@@ -1,5 +1,6 @@
 package com.p2p.service;
 
+import com.p2p.bean.Hkb;
 import com.p2p.common.ServerResponse;
 
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.List;
 public interface HkbService extends BaseService {
 
     ServerResponse saveList(List hkbList);
+
+    ServerResponse confirm(Hkb hkb);
 }

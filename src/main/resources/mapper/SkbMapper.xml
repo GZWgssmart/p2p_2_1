@@ -141,6 +141,37 @@
     </trim>
   </insert>
 
+  <update id="updateByBaid" parameterType="com.p2p.bean.Skb">
+    update skb
+    <set>
+      <if test="ybx != null">
+        ybx = #{ybx,jdbcType=DECIMAL},
+      </if>
+      <if test="rbx != null">
+        rbx = #{rbx,jdbcType=DECIMAL},
+      </if>
+      <if test="ylx != null">
+        ylx = #{ylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rlx != null">
+        rlx = #{rlx,jdbcType=DECIMAL},
+      </if>
+      <if test="ybj != null">
+        ybj = #{ybj,jdbcType=DECIMAL},
+      </if>
+      <if test="rbj != null">
+        rbj = #{rbj,jdbcType=DECIMAL},
+      </if>
+      <if test="rnum != null">
+        rnum = #{rnum,jdbcType=INTEGER},
+      </if>
+      <if test="sktime != null">
+        sktime = #{sktime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where baid = #{baid,jdbcType=INTEGER} and uid = #{uid}
+  </update>
+
   <update id="update" parameterType="com.p2p.bean.Skb">
     update skb
     <set>

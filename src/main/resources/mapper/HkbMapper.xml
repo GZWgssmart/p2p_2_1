@@ -78,6 +78,10 @@
     <include refid="plan_criteria" />
   </select>
 
+  <select id="getById" resultType="com.p2p.bean.Hkb">
+    select * from hkb where hkid = #{id}
+  </select>
+
   <insert id="save" parameterType="com.p2p.bean.Hkb">
     insert into hkb
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -235,6 +239,73 @@
       </if>
     </trim>
   </insert>
+
+  <update id="updateByBaid" parameterType="com.p2p.bean.Hkb">
+    update hkb
+    <set>
+      <if test="rnum != null">
+        rnum = #{rnum,jdbcType=INTEGER},
+      </if>
+      <if test="tnum != null">
+        tnum = #{tnum,jdbcType=INTEGER},
+      </if>
+      <if test="rtime != null">
+        rtime = #{rtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bzname != null">
+        bzname = #{bzname,jdbcType=VARCHAR},
+      </if>
+      <if test="ybx != null">
+        ybx = #{ybx,jdbcType=DECIMAL},
+      </if>
+      <if test="rbx != null">
+        rbx = #{rbx,jdbcType=DECIMAL},
+      </if>
+      <if test="ylx != null">
+        ylx = #{ylx,jdbcType=DECIMAL},
+      </if>
+      <if test="rlx != null">
+        rlx = #{rlx,jdbcType=DECIMAL},
+      </if>
+      <if test="ybj != null">
+        ybj = #{ybj,jdbcType=DECIMAL},
+      </if>
+      <if test="rbj != null">
+        rbj = #{rbj,jdbcType=DECIMAL},
+      </if>
+      <if test="yfc != null">
+        yfc = #{yfc,jdbcType=DECIMAL},
+      </if>
+      <if test="rfc != null">
+        rfc = #{rfc,jdbcType=DECIMAL},
+      </if>
+      <if test="yucount != null">
+        yucount = #{yucount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="yustartime != null">
+        yustartime = #{yustartime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huid != null">
+        huid = #{huid,jdbcType=INTEGER},
+      </if>
+      <if test="resint1 != null">
+        resint1 = #{resint1,jdbcType=INTEGER},
+      </if>
+      <if test="resint2 != null">
+        resint2 = #{resint2,jdbcType=INTEGER},
+      </if>
+      <if test="resstr1 != null">
+        resstr1 = #{resstr1,jdbcType=VARCHAR},
+      </if>
+      <if test="resstr2 != null">
+        resstr2 = #{resstr2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where baid = #{baid,jdbcType=INTEGER}
+  </update>
 
   <update id="update" parameterType="com.p2p.bean.Hkb">
     update hkb
