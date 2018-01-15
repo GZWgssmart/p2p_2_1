@@ -85,7 +85,6 @@
                     </div>
                 </div>
 
-                <!-- 充值记录-->
                 <div class="layui-tab-item">
                     <div class="layui-row">
                         <div class="layui-col-md12">
@@ -93,7 +92,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -107,7 +105,9 @@
     $(function () {
         var user = "${user}";
         if (user === null || user === '') {
-            alert("您未登录，请登录！");
+            layer.msg("您未登录，请登录！",function () {
+                window.location = '/page/login';
+            })
         }
         layui.use(['element', 'form', 'laytpl'], function () {
             var form = layui.form;
@@ -190,6 +190,7 @@
         })
     }
     )
+
     function formatState(status) {
         if (status === 0) {
             return "充值失败";

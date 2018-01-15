@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
     <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
-
 </head>
-
 <body>
 <%@include file="../master/top.jsp" %>
 <%@include file="../master/header.jsp" %>
@@ -26,30 +24,32 @@
     <%@include file="../master/left.jsp" %>
 
     <div class="account-right">
-        <div id="myDebitCard" class="account-content">
-            <div id="card3" class="bank-card_3" onclick="addBankCard();" style="cursor:pointer;">
-                <div class="bank-addCard"><a href="javascript:;">添加银行卡</a></div>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">添加银行卡</li>
+                <li>管理银行卡</li>
+            </ul>
+
+            <div class="layui-tab-content" style="height: 100px;">
+                <!-- 用户总览-->
+                <div class="layui-tab-item layui-show layui-row">
+                    <div class="layui-col-md12" style="padding-top: 50px;">
+                        <div id="myDebitCard" class="account-content">
+                            <div id="card3" class="bank-card_3" onclick="addBankCard();" style="cursor:pointer;">
+                                <div class="bank-addCard"><a href="javascript:;">添加银行卡</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-
-        <%--<div class="layui-container">--%>
-        <%--<div class="layui-row">--%>
-        <%--<div class="layui-col-md8">--%>
-        <%--<div id="allCards">--%>
-        <%--<script type="text/html" id="demo">--%>
-        <%--{{#  layui.each(d, function(index, card){ }}--%>
-        <%--<div style="border: solid 1px red">--%>
-        <%--<p>{{ card.rname }}</p>--%>
-        <%--<p>{{ card.type }}</p>--%>
-        <%--<p>{{ card.cardno }}</p>--%>
-        <%--</div>--%>
-        <%--{{# } }}--%>
-        <%--</script>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
+            <div class="layui-tab-item">
+                <div class="layui-row">
+                    <div class="layui-col-md12">
+                        <table id="allArticle_table" lay-filter="demo"></table>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 </div>
@@ -60,36 +60,48 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <!-- 客服QQ -->
 <script type="text/javascript" src="<%=path %>/static/js/front/account.js"></script>
-
 <script>
     <%-- 跳转到银行卡的添加页面 uid传递过去 --%>
     function addBankCard() {
         window.location.href = "<%=path%>/page/user/userAddCard"
     }
+    layui.use(['element', 'form', 'laytpl','table'], function () {
+        var form = layui.form;
+        var $ = layui.$;
+        var element = layui.element;
+        var laytpl = layui.laytpl;
+        var table = layui.table;
+
+        table.render({
+            elem: '#allArticle_table'
+            , url: '<%=path %>/data/bankcard/listPagerCriteria'
+            , cols: [[
+                {field: 'bankcard', title: '银行卡号', width: 180, fixed: 'left'}
+                , {field: 'banktype', title: '所属银行', width: 180}
+                , {
+                    field: 'created_time',
+                    title: '创建时间',
+                    width: 180,
+                    sort: true,
+                    templet: '<div>{{ formatDate(d.createdTime)}}</div>'
+                }
+                , {
+                    field: 'status',
+                    title: '使用状态',
+                    width: 180,
+                    templet: '<div>{{ formatState(d.status)}}</div>'
+                }
+            ]]
+            , id: 'idTest'
+            , page: true
+            , response: {
+                statusName: 'status'
+                , statusCode: 0
+                , msgName: 'message'
+                , countName: 'total'
+                , dataName: 'rows'
+            }
+        });
+    })
 </script>
-<%--<script>--%>
-<%--layui.use(['element', 'layer', 'laytpl'], function () {--%>
-<%--var $ = layui.$;--%>
-<%--var element = layui.element;--%>
-<%--var layer = layui.layer;--%>
-<%--var laytpl = layui.laytpl;--%>
-
-<%--var getTpl = $('#demo').html()--%>
-<%--, view = document.getElementById('allCards');--%>
-<%--// 获取数据--%>
-<%--$.get('<%=path %>/data/bankCard/allCards?uid='+${user.uid},--%>
-<%--function (data) {--%>
-<%--fenye(data[0]);--%>
-<%--});--%>
-
-<%--// 渲染数据--%>
-<%--function fenye(data) {--%>
-<%--laytpl(getTpl).render(data, function (html) {--%>
-<%--view.innerHTML = html;--%>
-<%--});--%>
-<%--}--%>
-
-<%--});--%>
-<%--</script>--%>
-
 </html>
