@@ -58,7 +58,7 @@
         var upload = layui.upload;
         var laydate = layui.laydate;
         form.on('submit(add)', function (data) {
-            $.post('<%=path %>/date/jklx/addJklx',
+            $.post('<%=path %>/data/jklx/addJklx',
                 $('#addJklx').serialize(),
                 function (res) {
                     if (res.code === 0) {
