@@ -10,7 +10,6 @@
 <%
     String path = request.getContextPath();
 %>
-<head>
     <head>
         <title>前台用户中心模板</title>
         <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
@@ -20,7 +19,6 @@
         <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
         <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
     </head>
-</head>
 <body>
 <%@include file="../master/top.jsp" %>
 <%@include file="../master/header.jsp" %>
@@ -34,7 +32,7 @@
                 <li class="layui-this">推荐好友</li>
                 <li>推荐列表</li>
             </ul>
-            <div class="layui-tab-content" style="height: 100px;"  style="float: left;">
+            <div class="layui-tab-content" style="height: 100px;" style="float: left;">
                 <div class="layui-tab-item layui-show">
                     <div class="tuiJianShow">
                         <img src="<%=path %>/static/images/banner_t.png" width="896" height="260">
@@ -46,35 +44,34 @@
                             活动期间内成功邀请50位以上好友注册投资成功合计满100000，可额外获得500元现金券奖励，可在<span>【我的账户-我的赠券】</span>中查看。</p>
                         <p class="tj-text" style="padding-left: 70px;">(满足活动条件的用户在活动结束后3个工作日内奖励将以现金券的形式发放至用户账户)</p>
                         <p class="tj-text"><span>注：</span>需将自己的推荐号发给您的好友，这样您才能成为他的邀请者。</p>
-                        <div class="tj-clip">
-                            <input class="tj-clip-text" id="userCode" />
-                        </div>
-                        <div class="tj-icon">
-                            <ul>
-                                <li>
-                                    <a target="_blank"
-                                       href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.pujinziben.com&amp;desc=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;pics=http://www.pujinziben.com/resources/front/v01/src/images/logo.png&amp;summary=%E8%BF%98%E4%B8%8D%E9%94%99%E5%93%A6&amp;site=QQ%E5%88%86%E4%BA%AB&amp;style=201&amp;width=32&amp;height=32"
-                                       class="about_qq">
-                                        <p class="icon icon-QQ"></p>
-                                    </a>
-                                    <p>分享到QQ</p>
-                                </li>
-                                <li>
-                                    <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.pujinziben.com/&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">
-                                        <p class="icon icon-qzone"></p>
-                                    </a>
-                                    <p>分享到QQ空间</p>
-                                </li>
-                                <li>
-                                    <a target="_blank"
-                                       href="http://service.weibo.com/share/share.php?url=http://www.pujinziben.com&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;appkey=1343713053&amp;searchPic=true"
-                                       class="about_sina">
-                                        <p class="icon icon-Sina"></p>
-                                    </a>
-                                    <p>分享到新浪微博</p>
-                                </li>
-                            </ul>
-                        </div>
+                        <input class="tj-clip"/>
+                        <input class="tj-clip-text" id="userCode"/>
+                    </div>
+                    <div class="tj-icon">
+                        <ul>
+                            <li>
+                                <a target="_blank"
+                                   href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.pujinziben.com&amp;desc=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;pics=http://www.pujinziben.com/resources/front/v01/src/images/logo.png&amp;summary=%E8%BF%98%E4%B8%8D%E9%94%99%E5%93%A6&amp;site=QQ%E5%88%86%E4%BA%AB&amp;style=201&amp;width=32&amp;height=32"
+                                   class="about_qq">
+                                    <p class="icon icon-QQ"></p>
+                                </a>
+                                <p>分享到QQ</p>
+                            </li>
+                            <li>
+                                <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.pujinziben.com/&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">
+                                    <p class="icon icon-qzone"></p>
+                                </a>
+                                <p>分享到QQ空间</p>
+                            </li>
+                            <li>
+                                <a target="_blank"
+                                   href="http://service.weibo.com/share/share.php?url=http://www.pujinziben.com&amp;title=%E6%99%AE%E9%87%91%E8%B5%84%E6%9C%AC%E8%BF%90%E8%90%A5(%E8%B5%A3%E5%B7%9E)%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;appkey=1343713053&amp;searchPic=true"
+                                   class="about_sina">
+                                    <p class="icon icon-Sina"></p>
+                                </a>
+                                <p>分享到新浪微博</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="layui-tab-item">
@@ -82,15 +79,13 @@
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <input type="text" class="layui-input" name="first" id="first" lay-verify="laydate"
-                                           placeholder="开始时间">
+                                    <input type="text" class="layui-input" name="first" id="first" placeholder="开始时间">
                                 </div>
                             </div>
-                            <span>至</span>
+                            <span>至</span>&nbsp;&nbsp;&nbsp;
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <input type="text" class="layui-input" name="end" id="end" lay-verify="laydate"
-                                           placeholder="结束时间">
+                                    <input type="text" class="layui-input" name="end" id="end" placeholder="结束时间">
                                 </div>
                             </div>
                             <div class="searchType layui-inline">
@@ -114,7 +109,7 @@
     $(function () {
         $(".uid").text(100000 +${user.uid});
         $('#userCode').val('http://localhost:8080/page/reg?' + (100000 +${user.uid}));
-    })
+    });
     layui.use(['element', 'table', 'laydate'], function () {
         var $ = layui.jquery
             , element = layui.element
@@ -145,16 +140,18 @@
                 , dataName: 'rows'
             }
         });
-
         laydate.render({
             elem: '#first',
-            type: 'datetime'
-        })
-        laydate.render({
-            elem: '#end'
-            , type: 'datetime'
-            ,min:$('#first').val()-6
-        })
+            type: 'datetime',
+            done:function (value) {
+                laydate.render({
+                    elem: '#end'
+                    ,type:'datetime'
+                    ,min:value
+                    });
+                }
+        });
+
         $('.searchType .layui-btn').on('click', function () {
             var type = $(this).data('type');
             search[type] ? search[type].call(this) : '';
@@ -162,16 +159,17 @@
 
         var search = {
             reload: function () {
-                var first = $('#first');
-                var end = $('#end');
+                var first = $('#first').val();
+                var end = $('#end').val();
+
                 //执行重载
                 table.reload('idTest', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
                     , where: {
-                        first: first.val(),
-                        end: end.val()
+                        first: first,
+                        end: end
                     }
                 });
             }

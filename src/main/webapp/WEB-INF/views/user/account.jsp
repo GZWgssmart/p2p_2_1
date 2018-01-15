@@ -134,8 +134,8 @@
     </div>
 </div>
 <%@include file="../master/footer.jsp" %>
-<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
     $(function () {
@@ -145,32 +145,26 @@
                 window.location = '/page/login';
             });
         }
-
-        layui.use(['element', 'laytpl'], function () {
-            var $ = layui.$;
-            var element = layui.element;
-            var laytpl = layui.laytpl;
-
-            var getTpl = userMoney.innerHTML
-                , view = document.getElementById('moneyCont');
-            $.post('<%=path %>/data/user/money'
-                ,{uid : ${sessionScope.user.uid}}
-                , function (data) {
-                    laytpl(getTpl).render(data, function (html) {
-                        view.innerHTML = html;
-                    });
-                },'json');
-
-        });
     });
 
     $("input[name='sex'][value=${user.sex}]").attr("checked",true);
-    layui.use(['element', 'table', 'form', 'upload'], function () {
+    layui.use(['element', 'table', 'form', 'upload','laytpl'], function () {
         var $ = layui.jquery
             , element = layui.element
             , table = layui.table
             , form = layui.form
-            , upload = layui.upload;
+            , upload = layui.upload
+        var laytpl = layui.laytpl;
+
+        var getTpl = userMoney.innerHTML
+            , view = document.getElementById('moneyCont');
+        $.post('<%=path %>/data/user/money'
+            ,{uid : ${sessionScope.user.uid}}
+            , function (data) {
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            },'json');
 
         //上传封面图
         var uploadInst = upload.render({

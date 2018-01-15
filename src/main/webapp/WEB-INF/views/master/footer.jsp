@@ -66,31 +66,26 @@
         <div class="wrap">
             <p class="text">
                 版权所有 © 普金资本运营（赣州）有限公司 All rights reserved <br>
-                备案确认书：<a href="#" target="_blank" class="beian">赣ICP备16004010号</a>
-                <a href="#" target="_blank">
+                备案确认书：<a href="#"class="beian">赣ICP备16004010号</a>
+                <a href="#">
                     <img src="<%=path%>/static/images/CNZZ.png" alt="">
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a target="_blank" href="#" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;" class="beian">
+                <a href="#" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;" class="beian">
                     <img src="<%=path%>/static/images/beian.png" style="float:left;">赣公网安备 36070202000195号
                 </a>
 
             </p>
             <div class="footer-list" style="width:650px;text-align:center">
-                <a id="___szfw_logo___" href="" target="_blank">
                     <img src="<%=path%>/static/images/foot2.png" border="0">
-                </a>
-                <a href="#" target="_blank">
+
                     <img src="<%=path%>/static/images/ft_link_02.png" alt="">
-                </a>
-                <a href="#" target="_blank">
+
                     <img width="110px" height="40px" src="<%=path%>/static/images/p2p_bottom_large_img.jpg" alt="">
-                </a>
-                <a href="#" target="_blank">
+
                     <img src="<%=path%>/static/images/ft_link_04.png" alt="">
-                </a>
-                <a target="_blank" href="#">
+
                     <img width="112px" height="34px" src="<%=path%>/static/images/foot1.png">
-                </a>
+
             </div>
         </div>
     </div>
