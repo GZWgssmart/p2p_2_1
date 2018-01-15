@@ -68,6 +68,6 @@ public class HkbServiceImpl extends AbstractServiceImpl implements HkbService {
         hkb1.setUid(hkb.getUid());
         hkb1.setRnum(hkb.getRnum() + 1);
         hkbMapper.updateByBaid(hkb1);
-        return ServerResponse.createBySuccess("收款成功");
+        return ServerResponse.createBySuccess("还款成功");
     }
 }

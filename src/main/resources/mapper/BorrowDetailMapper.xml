@@ -58,19 +58,19 @@
             <if test="tpic != null">
                 tpic,
             </if>
-            <if test="mpurpose != null">
+            <if test="mpurpose != null and mpurpose != ''">
                 mpurpose,
             </if>
-            <if test="hksource != null">
+            <if test="hksource != null and hksource != ''">
                 hksource,
             </if>
-            <if test="suggest != null">
+            <if test="suggest != null and suggest != ''">
                 suggest,
             </if>
-            <if test="xmdes != null">
+            <if test="xmdes != null and xmdes != ''">
                 xmdes,
             </if>
-            <if test="guarantee != null">
+            <if test="guarantee != null and guarantee != ''">
                 guarantee,
             </if>
             <if test="money != null">
@@ -114,19 +114,19 @@
             <if test="tpic != null">
                 #{tpic },
             </if>
-            <if test="mpurpose != null">
+            <if test="mpurpose != null and mpurpose != ''">
                 #{mpurpose },
             </if>
-            <if test="hksource != null">
+            <if test="hksource != null and hksource != ''">
                 #{hksource },
             </if>
-            <if test="suggest != null">
+            <if test="suggest != null and suggest != ''">
                 #{suggest },
             </if>
-            <if test="xmdes != null">
+            <if test="xmdes != null and xmdes != ''">
                 #{xmdes },
             </if>
-            <if test="guarantee != null">
+            <if test="guarantee != null and guarantee != ''">
                 #{guarantee },
             </if>
             <if test="money != null">
