@@ -50,7 +50,6 @@
             ,url: '<%=path %>/data/message/pagerFriend'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'fid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'fpic', title:'图片', width:300,height:200, templet: '#imgUtil'}
                 ,{field:'furl', title:'链接', width:300, templet: '#urlUtil'}
                  ]]

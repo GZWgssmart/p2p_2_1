@@ -38,7 +38,6 @@
             ,url: '<%=path %>/data/Role/roleList'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'rid', title:'ID', width:70, fixed: 'left'}
                 ,{field:'rname', title:'角色名称', width:150}
                 ,{field:'content', title:'角色内容', width:200}
             ]]

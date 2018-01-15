@@ -37,7 +37,6 @@
             ,url: '<%=path %>/data/Jur/jurList'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'jid', title:'ID', width:70, fixed: 'left'}
                 ,{field:'jurl', title:'权限url', width:150}
                 ,{field:'content', title:'权限内容', width:200}
             ]]

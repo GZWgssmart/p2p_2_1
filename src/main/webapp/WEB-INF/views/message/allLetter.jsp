@@ -60,7 +60,6 @@
             ,url: '<%=path %>/data/message/pagerLetter'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'lid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'title', title:'标题', width:200}
                 ,{field:'content', title:'内容', width:300,height:200}
                 ,{field:'createdTime', title:'创建时间',width:250, sort: true, templet:'<div>{{ formatDate(d.createdTime)}}</div>'}

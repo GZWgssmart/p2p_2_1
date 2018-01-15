@@ -65,7 +65,6 @@
             ,url: '<%=path %>/data/company/pagerCriteria'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'mid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'title', title:'标题', width:150}
                 ,{field:'summary', title:'摘要', width:200}
                 ,{field:'pic', title:'封面', width:120, templet: '#imgUtil'}

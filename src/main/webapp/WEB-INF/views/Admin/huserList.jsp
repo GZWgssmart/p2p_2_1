@@ -31,7 +31,6 @@
             ,url: '<%=path %>/data/admin/adminList'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'huid', title:'ID', width:70, fixed: 'left'}
                 ,{field:'rolename', title:'角色名称', width:100}
                 ,{field:'huname', title:'用户名', width:120}
                 ,{field:'rname', title:'姓名', width:120}

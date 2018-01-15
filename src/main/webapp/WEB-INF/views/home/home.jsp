@@ -125,7 +125,7 @@
                         <a href="javascript:;"><span>奖励管理</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/rewardSet/rewardSet',icon:'&#xe658;',title:'vip用户',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励设置</span></a>
+                                   data-options="{url:'<%=path %>/page/rewardSet/rewardSet',icon:'&#xe658;',title:'投资奖励',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励设置</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/vip/quan',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>

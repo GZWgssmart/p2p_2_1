@@ -37,7 +37,6 @@
             ,url: '<%=path %>/data/sway/swayPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'sid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'way', title:'还款方式', width:150}
                 ,{field:'fw', title:'利率', width:150}
                 ,{field:'status', title:'状态', width:100}

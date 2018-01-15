@@ -127,7 +127,6 @@
             ,url: '<%=path %>/data/borrow/adminList'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'baid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'money', title:'申请金额', width:90}
                 ,{field:'bzname', title:'标种', width:80}
                 ,{field:'type', title:'借款类别', width:90, templet:'<div>{{ formatType(d.type)}}</div>'}
@@ -282,7 +281,6 @@
                         }
                         ,cols: [[
                             {checkbox: true, fixed: true}
-                            ,{field:'hkid', title:'ID', width:50, fixed: 'left'}
                             ,{field:'rname', title:'真实姓名', width:90}
                             ,{field:'cpname', title:'产品名称', width:80}
                             ,{field:'bzname', title:'标种', width:80}

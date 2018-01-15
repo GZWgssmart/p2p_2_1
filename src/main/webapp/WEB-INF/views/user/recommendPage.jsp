@@ -125,7 +125,6 @@
             elem: '#allRecommend_table'
             , url: '<%=path %>/data/recommend/pagerCriteria?uid=' +${user.uid}
             , cols: [[
-                {field: 'rmid', title: 'ID', width: 100, fixed: 'left'}
                 , {field: 'rname', title: '被推荐人', width: 340}
                 , {
                     field: 'createdTime',

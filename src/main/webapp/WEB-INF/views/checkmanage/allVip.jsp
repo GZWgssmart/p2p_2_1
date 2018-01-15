@@ -40,7 +40,6 @@
             ,url: '<%=path %>/data/vip/userVip'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'uid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'face', title:'头像', width:60,templet: '#imgUtil'}
                 ,{field:'uname', title:'昵称', width:80}
                 ,{field:'rname', title:'真实姓名', width:100}

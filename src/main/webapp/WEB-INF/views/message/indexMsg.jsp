@@ -208,7 +208,6 @@
             ,url: '<%=path %>/data/home/indexMsg'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'hid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'pic1', title:'轮播图一', width:140, templet: '#imgUtil1'}
                 ,{field:'pic2', title:'轮播图二', width:140, templet: '#imgUtil2'}
                 ,{field:'pic3', title:'轮播图三', width:140, templet: '#imgUtil3'}
