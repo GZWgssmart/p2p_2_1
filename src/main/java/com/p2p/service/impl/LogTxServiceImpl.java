@@ -80,10 +80,10 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
                 userMoneyMapper.update(userMoney);
                 logTx.setStatus(1);
                 logTxMapper.save(logTx);
-                return super.save(obj);
+                return ServerResponse.createBySuccess("提现成功");
               }else{
                 logTx.setStatus(0);
-                return super.save(obj);
+                return ServerResponse.createByError("提现失败");
             }
         }
         return ServerResponse.createByError();

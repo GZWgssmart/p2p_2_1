@@ -84,4 +84,23 @@
     </set>
     where lmid = #{lmid,jdbcType=INTEGER}
   </update>
+  <sql id="logMoney_query_criteria">
+    <if test="query!=null and query.uid !=null">
+      and m.uid =#{query.uid}
+    </if>
+  </sql>
+
+  <select id="listPagerCriteria" resultType="com.p2p.bean.LogMoney">
+    <![CDATA[
+      select m.type,m.income,m.outlay,m. created_time from log_money m where type = #{query.type}
+    ]]>
+    <include refid="logMoney_query_criteria" />
+     limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long">
+    <![CDATA[
+            select count(m.lmid) from log_money m,t_user u where m.uid =u.uid
+        ]]>
+  </select>
 </mapper>

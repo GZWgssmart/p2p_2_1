@@ -9,10 +9,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的赠券</title>
+    <title>资金记录</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
-    <link rel="stylesheet" href="<%=path%>/static/css/front/datepicker.css">
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
 </head>
@@ -25,77 +24,107 @@
     <%--<%@include file="../master/aboutLeft.jsp"%>--%>
     <div class="account-right">
         <%-- 在此处写用户后台模块代码--%>
-        <div class="layui-tab layui-tab-brief" lay-filter="zhuanqian" style="float: left;">
+        <div class="layui-tab layui-tab-brief" style="float: left;">
             <ul class="layui-tab-title">
-                <li class="layui-this">代金券</li>
+                <li class="layui-this" id="in">收入</li>
+                <li id="out">支出</li>
             </ul>
-            <div class="layui-tab-content" style="height: 100px;padding-top: 40px;">
-                <div class="layui-tab-item layui-show">
-                    <div class="fund-param-list">
-                        <p>交易类型：</p>
-                        <ul class="cl">
-                            <li class="active"><a href="javascript:;">全部</a></li>
-                            <li><a href="javascript:;">投资</a></li>
-                            <li><a href="javascript:;">充值</a></li>
-                            <li><a href="javascript:;">提现</a></li>
-                            <li><a href="javascript:;">还款</a></li>
-                            <li><a href="javascript:;">奖励</a></li>
-                            <li><a href="javascript:;">冻结</a></li>
-                        </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row">
+                    <div class="layui-col-md12">
+                        <table id="income"></table>
                     </div>
-                    <div class="account-form cl">
-                        <p class="text long">交易时间：</p>
-                        <div class="layui-input-inline">
-                            <input type="text" class="layui-input" id="begin" placeholder="开始时间">
-                        </div>
-                        <div class="layui-input-inline">
-                            <input type="text" class="layui-input" id="end" placeholder="结束时间">
-                        </div>
-                        <!-- <input type="text" placeholder="请输入关键字搜索" class="search icon icon-search" /> -->
-                        <button type="button" class="search" id="fundSearch">搜索</button>
-                    </div>
-                    <table class="layui-table" lay-data="{height:400, url:'#', page:true, id:'daijinquan', skin: 'row', even: true}">
-                        <thead>
-                        <tr>
-                            <th lay-data="{field:'username', width:200}">日期</th>
-                            <th lay-data="{field:'sex', width:150, sort: true}">金额</th>
-                            <th lay-data="{field:'sign', width:150}">订单号</th>
-                            <th lay-data="{field:'xinxi', width:150}">信息</th>
-                        </tr>
-                        </thead>
-                    </table>
                 </div>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-row">
+                    <div class="layui-col-md12">
+                        <table id="outlay"></table>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
 </div>
+<%----%>
 <%@include file="../master/footer.jsp"%>
 </body>
-<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
-    $('.sidebar-top').click(function(){
-        $('body').scrollTop(0);
-    });
-    layui.use(['element','layer','laydate','table'], function () {
-        var $ = layui.jquery
-            , element = layui.element
-            ,layer = layui.layer
-            ,laydate = layui.laydate
-        ,table = layui.table;
+    layui.use(['element', 'laytpl','table'] ,function () {
+        var element = layui.element;
+        var table = layui.table;
+        var $ = layui.$;
 
-        laydate.render({
-            elem: '#begin'
+//        支出
+        $('#out').on('click', function () {
+            table.render({
+                elem: '#outlay'
+                , url: '<%=path %>/data/logMoney/record'
+                ,where: {
+                    type : 1
+                }
+                , cols: [[
+                    {field: 'outlay', title: '金额', width: 180}
+                    , {
+                        field: 'created_time',
+                        title: '支出时间',
+                        width: 180,
+                        sort: true,
+                        templet: '<div>{{formatDate(d.createdTime)}}</div>'
+                    }
+                ]]
+                , id: 'outlay'
+                , page: true
+                , response: {
+                    statusName: 'status'
+                    , statusCode: 0
+                    , msgName: 'message'
+                    , countName: 'total'
+                    , dataName: 'rows'
+                }
+            });
         });
-
-        laydate.render({
-            elem: '#end'
-            ,min:$('#begin').val()
-            ,max:'2080-10-14'
+//        收入
+        table.render({
+            elem: '#income'
+            , url: '<%=path %>/data/logMoney/record'
+            ,where: {
+                type : 0
+            }
+            , cols: [[
+               {field: 'income', title: '金额', width: 180}
+                , {
+                    field: 'created_time',
+                    title: '支出时间',
+                    width: 180,
+                    sort: true,
+                    templet: '<div>{{formatDate(d.createdTime)}}</div>'
+                }
+            ]]
+            , id: 'income'
+            , page: true
+            , response: {
+                statusName: 'status'
+                , statusCode: 0
+                , msgName: 'message'
+                , countName: 'total'
+                , dataName: 'rows'
+            }
         });
-
     });
+</script>
+<script>
+    function formatType(type) {
+        if(type === 0) {
+            return "收入";
+        } else {
+            return "支出";
+        }
+    }
 </script>
 </html>

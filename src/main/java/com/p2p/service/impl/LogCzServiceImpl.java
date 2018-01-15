@@ -69,7 +69,7 @@ public class LogCzServiceImpl extends AbstractServiceImpl implements LogCzServic
             userMoney.setKymoney(userMoney.getKymoney().add(logCz.getMoney()));
             userMoneyMapper.update(userMoney);
             logCzMapper.save(logCz);
-            return super.save(obj);
+            return ServerResponse.createBySuccess("充值成功");
         }
         return ServerResponse.createByError();
     }
