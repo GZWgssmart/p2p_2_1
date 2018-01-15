@@ -26,7 +26,7 @@
             <%-- <script id="demo" type="text/html">--%>
             <form id="editLetter" class="layui-form" action="">
 
-                <div class="layui-form-item">
+                <div class="layui-form-item" style="margin-top: 5px">
                     <label class="layui-form-label">标题</label>
                     <div class="layui-input-block">
                         <input type="text" name="title" id="title" lay-verify="title" autocomplete="off"
@@ -102,6 +102,9 @@
                 $('#status').val(data.status);
             });
 
+
+
+
         var editIndex = layedit.build('content', {
             tool: [
                 'strong' //加粗
@@ -112,14 +115,6 @@
                 , 'face' //表情
                 , 'image' //插入图片
             ]
-        });
-
-        form.verify({
-            title: function(value){
-                if(value.length < 1){
-                    return '需要填写标题';
-                }
-            }
         });
 
         /*var getTpl = demo.innerHTML
@@ -134,6 +129,17 @@
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
             $('#content').val(layedit.getContent(editIndex));
+
+
+            form.verify({
+                title: function(value){
+                    if(value.length < 1){
+                        return '需要填写标题';
+                    }
+                }
+            });
+
+
             $.post('<%=path %>/data/message/editLetter',
                 $('#editLetter').serialize(),
                 function (res) {
@@ -141,7 +147,7 @@
                         layer.msg('提交成功', {
                             time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
-                            location.reload(true);
+                           location.reload(true);
                         });
                     } else {
                         layer.msg(res.message);

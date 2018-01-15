@@ -112,7 +112,7 @@
                         layer.msg('提交成功', {
                             time: 1000 //2秒关闭（如果不配置，默认是3秒）
                         }, function () {
-                           parent.location.reload(true);
+                           location.reload(true);
                         });
                     } else {
                         layer.msg(res.message);

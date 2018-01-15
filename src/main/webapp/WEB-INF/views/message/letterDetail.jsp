@@ -43,7 +43,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">内容：</label>
                     <div class="layui-input-block">
-                        <textarea class="layui-textarea" name="content" id="content" lay-verify="content" style="border:none" readonly></textarea>
+                        <textarea class="layui-textarea" name="content" id="content" lay-verify="content" style="display: none;" readonly></textarea>
                     </div>
                 </div>
 
