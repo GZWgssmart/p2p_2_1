@@ -34,6 +34,11 @@
         margin-left: 10px;
         padding-right:40px;
     }
+    #contentDiv img{
+        margin-left: 23%;
+        width: 600px;
+        height: auto;
+    }
 
 </style>
 <body>
@@ -51,11 +56,13 @@
             <span><a href="<%=path %>/page/dynamic/indexDynamic#test1=1" style="color: #319bff;">返回列表</a></span><span><div>{{ formatDate(d.createdTime) }}</div></span>
             <p style="margin-left: 20px;">&nbsp;&nbsp;&nbsp;{{ d.summary }}</p>
             {{#  if(d.pic !== null && d.pic !== ''){ }}
-            <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto;margin-left: 180px"/>
+            <div style="text-align: center; ">
+                <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto;"/>
+            </div>
             {{#  } else { }}
             <span></span>
             {{#  } }}
-            <div style="margin-left: 20px;margin-right: 20px;">
+            <div style="margin-left: 20px;margin-right: 20px;" id="contentDiv">
                 {{ d.content }}
             </div>
         </script>
