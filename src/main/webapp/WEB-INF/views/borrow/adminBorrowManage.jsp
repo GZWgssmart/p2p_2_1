@@ -99,7 +99,7 @@
                 <div class="layui-form-item layui-form-text layui-col-md11">
                     <label class="layui-form-label">审核理由</label>
                     <div class="layui-input-block">
-                        <textarea name="excuse" placeholder="请输入审核理由" class="layui-textarea"></textarea>
+                        <textarea name="excuse" placeholder="请输入审核理由" class="layui-textarea" id="checkMsg"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -131,10 +131,10 @@
                 ,{field:'bzname', title:'标种', width:80}
                 ,{field:'type', title:'借款类别', width:90, templet:'<div>{{ formatType(d.type)}}</div>'}
                 ,{field:'term', title:'还款期限', width:90, templet:'<div>{{d.term}}个月</div>'}
-                ,{field:'cpname', title:'产品名称', width:120}
+                ,{field:'cpname', title:'产品名称', width:150}
                 ,{field:'way', title:'收益方式', width:90, templet:'<div>{{ formatWay(d.way)}}</div>'}
                 ,{field:'nprofit', title:'年化利率', width:90, templet:'<div>{{d.nprofit}}%</div>'}
-                ,{field:'ckstatus', title:'状态', width:60, templet:'<div>{{formatStatus(d.ckstatus)}}</div>'}
+                ,{field:'ckstatus', title:'状态', width:90, templet:'<div>{{formatStatus(d.ckstatus)}}</div>'}
                 ,{field:'deadline', title:'截止时间', width:180, sort: true, templet:'<div>{{ formatDate(d.deadline)}}</div>'}
             ]]
             ,id: 'checkId'
@@ -204,9 +204,10 @@
                 ,$('#ckForm').serialize()
                 , function (data) {
                     layer.msg(data.message);
+                    $('#searchBtn').trigger('click');
                 },'json');
             layer.closeAll();
-            $('#searchBtn').trigger('click');
+            $('#checkMsg').val('');
         });
 
         // 查看投资列表按钮
