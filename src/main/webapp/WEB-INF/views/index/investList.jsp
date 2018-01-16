@@ -61,7 +61,7 @@
                 <div class="invest-top-list">
                     <div class="textmiddle">借款标题</div>
                     <input type="text" name="cpname" class="text" id="cpname"/>
-                    <a href="javascript:void(0);" class="layui-btn layui-btn-normal" id="searchCpname">搜索</a>
+                    <a href="javascript:void(0);" class="layui-btn layui-btn-primary" id="searchCpname">搜索</a>
                 </div>
             </div>
         </div>
