@@ -139,7 +139,7 @@
                         area: ['760px', '500px'],
                         maxmin:true,
                         scrollbar:false,
-                        content:"<%=path %>/page/Role/rolejur?roleId="+data[0].rid
+                        content:"<%=path %>/page/Role/rolejur?"+data[0].rid
                     })
                 } else {
                     layer.msg('请选中一行！', {time:1500});

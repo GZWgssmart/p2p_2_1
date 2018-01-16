@@ -17,9 +17,9 @@
     from rolejur
     where rjid = #{rjid,jdbcType=INTEGER}
   </select>
-  <delete id="remove" parameterType="java.lang.Integer">
+  <delete id="remove" parameterType="com.p2p.bean.Rolejur">
     delete from rolejur
-    where rjid = #{rjid,jdbcType=INTEGER}
+    where rid = #{rid} and jid = #{jid}
   </delete>
 
   <insert id="save" parameterType="com.p2p.bean.Rolejur">

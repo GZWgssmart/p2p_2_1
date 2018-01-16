@@ -31,19 +31,47 @@ public class RoleJurController {
 
     private ServerResponse serverResponse;
 
-    @RequestMapping("/addRoleJur")
+    @RequestMapping("addRoleJur")
     public ServerResponse save(Rolejur rolejur){
         return rolejurService.save(rolejur);
     }
-    @PostMapping("remove/{rjid}")
+
+    @PostMapping("remove1/{rjid}")
     @ResponseBody
     public ServerResponse removeById(@PathVariable("rjid")Integer rjid){
         return rolejurService.removeById(rjid);
     }
 
+    @PostMapping("remove")
+    @ResponseBody
+    public ServerResponse remove(Rolejur rolejur){
+        return rolejurService.remove(rolejur);
+    }
+
     @RequestMapping("all")
     @ResponseBody
-    public RoleJurTree roleJurTree(Integer rid) {
+    public List<RoleJurTree> roleJurTree(Integer rid) {
+        List<Object> objects = jurService.listAll();
+        List<Jur> jurs = rolejurService.getRoleJur(rid);
+        List<RoleJurTree> roleJurTrees = new ArrayList<>();
+        List<RoleJurTree> objects1 = new ArrayList<>();
+        for (Object obj : objects) {
+            Jur jur = (Jur) obj;
+            roleJurTrees.add(new RoleJurTree(jur.getContent(),jur.getJid() + "", false,objects1));
+        }
+        for (RoleJurTree roleJurTree : roleJurTrees) {
+            for(Jur jur : jurs) {
+                if(roleJurTree.getValue().equals(jur.getJid() + "")) {
+                    roleJurTree.setChecked(true);
+                }
+            }
+        }
+        return roleJurTrees;
+    }
+
+    @RequestMapping("list")
+    @ResponseBody
+    public RoleJurTree roleJurTree1(Integer rid) {
         RoleJurTree roleJurTreeYes = new RoleJurTree();
         List<Object> objects = jurService.listAll();
         List<Jur> jurs = rolejurService.getRoleJur(rid);
