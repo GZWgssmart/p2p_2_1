@@ -26,7 +26,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">最小金额</label>
                     <div class="layui-input-block">
-                        <input type="text" name="minmoney" lay-verify="minmoney" autocomplete="off" placeholder="请输入最小金额"
+                        <input type="number" name="minmoney" lay-verify="minmoney" autocomplete="off" placeholder="请输入最小金额"
                                class="layui-input">
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">最大金额</label>
                     <div class="layui-input-block">
-                        <input type="text" name="maxmoney" lay-verify="maxmoney" autocomplete="off" placeholder="请输入最大金额"
+                        <input type="number" name="maxmoney" lay-verify="maxmoney" autocomplete="off" placeholder="请输入最大金额"
                                class="layui-input">
                     </div>
                 </div>
@@ -43,12 +43,8 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">奖励百分比</label>
                     <div class="layui-input-block">
-                        <select name="percent" lay-filter="percent" lay-verify="percent">
-                            <option value="5">5</option>
-                            <option value="3">3</option>
-                            <option value="1">1</option>
-                        </select>
-
+                        <input type="number" name="percent" lay-verify="percent" autocomplete="off" placeholder="请输入奖励百分比"
+                               class="layui-input">
                     </div>
                 </div>
 
@@ -76,25 +72,13 @@
 
         form.verify({
             minmoney: function(value){
-                if (value.length > 0) {
-                    if(/^\d+\d+\d$/.test(value)) {
-
-                    }else{
-                        return '必须是全数字'
-                    }
-                }else{
-                    return '需要填写最小金额';
+                if(value.length < 1){
+                    return '需要输入最小金额';
                 }
 
             }, maxmoney: function(value){
-                if (value.length > 0) {
-                    if(/^\d+\d+\d$/.test(value)) {
-
-                    }else{
-                        return '必须是全数字'
-                    }
-                }else{
-                    return '需要填写最大金额';
+                if(value.length < 1){
+                    return '需要输入最大金额';
                 }
             },percent: function(value){
                 if(value.length < 1){

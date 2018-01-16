@@ -25,12 +25,12 @@
 <%@include file="../../master/top.jsp" %>
 <%@include file="../../master/header.jsp" %>
 <div class="about cl">
-<%@include file="../../master/xxplLeft.jsp" %>
+<%@include file="../../master/aboutLeft.jsp" %>
 <!-- begin -->
     <div class="about-right">
         <div class="layui-tab layui-tab-brief" lay-filter="test1" style="float: left;">
             <ul class="layui-tab-title">
-                <li class="layui-this">公司动态</li>
+                <li class="layui-this">平台公告</li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">

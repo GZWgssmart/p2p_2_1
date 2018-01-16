@@ -5,13 +5,6 @@
   Time: 20:02
   To change this template use File | Settings | File Templates.
 --%>
-<%--
-  Created by IntelliJ IDEA.
-  User: ccf
-  Date: 2017/12/26
-  Time: 8:11
-  To change this template use File | Settings | File Templates.
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -78,7 +71,7 @@
                 if(data.length == 1) {
                     layer.open({
                         type: 2,
-                        area: ['600px', '500px'],
+                        area: ['700px', '400px'],
                         maxmin:true,
                         content:"<%=path %>/page/rewardSet/editRewardSet?rewardSetId="+data[0].rwsid
                     })
@@ -90,7 +83,7 @@
             ,addRewardSet: function(){ //获取选中数据
                 layer.open({
                     type: 2,
-                    area: ['600px', '500px'],
+                    area: ['700px', '400px'],
                     maxmin:true,
                     content:"<%=path %>/page/rewardSet/addRewardSet"
                 })

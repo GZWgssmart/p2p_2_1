@@ -6,13 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: ccf
-  Date: 2017/12/27
-  Time: 11:12
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -43,7 +37,7 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">最小金额</label>
                     <div class="layui-input-block">
-                        <input type="text" name="minmoney" id="minmoney" lay-verify="minmoney" autocomplete="off"
+                        <input type="number" name="minmoney" id="minmoney" lay-verify="minmoney" autocomplete="off"
                                class="layui-input" lay-verify="minmoney"/>
                     </div>
                 </div>
@@ -51,7 +45,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">最大金额</label>
                     <div class="layui-input-block">
-                        <input type="text" name="maxmoney" id="maxmoney" lay-verify="maxmoney" autocomplete="off"
+                        <input type="number" name="maxmoney" id="maxmoney" lay-verify="maxmoney" autocomplete="off"
                             class="layui-input" lay-verify="minmoney"/>
                     </div>
                 </div>
@@ -59,13 +53,8 @@
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <label class="layui-form-label">奖励百分比</label>
                     <div class="layui-input-block">
-                        <select name="percent" lay-filter="percent" lay-verify="percent">
-                            <option id="percent" value=data.percent>不选择为原始值</option>
-                            <option value="5">5</option>
-                            <option value="3">3</option>
-                            <option value="1">1</option>
-                        </select>
-
+                        <input type="number" name="percent" id="percent" lay-verify="percent" autocomplete="off" placeholder="请输入奖励百分比"
+                               class="layui-input">
                     </div>
                 </div>
 
@@ -111,26 +100,10 @@
             });
         form.verify({
             minmoney: function(value){
-                if (value.length > 0) {
-                    if(/^\d+\d+\d$/.test(value)) {
 
-                    }else{
-                        return '必须是全数字'
-                    }
-                }else{
-                    return '需要填写最小金额';
-                }
 
             }, maxmoney: function(value){
-                if (value.length > 0) {
-                    if(/^\d+\d+\d$/.test(value)) {
 
-                    }else{
-                        return '必须是全数字'
-                    }
-                }else{
-                    return '需要填写最大金额';
-                }
             },percent: function(value){
                 if(value.length < 1){
                     return '需要选择内容';
