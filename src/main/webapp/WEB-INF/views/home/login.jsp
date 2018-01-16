@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="<%=path %>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path %>/static/css/home/login.css" media="all"/>
-    <link rel="stylesheet" href="<%=path %>/static/css/front/login.css">
 </head>
 <body class="beg-login-bg">
 <div class="nav-out">

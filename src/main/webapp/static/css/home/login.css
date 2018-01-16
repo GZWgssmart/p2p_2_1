@@ -89,3 +89,21 @@
 	left: 115px;
 	height: 38px;
 }
+.nav-out {
+	width: 100%;
+	margin-top: 15px;
+	margin-left: 80%;
+}
+
+.nav-out p.index a {
+	display: block;
+	width: 110px;
+	height: 38px;
+	line-height: 38px;
+	padding-left: 40px;
+	border: 1px solid #d9d9d9;
+}
+
+.nav-out p.index a:hover {
+	border-color: #e62538;
+}
