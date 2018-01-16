@@ -103,11 +103,11 @@
                         , {field: 'rlx', title: '已收利息', width: 80}
                         , {field: 'ybj', title: '应收本金', width: 150}
                         , {field: 'rbj', title: '已收本金', width: 120}
-                        ,{field: 'ybx', title: '应收本息', width: 100, sort: true}
+                        ,{field: 'ybx', title: '应收本息', width: 100}
                         , {field: 'rbx', title: '已收本息', width: 110}
                         ,{field:'rnum', title:'已还期数', width:90}
                         ,{field:'tnum', title:'总期数', width:90}
-                        , {field: 'sktime', title: '收款时间', width: 180}
+                        , {field: 'sktime', title: '收款时间', width: 180, sort: true}
                     ]]
                     ,id: 'planId'
                     ,page: true

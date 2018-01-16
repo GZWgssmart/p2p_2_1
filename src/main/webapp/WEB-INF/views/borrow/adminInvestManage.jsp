@@ -26,6 +26,10 @@
         </div>
 
         <table id="borrowList"></table>
+
+        <div style="display: none;" id="planListShow">
+            <table id="planList"></table>
+        </div>
     </div>
 </div>
 </body>
@@ -59,6 +63,55 @@
                 ,msgName: 'message'
                 ,countName: 'total'
                 ,dataName: 'rows'
+            }
+        });
+
+        $('#planShow').on('click', function () {
+            var checkStatus = table.checkStatus('checkId')
+                ,data = checkStatus.data;
+            if(data.length === 1) {
+                layer.open({
+                    type: 1,                //弹窗类型
+                    title: '收款计划',     //显示标题
+                    closeBtn: 1,         //是否显示关闭按钮
+                    shadeClose: true, //显示模态窗口
+                    fixed:false,    //层是否固定在可视区域
+                    offset: 't',//快捷设置顶部坐标
+                    move: false,//禁止拖拽
+                    area: ['890px', '560px'], //宽高
+                    content: $("#planListShow")  //弹窗内容
+                });
+                table.render({
+                    elem: '#planList'
+                    ,url: '<%=path %>/data/skb/list'
+                    ,where:{
+                        baid:data[0].baid
+                        ,uid:data[0].uid
+                    }
+                    , cols: [[
+                        ,{field: 'ylx', title: '应收利息', width: 80}
+                        , {field: 'rlx', title: '已收利息', width: 80}
+                        , {field: 'ybj', title: '应收本金', width: 150}
+                        , {field: 'rbj', title: '已收本金', width: 120}
+                        ,{field: 'ybx', title: '应收本息', width: 100, sort: true}
+                        , {field: 'rbx', title: '已收本息', width: 110}
+                        ,{field:'rnum', title:'已还期数', width:90}
+                        ,{field:'tnum', title:'总期数', width:90}
+                        , {field: 'sktime', title: '收款时间', width: 180}
+                    ]]
+                    ,id: 'planId'
+                    ,page: true
+                    ,height: 500
+                    ,response: {
+                        statusName: 'status'
+                        ,statusCode: 0
+                        ,msgName: 'message'
+                        ,countName: 'total'
+                        ,dataName: 'rows'
+                    }
+                });
+            } else {
+                layer.msg('请选中一行！', {time:1500});
             }
         });
 
