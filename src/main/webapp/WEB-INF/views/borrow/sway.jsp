@@ -22,6 +22,7 @@
     <button class="layui-btn" data-type="add">新增还款方式</button>
     <button class="layui-btn" data-type="update">修改还款方式</button>
     <button class="layui-btn" data-type="delete">删除还款方式</button>
+    <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -93,8 +94,6 @@
                 layer.open({
                     type: 2,
                     title: '还款方式',
-                    shadeClose: true,
-                    shade: true,
                     area: ['700px', '400px'],
                     content: '<%=path %>/page/sway/addsway'
                 });
@@ -113,7 +112,10 @@
                     layer.msg("请选择一行！");
                 }
 
-            }
+            },
+            refresh:function () {
+                location.reload(true);
+            },
         };
     });
 </script>

@@ -22,6 +22,7 @@
     <button class="layui-btn" data-type="add">新增借款类型</button>
     <button class="layui-btn" data-type="update">修改借款类型</button>
     <button class="layui-btn" data-type="delete">删除借款类型</button>
+    <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -93,8 +94,6 @@
                     layer.open({
                         type: 2,
                         title: '借款类型添加',
-                        shadeClose: true,
-                        shade: true,
                         area: ['700px', '400px'],
                         content: '<%=path %>/page/jklx/addjklx'
                     });
@@ -113,7 +112,10 @@
                     layer.msg("请选择一行！");
                 }
 
-            }
+            },
+            refresh:function () {
+                location.reload(true);
+            },
         };
     });
 </script>

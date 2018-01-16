@@ -22,6 +22,7 @@
     <button class="layui-btn" data-type="add">新增标种</button>
     <button class="layui-btn" data-type="update">修改标种</button>
     <button class="layui-btn" data-type="delete">删除标种</button>
+    <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -94,8 +95,6 @@
                 layer.open({
                     type: 2,
                     title: '标种增加',
-                    shadeClose: true,
-                    shade: true,
                     area: ['700px', '400px'],
                     content: '<%=path %>/page/bz/addBz'
                 });
@@ -115,6 +114,10 @@
                 }
 
             }
+            ,
+            refresh:function () {
+                location.reload(true);
+            },
         };
     });
 </script>
