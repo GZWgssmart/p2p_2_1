@@ -1,6 +1,7 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Skb;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.SkbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,18 @@ public class SkbController {
     @RequestMapping("confirm")
     public ServerResponse confirmSK(Integer skid) {
         return skbService.confirm((Skb) skbService.getById(skid));
+    }
+
+    /**
+     * 用户查看收款列表
+     * @param page
+     * @param limit
+     * @param uid
+     * @param baid
+     * @return
+     */
+    @RequestMapping("list")
+    public Pager list(Integer page, Integer limit, Integer uid, Integer baid){
+        return skbService.skblist(page,limit,uid,baid);
     }
 }

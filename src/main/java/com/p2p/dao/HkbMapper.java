@@ -19,4 +19,6 @@ public interface HkbMapper extends BaseDAO {
     Long countCriteria(@Param("query") Object obj);
 
     int updateByBaid(Hkb hkb);
+
+    List<Hkb> getSkTime(Integer baid);
 }

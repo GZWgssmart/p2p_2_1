@@ -118,11 +118,12 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
         tzb.setNprofit(bAD.getNprofit());
         tzb.setCpname(bAD.getCpname());
         tzb.setTztime(Calendar.getInstance().getTime());
+        Integer ukid = tzb.getResint2();
+        tzb.setResint2(Integer.valueOf(bAD.getWay()));
         tzbMapper.save(tzb);
         // tzb.getResint1()为还款期数
         Integer month = tzb.getResint1();
         //用户券id 用户如果使用券，则把券删除
-        Integer ukid = tzb.getResint2();
         BigDecimal ticketMoney = BigDecimal.valueOf(0);
         if(ukid != null && ukid != 0) {
             UserTicket userTicket = (UserTicket) userTicketMapper.getById(ukid);

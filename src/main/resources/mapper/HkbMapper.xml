@@ -43,6 +43,12 @@
     where hkid = #{hkid,jdbcType=INTEGER}
   </select>
 
+  <select id="getSkTime" resultType="com.p2p.bean.Hkb">
+    <![CDATA[
+      SELECT h.ytime FROM hkb AS h  WHERE baid=#{baid}
+    ]]>
+  </select>
+
   <delete id="removeById" parameterType="java.lang.Integer">
     delete from hkb where hkid = #{hkid,jdbcType=INTEGER}
   </delete>

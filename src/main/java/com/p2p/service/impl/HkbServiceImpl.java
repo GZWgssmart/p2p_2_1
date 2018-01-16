@@ -1,10 +1,13 @@
 package com.p2p.service.impl;
 
+import com.p2p.bean.BorrowApply;
 import com.p2p.bean.Hkb;
 import com.p2p.bean.UserMoney;
 import com.p2p.common.ServerResponse;
+import com.p2p.dao.BorrowApplyMapper;
 import com.p2p.dao.HkbMapper;
 import com.p2p.dao.UserMoneyMapper;
+import com.p2p.enums.BorrowStatusEnum;
 import com.p2p.service.HkbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,7 @@ public class HkbServiceImpl extends AbstractServiceImpl implements HkbService {
 
     private HkbMapper hkbMapper;
     private UserMoneyMapper userMoneyMapper;
+    private BorrowApplyMapper borrowApplyMapper;
 
     @Autowired
     public void setHkbMapper(HkbMapper hkbMapper) {
@@ -32,6 +36,11 @@ public class HkbServiceImpl extends AbstractServiceImpl implements HkbService {
     @Autowired
     public void setUserMoneyMapper(UserMoneyMapper userMoneyMapper) {
         this.userMoneyMapper = userMoneyMapper;
+    }
+
+    @Autowired
+    public void setBorrowApplyMapper(BorrowApplyMapper borrowApplyMapper) {
+        this.borrowApplyMapper = borrowApplyMapper;
     }
 
     @Override
@@ -68,6 +77,12 @@ public class HkbServiceImpl extends AbstractServiceImpl implements HkbService {
         hkb1.setUid(hkb.getUid());
         hkb1.setRnum(hkb.getRnum() + 1);
         hkbMapper.updateByBaid(hkb1);
+        if(hkb1.getRnum().equals(hkb.getTnum())) {
+            BorrowApply borrowApply = new BorrowApply();
+            borrowApply.setBaid(hkb.getBaid());
+            borrowApply.setCkstatus(BorrowStatusEnum.COMPLETE.getCode());
+            borrowApplyMapper.update(borrowApply);
+        }
         return ServerResponse.createBySuccess("还款成功");
     }
 }

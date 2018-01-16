@@ -156,7 +156,7 @@
                             hkid : data[0].hkid
                         }
                         , function (data) {
-                            alert(data.message);
+                            layer.msg(data.message);
                             layer.closeAll();
                         },'json');
                 } else {
