@@ -41,7 +41,7 @@
                             <div class="layui-row" style="margin-top: 5px;width:890px;">
                                     <div>
                                         <h2>
-                                            <a href="<%=path %>/page/message/noticeDetail?noticeId={{notice.nid}}">
+                                            <a href="<%=path %>/page/about/noticeDetail?noticeId={{notice.nid}}">
                                                 {{notice.title}}
                                             </a>
                                         </h2>

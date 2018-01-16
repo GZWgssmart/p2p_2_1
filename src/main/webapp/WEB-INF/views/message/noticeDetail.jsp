@@ -42,7 +42,7 @@
     <div id="view">
         <script id="demo" type="text/html">
             <h3 style="font-weight: normal;text-align: center;font-size: 18px;">【普金资本】{{ d.title }}</h3>
-            <span1><a href="<%=path %>/page/message/indexNotice" style="color: #319bff;">返回列表</a></span1><span1><div>{{ formatDate(d.createdTime) }}</div></span1></br>
+            <span1><a href="<%=path %>/page/about/indexNotice" style="color: #319bff;">返回列表</a></span1><span1><div>{{ formatDate(d.createdTime) }}</div></span1></br>
             <div style="margin-left: 20px;margin-right: 20px;">
                 {{ d.content }}
             </div>

@@ -13,7 +13,7 @@
             <li class=""><a href="<%=path %>/page/about/platform">平台资质</a></li>
             <li class=""><a href="<%=path %>/page/about/team">顾问团队</a></li>
             <li ><a href="<%=path %>/page/dynamic/indexDynamic">公司动态</a></li>
-            <li><a href="<%=path %>/page/message/indexNotice">平台公告</a></li>
+            <li><a href="<%=path %>/page/about/indexNotice">平台公告</a></li>
         </ul>
         <div style="border: 0.5px #afafaf solid"></div>
         <ul class="sub-nav">

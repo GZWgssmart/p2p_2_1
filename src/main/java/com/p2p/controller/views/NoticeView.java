@@ -24,13 +24,5 @@ public class NoticeView {
         return "message/editNotice";
     }
 
-    @RequestMapping("noticeDetail")
-    public String noticeDetail(){
-        return "message/noticeDetail";
-    }
 
-    @RequestMapping("indexNotice")
-    public String indexNotice(){
-        return "/index/aboutwe/notice";
-    }
 }

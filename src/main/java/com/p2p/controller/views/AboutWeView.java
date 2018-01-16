@@ -45,4 +45,14 @@ public class AboutWeView {
         return "index/aboutwe/platformMsg";
     }
 
+    @RequestMapping("indexNotice")
+    public String indexNotice(){
+        return "/index/aboutwe/notice";
+    }
+
+    @RequestMapping("noticeDetail")
+    public String noticeDetail(){
+        return "message/noticeDetail";
+    }
+
 }
