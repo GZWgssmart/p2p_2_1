@@ -75,22 +75,24 @@
                 for(var i = 0; i < data.length; i++) {
                     uid +=data[i].uid + ",";
                 }
-                $.post('<%=path %>/data/user/vip',{uid:uid},
-                    function (res) {
-                        if(res.code == 0) {
-                            layer.msg('审核成功！',function () {
-                                //执行重载
-                                table.reload('idTest', {
-                                    page: {
-                                        curr: 1 //重新从第 1 页开始
-                                    }
+                if(uid !== null || uid.trim() !== '') {
+                    $.post('<%=path %>/data/user/vip',{uid:uid},
+                        function (res) {
+                            if(res.code == 0) {
+                                layer.msg('审核成功！',function () {
+                                    //执行重载
+                                    table.reload('idTest', {
+                                        page: {
+                                            curr: 1 //重新从第 1 页开始
+                                        }
+                                    });
                                 });
-                            });
-                        } else {
-                            layer.msg('失败');
+                            } else {
+                                layer.msg('失败');
+                            }
                         }
-                    }
-                );
+                    );
+                }
             }
         };
 

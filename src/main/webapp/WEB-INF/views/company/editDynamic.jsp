@@ -14,7 +14,7 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12" id="view">
-                <form class="layui-form">
+                <form class="layui-form" id="editDynamic">
                     <div class="layui-form-item" style="margin-top: 20px;">
                         <label class="layui-form-label">标题</label>
                         <div class="layui-input-block">
@@ -45,7 +45,7 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
-                        <textarea class="layui-textarea layui-hide" name="content" id="content" lay-verify="content">
+                        <textarea class="layui-textarea layui-hide" name="content" id="content">
                         </textarea>
                     </div>
                     </div>

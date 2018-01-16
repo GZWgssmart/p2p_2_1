@@ -163,7 +163,7 @@
                     $.post('<%=path %>/data/ticket/status',{kid:kid},
                         function (res) {
                             if(res.code == 0) {
-                                layer.msg('审核成功！',function () {
+                                layer.msg('操作成功！',function () {
                                     //执行重载
                                     table.reload('idTest', {
                                         page: {
