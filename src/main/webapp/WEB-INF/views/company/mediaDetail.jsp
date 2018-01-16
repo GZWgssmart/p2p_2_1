@@ -35,7 +35,7 @@
         padding-right:40px;
     }
     #contentDiv img{
-        margin-left: 23%;
+        margin-left: 24%;
         width: 600px;
         height: auto;
         margin-top: 20px;
