@@ -26,7 +26,13 @@
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
-
+<script type="text/html" id="statusID">
+    {{#  if(d.status == 0){ }}
+    <span style="color: red;">冻结</span>
+    {{#  } else { }}
+    <span style="color: green;">激活</span>
+    {{#  } }}
+</script>
 
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
@@ -41,7 +47,7 @@
                 {checkbox: true, fixed: true}
                 ,{field:'bzid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'bzname', title:'标种', width:150}
-                ,{field:'status', title:'状态', width:100}
+                ,{field:'status', title:'状态', width:100,templet:'#statusID'}
 
             ]]
             ,id: 'idTest'
