@@ -19,61 +19,47 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="<%=path %>/static/layui/css/layui.css"/>
     <link rel="stylesheet" type="text/css" href="<%=path %>/static/js/rolejur/jquery.json-viewer.css"/>
-    <style type="text/css">
-        body{padding: 20px;}
-        .layui-form-item{margin-bottom: 0;}
-        .layui-field-box{padding: 20px;}
-        select:focus + .layui-form-selected dl{display: block;}
-    </style>
 </head>
-<body>
-<fieldset class="layui-elem-field" style="height: 350px;">
-    <legend>Layui Select多选</legend>
-    <div class="layui-field-box">
-        <div class="layui-form layui-form-pane">
-            <div class="layui-form-item">
-                <label class="layui-form-label">选择框</label>
-                <div class="layui-input-block">
-                    <select name="city" lay-filter="city">
-                        <option value=""></option>
-                        <option value="0">北京</option>
-                        <option value="1">上海</option>
-                        <option value="2">广州</option>
-                        <option value="3">深圳</option>
-                        <option value="4">杭州</option>
-                    </select>
-                </div>
-            </div>
+<body class="childrenBody">
+<form class="layui-form layui-row">
+    <div class="layui-form-item">
+        <label class="layui-form-label">动态赋值</label>
+        <div class="layui-input-block">
+            <select lay-filter="aaa" multiple name="aaa" lay-verify="required">
+                <option value="">请选择您的兴趣爱好</option>
+                <option value="1" disabled>旅游</option>
+                <option value="2">唱歌</option>
+                <option value="3">爬山</option>
+                <option value="4">游戏</option>
+                <option value="5">台球</option>
+                <option value="6">阅读</option>
+                <option value="7">看电影</option>
+            </select>
         </div>
     </div>
-</fieldset>
-<fieldset class="layui-elem-field">
-    <legend>result</legend>
-    <div class="layui-field-box">
-        <span id="json-view"></span>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择提交</label>
+        <div class="layui-input-block">
+            <select lay-filter="bbb" multiple name="bbb" lay-verify="required">
+                <option value="">请选择您的兴趣爱好</option>
+                <option value="1" disabled>旅游</option>
+                <option value="2">唱歌</option>
+                <option value="3" selected=''>爬山</option>
+                <option value="4">游戏</option>
+                <option value="5">台球</option>
+                <option value="6">阅读</option>
+                <option value="7">看电影</option>
+            </select>
+        </div>
     </div>
-</fieldset>
-
-<script src="<%=path %>/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="<%=path %>/static/js/rolejur/jquery.json-viewer.js" type="text/javascript" charset="utf-8"></script>
-<script src="<%=path %>/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-<script src="<%=path %>/static/js/rolejur/formSelects.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    formSelects.on({
-        layFilter: 'city',	//绑定select lay-filter
-        left: '【',			//显示的符号left
-        right: '】',			//显示的符号right
-        separator: '',		//多选分隔符
-    });
-    //formSelects.arr 可以获取到已经选择的数据
-    function formatJson(arr){
-        try{
-            $('#json-view').jsonViewer(eval('('+JSON.stringify(arr)+')'), {
-                collapsed: false,
-                withQuotes: true
-            });
-        }catch(error){}
-    }
-</script>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="selectMultiple.js"></script>
 </body>
 </html>

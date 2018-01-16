@@ -21,6 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="<%=path%>/static/bankCard/style.css">
+    <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="shortcut icon" href="https://lab.chinapnr.com/muser/favicon.ico">
 </head>
 <body class="w960">
@@ -63,7 +64,7 @@
                                         <dd>
                                             <div class="form-group form-group-card">
                                                 <label class="label">所属银行:</label>
-                                                <input placeholder="请输入所属银行" class="form-unit" id="type" name="type"
+                                                <input placeholder="请输入所属银行" class="form-unit" lay-verify="required" id="type" name="type"
                                                        required=""/>
                                                 <label class="form-tips error required">
                                                     <div class="form-tips-arrow"></div>
@@ -76,7 +77,7 @@
                                             <div class="form-group">
                                                 <label class="label">银行卡号:</label>
                                                 <input type="text" placeholder="请输入银行卡号" id="cardno" name="cardno"
-                                                       class="form-unit" required="" maxlength="32" value=""
+                                                       class="form-unit"  lay-verify="required|number" required="" maxlength="32" value=""
                                                        autocomplete="off">
                                                 <label class="form-tips tip tip-card-id">
                                                     <div class="form-tips-arrow"></div>
@@ -157,6 +158,7 @@
     $("#no").val('${user.idno}');
     $("#name").val("${user.rname}");
 </script>
+<script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/plugins.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/main.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/jsencrypt.js"></script>
@@ -165,18 +167,23 @@
 <script type="text/javascript" src="<%=path%>/static/bankCard/postbe.js"></script>
 <script>
     function addCard() {
-        $.post('<%=path%>/data/bankCard/save',
-            $('#addForm').serialize(),
-            function (data) {
-                if (data.code == 0) {
-                    layer.alert('添加成功！', function () {
-                        window.location.href = '<%=path %>/page/user/account';
-                    })
-                } else {
-                    layer.alert(data.message);
-                }
-            }, 'json'
-        )
+        layui.use(['element', 'form', 'laytpl'], function () {
+            var form = layui.form;
+            form.on('submit(add)',function(data) {
+                $.post('<%=path%>/data/bankCard/save',
+                    $('#addForm').serialize(),
+                    function (data) {
+                        if (data.code == 0) {
+                            layer.alert('添加成功！', function () {
+                                window.location.href = '<%=path %>/page/user/account';
+                            })
+                        } else {
+                            layer.alert(data.message);
+                        }
+                    }, 'json'
+                )
+            })
+        })
     }
 </script>
 </body>

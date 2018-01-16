@@ -120,7 +120,7 @@
             elem: '#allRecommend_table'
             , url: '<%=path %>/data/recommend/pagerCriteria?uid=' +${user.uid}
             , cols: [[
-                , {field: 'rname', title: '被推荐人', width: 340}
+                 {field: 'rname', title: '被推荐人', width: 340}
                 , {
                     field: 'createdTime',
                     title: '注册时间',

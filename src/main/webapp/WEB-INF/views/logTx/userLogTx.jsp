@@ -107,7 +107,9 @@
     $(function () {
         var user = "${user}";
         if (user === null || user === '') {
-            alert("您未登录，请登录！");
+            layer.msg("您未登录，请登录！",function () {
+                window.location = '/page/login';
+            })
         }
         layui.use(['element', 'form', 'laytpl'], function () {
             var form = layui.form;

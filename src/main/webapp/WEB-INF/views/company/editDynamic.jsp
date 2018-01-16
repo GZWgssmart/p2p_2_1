@@ -45,7 +45,7 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
-                        <textarea class="layui-textarea layui-hide" name="content" id="content" lay-verify="content" lay-verify="required">
+                        <textarea class="layui-textarea layui-hide" name="content" id="content" lay-verify="content">
                         </textarea>
                     </div>
                     </div>
