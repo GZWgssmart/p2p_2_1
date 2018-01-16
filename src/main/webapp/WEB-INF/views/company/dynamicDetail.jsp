@@ -34,6 +34,9 @@
         margin-left: 10px;
         padding-right:40px;
     }
+    #contentDiv p{
+        text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/
+    }
     #contentDiv img{
         margin-left: 24%;
         width: 600px;
