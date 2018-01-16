@@ -19,8 +19,9 @@
 
 
 <div class="layui-btn-group demoTable" >
-    <button class="layui-btn" data-type="add">新增标种类型</button>
-    <button class="layui-btn" data-type="update">修改标种类型</button>
+    <button class="layui-btn" data-type="add">新增标种</button>
+    <button class="layui-btn" data-type="update">修改标种</button>
+    <button class="layui-btn" data-type="delete">删除标种</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -66,11 +67,27 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
+            delete:function () {
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                if(data.length == 1) {
+                    $.get('<%=path %>/data/bz/delete?bzId=' + data[0].bzid,
+                        function (data) {
+                            if(data.code==0){
+                                layer.msg("删除成功！")
+                                location.reload(true);
+                            }else {
+                                layer.msg("删除失败！")
+                            }
+                        });
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            },
+            refresh:function () {
+                location.reload(true);
             }
+
 
             ,add: function(){ //借款类型添加
 

@@ -29,9 +29,10 @@
       ]]>
   </select>
 
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from bz
-    where bzid = #{bzid,jdbcType=INTEGER}
+  <delete id="removeById" parameterType="com.p2p.bean.Bz">
+    <![CDATA[
+          delete from bz where bzid = #{bzId}
+    ]]>
   </delete>
 
   <insert id="insert" parameterType="com.p2p.bean.Bz">

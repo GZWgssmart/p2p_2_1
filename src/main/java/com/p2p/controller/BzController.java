@@ -38,4 +38,10 @@ public class BzController {
     public ServerResponse updateBz(Bz bz){
         return bzService.update(bz);
     }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public ServerResponse delete(int bzId){
+        return bzService.removeById(bzId);
+    }
 }

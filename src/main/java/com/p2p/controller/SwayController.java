@@ -40,4 +40,10 @@ public class SwayController {
         Object obj = swayService.getById(huankuanId);
         return (Sway) obj;
     }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public ServerResponse delecte(int swayId){
+        return swayService.removeById(swayId);
+    }
 }

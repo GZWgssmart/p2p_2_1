@@ -58,6 +58,11 @@
       </if>
     </trim>
   </insert>
+  <delete id="removeById" parameterType="com.p2p.bean.Jklx">
+    <![CDATA[
+          delete from jklx where lxid = #{jklxId}
+    ]]>
+  </delete>
   <select id="getById" resultType="com.p2p.bean.Jklx">
     <![CDATA[
         select * from  jklx j where j.lxid = #{lxId}

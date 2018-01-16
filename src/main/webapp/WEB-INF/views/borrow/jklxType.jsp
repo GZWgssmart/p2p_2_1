@@ -21,6 +21,7 @@
 <div class="layui-btn-group demoTable" >
     <button class="layui-btn" data-type="add">新增借款类型</button>
     <button class="layui-btn" data-type="update">修改借款类型</button>
+    <button class="layui-btn" data-type="delete">删除借款类型</button>
 </div>
 
 <table id="allArticle_table" lay-filter="demo"></table>
@@ -37,6 +38,7 @@
             ,url: '<%=path %>/data/jklx/jklxPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
+                ,{field:'lxid', title:'ID', width:150}
                 ,{field:'lxname', title:'借款类型', width:150}
                 ,{field:'status', title:'状态', width:100}
 
@@ -65,10 +67,25 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
+            delete:function () {
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                if(data.length == 1) {
+                    $.get('<%=path %>/data/jklx/delete?jklxId=' + data[0].lxid,
+                        function (data) {
+                            if(data.code==0){
+                                layer.msg("删除成功！")
+                                location.reload(true);
+                            }else {
+                                layer.msg("删除失败！")
+                            }
+                        });
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            },
+            refresh:function () {
+                location.reload(true);
             }
 
             ,add: function(){ //借款类型添加

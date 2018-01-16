@@ -43,6 +43,13 @@ public class JklxController {
         return jklxService.update(jklx);
     }
 
+    @RequestMapping("delete")
+    @ResponseBody
+    public ServerResponse delete(int jklxId){
+        return jklxService.removeById(jklxId);
+
+    }
+
 
 
 
