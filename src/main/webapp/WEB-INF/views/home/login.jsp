@@ -17,10 +17,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>登录</title>
     <link rel="stylesheet" href="<%=path %>/static/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="<%=path %>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path %>/static/css/home/login.css" media="all"/>
+    <link rel="stylesheet" href="<%=path %>/static/css/front/login.css">
 </head>
 <body class="beg-login-bg">
-
+<div class="nav-out">
+    <div class="wrap cl">
+        <p class="index"><a href="<%=path %>/" class="icon icon-home">普金资本首页</a></p>
+    </div>
+</div>
 <div class="beg-login-box">
     <header>
         <h1>后台登录</h1>
