@@ -68,13 +68,13 @@
     </update>
     <select id="listPagerCriteria" resultType="user">
         <![CDATA[
-            select * from t_user where isvip = 1
+            select * from t_user
         ]]>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
     <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Dynamic">
         <![CDATA[
-          select count(uid) from t_user where isvip = 1
+          select count(uid) from t_user
         ]]>
     </select>
 
