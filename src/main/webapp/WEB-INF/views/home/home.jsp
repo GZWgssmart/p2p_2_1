@@ -221,9 +221,6 @@
                                    data-options="{url:'<%=path%>/page/admin/List',icon:'&#xe658;',title:'后台用户管理',id:'51'}"><i
                                     class="layui-icon">&#xe658;</i><span>后台用户管理</span></a>
                             </dd>
-                            <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path%>/page/admin/add',icon:'&#xe61f;',title:'添加后台用户',id:'52'}"><i
-                                    class="layui-icon">&#xe61f;</i><span>添加后台用户</span></a></dd>
                         </dl>
                     </li>
                 </shiro:hasPermission>

@@ -20,6 +20,11 @@ public class AdminView {
         return "Admin/addhuser";
     }
 
+    @RequestMapping("update")
+    public String upHuser() {
+        return "Admin/upHuser";
+    }
+
     @RequestMapping("List")
     public String huserList() {
         return "Admin/huserList";

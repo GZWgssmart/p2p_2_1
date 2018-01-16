@@ -94,6 +94,22 @@ public class AdminController {
         return huserService.saveRoleUser(huser, roleUser);
     }
 
+    @RequestMapping("update")
+    public ServerResponse updateHuser(Huser huser){
+        return huserService.update(huser);
+    }
+
+    @RequestMapping("HuserDetail")
+    public Huser HuserDetail(Integer huid){
+        Object obj = huserService.getById(huid);
+        return (Huser) obj;
+    }
+
+    @RequestMapping("remove")
+    public ServerResponse removeByIdHuser(Huser huser){
+        return huserService.removeById(huser.getHuid());
+    }
+
     @RequestMapping("edit")
     public ServerResponse edit(Huser huser, HttpSession session) {
         ServerResponse serverResponse = null;

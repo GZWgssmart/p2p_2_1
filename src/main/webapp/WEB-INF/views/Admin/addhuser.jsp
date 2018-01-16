@@ -19,7 +19,7 @@
 <div class="layui-container">
     <div class="layui-row">
         <div class="layui-col-md12">
-            <form id="addAdmin" class="layui-form layui-col-xs6">
+            <form id="addAdmin" class="layui-form layui-col-xs8">
                 <div class="layui-form-item" style="margin-top: 10px;">
                     <label class="layui-form-label">手机号</label>
                     <div class="layui-input-block">

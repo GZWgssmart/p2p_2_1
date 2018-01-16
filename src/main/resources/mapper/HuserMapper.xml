@@ -27,7 +27,7 @@
     from huser
     where huid = #{huid,jdbcType=INTEGER}
   </select>
-  <delete id="remove" parameterType="java.lang.Integer">
+  <delete id="removeById" parameterType="java.lang.Integer">
     delete from huser
     where huid = #{huid,jdbcType=INTEGER}
   </delete>
