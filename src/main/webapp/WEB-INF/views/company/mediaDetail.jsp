@@ -43,7 +43,6 @@
         height: auto;
         margin-top: 20px;
     }
-
 </style>
 <body>
 <%@include file="../master/top.jsp" %>

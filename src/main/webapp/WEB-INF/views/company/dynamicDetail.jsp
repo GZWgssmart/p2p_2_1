@@ -43,7 +43,9 @@
         height: auto;
         margin-top: 20px;
     }
-
+    p img{
+        margin-left: 21%;
+    }
 </style>
 <body>
 <%@include file="../master/top.jsp" %>
