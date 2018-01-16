@@ -38,6 +38,7 @@
         margin-left: 23%;
         width: 600px;
         height: auto;
+        margin-top: 20px;
     }
 
 </style>
