@@ -197,7 +197,7 @@
                             </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/message/addModel',icon:'&#xe61f;',title:'添加首页信息',id:'46'}">
+                                   data-options="{url:'<%=path %>/page/message/Dxmodel',icon:'&#xe61f;',title:'添加首页信息',id:'46'}">
                                     <i class="layui-icon">&#xe61f;</i><span>添加短信模板</span></a>
                             </dd>
                         </dl>

@@ -10,11 +10,16 @@
   <sql id="Base_Column_List">
     dxid, content
   </sql>
-  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from dxmodel
-    where dxid = #{dxid,jdbcType=INTEGER}
+  <select id="listPagerCriteria" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select  d.dxid, d.content from dxmodel d
+    order by dxid desc
+
+    limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Dxmodel">
+    <![CDATA[
+          select count(d.dxid) from dxmodel d
+    ]]>
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer">
     delete from dxmodel

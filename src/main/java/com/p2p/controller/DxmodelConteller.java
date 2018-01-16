@@ -1,6 +1,7 @@
 package com.p2p.controller;
 
 import com.p2p.bean.Dxmodel;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.DxmodelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DxmodelConteller {
     @Autowired
     private DxmodelService dxmodelService;
+
+    @RequestMapping("dxmodelPage")
+    @ResponseBody
+    public Pager demodelList(int page, int limit, Dxmodel dxmodel){
+
+        return dxmodelService.listPagerCriteria(page,limit,dxmodel);
+    }
 
     @RequestMapping("addDx")
     @ResponseBody
