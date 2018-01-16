@@ -29,19 +29,19 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">真实姓名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="rname" lay-verify="title" autocomplete="off" placeholder="请输入真实姓名" class="layui-input">
+                    <input type="text" name="rname" lay-verify="required" autocomplete="off" placeholder="请输入真实姓名" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">申请金额</label>
                 <div class="layui-input-block">
-                    <input type="text" name="money" lay-verify="title" autocomplete="off" placeholder="请输入申请金额" class="layui-input">
+                    <input type="text" name="money" lay-verify="required|number" autocomplete="off" placeholder="请输入申请金额" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">借款类型</label>
                 <div class="layui-input-block">
-                    <select name="type" lay-filter="jkqx">
+                    <select name="type">
                         <option value="1">个人</option>
                         <option value="2">企业</option>
                     </select>
@@ -50,7 +50,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">标种</label>
                 <div class="layui-input-block">
-                    <select name="bzid" lay-filter="jkqx">
+                    <select name="bzid">
                         <option value="1">普金宝</option>
                         <option value="2">恒金宝</option>
                         <option value="3">多金宝</option>
@@ -61,7 +61,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">借款期限</label>
                 <div class="layui-input-block">
-                    <select name="term" lay-filter="month">
+                    <select name="term">
                         <option value="3">3个月</option>
                         <option value="6" selected="">6个月</option>
                         <option value="12">12个月</option>
@@ -75,15 +75,15 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">年化收益</label>
+                <label class="layui-form-label">年化收益(%)</label>
                 <div class="layui-input-block">
-                    <input type="text" name="nprofit" lay-verify="title" autocomplete="off" placeholder="请输入年化收益" class="layui-input">
+                    <input type="text" name="nprofit" autocomplete="off" placeholder="请输入年化收益" class="layui-input" lay-verify="required|number">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">收益方式</label>
                 <div class="layui-input-block">
-                    <select name="way" lay-filter="jkqx">
+                    <select name="way">
                         <option value="1">等额本息</option>
                         <option value="2">等额本金</option>
                         <option value="3">先息后本</option>
@@ -163,7 +163,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"></label>
                 <div class="layui-input-block">
-                    <a href="javascript:void(0);" class="layui-btn" onclick="saveBorrow();">提交申请</a>
+                    <button class="layui-btn" lay-submit lay-filter="borrowApply">提交申请</button>
                 </div>
             </div>
         </form>
@@ -198,23 +198,24 @@
         uploadImg(upload, 'ypic', '<%=path %>/file/firist', 'ypicDemo', 'ypicImg', 'ypicText');
         uploadImg(upload, 'qpic', '<%=path %>/file/firist', 'qpicDemo', 'qpicImg', 'qpicText');
         uploadImg(upload, 'tpic', '<%=path %>/file/firist', 'tpicDemo', 'tpicImg', 'tpicText');
-    });
 
-    function saveBorrow() {
-        $.post('<%=path %>/data/borrow/save',
-            $('#borrowApplyDetail').serialize(),
-            function (res) {
-                if (res.code === 0) {
-                    layer.msg('提交成功', {
-                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                    }, function () {
-                        location.reload(true);
-                    });
-                } else {
-                    layer.msg("提交失败！");
-                }
-            }, 'json'
-        );
-    }
+        form.on('submit(borrowApply)', function (data) {
+            $.post('<%=path %>/data/borrow/save',
+                $('#borrowApplyDetail').serialize(),
+                function (res) {
+                    if (res.code === 0) {
+                        layer.msg('提交成功', {
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function () {
+                            location.reload(true);
+                        });
+                    } else {
+                        layer.msg("提交失败！");
+                    }
+                }, 'json'
+            );
+            return false;
+        });
+    });
 </script>
 </html>
