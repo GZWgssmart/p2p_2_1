@@ -53,4 +53,10 @@
     </set>
     where rjid = #{rjid,jdbcType=INTEGER}
   </update>
+
+  <select id="getRoleJur" parameterType="integer" resultType="com.p2p.bean.Jur">
+<![CDATA[
+    select j.* from jur j, role r, rolejur rj where r.rid = rj.rid and j.jid = rj.jid and r.rid = #{rid}
+    ]]>
+  </select>
 </mapper>

@@ -4,62 +4,201 @@
 %>
 <!DOCTYPE html>
 <html>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?bf515042093c3de99a0ba28c661b07b4";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width =device-width, initial-scale=1, maximum-scale=1" />
     <title></title>
-    <link rel="stylesheet" type="text/css" href="<%=path %>/static/layui/css/layui.css"/>
-    <link rel="stylesheet" type="text/css" href="<%=path %>/static/js/rolejur/jquery.json-viewer.css"/>
+    <meta charset="utf-8" />
+    <!--layui的css-->
+    <link href="<%=path %>/static/layui/css/layui.css" rel="stylesheet" />
+    <style type="text/css">
+        form {
+            width: 500px;
+            margin: 10px auto;
+        }
+
+        h1, h2, h3 {
+            padding: 10px 0;
+        }
+
+        a {
+            text-align: right;
+            font-size: 18px;
+            color: #1C86EE;
+        }
+
+        .xtree_contianer {
+            width: 500px;
+            border: 1px solid #9C9C9C;
+            overflow: auto;
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 10px 0 25px 5px;
+        }
+
+        .div-btns {
+            margin: 20px 0;
+        }
+
+        .layui-form-label {
+            width: 60px !important;
+        }
+    </style>
 </head>
-<body class="childrenBody">
-<form class="layui-form layui-row">
-    <div class="layui-form-item">
-        <label class="layui-form-label">动态赋值</label>
-        <div class="layui-input-block">
-            <select lay-filter="aaa" multiple name="aaa" lay-verify="required">
-                <option value="">请选择您的兴趣爱好</option>
-                <option value="1" disabled>旅游</option>
-                <option value="2">唱歌</option>
-                <option value="3">爬山</option>
-                <option value="4">游戏</option>
-                <option value="5">台球</option>
-                <option value="6">阅读</option>
-                <option value="7">看电影</option>
-            </select>
-        </div>
+<body>
+<!--别忘记form 以及form的class-->
+<form class="layui-form">
+    <h1>Layui - Xtree 3.0 </h1>
+    <h3>基于layui form模块的一款带复选框的树型插件</h3>
+    <div style="text-align:right;"><a href="http://fly.layui.com/jie/19038/" target="_blank">查看文档</a></div>
+
+    <h2>demo1、最基础的用法 - 直接绑定json</h2>
+    <h3>这里使用的三个参数是必须的</h3>
+    <div id="xtree1" class="xtree_contianer"></div>
+
+    <h2>demo2、最基础的用法 - 异步加载</h2>
+    <h3>服务端延迟2秒，可看清加载提示</h3>
+    <div id="xtree2" style="height:400px;overflow:auto;" class="xtree_contianer"></div>
+
+    <h2>提供的四种方法</h2>
+    <h3>下面事件作用于demo3，输出为console.log();</h3>
+    <h3>demo宽度适合与F12左右分屏</h3>
+    <div class="div-btns">
+        <input type="button" id="btn1" value="获取全部[选中的][末级节点]原checkbox DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">选择提交</label>
-        <div class="layui-input-block">
-            <select lay-filter="bbb" multiple name="bbb" lay-verify="required">
-                <option value="">请选择您的兴趣爱好</option>
-                <option value="1" disabled>旅游</option>
-                <option value="2">唱歌</option>
-                <option value="3" selected=''>爬山</option>
-                <option value="4">游戏</option>
-                <option value="5">台球</option>
-                <option value="6">阅读</option>
-                <option value="7">看电影</option>
-            </select>
-        </div>
+    <div class="div-btns">
+        <input type="button" id="btn2" value="获取全部原checkbox DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
     </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    <div class="div-btns">
+        <input type="button" id="btn3" value="更新数据，重新渲染" class="layui-btn layui-btn-fluid" />
+    </div>
+    <div class="div-btns">
+        <div class="layui-form-item">
+            <label class="layui-form-label">value值</label>
+            <div class="layui-input-block">
+                <input type="text" id="txt1" placeholder="如：jd1.1" autocomplete="off" class="layui-input">
+            </div>
         </div>
+        <input type="button" id="btn4" value="通过value值找父级DOM对象，顶级节点与错误值均返回null" class="layui-btn layui-btn-fluid" />
     </div>
 </form>
-<script type="text/javascript" src="layui/layui.js"></script>
-<script type="text/javascript" src="selectMultiple.js"></script>
 </body>
 </html>
+<!--先引用layui的js-->
+<script src="<%=path %>/static/layui/layui.js"></script>
+<!--引用xtree-->
+<script src="<%=path %>/static/js/layui-xtree.js"></script>
+<script type="text/javascript">
+    //一套json数据下面会使用，同时供你参考
+    var json = [
+        {
+            title: "节点1", value: "jd1", data: [
+            { title: "节点1.1", checked: true, disabled: true, value: "jd1.1", data: [] }
+            , { title: "节点1.2", value: "jd1.2", checked: true, data: [] }
+            , { title: "节点1.3", value: "jd1.3", disabled: true, data: [] }
+            , { title: "节点1.4", value: "jd1.4", data: [] }
+        ]
+        }
+        , {
+            title: "节点2", value: "jd2", data: [
+                { title: "节点2.1", value: "jd2.1", data: [] }
+                , { title: "节点2.2", value: "jd2.2", data: [] }
+                , { title: "节点2.3", value: "jd2.3", data: [] }
+                , { title: "节点2.4", value: "jd2.4", data: [] }
+            ]
+        }
+        , { title: "节点3", value: "jd3", data: [] }
+        , { title: "节点4", value: "jd4", data: [] }
+    ];
+
+    var json2 = [
+        {
+            title: "权限",
+            value: "2",
+            checked: false,
+            disabled: false,
+            data: [
+                {title: "管理信息的权限", value: "1", checked: false, disabled: false, data: []},
+                {title: "审核和设置奖励的权限", value: "2", checked: true, disabled: false, data: []},
+                {title: "root的权限", value: "3", checked: false, disabled: false, data: []},
+                {title: "拥有信息和审核设置权限", value: "4", checked: false, disabled: false, data: []}
+                ]
+        }
+    ];
+
+    //********************
+    //      正式开始
+    //********************
+
+    //layui 的 form 模块是必须的
+    layui.use(['form'], function () {
+        var form = layui.form;
+
+        //1、最基础的用法 - 直接绑定json
+        var xtree1 = new layuiXtree({
+            elem: 'xtree1'   //(必填) 放置xtree的容器，样式参照 .xtree_contianer
+            , form: form     //(必填) layui 的 from
+            , data: json2     //(必填) json数据
+        });
+
+        //2、最基础的用法 - 异步加载
+        var xtree2 = new layuiXtree({
+            elem: 'xtree2'                  //(必填) 放置xtree的容器，样式参照 .xtree_contianer
+            , form: form                    //(必填) layui 的 from
+            , data: json2 //(必填) 数据接口，需要返回以上结构的json字符串
+            , click: function (data) {  //节点选中状态改变事件监听，全选框有自己的监听事件
+                console.log(data.elem); //得到checkbox原始DOM对象
+                console.log(data.elem.checked); //开关是否开启，true或者false
+                console.log(data.value); //开关value值，也可以通过data.elem.value得到
+                console.log(data.othis); //得到美化后的DOM对象
+            }
+        });
+
+        //提供的方法们
+
+        //获取全部[选中的][末级节点]原checkbox DOM对象，返回Array
+        document.getElementById('btn1').onclick = function () {
+
+            var oCks = xtree2.GetChecked(); //这是方法
+
+            for (var i = 0; i < oCks.length; i++) {
+                console.log(oCks[i].value);
+            }
+        }
+
+        //获取全部原checkbox DOM对象，返回Array
+        document.getElementById('btn2').onclick = function () {
+
+            var oCks = xtree2.GetAllCheckBox(); //这是方法
+
+            for (var i = 0; i < oCks.length; i++) {
+                console.log(oCks[i].value);
+            }
+        }
+
+        //更新数据，重新渲染
+        document.getElementById('btn3').onclick = function () {
+            xtree2.render();
+        }
+
+        //通过value值找父级DOM对象，顶级节点与错误值均返回null
+        document.getElementById('btn4').onclick = function () {
+
+            var oCks = xtree2.GetParent(document.getElementById('txt1').value);  //这是方法
+
+            if (oCks != null) { //如果返回的对象不为null，则获取到父节点了，如果为null，说明这个值对应的节点是一级节点或是值错误
+                console.log(oCks.value);
+            }
+            else {
+                console.log('无父级节点或value值错误');
+            }
+
+        }
+
+
+    });
+
+
+
+
+</script>
