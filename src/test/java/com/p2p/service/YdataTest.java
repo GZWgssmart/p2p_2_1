@@ -1,6 +1,7 @@
 package com.p2p.service;
 
 import com.p2p.bean.Ydata;
+import com.p2p.enums.WayEnum;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,6 +43,11 @@ public class YdataTest extends BaseTest {
 //        ydata.setYid(2);
         ydata.setCreatedTime(new Date());
         ydataService.save(ydata);
+    }
+
+    @Test
+    public void testTz() {
+        System.out.println("3".equals(WayEnum.XIAN_XI.getCode()));
     }
 
     @Test
