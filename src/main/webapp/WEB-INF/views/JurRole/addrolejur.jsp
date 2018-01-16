@@ -48,38 +48,13 @@
 <body>
 <!--别忘记form 以及form的class-->
 <form class="layui-form">
-    <h1>Layui - Xtree 3.0 </h1>
-    <h3>基于layui form模块的一款带复选框的树型插件</h3>
-    <div style="text-align:right;"><a href="http://fly.layui.com/jie/19038/" target="_blank">查看文档</a></div>
+    <h2>分配权限</h2>
 
-    <h2>demo1、最基础的用法 - 直接绑定json</h2>
-    <h3>这里使用的三个参数是必须的</h3>
-    <div id="xtree1" class="xtree_contianer"></div>
+    <h3>选择权限</h3>
+    <div id="xtree2" style="height:280px;overflow:auto;" class="xtree_contianer"></div> <%-- //加载数据div --%>
 
-    <h2>demo2、最基础的用法 - 异步加载</h2>
-    <h3>服务端延迟2秒，可看清加载提示</h3>
-    <div id="xtree2" style="height:400px;overflow:auto;" class="xtree_contianer"></div>
-
-    <h2>提供的四种方法</h2>
-    <h3>下面事件作用于demo3，输出为console.log();</h3>
-    <h3>demo宽度适合与F12左右分屏</h3>
-    <div class="div-btns">
-        <input type="button" id="btn1" value="获取全部[选中的][末级节点]原checkbox DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
-    </div>
-    <div class="div-btns">
-        <input type="button" id="btn2" value="获取全部原checkbox DOM对象，返回Array" class="layui-btn layui-btn-fluid" />
-    </div>
-    <div class="div-btns">
-        <input type="button" id="btn3" value="更新数据，重新渲染" class="layui-btn layui-btn-fluid" />
-    </div>
-    <div class="div-btns">
-        <div class="layui-form-item">
-            <label class="layui-form-label">value值</label>
-            <div class="layui-input-block">
-                <input type="text" id="txt1" placeholder="如：jd1.1" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <input type="button" id="btn4" value="通过value值找父级DOM对象，顶级节点与错误值均返回null" class="layui-btn layui-btn-fluid" />
+    <div class="layui-btn-group demoTable">
+        <button class="layui-btn" data-type="add">添加</button>
     </div>
 </form>
 </body>
