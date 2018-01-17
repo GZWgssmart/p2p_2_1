@@ -27,56 +27,6 @@
         where bcid = #{bcid,jdbcType=INTEGER}
     </delete>
 
-    <!--<insert id="save" parameterType="com.p2p.bean.BankCard">-->
-        <!--insert into bankcard-->
-        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
-            <!--<if test="uid != null">-->
-                <!--uid,-->
-            <!--</if>-->
-            <!--<if test="cardno != null">-->
-                <!--cardno,-->
-            <!--</if>-->
-            <!--<if test="rname != null">-->
-                <!--rname,-->
-            <!--</if>-->
-            <!--<if test="idno != null">-->
-                <!--idno,-->
-            <!--</if>-->
-            <!--<if test="type != null">-->
-                <!--type,-->
-            <!--</if>-->
-            <!--<if test="status != null">-->
-                <!--status,-->
-            <!--</if>-->
-            <!--<if test="bktime != null">-->
-                <!--bktime,-->
-            <!--</if>-->
-        <!--</trim>-->
-        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
-            <!--<if test="uid != null">-->
-                <!--#{uid,jdbcType=INTEGER},-->
-            <!--</if>-->
-            <!--<if test="cardno != null">-->
-                <!--#{cardno,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="rname != null">-->
-                <!--#{rname,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="idno != null">-->
-                <!--#{idno,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="type != null">-->
-                <!--#{type,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="status != null">-->
-                <!--#{status,jdbcType=INTEGER},-->
-            <!--</if>-->
-            <!--<if test="bktime != null">-->
-                <!--#{bktime,jdbcType=TIMESTAMP},-->
-            <!--</if>-->
-        <!--</trim>-->
-    <!--</insert>-->
-
     <update id="update" parameterType="com.p2p.bean.BankCard">
         update bankcard
         <set>
@@ -114,5 +64,22 @@
         <![CDATA[
           select * from bankcard b, t_user u where b.uid = u.uid and u.uid=#{uid}
         ]]>
+    </select>
+    <sql id="logCz_query_criteria">
+        <if test="query!=null and query.uid !=null">
+            where b.uid =#{query.uid}
+        </if>
+    </sql>
+    <select id="countCriteria" resultType="long">
+         <![CDATA[
+            select count(b.bcid) from bankcard b,t_user u where b.uid =u.uid
+        ]]>
+    </select>
+    <select id="listPagerCriteria" resultType="com.p2p.bean.BankCard">
+         <![CDATA[
+      select b.bcid, b.type,b.cardno,b.bktime , b.status from bankcard b
+    ]]>
+        <include refid="logCz_query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
 </mapper>

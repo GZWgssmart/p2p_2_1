@@ -127,9 +127,6 @@
         <if test="query!=null and query.uid !=null">
             where z.uid =#{query.uid}
         </if>
-        <!--<if test="query!=null and query.status!=0">-->
-            <!--and status=1-->
-        <!--</if>-->
     </sql>
 
   <select id="listPagerCriteria" resultType="com.p2p.bean.LogCz">

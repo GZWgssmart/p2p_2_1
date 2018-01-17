@@ -167,6 +167,7 @@
         });
     })
 </script>
+
 <script>
     $("#uid").val('${user.uid}');
     layui.use(['element', 'form', 'laytpl'], function () {

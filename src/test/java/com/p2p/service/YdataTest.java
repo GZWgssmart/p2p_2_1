@@ -1,7 +1,15 @@
 package com.p2p.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.p2p.bean.Ydata;
+<<<<<<< .mine
 import com.p2p.enums.WayEnum;
+
+=======
+import com.p2p.common.BankResult;
+import com.p2p.utils.HttpUtils;
+>>>>>>> .theirs
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,8 +54,16 @@ public class YdataTest extends BaseTest {
     }
 
     @Test
-    public void testTz() {
+    
+    public void testJSON() {
         System.out.println("3".equals(WayEnum.XIAN_XI.getCode()));
+        
+    }
+
+	public void testTz() {
+		BankResult bankResult = JSON.parseObject(HttpUtils.sendPost("http://localhost:8081/bind",
+                "realName=76859&bankCardNo=6212842120000014632&bank=建设银行&phone=13803576897" ), new TypeReference<BankResult>(){});
+        System.out.println(bankResult.getCode()+"1111111111111111111111111111111111111111111");
     }
 
     @Test

@@ -11,7 +11,7 @@ import java.net.URL;
  */
 public class HttpUtils {
 
-    public static void sendPost(String url, String params) {
+    public static String sendPost(String url, String params) {
         try {
             URL realUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();
@@ -28,10 +28,10 @@ public class HttpUtils {
             while ((len = inputStream.read(bytes)) > 0) {
                 baos.write(bytes, 0, len);
             }
-            String jsonStr = baos.toString("utf-8");
-            System.out.println(jsonStr);
+            return baos.toString("utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
