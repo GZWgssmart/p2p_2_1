@@ -53,12 +53,18 @@
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.CronJob" />
         <property name="durability" value="true" />
+        <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
+            <map>
+                <entry key ="ticketService" value-ref="ticketServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
     </bean>
     <bean id="cronJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="name" value="cronJobTrigger" />
         <property name="group" value="group1" />
         <property name="jobDetail" ref="cronJobDetail" />
-        <property name="cronExpression" value="0 */1 * * * ?" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
     </bean>
 
     <!--每天凌晨0点判断是否流标-->

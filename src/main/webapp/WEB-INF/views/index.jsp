@@ -39,23 +39,6 @@
                     <div><a href="" id="url3"><img src="" id="pic3" alt="" style="width:100%;height:340px"></a></div>
                  </div>
         </div>
-        <div class="news">
-            <div class="wrap">
-                <div class="news-list icon icon-news">
-                    <ul id="news-list" style="height: 192px; top: -144px;">
-                        <li>
-                            <span>平台公告&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                            <a href="https://www.pujinziben.com/news.html?id=199&amp;flag=1" target="_blank">
-                                关于新手标项目正常还款的公告
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bang-list">
-                    <a href="https://www.pujinziben.com/board.html" target="_blank" class="icon icon-bang">投资、推荐排行榜</a>
-                </div>
-            </div>
-        </div>
         <!-- statis -->
         <div class="statis">
             <div class="wrap">

@@ -1,5 +1,6 @@
 package com.p2p.service.impl;
 
+import com.p2p.bean.Ticket;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.dao.TicketMapper;
@@ -36,6 +37,11 @@ public class TicketServiceImpl extends AbstractServiceImpl implements TicketServ
 //        } catch (RuntimeException e) {
 //            return ServerResponse.createByError("更新失败");
 //        }
+    }
+
+    @Override
+    public List<Ticket> getYesTicket() {
+        return ticketMapper.getYesTicket();
     }
 
     @Autowired
