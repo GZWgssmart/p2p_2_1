@@ -129,7 +129,7 @@
             var checkStatus = table.checkStatus('planId')
                 ,data = checkStatus.data;
             if(data.length === 1) {
-                if(data[0].status === 0) {
+                if(data[0].rbx !== data[0].ybx) {
                     $.post('<%=path %>/data/skb/confirm'
                         ,{
                             skid : data[0].skid
