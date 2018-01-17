@@ -1,6 +1,7 @@
 package com.p2p.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.DecimalMin;
 import java.math.BigDecimal;
@@ -138,6 +139,7 @@ public class BorrowApply {
         return deadline;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
