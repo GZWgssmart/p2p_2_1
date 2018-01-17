@@ -188,12 +188,9 @@
                 <div class="popup-from">
                     <form class="layui-form">
                         <div class="label cl layui-form-item">
-                            <label>选择证件</label>
-                            <select name="idtype">
-                                <option></option>
-                                <option value="身份证">身份证</option>
-                                <option value="驾照">驾照</option>
-                            </select>
+                            <label>证件</label>
+                            <input type="text" name="idtype" lay-verify="required" class="layui-input"
+                                   value="身份证">
                         </div>
                         <div class="label cl layui-form-item">
                             <label>证件号</label><input type="text" name="idno" lay-verify="required" class="layui-input"
