@@ -21,4 +21,10 @@ public interface BaseService {
     Pager listPager(int pageNo, int pageSize);
 
     Pager listPagerCriteria(int pageNo, int pageSize, Object obj);
+
+    //根据需求，自定义的分页
+    Pager listPagerStatus(int pageNo, int pageSize);
+
+    Pager listPagerCriteriaStatus(int pageNo, int pageSize, Object obj);
+
 }

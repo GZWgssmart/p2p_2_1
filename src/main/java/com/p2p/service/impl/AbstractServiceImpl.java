@@ -100,4 +100,22 @@ public abstract class AbstractServiceImpl implements BaseService {
     public void setBaseDAO(BaseDAO baseDAO) {
         this.baseDAO = baseDAO;
     }
+
+    //以下根据需求，个人自定义使用的分页
+    @Override
+    public Pager listPagerStatus(int pageNo, int pageSize) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(baseDAO.listPager(pager));
+        pager.setTotal(baseDAO.count());
+        return pager;
+    }
+
+    @Override
+    public Pager listPagerCriteriaStatus(int pageNo, int pageSize, Object obj) {
+        Pager pager = new Pager(pageNo, pageSize);
+        pager.setRows(baseDAO.listPagerCriteriaStatus(pager, obj));
+        pager.setTotal(baseDAO.countCriteriaStatus(obj));
+        return pager;
+    }
+
 }

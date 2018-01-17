@@ -50,4 +50,8 @@ public class RewardSettingController {
         return (RewardSetting) obj;
     }
 
+    @RequestMapping("removeRewardSet")
+    public ServerResponse removeRewardSet(RewardSetting rewardSetting){
+        return rewardSettingService.removeById(rewardSetting.getRwsid());
+    }
 }

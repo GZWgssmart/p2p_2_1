@@ -15,7 +15,6 @@
     ]]>
     limit #{pager.beginIndex},#{pager.pageSize}
   </select>
-  
 
   <select id="getPercent" resultType="double">
     select percent from reward_setting where #{money} <![CDATA[ >= ]]> minmoney and #{money} <![CDATA[ < ]]> maxmoney
@@ -29,32 +28,6 @@
   <insert id="save" parameterType="com.p2p.bean.RewardSetting">
     insert into reward_setting (minmoney, maxmoney, percent) VALUES
      (#{minmoney,jdbcType=DECIMAL},#{maxmoney,jdbcType=DECIMAL},#{percent,jdbcType=DOUBLE})
-  </insert>
-
-  <insert id="save1" parameterType="com.p2p.bean.RewardSetting">
-    insert into reward_setting
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="minmoney != null">
-        minmoney,
-      </if>
-      <if test="maxmoney != null">
-        maxmoney,
-      </if>
-      <if test="percent != null">
-        percent,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="minmoney != null">
-        #{minmoney,jdbcType=DECIMAL},
-      </if>
-      <if test="maxmoney != null">
-        #{maxmoney,jdbcType=DECIMAL},
-      </if>
-      <if test="percent != null">
-        #{percent,jdbcType=DOUBLE},
-      </if>
-    </trim>
   </insert>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.RewardSetting">

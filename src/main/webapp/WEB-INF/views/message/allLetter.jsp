@@ -5,14 +5,6 @@
   Time: 14:43
   To change this template use File | Settings | File Templates.
 --%>
-<%--
-  Created by IntelliJ IDEA.
-  User: ccf
-  Date: 2017/12/26
-  Time: 8:11
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -35,6 +27,7 @@
 <div class="layui-btn-group demoTable" id="barDemo">
     <button class="layui-btn" data-type="detail">查看</button>
     <button class="layui-btn" data-type="edit">编辑</button>
+    <button class="layui-btn" data-type="remove">删除</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
@@ -88,12 +81,7 @@
         });
 
         var active = {
-            getCheckData: function(){ //获取选中数据
-                var checkStatus = table.checkStatus('idTest')
-                    ,data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-            ,edit: function(){ //先获取行数据，将数据跳转到编辑页。
+            edit: function(){ //先获取行数据，将数据跳转到编辑页。
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
@@ -108,6 +96,26 @@
                     ,data = checkStatus.data;
                 if(data.length == 1) {
                     window.open("<%=path %>/page/message/letterDetail?letterId="+data[0].lid)
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
+            },remove:function () {
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    $.post('<%=path %>/data/message/removeLetter?lid='+data[0].lid,
+                        function (res) {
+                            if (res.code === 0) {
+                                layer.msg('删除成功', {
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function () {
+                                    location.reload(true);
+                                });
+                            } else {
+                                layer.msg(res.message);
+                            }
+                        }, 'json'
+                    );
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }

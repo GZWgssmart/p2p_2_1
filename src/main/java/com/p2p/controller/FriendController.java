@@ -43,4 +43,9 @@ public class FriendController {
         }
         return friends;
     }
+    @RequestMapping("removeFriend")
+    public ServerResponse removeFriend(Friend friend){
+        return friendService.removeById(friend.getFid());
+    }
+
 }

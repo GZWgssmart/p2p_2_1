@@ -46,15 +46,11 @@
                     </div>
                 </div>
 
-
-                <div class="layui-form-item" style="margin-top: 20px;">
+                <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <select name="status" lay-filter="status" lay-verify="status">
-                            <option value="1">激活</option>
-                            <option value="0">冻结</option>
-                        </select>
-
+                        <input type="radio" name="status" value="1" title="激活" checked>
+                        <input type="radio" name="status" value="0" title="冻结">
                     </div>
                 </div>
 
