@@ -70,7 +70,7 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    $.get('<%=path %>/data/jklx/delete?jklxId=' + data[0].lxid,
+                    $.get('<%=path %>/data/message/dxdelete?dxId=' + data[0].dxid,
                         function (data) {
                             if(data.code==0){
                                 layer.msg("删除成功！")
@@ -92,7 +92,7 @@
                 layer.open({
                     type: 2,
                     title: '添加',
-                    area: ['700px', '450px'],
+                    area: ['700px', '400px'],
                     content: '<%=path %>/page/message/addDxmodel'
                 });
             }
@@ -104,7 +104,7 @@
                         type: 2,
                         area: ['700px', '400px'],
                         maxmin:true,
-                        content:"<%=path %>/page/jklx/update?leixingId="+data[0].lxid
+                        content:"<%=path %>/page/message/updayteDxmodel?dxId="+data[0].dxid
                     })
                 } else {
                     layer.msg("请选择一行！");

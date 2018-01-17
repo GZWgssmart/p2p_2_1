@@ -21,9 +21,15 @@
           select count(d.dxid) from dxmodel d
     ]]>
   </select>
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from dxmodel
-    where dxid = #{dxid,jdbcType=INTEGER}
+  <select id="getById" resultType="com.p2p.bean.Dxmodel">
+    <![CDATA[
+        select * from  dxmodel d where d.dxid = #{dxId}
+      ]]>
+  </select>
+  <delete id="removeById" parameterType="com.p2p.bean.Dxmodel">
+    <![CDATA[
+          delete from dxmodel where dxid = #{dxId}
+    ]]>
   </delete>
   <insert id="insert" parameterType="com.p2p.bean.Dxmodel">
     insert into dxmodel (dxid, content)
@@ -48,7 +54,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="com.p2p.bean.Dxmodel">
+  <update id="update" parameterType="com.p2p.bean.Dxmodel">
     update dxmodel
     <set>
       <if test="content != null">

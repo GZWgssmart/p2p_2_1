@@ -27,4 +27,25 @@ public class DxmodelConteller {
     public ServerResponse addDx(Dxmodel dxmodel){
         return dxmodelService.save(dxmodel);
     }
+
+    @RequestMapping("dxModelDetail")
+    @ResponseBody
+    public Dxmodel dxModelDetail(Integer dxId){
+        Object obj = dxmodelService.getById(dxId);
+        return (Dxmodel)obj;
+    }
+    @RequestMapping("update")
+    @ResponseBody
+    public ServerResponse update(Dxmodel dxmodel){
+        return dxmodelService.update(dxmodel);
+    }
+
+    @RequestMapping("dxdelete")
+    @ResponseBody
+    public ServerResponse delete(int dxId){
+        return dxmodelService.removeById(dxId);
+
+
+    }
 }
+
