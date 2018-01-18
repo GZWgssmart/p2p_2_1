@@ -52,11 +52,11 @@
                                         <h2>
                                             <a href="<%=path %>/page/dynamic/dynamicDetail?dynamicId={{dynamic.dyid}}">
                                                 {{dynamic.title}}
-                                            </a>
+                                            </a><br/><br/>
                                         </h2>
-                                        <p>{{ dynamic.summary }}</p>
+                                        <p>{{ dynamic.summary }}</p><br/>
                                         <p>
-                                        <div>{{ formatDate(dynamic.createdTime)}}</div>
+                                        <div>{{ formatDate(dynamic.createdTime)}}</div><br>
                                         </p>
                                     </div>
                                 </div>
@@ -85,9 +85,9 @@
                                         <h2>
                                             <a href="<%=path %>/page/company/mediaDetailPage?mediaId={{media.mid}}">
                                                 {{media.title}}
-                                            </a>
+                                            </a><br/><br/>
                                         </h2>
-                                        <p>{{ media.summary }}</p>
+                                        <p>{{ media.summary }}</p><br/>
                                         <p>
                                         <div>{{ formatDate(media.createdTime)}}</div>
                                         </p>
