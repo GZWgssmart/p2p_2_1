@@ -1,6 +1,7 @@
 package com.p2p.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -78,6 +79,7 @@ public class Media {
         this.url = url == null ? null : url.trim();
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getCreatedTime() {
         return createdTime;
     }

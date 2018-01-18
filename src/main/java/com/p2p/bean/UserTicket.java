@@ -1,5 +1,7 @@
 package com.p2p.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -50,6 +52,7 @@ public class UserTicket {
         this.kid = kid;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getTktime() {
         return tktime;
     }

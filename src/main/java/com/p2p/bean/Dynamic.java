@@ -1,6 +1,7 @@
 package com.p2p.bean;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -67,6 +68,7 @@ public class Dynamic {
         this.pic = pic == null ? null : pic.trim();
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getCreatedTime() {
         return createdTime;
     }

@@ -1,5 +1,7 @@
 package com.p2p.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -94,6 +96,7 @@ public class BankCard {
         this.status = status;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getBktime() {
         return bktime;
     }

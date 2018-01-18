@@ -1,5 +1,7 @@
 package com.p2p.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -141,6 +143,7 @@ public class Hkb {
         this.tnum = tnum;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getYtime() {
         return ytime;
     }
@@ -153,6 +156,7 @@ public class Hkb {
         return rtime;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public void setRtime(Date rtime) {
         this.rtime = rtime;
     }
@@ -253,6 +257,7 @@ public class Hkb {
         this.baid = baid;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getYustartime() {
         return yustartime;
     }

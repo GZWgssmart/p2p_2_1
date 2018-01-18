@@ -11,7 +11,6 @@ import java.util.Date;
  * Created by 7025 on 2017/12/19.
  * 对应申请借款
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BorrowApply {
     private Integer baid;
 
@@ -135,11 +134,11 @@ public class BorrowApply {
         this.term = term;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getDeadline() {
         return deadline;
     }
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }

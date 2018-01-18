@@ -1,5 +1,7 @@
 package com.p2p.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -73,6 +75,7 @@ public class Reward {
         this.status = status == null ? null : status.trim();
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getRewardTime() {
         return rewardTime;
     }

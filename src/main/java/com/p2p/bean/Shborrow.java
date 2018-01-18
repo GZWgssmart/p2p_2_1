@@ -1,5 +1,7 @@
 package com.p2p.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -64,6 +66,7 @@ public class Shborrow {
         this.excuse = excuse == null ? null : excuse.trim();
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getCktime() {
         return cktime;
     }

@@ -3,17 +3,11 @@ package com.p2p.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.p2p.bean.Ydata;
-<<<<<<< .mine
-import com.p2p.enums.WayEnum;
-
-=======
 import com.p2p.common.BankResult;
 import com.p2p.utils.HttpUtils;
->>>>>>> .theirs
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -54,10 +48,8 @@ public class YdataTest extends BaseTest {
     }
 
     @Test
-    
     public void testJSON() {
-        System.out.println("3".equals(WayEnum.XIAN_XI.getCode()));
-        
+        System.out.println(HttpUtils.sendPost("http://localhost:8081/bind", "realName=abc&bank=建设银行&bankCardNo=6228480402564890018&phone=13366666666"));
     }
 
 	public void testTz() {
