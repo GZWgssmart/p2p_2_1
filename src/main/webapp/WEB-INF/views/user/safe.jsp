@@ -306,6 +306,7 @@
                         layer.msg("添加成功");
                         $('#userEmail').empty();
                         $('#userEmail').append(data.data.email);
+                        window.href.reload();
                     } else {
                         layer.msg("添加失败，请重新再试")
                     }
@@ -346,6 +347,7 @@
                     if (data.code == 0) {
                         layer.closeAll();
                         layer.msg("正在审核中，请等待...");
+                        $('#realName').text('');
                     } else {
                         layer.msg("添加失败，请重新再试")
                     }

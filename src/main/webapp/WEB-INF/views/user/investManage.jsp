@@ -61,6 +61,7 @@
                 ,{field:'term', title:'还款期限', width:90, templet:'<div>{{d.term}}个月</div>'}
                 ,{field:'cpname', title:'产品名称', width:120}
                 ,{field:'nprofit', title:'年化利率', width:90, templet:'<div>{{d.nprofit}}%</div>'}
+                ,{field:'ckstatus', title:'状态', width:90, templet:'<div>{{formatStatus(d.ckstatus)}}</div>'}
                 ,{field:'tztime', title:'投资时间', width:180, sort: true, templet:'<div>{{ formatDate(d.tztime)}}</div>'}
             ]]
             ,id: 'checkId'
@@ -79,47 +80,51 @@
             var checkStatus = table.checkStatus('checkId')
                 ,data = checkStatus.data;
             if(data.length === 1) {
-                layer.open({
-                    type: 1,                //弹窗类型
-                    title: '收款计划',     //显示标题
-                    closeBtn: 1,         //是否显示关闭按钮
-                    shadeClose: true, //显示模态窗口
-                    fixed:false,    //层是否固定在可视区域
-                    offset: 't',//快捷设置顶部坐标
-                    move: false,//禁止拖拽
-                    area: ['890px', '560px'], //宽高
-                    content: $("#planListShow")  //弹窗内容
-                });
-                table.render({
-                    elem: '#planList'
-                    ,url: '<%=path %>/data/skb/list'
-                    ,where:{
-                        baid:data[0].baid
-                        ,uid:${sessionScope.user.uid}
-                    }
-                    , cols: [[
-                        {checkbox: true, fixed: true}
-                        ,{field: 'ylx', title: '应收利息', width: 80}
-                        , {field: 'rlx', title: '已收利息', width: 80}
-                        , {field: 'ybj', title: '应收本金', width: 150}
-                        , {field: 'rbj', title: '已收本金', width: 120}
-                        ,{field: 'ybx', title: '应收本息', width: 100}
-                        , {field: 'rbx', title: '已收本息', width: 110}
-                        ,{field:'rnum', title:'已还期数', width:90}
-                        ,{field:'tnum', title:'总期数', width:90}
-                        , {field: 'sktime', title: '收款时间', width: 180, sort: true, templet:'<div>{{ formatDate(d.sktime)}}</div>'}
-                    ]]
-                    ,id: 'planId'
-                    ,page: true
-                    ,height: 500
-                    ,response: {
-                        statusName: 'status'
-                        ,statusCode: 0
-                        ,msgName: 'message'
-                        ,countName: 'total'
-                        ,dataName: 'rows'
-                    }
-                });
+                if(data[0].ckstatus === 3) {
+                    layer.msg('该投资已流标', {time:1500});
+                } else {
+                    layer.open({
+                        type: 1,                //弹窗类型
+                        title: '收款计划',     //显示标题
+                        closeBtn: 1,         //是否显示关闭按钮
+                        shadeClose: true, //显示模态窗口
+                        fixed:false,    //层是否固定在可视区域
+                        offset: 't',//快捷设置顶部坐标
+                        move: false,//禁止拖拽
+                        area: ['890px', '560px'], //宽高
+                        content: $("#planListShow")  //弹窗内容
+                    });
+                    table.render({
+                        elem: '#planList'
+                        ,url: '<%=path %>/data/skb/list'
+                        ,where:{
+                            baid:data[0].baid
+                            ,uid:${sessionScope.user.uid}
+                        }
+                        , cols: [[
+                            {checkbox: true, fixed: true}
+                            ,{field: 'ylx', title: '应收利息', width: 80}
+                            , {field: 'rlx', title: '已收利息', width: 80}
+                            , {field: 'ybj', title: '应收本金', width: 150}
+                            , {field: 'rbj', title: '已收本金', width: 120}
+                            ,{field: 'ybx', title: '应收本息', width: 100}
+                            , {field: 'rbx', title: '已收本息', width: 110}
+                            ,{field:'rnum', title:'已还期数', width:90}
+                            ,{field:'tnum', title:'总期数', width:90}
+                            , {field: 'sktime', title: '收款时间', width: 180, sort: true, templet:'<div>{{ formatDate(d.sktime)}}</div>'}
+                        ]]
+                        ,id: 'planId'
+                        ,page: true
+                        ,height: 500
+                        ,response: {
+                            statusName: 'status'
+                            ,statusCode: 0
+                            ,msgName: 'message'
+                            ,countName: 'total'
+                            ,dataName: 'rows'
+                        }
+                    });
+                }
             } else {
                 layer.msg('请选中一行！', {time:1500});
             }
@@ -150,7 +155,11 @@
             var checkStatus = table.checkStatus('checkId')
                 ,data = checkStatus.data;
             if(data.length === 1) {
-                window.location.href='<%=path %>/page/borrowApply/detail/'+ data[0].baid;
+                if(data[0].ckstatus === 3) {
+                    layer.msg('该投资已流标', {time:1500});
+                } else {
+                    window.location.href = '<%=path %>/page/borrowApply/detail/' + data[0].baid;
+                }
             } else {
                 layer.msg('请选中一行！', {time:1500});
             }

@@ -44,8 +44,8 @@
     </if>
   </sql>
   <select id="getUserInvest" resultType="com.p2p.vo.LogTzVO">
-    select tz.cpname, tz.nprofit, tz.money, tz.baid, tz.tztime, tz.tzid,tz.resint1 as term, u.rname, tz.uid
-    from tzb tz, t_user u where tz.uid = u.uid
+    select tz.cpname, tz.nprofit, tz.money, tz.baid, tz.tztime, tz.tzid,tz.resint1 as term, u.rname, tz.uid, ba.ckstatus
+    from tzb tz, t_user u, borrowapply ba where tz.uid = u.uid and ba.baid = tz.baid
     <include refid="tzQuery"/>
     order by tz.tztime desc limit #{pager.beginIndex}, #{pager.pageSize}
   </select>

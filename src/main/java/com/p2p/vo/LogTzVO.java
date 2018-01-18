@@ -17,6 +17,7 @@ public class LogTzVO {
     private Integer baid;
     private BigDecimal money;
     private Date tztime;
+    private Integer ckstatus;
 
     public Integer getTzid() {
         return tzid;
@@ -88,5 +89,13 @@ public class LogTzVO {
 
     public void setTztime(Date tztime) {
         this.tztime = tztime;
+    }
+
+    public Integer getCkstatus() {
+        return ckstatus;
+    }
+
+    public void setCkstatus(Integer ckstatus) {
+        this.ckstatus = ckstatus;
     }
 }

@@ -51,8 +51,8 @@
                 <label class="layui-form-label">标种</label>
                 <div class="layui-input-block">
                     <select name="bzid">
-                        <option value="1">普金宝</option>
-                        <option value="2">恒金宝</option>
+                        <option value="2">普金宝</option>
+                        <option value="1">恒金宝</option>
                         <option value="3">多金宝</option>
                         <option value="4">新手标</option>
                     </select>

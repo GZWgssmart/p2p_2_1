@@ -413,6 +413,9 @@
         if(money === null || money.trim() === '') {
             return utils.alert('请输入投资金额');
         }
+        if(isNaN(money)) {
+            return utils.alert('请输入正确金额');
+        }
         if(money > ktmoney) {
             return utils.alert('余额不足！请充值');
         }
@@ -445,7 +448,11 @@
                     ,resint1:$('#term').text()}
                 , function (data) {
                     layer.msg(data.message,{time: 2000},function () {
-                        window.location.reload(true);
+                        if(data.message === '投标已截止') {
+                            window.location.href = '<%=path %>/page/borrowApply/investList';
+                        } else {
+                            window.location.reload(true);
+                        }
                     });
                 },'json');
         }

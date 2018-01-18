@@ -75,86 +75,90 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
         if(count==0) {
             //查询出该用户对该借款投了几次
             List<Tzb> tzbList = tzbMapper.listTzb(uid, baid);
-            //计算出总投资金额
-            BigDecimal money = new BigDecimal(0);
-            for (Tzb tzb : tzbList) {
-                money = money.add(tzb.getMoney());
-            }
-            Tzb tzb = tzbList.get(0);
-            System.out.println(tzb.getResint2());
-            if(tzb.getResint2().equals(Integer.valueOf(WayEnum.PAYOFF_ONCE.getCode()))){
-                Skb skb = new Skb();
-                skb.setUid(uid);
-                skb.setBaid(tzb.getBaid());
-                skb.setJuid(tzb.getJuid());
-                skb.setYbx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100)).add(money).setScale(2, BigDecimal.ROUND_HALF_UP));
-                skb.setRbx(new BigDecimal(0));
-                skb.setYlx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100)).setScale(2, BigDecimal.ROUND_HALF_UP));
-                skb.setRlx(new BigDecimal(0));
-                skb.setYbj(money);
-                skb.setRbj(new BigDecimal(0));
-                skb.setRnum(0);
-                skb.setTnum(1);
-                skb.setBaid(baid);
-                List<Hkb> hkbs = hkbMapper.getSkTime(tzb.getBaid());
-                skb.setSktime(hkbs.get(0).getYtime());
-                skbList.add(skb);
-                skbMapper.saveList(skbList);
-                return ServerResponse.createBySuccess();
-            }else if(tzb.getResint2().equals(Integer.valueOf(WayEnum.XIAN_XI.getCode()))){
-                List<Hkb> hkbs = hkbMapper.getSkTime(tzb.getBaid());
-                int suoyin = 0;
-                for(int i=0;i<tzb.getResint1();i++){
+            if(tzbList != null && tzbList.size() > 0) {
+                //计算出总投资金额
+                BigDecimal money = new BigDecimal(0);
+                for (Tzb tzb : tzbList) {
+                    money = money.add(tzb.getMoney());
+                }
+                Tzb tzb = tzbList.get(0);
+                if(tzb.getResint2().equals(Integer.valueOf(WayEnum.PAYOFF_ONCE.getCode()))){
                     Skb skb = new Skb();
                     skb.setUid(uid);
                     skb.setBaid(tzb.getBaid());
                     skb.setJuid(tzb.getJuid());
-                    skb.setRnum(0);
-                    skb.setTnum(tzb.getResint1());
-                    skb.setSktime(hkbs.get(suoyin).getYtime());
+                    skb.setYbx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100)).add(money).setScale(2, BigDecimal.ROUND_HALF_UP));
                     skb.setRbx(new BigDecimal(0));
+                    skb.setYlx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100)).setScale(2, BigDecimal.ROUND_HALF_UP));
                     skb.setRlx(new BigDecimal(0));
-                    skb.setYlx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100/12)).setScale(2, BigDecimal.ROUND_HALF_UP));
-                    if(i==tzb.getResint1()-1){
-                        skb.setYbx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100/12)).add(money).setScale(2, BigDecimal.ROUND_HALF_UP));
-                        skb.setYbj(money);
-                    }else{
-                        skb.setYbx(skb.getYlx());
-                        skb.setYbj(new BigDecimal(0));
-                    }
+                    skb.setYbj(money);
+                    skb.setRbj(new BigDecimal(0));
+                    skb.setRnum(0);
+                    skb.setTnum(1);
+                    skb.setBaid(baid);
+                    List<Hkb> hkbs = hkbMapper.getSkTime(tzb.getBaid());
+                    skb.setSktime(hkbs.get(0).getYtime());
                     skbList.add(skb);
-                    suoyin+=1;
+                    skbMapper.saveList(skbList);
+                    return ServerResponse.createBySuccess();
+                }else if(tzb.getResint2().equals(Integer.valueOf(WayEnum.XIAN_XI.getCode()))){
+                    List<Hkb> hkbs = hkbMapper.getSkTime(tzb.getBaid());
+                    if(hkbs != null && hkbs.size() > 0) {
+                        int suoyin = 0;
+                        for(int i=0;i<tzb.getResint1();i++){
+                            Skb skb = new Skb();
+                            skb.setUid(uid);
+                            skb.setBaid(tzb.getBaid());
+                            skb.setJuid(tzb.getJuid());
+                            skb.setRnum(0);
+                            skb.setTnum(tzb.getResint1());
+                            skb.setSktime(hkbs.get(suoyin).getYtime());
+                            skb.setRbx(new BigDecimal(0));
+                            skb.setRlx(new BigDecimal(0));
+                            skb.setYlx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100/12)).setScale(2, BigDecimal.ROUND_HALF_UP));
+                            if(i==tzb.getResint1()-1){
+                                skb.setYbx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100/12)).add(money).setScale(2, BigDecimal.ROUND_HALF_UP));
+                                skb.setYbj(money);
+                            }else{
+                                skb.setYbx(skb.getYlx());
+                                skb.setYbj(new BigDecimal(0));
+                            }
+                            skbList.add(skb);
+                            suoyin+=1;
+                        }
+                        skbMapper.saveList(skbList);
+                        return ServerResponse.createBySuccess();
+                    }
+                }else  if(tzb.getResint2().equals(Integer.valueOf(WayEnum.EQUAL_BX.getCode()))) {
+                    ACPIMLoanCalculator calculator = new ACPIMLoanCalculator();
+                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getResint1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
+                }else if(tzb.getResint2().equals(Integer.valueOf(WayEnum.EQUAL_BJ.getCode()))){
+                    ACMLoanCalculator calculator = new ACMLoanCalculator();
+                    loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getResint1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
                 }
-                skbMapper.saveList(skbList);
-                return ServerResponse.createBySuccess();
-            }else  if(tzb.getResint2().equals(Integer.valueOf(WayEnum.EQUAL_BX.getCode()))) {
-                ACPIMLoanCalculator calculator = new ACPIMLoanCalculator();
-                loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getResint1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
-            }else if(tzb.getResint2().equals(Integer.valueOf(WayEnum.EQUAL_BJ.getCode()))){
-                ACMLoanCalculator calculator = new ACMLoanCalculator();
-                loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getResint1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
+                List<Hkb> hkb = hkbMapper.getSkTime(baid);
+                if(hkb != null && hkb.size() > 0) {
+                    int suoyin = 0;
+                    for (LoanByMonth loanByMonth : loan.getAllLoans()) {
+                        Skb skb = new Skb();
+                        skb.setUid(uid);
+                        skb.setJuid(tzb.getJuid());
+                        skb.setBaid(baid);
+                        skb.setYbx(loanByMonth.getRepayment());
+                        skb.setRbx(new BigDecimal(0));
+                        skb.setYlx(loanByMonth.getInterest());
+                        skb.setRlx(new BigDecimal(0));
+                        skb.setYbj(loanByMonth.getPayPrincipal());
+                        skb.setRbj(new BigDecimal(0));
+                        skb.setSktime(hkb.get(suoyin).getYtime());
+                        skb.setRnum(0);
+                        skb.setTnum(tzb.getResint1());
+                        skbList.add(skb);
+                        suoyin+=1;
+                    }
+                    skbMapper.saveList(skbList);
+                }
             }
-            List<Hkb> hkb = hkbMapper.getSkTime(baid);
-            int suoyin = 0;
-            for (LoanByMonth loanByMonth : loan.getAllLoans()) {
-                Skb skb = new Skb();
-                skb.setUid(uid);
-                skb.setJuid(tzb.getJuid());
-                skb.setBaid(baid);
-                skb.setYbx(loanByMonth.getRepayment());
-                skb.setRbx(new BigDecimal(0));
-                skb.setYlx(loanByMonth.getInterest());
-                skb.setRlx(new BigDecimal(0));
-                skb.setYbj(loanByMonth.getPayPrincipal());
-                skb.setRbj(new BigDecimal(0));
-                skb.setSktime(hkb.get(suoyin).getYtime());
-                skb.setRnum(0);
-                skb.setTnum(tzb.getResint1());
-                skbList.add(skb);
-                suoyin+=1;
-            }
-            skbMapper.saveList(skbList);
-            return ServerResponse.createBySuccess();
         }
         return ServerResponse.createBySuccess();
     }

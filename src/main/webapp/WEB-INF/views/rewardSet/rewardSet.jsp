@@ -39,8 +39,8 @@
             ,url: '<%=path %>/data/rewardSet/pagerRewardSet'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'minmoney', title:'最大金额', width:200}
-                ,{field:'maxmoney', title:'最小金额', width:300,height:200}
+                ,{field:'minmoney', title:'最小金额', width:200}
+                ,{field:'maxmoney', title:'最大金额', width:300,height:200}
                 ,{field:'percent', title:'奖励百分比', width:300,height:200}
             ]]
             ,id: 'idTest'
