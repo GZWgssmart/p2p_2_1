@@ -141,7 +141,7 @@
     $(function () {
         var user = "${user}";
         if(user === null || user === '') {
-            layer.msg("您未登录，请登录！",function () {
+            utils.alert("您未登录，请登录！",function () {
                 window.location = '/page/login';
             });
         }
@@ -201,11 +201,11 @@
                 data.field,
                 function (data) {
                     if (data.code === 0) {
-                        layer.msg('修改成功！');
+                        utils.toast('修改成功！');
                         $('#face').empty();
                         $('#face').attr('src','/' + data.data.face);
                     } else {
-                        layer.msg("修改失败，请重新再试")
+                        utils.toast("修改失败，请重新再试")
                     }
                 }, 'json'
             );

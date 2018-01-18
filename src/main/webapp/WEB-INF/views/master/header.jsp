@@ -28,15 +28,6 @@
                 <li><a href="<%=path%>/statically/insurance">安全保障</a></li>
                 <li>
                     <a href="<%=path%>/page/borrowApply/investList">投资理财</a>
-                    <div class="sub-nav">
-                        <a href="#">恒金保</a>
-                        <a href="#">普金保</a>
-                        <a href="#">多金宝</a>
-                        <a href="#">新手标</a>
-                        <a href="#">债权转让</a>
-                        <p class="left"></p>
-                        <p class="right"></p>
-                    </div>
                 </li>
                 <li><a href="<%=path%>/">首页</a></li>
             </ul>

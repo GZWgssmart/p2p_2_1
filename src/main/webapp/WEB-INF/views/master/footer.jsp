@@ -14,7 +14,6 @@
             <li><a target="_blank" href="tencent://message/?uin=1531952273&amp;Site=&amp;Menu=yes" class="sidebar-qq"></a></li>
             <li><a href="javascript:;" class="sidebar-wx"></a></li>
             <li><a href="<%=path %>/calc/calc" class="sidebar-cl"></a></li>
-            <li><a href="javascript:;" class="wenquan" title="填写即送5元代金券"></a></li>
             <li><a href="javascript:;" class="sidebar-top"></a></li>
         </ul>
     </div>
