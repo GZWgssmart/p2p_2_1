@@ -68,10 +68,12 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
         if (obj!=null){
             LogTx logTx = (LogTx) obj;
             Object object = JSON.parseObject(HttpUtils.sendPost("http://localhost:8081/mention",
-                    "realName="+"name"+"&bankCardNo="+logTx.getBankcard()+"&bank="+logTx.getBanktype()+"&money="+logTx.getMoney()+"&phone="+"13803576897" ),new TypeReference<BankResult>(){});
+                    "realName="+"name"+"&bank="+"建设银行"+"&bankCardNo="+logTx.getBankcard()+"&money="+logTx.getMoney()+"&phone="+"13803576897" ),new TypeReference<BankResult>(){});
             if(object != null) {
                 BankResult bankResult = (BankResult)object;
-                if(bankResult.getCode() == 3000) {
+                System.out.println(bankResult.getCode()+"1111111111111111111111111111111111111111111111111");
+                System.out.println(bankResult.getMessage()+"2222222222222222222222222222222222222222222222");
+                if(bankResult.getCode() == 4000) {
                     logTx.setCreatedTime(Calendar.getInstance().getTime());
                     // 将资金记录对象拿下
                     LogMoney logMoney = new LogMoney();

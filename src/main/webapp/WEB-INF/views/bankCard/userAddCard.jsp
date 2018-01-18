@@ -178,8 +178,7 @@
                             window.location.href = '<%=path %>/page/user/account';
                         })
                     } else {
-//                        layer.alert(data.message);
-                        layer.alert("mmp")
+                        layer.alert(data.message);
                     }
                 }, 'json'
             )
