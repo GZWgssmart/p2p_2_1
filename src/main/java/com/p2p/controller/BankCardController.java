@@ -46,6 +46,10 @@ public class BankCardController {
           return bankCardService.save(bankCard);
     }
 
+    @RequestMapping("remove")
+    public ServerResponse remove(Integer bcid){
+        return bankCardService.removeById(bcid);
+    }
     @RequestMapping("listPagerCriteria")
     public Pager listPage(int page, int limit, BankCard bankCard, HttpSession session){
         Object obj= session.getAttribute("user");

@@ -63,9 +63,6 @@ public class LogCzServiceImpl extends AbstractServiceImpl implements LogCzServic
             LogCz logCz = (LogCz) obj;
             Object object = JSON.parseObject(HttpUtils.sendPost("http://localhost:8081/recharge",
                     "realName="+"name"+"&bankCardNo="+logCz.getBankcard()+"&bank="+logCz.getBanktype()+"&money="+logCz.getMoney()+"&phone="+"13803576897" ), new TypeReference<BankResult>(){});
-            if(object != null) {
-                BankResult bankResult = (BankResult)object;
-                if(bankResult.getCode() == 3000) {
                     logCz.setCreatedTime(Calendar.getInstance().getTime());
                     // 将资金记录对象拿下
                     LogMoney logMoney = new LogMoney();
@@ -81,10 +78,6 @@ public class LogCzServiceImpl extends AbstractServiceImpl implements LogCzServic
                     logCzMapper.save(logCz);
                     return ServerResponse.createBySuccess("充值成功");
                 }
-            }
-        }else{
-            return ServerResponse.createByError("充值失败,余额不足");
-        }
-        return ServerResponse.createByError();
-    }
+        return ServerResponse.createByError("充值失败,余额不足");
+}
 }

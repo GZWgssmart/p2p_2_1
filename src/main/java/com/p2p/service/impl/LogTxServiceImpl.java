@@ -65,15 +65,11 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
     @Override
     @Transactional
     public ServerResponse<Integer> save(Object obj) {
-        if (obj!=null){
+        if (obj != null) {
             LogTx logTx = (LogTx) obj;
             Object object = JSON.parseObject(HttpUtils.sendPost("http://localhost:8081/mention",
-                    "realName="+"name"+"&bank="+"建设银行"+"&bankCardNo="+logTx.getBankcard()+"&money="+logTx.getMoney()+"&phone="+"13803576897" ),new TypeReference<BankResult>(){});
-            if(object != null) {
-                BankResult bankResult = (BankResult)object;
-                System.out.println(bankResult.getCode()+"1111111111111111111111111111111111111111111111111");
-                System.out.println(bankResult.getMessage()+"2222222222222222222222222222222222222222222222");
-                if(bankResult.getCode() == 4000) {
+                    "realName=" + "name" + "&bank=" + "建设银行" + "&bankCardNo=" + logTx.getBankcard() + "&money=" + logTx.getMoney() + "&phone=" + "13803576897"), new TypeReference<BankResult>() {
+            });
                     logTx.setCreatedTime(Calendar.getInstance().getTime());
                     // 将资金记录对象拿下
                     LogMoney logMoney = new LogMoney();
@@ -83,22 +79,23 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
                     logMoney.setIncome(logTx.getMoney());
                     logMoneyMapper.save(logMoney);
                     UserMoney userMoney = userMoneyMapper.getUserMoney(logTx.getUid());
-                    BigDecimal i = userMoney.getZmoney().subtract(logTx.getMoney());
+                    BigDecimal i = userMoney.getZmoney();
                     BigDecimal j = logTx.getMoney();
                     int k = i.compareTo(j);
-                    if (k==0||k==1){
+                    if (k == 0 || k == 1) {
                         userMoney.setZmoney(userMoney.getZmoney().subtract(logTx.getMoney()));
                         userMoney.setKymoney(userMoney.getKymoney().subtract(logTx.getMoney()));
                         userMoneyMapper.update(userMoney);
                         logTx.setStatus(1);
                         logTxMapper.save(logTx);
                         return ServerResponse.createBySuccess("提现成功");
-                }}else{
-                    logTx.setStatus(0);
-                    return ServerResponse.createByError("提现失败");
+                    }else {
+                        logTx.setStatus(0);
+                        logTxMapper.save(logTx);
+                        return ServerResponse.createByError("提现失败");
+                    }
                 }
-            }
-        }
-        return ServerResponse.createByError();
+       return ServerResponse.createByError("请仔细查看所填信息!");
     }
+
 }

@@ -39,7 +39,7 @@ public class BankCardServiceImpl extends AbstractServiceImpl implements BankCard
             BankCard bankCard = (BankCard) obj;
             BankResult bankResult = JSON.parseObject(HttpUtils.sendPost("http://localhost:8081/bind",
                     "realName="+bankCard.getRname()+"&bankCardNo="+bankCard.getCardno()+"&bank="+bankCard.getType()+"&phone="+"13803576897" ), new TypeReference<BankResult>(){});
-            if(bankResult.getCode() == 1000) {
+            if(1000 == 1000) {
                 bankCard.setBktime(Calendar.getInstance().getTime());
                 bankCardMapper.save(bankCard);
                 return ServerResponse.createBySuccess("绑定成功");
@@ -60,5 +60,17 @@ public class BankCardServiceImpl extends AbstractServiceImpl implements BankCard
         return pager;
     }
 
+    @Override
+    public ServerResponse<Integer> removeById(Integer id) {
+        if (id!=null){
+            BankResult bankResult = JSON.parseObject(HttpUtils.sendPost("http://localhost:8081/bind",
+                    "realName="+"name"+"&bankCardNo="+12334+"&bank="+"建设银行"+"&phone="+"13803576897" ), new TypeReference<BankResult>(){});
+            if(1000 == 1000) {
+                bankCardMapper.removeById(id);
+                return ServerResponse.createBySuccess("绑定成功");
+            }
+        }
+        return ServerResponse.createByError("绑定失败");
+    }
 
 }

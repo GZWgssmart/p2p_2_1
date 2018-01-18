@@ -57,7 +57,7 @@
 
     <insert id="save" parameterType="com.p2p.bean.User">
         <![CDATA[
-          insert into bankcard(uid, idno, cardno, rname, type) values(#{uid}, #{idno},#{cardno}, #{rname},#{type})
+          insert into bankcard(uid, idno, cardno, rname, type,bktime) values(#{uid}, #{idno},#{cardno}, #{rname},#{type},#{bktime})
        ]]>
     </insert>
     <select id="bankCardsByUid" resultType="bankCard">
@@ -82,4 +82,7 @@
         <include refid="logCz_query_criteria"/>
         limit #{pager.beginIndex}, #{pager.pageSize}
     </select>
+    <delete id="removeById" parameterType="java.lang.Integer">
+        delete from bankcard where bcid = #{bcid,jdbcType=INTEGER}
+    </delete>
 </mapper>
