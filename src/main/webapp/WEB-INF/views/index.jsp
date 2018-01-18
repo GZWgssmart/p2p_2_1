@@ -337,19 +337,18 @@
                         </fieldset>
                         <div   id="notice">
                             <script type="text/html" id="noticeDemo">
-                                {{#layui.each(d, function(index, notice){ }}
                                 <div class="news-main-content"  style="margin-top: 10px;">
                                     <ul class="news-main-list" id="newsContent">
-                                        <li>
-                                            <a href="<%=path %>/page/message/noticeDetail?noticeId={{notice.nid}}" target="_blank">
+                                        {{#layui.each(d, function(index, notice){ }}
+                                        <li class="lione">
+                                            <a href="<%=path %>/page/message/noticeDetail?noticeId={{notice.nid}}" target="_blank" class="newsA">
                                                 {{notice.title}}
                                             </a>
-                                            <span style="float: right">{{ formatDate(notice.createdTime) }}</span>
+                                            <span class="newsS">{{ formatDateTime(notice.createdTime) }}</span>
                                         </li>
+                                        {{#  }); }}
                                     </ul>
                                 </div>
-                            {{#  }); }}
-
                         </script>
                     </div>
                     <div class="news-main-top ptop" style="margin-top: 20px;margin-right: 20px;">
