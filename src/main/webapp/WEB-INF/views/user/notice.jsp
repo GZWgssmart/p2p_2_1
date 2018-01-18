@@ -57,7 +57,7 @@
             , table = layui.table
         table.render({
             elem: '#allLetter_table'
-            ,url: '<%=path %>/data/message/pagerLetter'
+            ,url: '<%=path %>/data/message/pagerLetterStatus'
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'title', title:'标题', width:250}

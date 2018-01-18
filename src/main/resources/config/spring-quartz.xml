@@ -53,39 +53,62 @@
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.CronJob" />
         <property name="durability" value="true" />
+        <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
+            <map>
+                <entry key ="ticketService" value-ref="ticketServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
     </bean>
     <bean id="cronJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="name" value="cronJobTrigger" />
         <property name="group" value="group1" />
         <property name="jobDetail" ref="cronJobDetail" />
-        <property name="cronExpression" value="0 */1 * * * ?" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
     </bean>
 
     <!--每天凌晨0点判断是否流标-->
-    <bean id="lostBorrowJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="name" value="lostBorrowJob" />
+    <bean id="lostBorrowJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="lostBorrowJobDetail" />
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.LostBorrowJob" />
         <property name="durability" value="true" />
+        <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
+            <map>
+                <entry key ="rewardService" value-ref="rewardServiceImpl"/>
+                <entry key ="userMoneyService" value-ref="userMoneyServiceImpl"/>
+                <entry key ="borrowApplyService" value-ref="borrowApplyServiceImpl"/>
+                <entry key ="tzbService" value-ref="tzbServiceImpl"/>
+                <entry key ="rewardSettingService" value-ref="rewardSettingServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
     </bean>
     <bean id="lostBorrowJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="name" value="lostBorrowJobTrigger" />
         <property name="group" value="group1" />
-        <property name="jobDetail" ref="lostBorrowJob" />
+        <property name="jobDetail" ref="lostBorrowJobDetail" />
         <property name="cronExpression" value="0 0 0 * * ?" />
     </bean>
 
     <!--每月1号凌晨2点发放投资奖励-->
-    <bean id="rewardJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-        <property name="name" value="rewardJob" />
+    <bean id="rewardJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="rewardJobDetail" />
         <property name="group" value="group1" />
         <property name="jobClass" value="com.p2p.quartz.RewardJob" />
         <property name="durability" value="true" />
+        <property name="jobDataAsMap"><!-- 非常重要，用来向JobDetail传参 -->
+            <map>
+                <entry key ="rewardService" value-ref="rewardServiceImpl"/>
+                <entry key ="userMoneyService" value-ref="userMoneyServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
     </bean>
     <bean id="rewardJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="name" value="rewardJobTrigger" />
         <property name="group" value="group1" />
-        <property name="jobDetail" ref="rewardJob" />
+        <property name="jobDetail" ref="rewardJobDetail" />
         <property name="cronExpression" value="0 0 2 1 * ?" />
     </bean>
 
@@ -94,8 +117,8 @@
             <list>
                 <ref bean="ydataUpdateJobDetail" />
                 <ref bean="ydataSaveJobDetail" />
-                <ref bean="lostBorrowJob" />
-                <ref bean="rewardJob" />
+                <ref bean="lostBorrowJobDetail" />
+                <ref bean="rewardJobDetail" />
                 <ref bean="cronJobDetail" />
             </list>
         </property>
@@ -104,6 +127,7 @@
                 <ref bean="ydataUpdateJobTrigger" />
                 <ref bean="ydataSaveJobTrigger" />
                 <ref bean="lostBorrowJobTrigger" />
+                <ref bean="rewardJobTrigger" />
                 <ref bean="cronJobTrigger" />
             </list>
         </property>

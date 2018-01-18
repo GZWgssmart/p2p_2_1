@@ -39,4 +39,7 @@ public interface BaseDAO {
      * @return
      */
     Long countCriteria(Object obj);
+    //自定义分页
+    List<Object> listPagerCriteriaStatus (Pager pager,Object obj);
+    Long countCriteriaStatus(Object obj);
 }

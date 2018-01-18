@@ -1,5 +1,6 @@
 package com.p2p.dao;
 
+import com.p2p.bean.Ticket;
 import com.p2p.common.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,6 @@ public interface TicketMapper extends BaseDAO {
     Long countUserTicket(@Param("query") Object obj);
 
     int updateStatus(String[] kid);
+
+    List<Ticket> getYesTicket();
 }

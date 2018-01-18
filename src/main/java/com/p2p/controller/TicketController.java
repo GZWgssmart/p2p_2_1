@@ -57,4 +57,10 @@ public class TicketController {
         return ticketService.updateStatus(strings);
     }
 
+    @RequestMapping("remove")
+    @ResponseBody
+    public ServerResponse remove(Integer kid) {
+        return ticketService.removeById(kid);
+    }
+
 }

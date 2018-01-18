@@ -82,7 +82,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
             }
             Tzb tzb = tzbList.get(0);
             System.out.println(tzb.getResint2());
-            if(tzb.getResint2().equals(WayEnum.PAYOFF_ONCE.getCode())){
+            if(tzb.getResint2().equals(Integer.valueOf(WayEnum.PAYOFF_ONCE.getCode()))){
                 Skb skb = new Skb();
                 skb.setUid(uid);
                 skb.setBaid(tzb.getBaid());
@@ -93,6 +93,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
                 skb.setRlx(new BigDecimal(0));
                 skb.setYbj(money);
                 skb.setRbj(new BigDecimal(0));
+                skb.setRnum(0);
                 skb.setTnum(1);
                 skb.setBaid(baid);
                 List<Hkb> hkbs = hkbMapper.getSkTime(tzb.getBaid());
@@ -100,7 +101,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
                 skbList.add(skb);
                 skbMapper.saveList(skbList);
                 return ServerResponse.createBySuccess();
-            }else if(tzb.getResint2().equals(WayEnum.XIAN_XI.getCode())){
+            }else if(tzb.getResint2().equals(Integer.valueOf(WayEnum.XIAN_XI.getCode()))){
                 List<Hkb> hkbs = hkbMapper.getSkTime(tzb.getBaid());
                 int suoyin = 0;
                 for(int i=0;i<tzb.getResint1();i++){
@@ -108,6 +109,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
                     skb.setUid(uid);
                     skb.setBaid(tzb.getBaid());
                     skb.setJuid(tzb.getJuid());
+                    skb.setRnum(0);
                     skb.setTnum(tzb.getResint1());
                     skb.setSktime(hkbs.get(suoyin).getYtime());
                     skb.setRbx(new BigDecimal(0));
@@ -117,7 +119,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
                         skb.setYbx(money.multiply(BigDecimal.valueOf(tzb.getNprofit()/100/12)).add(money).setScale(2, BigDecimal.ROUND_HALF_UP));
                         skb.setYbj(money);
                     }else{
-                        skb.setYbx(new BigDecimal(0));
+                        skb.setYbx(skb.getYlx());
                         skb.setYbj(new BigDecimal(0));
                     }
                     skbList.add(skb);
@@ -125,10 +127,10 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
                 }
                 skbMapper.saveList(skbList);
                 return ServerResponse.createBySuccess();
-            }else  if(tzb.getResint2().equals(WayEnum.EQUAL_BX.getCode())) {
+            }else  if(tzb.getResint2().equals(Integer.valueOf(WayEnum.EQUAL_BX.getCode()))) {
                 ACPIMLoanCalculator calculator = new ACPIMLoanCalculator();
                 loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getResint1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
-            }else if(tzb.getResint2().equals(WayEnum.EQUAL_BJ.getCode())){
+            }else if(tzb.getResint2().equals(Integer.valueOf(WayEnum.EQUAL_BJ.getCode()))){
                 ACMLoanCalculator calculator = new ACMLoanCalculator();
                 loan = calculator.calLoan(LoanUtil.totalLoanMoney(money, 0), tzb.getResint1(), LoanUtil.rate(tzb.getNprofit(), 1), LoanUtil.RATE_TYPE_YEAR);
             }
@@ -146,6 +148,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
                 skb.setYbj(loanByMonth.getPayPrincipal());
                 skb.setRbj(new BigDecimal(0));
                 skb.setSktime(hkb.get(suoyin).getYtime());
+                skb.setRnum(0);
                 skb.setTnum(tzb.getResint1());
                 skbList.add(skb);
                 suoyin+=1;
@@ -165,6 +168,7 @@ public class SkbServiceImpl extends AbstractServiceImpl implements SkbService {
         }
         userMoney.setKymoney(userMoney.getKymoney().add(skb.getYbx()));
         userMoney.setDsmoney(userMoney.getDsmoney().subtract(skb.getYbx()));
+        userMoneyMapper.update(userMoney);
         // 更新单个
         skb.setRbj(skb.getYbj());
         skb.setRbx(skb.getYbx());

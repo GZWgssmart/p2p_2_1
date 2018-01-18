@@ -64,6 +64,11 @@ public class TzbServiceImpl extends AbstractServiceImpl implements TzbService {
     }
 
     @Override
+    public List<TzCountVO> getTotalTzMoney(Integer baid) {
+        return tzbMapper.getTotalTzMoney(baid);
+    }
+
+    @Override
     @Transactional
     public ServerResponse<Integer> save(Object obj) {
         Tzb tzb = (Tzb)obj;

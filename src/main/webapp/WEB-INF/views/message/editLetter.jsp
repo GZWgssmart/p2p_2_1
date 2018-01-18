@@ -5,6 +5,9 @@
   Time: 14:43
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -44,11 +47,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <select name="status" lay-filter="status" lay-verify="status">
-                            <option value="">不选择为原始值</option>
-                            <option value="1">激活</option>
-                            <option value="0">冻结</option>
-                        </select>
+                        <input type="radio" name="status" id="status" value="1" title="激活"/>
+                        <input type="radio" name="status" id="status1" value="0" title="冻结"/>
                     </div>
                 </div>
 
@@ -101,10 +101,6 @@
                 layedit.setContent(editIndex,data.content);
                 $('#status').val(data.status);
             });
-
-
-
-
         var editIndex = layedit.build('content', {
             tool: [
                 'strong' //加粗
@@ -116,15 +112,6 @@
                 , 'image' //插入图片
             ]
         });
-
-        /*var getTpl = demo.innerHTML
-         , view = document.getElementById('view');*/
-        /*  $.get('<path >/data/message/editNotice?nid=' + 1,*/
-        /*  function (data) {
-         laytpl(getTpl).render(data, function (html) {
-         view.innerHTML = html;
-         });
-         });*/
 
         //修改媒体报道
         form.on('submit(fabu)', function (data) {

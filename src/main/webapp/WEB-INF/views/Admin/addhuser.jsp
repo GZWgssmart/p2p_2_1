@@ -30,7 +30,14 @@
                 <div lass="layui-form-item" style="margin-top: 10px;">
                     <label class="layui-form-label">昵称</label>
                     <div class="layui-input-block">
-                        <input type="text" id="rname" name="rname" lay-verify="required" placeholder="请输入昵称"
+                        <input type="text" id="rname" name="rname" lay-verify="required" placeholder="请输入真实姓名"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div lass="layui-form-item" style="margin-top: 10px;">
+                    <label class="layui-form-label">真实姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="huname" name="huname" lay-verify="required" placeholder="请输入真实姓名"
                                class="layui-input">
                     </div>
                 </div>

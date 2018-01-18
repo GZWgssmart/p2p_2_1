@@ -23,6 +23,7 @@
 </div>
 <div class="layui-btn-group demoTable">
     <button class="layui-btn" data-type="getCheckData">添加券</button>
+    <button class="layui-btn" data-type="delete">删除券</button>
     <button class="layui-btn" data-type="jieshu">结束</button>
 </div>
 
@@ -176,6 +177,29 @@
                             }
                         }
                     );
+                }
+            }
+            ,delete:function () {
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    $.post('<%=path %>/data/ticket/remove',{kid:data[0].kid},
+                        function (res) {
+                            if(res.code == 0) {
+                                layer.msg('操作成功！',{time:2000},function () {
+                                    table.reload('idTest', {
+                                        page: {
+                                            curr: 1 //重新从第 1 页开始
+                                        }
+                                    });
+                                });
+                            } else {
+                                layer.msg('操作失败');
+                            }
+                        }
+                    );
+                } else {
+                    layer.msg('请选中一行！');
                 }
             }
         };

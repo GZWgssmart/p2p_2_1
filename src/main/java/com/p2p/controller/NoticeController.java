@@ -45,5 +45,9 @@ public class NoticeController {
        Object obj = noticeService.getById(noticeId);
        return (Notice) obj;
     }
+    @RequestMapping("removeNotice")
+    public ServerResponse removeNotice(Notice notice){
+        return noticeService.removeById(notice.getNid());
+    }
 
 }

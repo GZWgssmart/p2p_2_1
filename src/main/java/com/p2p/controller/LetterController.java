@@ -22,8 +22,13 @@ public class LetterController {
 
     @RequestMapping("pagerLetter")
     @ResponseBody
-    public Pager pagerNotice(int page, int limit, Letter letter){
+    public Pager pagerLetter(int page, int limit, Letter letter){
         return letterService.listPagerCriteria(page,limit,letter);
+    }
+    @RequestMapping("pagerLetterStatus")
+    @ResponseBody
+    public Pager pagerLetterStatus(int page, int limit, Letter letter){
+        return letterService.listPagerCriteriaStatus(page,limit,letter);
     }
 
     @RequestMapping("addLetter")
@@ -51,6 +56,11 @@ public class LetterController {
     public Letter letterDetails (Integer letterId){
         Object obj = letterService.getById(letterId);
         return (Letter)obj;
+    }
+
+    @RequestMapping("removeLetter")
+    public ServerResponse removeLetter(Letter letter){
+        return letterService.removeById(letter.getLid());
     }
 
 }

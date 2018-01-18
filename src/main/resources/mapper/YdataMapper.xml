@@ -30,7 +30,7 @@
     delete from ydata
     where yid = #{yid,jdbcType=INTEGER}
   </delete>
-    <insert id="save" parameterType="com.p2p.bean.Ydata">
+    <insert id="insertSelective" parameterType="com.p2p.bean.Ydata">
     insert into ydata (yid, tmoney, mmoney, 
       tuser, muser, ttzno, 
       mtzno, tdkno, mdkno, 
@@ -42,7 +42,7 @@
       #{tdkbno,jdbcType=INTEGER}, #{mdkbno,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.p2p.bean.Ydata">
+    <insert id="save" parameterType="com.p2p.bean.Ydata">
         insert into ydata
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="yid != null">

@@ -100,26 +100,20 @@
             });
         form.verify({
             minmoney: function(value){
-
+                if(value.length < 1){
+                    return '需要输入最小金额';
+                }
 
             }, maxmoney: function(value){
-
-            },percent: function(value){
                 if(value.length < 1){
-                    return '需要选择内容';
+                    return '需要输入最大金额';
+                }
+            }, percent: function(value){
+                if(value.length < 1){
+                    return '需要填写内容';
                 }
             }
         });
-
-        /*var getTpl = demo.innerHTML
-         , view = document.getElementById('view');*/
-        /*  $.get('<path >/data/message/editNotice?nid=' + 1,*/
-        /*  function (data) {
-         laytpl(getTpl).render(data, function (html) {
-         view.innerHTML = html;
-         });
-         });*/
-
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
             $.post('<%=path %>/data/rewardSet/editRewardSet',

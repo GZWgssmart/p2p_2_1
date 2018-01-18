@@ -32,9 +32,8 @@
     <include refid="common_notice"/>
   </select>
 
-  <delete id="deleteById" parameterType="java.lang.Integer">
-    delete from notice
-    where nid = #{nid,jdbcType=INTEGER}
+  <delete id="removeById" parameterType="java.lang.Integer">
+    delete from notice where nid = #{nid,jdbcType=INTEGER}
   </delete>
 
   <insert id="save" parameterType="com.p2p.bean.Notice">

@@ -141,4 +141,10 @@
     </foreach>
   </update>
 
+  <select id="getYesTicket" resultType="com.p2p.bean.Ticket">
+    <![CDATA[
+      select * from ticket where status = 0
+    ]]>
+  </select>
+
 </mapper>

@@ -26,6 +26,14 @@
     limit #{pager.beginIndex},#{pager.pageSize}
   </select>
 
+  <select id="listPagerCriteriaStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <![CDATA[
+        SELECT l.lid,l.title,l.content,l.created_time, l.status from letter l where l.status=1
+    ]]>
+    order by created_time DESC
+    limit #{pager.beginIndex},#{pager.pageSize}
+  </select>
+
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Letter">
     <![CDATA[
           select count(l.lid) from letter l
@@ -33,7 +41,13 @@
     <include refid="common_letter"/>
   </select>
 
-  <delete id="deleteById" parameterType="java.lang.Integer">
+  <select id="countCriteriaStatus" resultType="long" parameterType="com.p2p.bean.Letter">
+    <![CDATA[
+          select count(l.lid) from letter l WHERE l.status=1
+    ]]>
+  </select>
+
+  <delete id="removeById" parameterType="java.lang.Integer">
     delete from letter
     where lid = #{lid,jdbcType=INTEGER}
   </delete>

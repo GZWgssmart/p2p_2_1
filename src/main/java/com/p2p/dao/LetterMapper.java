@@ -15,5 +15,10 @@ public interface LetterMapper extends BaseDAO {
     @Override
     Long countCriteria(@Param("letter") Object obj);
 
+    @Override
+    List<Object> listPagerCriteriaStatus(@Param("pager") Pager pager,@Param("letter")Object obj);
+
+    @Override
+    Long countCriteriaStatus(@Param("letter") Object obj);
 
 }

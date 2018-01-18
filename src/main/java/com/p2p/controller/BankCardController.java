@@ -1,12 +1,16 @@
 package com.p2p.controller;
 
 import com.p2p.bean.BankCard;
+import com.p2p.bean.LogCz;
+import com.p2p.bean.User;
+import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.BankCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.List;
 
@@ -39,13 +43,17 @@ public class BankCardController {
 
     @RequestMapping("save")
     public ServerResponse addCard(BankCard bankCard){
-        ServerResponse serverResponse = null;
-        if(bankCard!=null){
-            bankCardService.save(bankCard);
-            serverResponse = ServerResponse.createBySuccess();
-        } else {
-            serverResponse = ServerResponse.createByError();
+          return bankCardService.save(bankCard);
+    }
+
+    @RequestMapping("listPagerCriteria")
+    public Pager listPage(int page, int limit, BankCard bankCard, HttpSession session){
+        Object obj= session.getAttribute("user");
+        if(obj != null) {
+            User user = (User)obj;
+            bankCard.setUid(user.getUid());
+            return bankCardService.listPagerCriteria(page, limit, bankCard);
         }
-          return serverResponse;
+        return bankCardService.listPagerCriteria(page, limit, bankCard);
     }
 }

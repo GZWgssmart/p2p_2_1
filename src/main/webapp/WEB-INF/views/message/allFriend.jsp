@@ -19,6 +19,7 @@
 <body style="padding-top: 20px">
 
 <div class="layui-btn-group demoTable">
+    <button class="layui-btn" data-type="remove">删除</button>
     <button class="layui-btn" data-type="refresh">刷新</button>
 </div>
 
@@ -69,18 +70,6 @@
         table.on('checkbox(demo)', function(obj){
             console.log(obj)
         });
-        //监听工具条
-        table.on('tool(demo)', function(obj){
-            var data = obj.data;
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
-            }
-        });
 
         $('.demoTable .layui-btn').on('click', function(){
             var type = $(this).data('type');
@@ -88,35 +77,33 @@
         });
 
         var active = {
-           refresh:function () {
+            remove:function () {
+            var checkStatus = table.checkStatus('idTest')
+                ,data = checkStatus.data;
+            if(data.length == 1) {
+                $.post('<%=path %>/data/message/removeFriend?fid='+data[0].fid,
+                    function (res) {
+                        if (res.code === 0) {
+                            layer.msg('删除成功', {
+                                time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function () {
+                                location.reload(true);
+                            });
+                        } else {
+                            layer.msg(res.message);
+                        }
+                    }, 'json'
+                );
+            } else {
+                layer.msg('请选中一行！', {time:1500});
+            }
+        }
+          , refresh:function () {
                 location.reload(true);
             }
 
         };
 
-        $('.searchType .layui-btn').on('click', function(){
-            var type = $(this).data('type');
-            search[type] ? search[type].call(this) : '';
-        });
-
-        var search = {
-            reload: function(){
-                var title = $('#title');
-                var url = $('#url');
-                var createTime =$('#createTime');
-                //执行重载
-                table.reload('idTest', {
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
-                    ,where: {
-                        title: title.val(),
-                        url:url.val(),
-                        createTime:createTime.val()
-                    }
-                });
-            }
-        };
     });
 </script>
 </body>
