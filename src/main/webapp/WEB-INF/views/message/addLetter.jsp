@@ -46,6 +46,13 @@
                     </div>
                 </div>
 
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="addLetterTime" id="addLetterTime" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
@@ -96,6 +103,11 @@
                     return '需要填写标题';
                 }
             }
+        });
+
+        laydate.render({
+            elem: '#addLetterTime' //指定元素
+            , type: 'datetime'
         });
 
         //提交媒体报道

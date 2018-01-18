@@ -40,6 +40,12 @@
                     </div>
                 </div>
 
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="addNoticeTime" id="addNoticeTime" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
 
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
@@ -81,11 +87,12 @@
                 if(value.length < 1){
                     return '需要填写标题';
                 }
-            },content: function(value){
-                if(value){
-                    return '需要填写内容';
-                }
             }
+        });
+
+        laydate.render({
+            elem: '#addNoticeTime' //指定元素
+            ,type: 'datetime'
         });
 
         //提交媒体报道

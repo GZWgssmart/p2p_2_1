@@ -41,6 +41,13 @@
                         </div>
                     </div>
 
+                    <div class="layui-inline">
+                        <label class="layui-form-label">时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="editNoticeTime" id="editNoticeTime" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
                     <div class="layui-form-item">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
@@ -74,17 +81,19 @@
         return null;
     }
     var noticeId = GetQueryString("noticeId");
-    layui.use(['form', 'laytpl', 'layedit'], function () {
+    layui.use(['form', 'laytpl', 'layedit','laydate'], function () {
         var form = layui.form;
         var $ = layui.jquery;
         var layer = layui.layer;
         var laytpl = layui.laytpl;
         var layedit = layui.layedit;
+        var laydate = layui.laydate;
 
        $.get('<%=path %>/data/message/noticeDetail?noticeId=' + noticeId,
             function (data) {
                 $('#nid').val(data.nid);
                 $('#title').val(data.title);
+                $('#editNoticeTime').val(formatDate(data.createdTime));
                 layedit.setContent(editIndex,data.content);
        });
 
@@ -109,14 +118,10 @@
             ]
         });
 
-        /*var getTpl = demo.innerHTML
-            , view = document.getElementById('view');*/
-      /*  $.get('<path >/data/message/editNotice?nid=' + 1,*/
-          /*  function (data) {
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
-            });*/
+        laydate.render({
+            elem: '#editNoticeTime' //指定元素
+            , type: 'datetime'
+        });
 
         //修改媒体报道
         form.on('submit(fabu)', function (data) {

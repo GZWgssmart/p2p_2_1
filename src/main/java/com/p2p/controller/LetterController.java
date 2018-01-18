@@ -4,6 +4,7 @@ import com.p2p.bean.Letter;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.LetterService;
+import com.p2p.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +34,15 @@ public class LetterController {
 
     @RequestMapping("addLetter")
     @ResponseBody
-    public ServerResponse addLetter(Letter letter){
-        letter.setCreatedTime(new Date());
+    public ServerResponse addLetter(Letter letter,String addLetterTime){
+        letter.setCreatedTime(DateUtil.parseDate(addLetterTime,"yyyy-MM-dd HH:mm:ss"));
         return letterService.save(letter);
     }
 
     @RequestMapping("editLetter")
     @ResponseBody
-    public ServerResponse editNotice(Letter letter){
+    public ServerResponse editNotice(Letter letter,String editLetterTime){
+        letter.setCreatedTime(DateUtil.parseDate(editLetterTime,"yyyy-MM-dd HH:mm:ss"));
         return letterService.update(letter);
     }
 
@@ -59,6 +61,7 @@ public class LetterController {
     }
 
     @RequestMapping("removeLetter")
+    @ResponseBody
     public ServerResponse removeLetter(Letter letter){
         return letterService.removeById(letter.getLid());
     }

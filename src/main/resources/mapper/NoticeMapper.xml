@@ -58,6 +58,9 @@
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=VARCHAR},
+      </if>
     </set>
     where nid = #{nid,jdbcType=INTEGER}
   </update>

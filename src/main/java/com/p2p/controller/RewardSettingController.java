@@ -51,6 +51,7 @@ public class RewardSettingController {
     }
 
     @RequestMapping("removeRewardSet")
+    @ResponseBody
     public ServerResponse removeRewardSet(RewardSetting rewardSetting){
         return rewardSettingService.removeById(rewardSetting.getRwsid());
     }

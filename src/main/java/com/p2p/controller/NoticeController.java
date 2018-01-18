@@ -4,6 +4,7 @@ import com.p2p.bean.Notice;
 import com.p2p.common.Pager;
 import com.p2p.common.ServerResponse;
 import com.p2p.service.NoticeService;
+import com.p2p.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,14 +29,15 @@ public class NoticeController {
 
     @RequestMapping("addNotice")
     @ResponseBody
-    public ServerResponse addNotice(Notice notice){
-        notice.setCreatedTime(new Date());
+    public ServerResponse addNotice(Notice notice, String addNoticeTime){
+        notice.setCreatedTime(DateUtil.parseDate(addNoticeTime, "yyyy-MM-dd HH:mm:ss"));
         return noticeService.save(notice);
     }
 
     @RequestMapping("editNotice")
     @ResponseBody
-    public ServerResponse editNotice(Notice notice){
+    public ServerResponse editNotice(Notice notice ,String editNoticeTime){
+        notice.setCreatedTime(DateUtil.parseDate(editNoticeTime, "yyyy-MM-dd HH:mm:ss"));
         return noticeService.update(notice);
     }
 
@@ -46,6 +48,7 @@ public class NoticeController {
        return (Notice) obj;
     }
     @RequestMapping("removeNotice")
+    @ResponseBody
     public ServerResponse removeNotice(Notice notice){
         return noticeService.removeById(notice.getNid());
     }

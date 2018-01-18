@@ -94,17 +94,14 @@
                     ,data = checkStatus.data;
                 if(data.length == 1) {
                     $.post('<%=path %>/data/rewardSet/removeRewardSet?rwsid='+data[0].rwsid,
-                        function (res) {
-                            if (res.code === 0) {
-                                layer.msg('删除成功', {
-                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
-                                }, function () {
-                                    location.reload(true);
-                                });
-                            } else {
-                                layer.msg(res.message);
+                        function (data) {
+                            if(data.code==0){
+                                layer.msg("删除成功！")
+                                location.reload(true);
+                            }else {
+                                layer.msg("删除失败！")
                             }
-                        }, 'json'
+                        }
                     );
                 } else {
                     layer.msg('请选中一行！', {time:1500});

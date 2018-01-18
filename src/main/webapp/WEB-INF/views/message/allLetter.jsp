@@ -38,7 +38,7 @@
     {{#  if(d.status == 0){ }}
     <span style="color: red;">冻结</span>
     {{#  } else { }}
-    <span>激活</span>
+    <span style="color: green;">激活</span>
     {{#  } }}
 </script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -104,17 +104,14 @@
                     ,data = checkStatus.data;
                 if(data.length == 1) {
                     $.post('<%=path %>/data/message/removeLetter?lid='+data[0].lid,
-                        function (res) {
-                            if (res.code === 0) {
-                                layer.msg('删除成功', {
-                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
-                                }, function () {
-                                    location.reload(true);
-                                });
-                            } else {
-                                layer.msg(res.message);
+                        function (data) {
+                            if(data.code==0){
+                                layer.msg("删除成功！")
+                                location.reload(true);
+                            }else {
+                                layer.msg("删除失败！")
                             }
-                        }, 'json'
+                        }
                     );
                 } else {
                     layer.msg('请选中一行！', {time:1500});

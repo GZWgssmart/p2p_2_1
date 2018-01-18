@@ -44,10 +44,17 @@
                     </div>
                 </div>
 
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="editLetterTime" id="editLetterTime" lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="status" id="status" value="1" title="激活"/>
+                        <input type="radio" name="status" id="status" value="1" title="激活" checked/>
                         <input type="radio" name="status" id="status1" value="0" title="冻结"/>
                     </div>
                 </div>
@@ -72,7 +79,9 @@
     </div>
 </div>
 
+<%--
 <script type="text/javascript" src="<%=path %>/static/layui/lay/modules/laydate.js"></script>
+--%>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script src="<%=path %>/static/js/home/public.js"></script>
 <script>
@@ -86,20 +95,22 @@
         return null;
     }
     var letterId = GetQueryString("letterId");
-    layui.use(['form', 'laytpl', 'layedit'], function () {
+    layui.use(['form', 'laytpl', 'layedit','laydate'], function () {
 
         var form = layui.form;
         var $ = layui.jquery;
         var layer = layui.layer;
         var laytpl = layui.laytpl;
         var layedit = layui.layedit;
+        var laydate = layui.laydate;
 
         $.get('<%=path %>/data/message/letterDetail?letterId=' + letterId,
             function (data) {
                 $('#lid').val(data.lid);
                 $('#title').val(data.title);
-                layedit.setContent(editIndex,data.content);
+                $('#editLetterTime').val(formatDate(data.createdTime));
                 $('#status').val(data.status);
+                layedit.setContent(editIndex,data.content);//此句，必写在最后。
             });
         var editIndex = layedit.build('content', {
             tool: [
@@ -113,20 +124,23 @@
             ]
         });
 
+        laydate.render({
+            elem: '#editLetterTime' //指定元素
+            , type: 'datetime'
+        });
+
+        form.verify({
+            title: function(value){
+                if(value.length < 1){
+                    return '需要填写标题';
+                }
+            }
+        });
+
+
         //修改媒体报道
         form.on('submit(fabu)', function (data) {
             $('#content').val(layedit.getContent(editIndex));
-
-
-            form.verify({
-                title: function(value){
-                    if(value.length < 1){
-                        return '需要填写标题';
-                    }
-                }
-            });
-
-
             $.post('<%=path %>/data/message/editLetter',
                 $('#editLetter').serialize(),
                 function (res) {
