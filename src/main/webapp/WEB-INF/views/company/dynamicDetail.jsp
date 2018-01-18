@@ -19,32 +19,25 @@
 </head>
 <style>
     body {
-        height: 50px;
         line-height: 50px;
     }
     #view{
         width: 88%;
         background-color: white;
         margin:0 auto;
-        padding-bottom: 40px;
+        padding-bottom: 15%;
     }
-    span{
+   .li{
         color: #999;
         float:right;
         margin-left: 10px;
-        padding-right:40px;
     }
     #contentDiv p{
         text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/
     }
     #contentDiv img{
-        margin-left: 24%;
         width: 600px;
-        height: auto;
         margin-top: 20px;
-    }
-    p img{
-        margin-left: 21%;
     }
 </style>
 <body>
@@ -53,16 +46,9 @@
 <div class="layui-container" style="margin-top: 30px;">
     <div id="view">
         <script id="demo" type="text/html">
-            <h3 style="font-weight: normal;text-align: center;font-size: 18px;">【普金资本】{{ d.title }}</h3>
-            <span><a href="<%=path %>/page/dynamic/indexDynamic" style="color: #319bff;">返回列表</a></span><span><div>{{ formatDate(d.createdTime) }}</div></span></br>
-            <p style="margin-left: 20px;">&nbsp;&nbsp;&nbsp;{{ d.summary }}</p>
-            {{#  if(d.pic !== null && d.pic !== ''){ }}
-            <div style="text-align: center; ">
-                <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto;"/>
-            </div>
-            {{#  } else { }}
-            <span></span>
-            {{#  } }}
+            <h3 style="font-weight: normal;text-align: center;font-size: 18px;padding-top: 20px;">【普金资本】{{ d.title }}</h3>
+            <span class="li"><a href="<%=path %>/page/dynamic/indexDynamic" style="color: #319bff;margin-right: 10px;">返回列表</a></span><span class="li"><div>{{ formatDate(d.createdTime) }}</div></span></br>
+            <p style="margin-left: 50px;margin-top: 60px;">{{ d.summary }}</p>
             <div style="margin-left: 20px;margin-right: 20px;" id="contentDiv">
                 {{ d.content }}
             </div>

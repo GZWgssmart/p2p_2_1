@@ -20,12 +20,31 @@
     <link rel="icon" href="<%=path%>/static/images/logo_title.jpg" type="image/x-icon">
 </head>
 <style type="text/css">
-    <!--
     #demo {overflow:hidden;width:1180px; }
     #demos { float: left; width: 800%;}
     #demo1 { float: left; }
     #demo2 { float: left;margin-left:7px;}
-    -->
+    .lione {
+        height: 16px;
+        padding-left: 15px;
+        margin-bottom: 15px;
+    }
+    .newsA {
+        width: 220px;
+        line-height: 16px;
+        float: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .newsS {
+        width: 80px;
+        height: 16px;
+        line-height: 16px;
+        text-align: right;
+        float: right;
+        color: #999999;
+    }
 </style>
 <body>
 <%@include file="master/top.jsp"%>
@@ -294,15 +313,14 @@
                         <script type="text/html" id="mediaDemo">
                             {{#layui.each(d, function(index, media){ }}
                                 <div style="float: right; margin-right: 5px;margin-left: 5px">
-                                    <h1>{{media.title}}</h1>
                                     <a href="<%=path %>/page/company/mediaDetailPage?mediaId={{media.mid}}" target="_blank" class="news-main-content-left">
                                         <img src="<%=path %>/{{media.pic}}" alt="{{media.title}}" width="250" height="200">
                                     </a></br>
                                     <a href="<%=path %>/page/company/mediaDetailPage?mediaId={{media.mid}}"  target="_blank" class="list-title">
-                                        {{media.title}}
+                                        <div style="width:250px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"> {{media.title}}</div>
                                     </a></br>
                                     <a href="<%=path %>/page/company/mediaDetailPage?mediaId={{media.mid}}" target="_blank" class="list-main">
-                                        {{media.summary}}
+                                       <div style="width:250px;"> {{media.summary}}</div>
                                     </a>
                                 </div>
                             {{#  }); }}
@@ -337,18 +355,21 @@
                     <div class="news-main-top ptop" style="margin-top: 20px;margin-right: 20px;">
                         <span style="font-size: 20px;">公司动态</span>
                         <a href="<%=path %>/page/dynamic/indexDynamic" style="float: right">更多</a>
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
+                        </fieldset>
                     </div>
                     <div class="news-main-content" id="dynamic">
                         <script type="text/html" id="dynamicDemo">
-                            {{# layui.each(d, function(index, dynamic){ }}
-                                <ul class="news-main-list" id="news-part" style="margin-top: 10px;">
-                                    <li>
-                                        <a href="<%=path %>/page/dynamic/dynamicDetail?dynamicId={{dynamic.dyid}}"target="_blank">{{dynamic.title}}
+                            <ul class="news-main-list" id="news-part" style="margin-top: 10px;">
+                                {{# layui.each(d, function(index, dynamic){ }}
+                                    <li class="lione">
+                                        <a href="<%=path %>/page/dynamic/dynamicDetail?dynamicId={{dynamic.dyid}}"target="_blank" class="newsA">
+                                            {{dynamic.title}}
                                         </a>
-                                        <span style="float: right">{{ formatDate(dynamic.createdTime) }}</span>
+                                        <span class="newsS">{{ formatDateTime(dynamic.createdTime) }}</span>
                                     </li>
-                                </ul>
-                            {{#  }); }}
+                                {{#  }); }}
+                            </ul>
                         </script>
                     </div>
                 </div>

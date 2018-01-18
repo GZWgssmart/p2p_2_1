@@ -20,27 +20,24 @@
 </head>
 <style>
     body {
-        height: 50px;
         line-height: 50px;
     }
     #view{
+        width: 1160px;
         background-color: white;
         margin:0 auto;
-        padding-bottom: 40px;
+        padding-bottom: 15%;
     }
-    span{
+    .li{
         color: #999;
         float:right;
         margin-left: 10px;
-        padding-right:40px;
     }
     #contentDiv p{
         text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/
     }
     #contentDiv img{
-        margin-left: 24%;
         width: 600px;
-        height: auto;
         margin-top: 20px;
     }
 </style>
@@ -52,19 +49,12 @@
         <script id="demo" type="text/html">
             <h3 style="font-weight: normal;text-align: center;font-size: 18px;">{{ d.title }}</h3>
             {{#  if(d.pic !== null){ }}
-            <a href="<%=path %>/{{ d.url }}"><i class="layui-icon" style="font-size: 20px; color: #999;margin-left: 30px;">&#xe64c;</i></a>
+            <a href="{{ d.url }}"><i class="layui-icon" style="font-size: 20px; color: #999;margin-left: 30px;">&#xe64c;</i></a>
             {{#  } else { }}
             <span>无链接</span>
             {{#  } }}
-            <span><a href="<%=path %>/page/dynamic/indexDynamic#test1=1" style="color: #319bff;">返回列表</a></span><span><div>{{ formatDate(d.createdTime) }}</div></span>
-            <p style="margin-left: 20px;">&nbsp;&nbsp;&nbsp;{{ d.summary }}</p>
-            {{#  if(d.pic !== null && d.pic !== ''){ }}
-            <div style="text-align: center; ">
-                <img src="<%=path %>/{{ d.pic }}" alt="d.pic"style="width: 600px;height: auto;"/>
-            </div>
-            {{#  } else { }}
-            <span></span>
-            {{#  } }}
+            <span class="li"><a href="<%=path %>/page/dynamic/indexDynamic#test1=1" style="color: #319bff;margin-right: 10px;">返回列表</a></span><span class="li"><div>{{ formatDate(d.createdTime) }}</div></span>
+            <p style="margin-left: 50px;margin-top: 60px;">{{ d.summary }}</p>
             <div style="margin-left: 20px;margin-right: 20px;" id="contentDiv">
                 {{ d.content }}
             </div>
