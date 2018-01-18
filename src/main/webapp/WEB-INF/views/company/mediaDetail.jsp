@@ -47,7 +47,7 @@
 <div class="layui-container" style="margin-top: 30px;">
     <div id="view">
         <script id="demo" type="text/html">
-            <h3 style="font-weight: normal;text-align: center;font-size: 18px;">{{ d.title }}</h3>
+            <h3 style="font-weight: normal;text-align: center;font-size: 18px;padding-top: 20px;">{{ d.title }}</h3>
             {{#  if(d.pic !== null){ }}
             <a href="{{ d.url }}"><i class="layui-icon" style="font-size: 20px; color: #999;margin-left: 30px;">&#xe64c;</i></a>
             {{#  } else { }}
