@@ -127,6 +127,21 @@
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }
+            },
+            fpRole: function(){ //先获取行数据，将数据跳转到编辑页。
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                if(data.length == 1) {
+                    layer.open({
+                        type: 2,
+                        area: ['760px', '500px'],
+                        maxmin:true,
+                        scrollbar:false,
+                        content:"<%=path %>/page/Role/rolehuser?"+data[0].huid
+                    })
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
+                }
             }
         };
     });

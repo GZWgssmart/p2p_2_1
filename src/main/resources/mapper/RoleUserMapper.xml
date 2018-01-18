@@ -10,7 +10,7 @@
   </resultMap>
   <delete id="remove" parameterType="java.lang.Integer">
     delete from roleuser
-    where ruid = #{ruid,jdbcType=INTEGER}
+    where rid = #{rid} and huid = #{huid}
   </delete>
 
   <insert id="save" parameterType="com.p2p.bean.RoleUser">
@@ -44,4 +44,9 @@
     </set>
     where ruid = #{ruid,jdbcType=INTEGER}
   </update>
+  <select id="getRoleUser" parameterType="integer" resultType="com.p2p.bean.Role">
+    <![CDATA[
+    select r.* from role r, huser h, roleuser rh where r.rid = rh.rid and h.huid = rh.huid and h.huid = #{huid}
+    ]]>
+  </select>
 </mapper>

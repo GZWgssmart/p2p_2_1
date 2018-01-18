@@ -31,4 +31,9 @@ public class RoleView {
         return "JurRole/addrolejur";
     }
 
+    @RequestMapping("rolehuser")
+    public String rolehuser() {
+        return "Admin/addrolehuser";
+    }
+
 }

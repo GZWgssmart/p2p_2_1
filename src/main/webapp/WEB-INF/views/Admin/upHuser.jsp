@@ -58,14 +58,6 @@
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">性别</label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="sex" id="radio" value=1 title="男"/>
-                        <input type="radio" name="sex" id="radio1" value=2 title="女"/>
-                    </div>
-                </div>
-
                 <div class="layui-form-item" style="margin-top: 20px;">
                     <div class="layui-input-block">
                         <button class="layui-btn"  lay-submit lay-filter="up">修改</button>
