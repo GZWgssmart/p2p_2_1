@@ -447,7 +447,7 @@
                     ,resint2:$('#selectQuan').val()
                     ,resint1:$('#term').text()}
                 , function (data) {
-                    layer.msg(data.message,{time: 2000},function () {
+                    utils.alert(data.message,function () {
                         if(data.message === '投标已截止') {
                             window.location.href = '<%=path %>/page/borrowApply/investList';
                         } else {

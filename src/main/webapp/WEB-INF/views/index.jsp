@@ -103,8 +103,10 @@
                         <script type="text/html" id="xsbList">
                             {{# layui.each(d, function(index, xsb){ }}
                                 <li class="rate cl">
-                                    <p><span id="ty-rate">{{xsb.nprofit}}</span>%</p>
-                                    <span>预期年化收益率</span>
+                                    <a href="javascript:void(0);" onclick="borrowDetail('{{xsb.baid}}');">
+                                        <p><span id="ty-rate">{{xsb.nprofit}}</span>%</p>
+                                        <span>预期年化收益率</span>
+                                    </a>
                                 </li>
                                 <li class="date">
                                     <div class="date-item">

@@ -156,14 +156,14 @@
                             hkid : data[0].hkid
                         }
                         , function (data) {
-                            layer.msg(data.message);
+                            utils.alert(data.message);
                             layer.closeAll();
                         },'json');
                 } else {
-                    layer.msg('已还款，无需重复还款', {time:1500});
+                    utils.alert('已还款，无需重复还款');
                 }
             } else {
-                layer.msg('请选中一行！', {time:1500});
+                utils.alert('请选中一行！');
             }
         });
 
@@ -223,10 +223,10 @@
                         }
                     });
                 } else {
-                    layer.msg('该借款状态下无还款计划！', {time:1500});
+                    utils.alert('该借款状态下无还款计划！');
                 }
             } else {
-                layer.msg('请选中一行！', {time:1500});
+                utils.alert('请选中一行！');
             }
         });
     });

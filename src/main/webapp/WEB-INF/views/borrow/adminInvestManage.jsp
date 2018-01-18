@@ -52,6 +52,7 @@
                 ,{field:'term', title:'还款期限', width:90, templet:'<div>{{d.term}}个月</div>'}
                 ,{field:'cpname', title:'产品名称', width:120}
                 ,{field:'nprofit', title:'年化利率', width:90, templet:'<div>{{d.nprofit}}%</div>'}
+                ,{field:'ckstatus', title:'状态', width:90, templet:'<div>{{formatStatus(d.ckstatus)}}</div>'}
                 ,{field:'tztime', title:'投资时间', width:180, sort: true, templet:'<div>{{ formatDate(d.tztime)}}</div>'}
             ]]
             ,id: 'checkId'
@@ -119,7 +120,11 @@
             var checkStatus = table.checkStatus('checkId')
                 ,data = checkStatus.data;
             if(data.length === 1) {
-                window.location.href='<%=path %>/page/borrowApply/detail/'+ data[0].baid;
+                if(data[0].ckstatus === 3) {
+                    layer.msg('该投资已流标', {time:1500});
+                } else {
+                    window.location.href = '<%=path %>/page/borrowApply/detail/' + data[0].baid;
+                }
             } else {
                 layer.msg('请选中一行！', {time:1500});
             }

@@ -81,7 +81,7 @@
                 ,data = checkStatus.data;
             if(data.length === 1) {
                 if(data[0].ckstatus === 3) {
-                    layer.msg('该投资已流标', {time:1500});
+                    utils.alert('该投资已流标');
                 } else {
                     layer.open({
                         type: 1,                //弹窗类型
@@ -126,7 +126,7 @@
                     });
                 }
             } else {
-                layer.msg('请选中一行！', {time:1500});
+                utils.alert('请选中一行！');
             }
         });
 
@@ -140,14 +140,15 @@
                             skid : data[0].skid
                         }
                         , function (data) {
-                            layer.msg(data.message);
+                            utils.alert(data.message);
                             layer.closeAll();
                         },'json');
                 } else {
-                    layer.msg('已收款', {time:1500});
+                    layer.closeAll();
+                    utils.alert('已收款');
                 }
             } else {
-                layer.msg('请选中一行！', {time:1500});
+                utils.alert('请选中一行！');
             }
         });
 
@@ -156,12 +157,12 @@
                 ,data = checkStatus.data;
             if(data.length === 1) {
                 if(data[0].ckstatus === 3) {
-                    layer.msg('该投资已流标', {time:1500});
+                    utils.alert('该投资已流标');
                 } else {
                     window.location.href = '<%=path %>/page/borrowApply/detail/' + data[0].baid;
                 }
             } else {
-                layer.msg('请选中一行！', {time:1500});
+                utils.alert('请选中一行！');
             }
         });
     });

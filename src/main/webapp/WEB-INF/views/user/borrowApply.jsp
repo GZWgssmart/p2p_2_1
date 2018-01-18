@@ -204,13 +204,11 @@
                 $('#borrowApplyDetail').serialize(),
                 function (res) {
                     if (res.code === 0) {
-                        layer.msg('提交成功', {
-                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                        }, function () {
+                        utils.alert('提交成功', function () {
                             location.reload(true);
                         });
                     } else {
-                        layer.msg("提交失败！");
+                        utils.alert("提交失败！");
                     }
                 }, 'json'
             );
