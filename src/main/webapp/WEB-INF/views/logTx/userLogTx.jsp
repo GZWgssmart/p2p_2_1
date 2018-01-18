@@ -76,7 +76,7 @@
                                                    maxlength="6"
                                                    placeholder="请输入交易密码">
                                         </div>
-                                        <button type="button" class="btn" lay-submit lay-filter="add" id="ipay-submit">
+                                        <button type="button" class="btn" lay-submit lay-filter="add"  onclick="confirmCard();" id="ipay-submit">
                                             立即提现
                                         </button>
                                     </div>
@@ -122,16 +122,22 @@
             var getTpl1 = banktypeDemo.innerText,
                 view1 = document.getElementById('banktype');
             $.get('<%=path %>/data/bankCard/allCards?uid=' +${user.uid}, function (data) {
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
-                laytpl(getTpl1).render(data, function (html) {
-                    view1.innerHTML = html;
-                });
-                form.render('select');
-            })
-        });
-
+                alert(data.length);
+                if(data.length !==0){
+                    laytpl(getTpl).render(data, function (html) {
+                        view.innerHTML = html;
+                    });
+                    laytpl(getTpl1).render(data, function (html) {
+                        view1.innerHTML = html;
+                    });
+                    form.render('select');
+                }else{
+                    utils.toast('请绑定银行卡！', function () {
+                        window.location.href = '<%=path %>/page/bankCard/userAddCard';
+                    });
+                }
+            }
+        );
         layui.use(['element', 'laytpl', 'table'], function () {
             var table = layui.table;
             var $ = layui.$;
@@ -168,6 +174,7 @@
             });
         });
     })
+    })
 </script>
 
 <script>
@@ -181,7 +188,7 @@
                     $('#addForm').serialize(),
                     function (res) {
                         if (res.code == 0) {
-                            layer.alert('添加成功！', function () {
+                            layer.alert('提现成功！', function () {
                                 window.location.href = '<%=path %>/page/user/account';
                             });
                         } else {
@@ -191,7 +198,7 @@
                 )
             }
         )
-    })
+    });
     function formatState(status) {
         if (status === 0) {
             return "提现失败";
@@ -199,6 +206,7 @@
             return "提现成功";
         }
     }
+
 </script>
 </body>
 </html>

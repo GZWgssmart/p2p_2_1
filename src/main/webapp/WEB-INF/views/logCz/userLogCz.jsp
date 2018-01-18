@@ -120,13 +120,20 @@
             var getTpl1 = banktypeDemo.innerText,
                 view1 = document.getElementById('banktype');
             $.get('<%=path %>/data/bankCard/allCards?uid=' +${user.uid}, function (data) {
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
-                laytpl(getTpl1).render(data, function (html) {
-                    view1.innerHTML = html;
-                });
-                form.render('select');
+                if(data.length !==0){
+                    laytpl(getTpl).render(data, function (html) {
+                        view.innerHTML = html;
+                    });
+                    laytpl(getTpl1).render(data, function (html) {
+                        view1.innerHTML = html;
+                    });
+                    form.render('select');
+                }else{
+                    layer.alert('请绑定银行卡！', function () {
+                        window.location.href = '<%=path %>/page/bankCard/userAddCard';
+                    });
+                }
+
             })
         });
 
@@ -180,7 +187,7 @@
                 $('#addForm').serialize(),
                 function (res) {
                     if (res.code == 0) {
-                        layer.alert('添加成功！', function () {
+                        layer.alert('充值成功！', function () {
                             window.location.href = '<%=path %>/page/user/account';
                         });
                     } else {

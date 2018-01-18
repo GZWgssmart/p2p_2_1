@@ -24,6 +24,7 @@
     <link rel="shortcut icon" href="https://lab.chinapnr.com/muser/favicon.ico">
 </head>
 <body class="w960">
+<%@include file="../master/header.jsp" %>
 <div class="wrapper">
     <div class="min-width-out">
         <div class="min-width-in">

@@ -38,7 +38,8 @@
                                 <div class="layui-tab-item layui-show layui-row">
                                     <div class="layui-col-md12" style="padding-top: 0;height: auto;">
                                         <div id="myDebitCard" class="account-content">
-                                            <div id="card3" class="bank-card_3" onclick="addBankCard();" style="cursor:pointer;">
+                                            <div id="card3" class="bank-card_3" onclick="addBankCard();"
+                                                 style="cursor:pointer;">
                                                 <div class="bank-addCard"><a href="javascript:;">添加银行卡</a></div>
                                             </div>
                                         </div>
@@ -52,6 +53,7 @@
                 <div class="layui-tab-item">
                     <div class="layui-row">
                         <div class="layui-col-md12">
+                            <a href="javascript:void(0);" class="layui-btn" id="del" data-type="edit">解绑银行卡</a>
                             <table id="allArticle_table" lay-filter="demo"></table>
                             <input type="hidden" id="uid" name="uid">
                         </div>
@@ -75,7 +77,7 @@
         window.location.href = "<%=path%>/page/user/userAddCard"
     }
     $("#uid").val('${user.uid}');
-    layui.use(['element', 'laytpl','table'], function () {
+    layui.use(['element', 'laytpl', 'table'], function () {
         var $ = layui.$;
         var element = layui.element;
         var laytpl = layui.laytpl;
@@ -84,9 +86,16 @@
             elem: '#allArticle_table'
             , url: '<%=path %>/data/bankCard/listPagerCriteria'
             , cols: [[
-                {field: 'cardno', title: '银行卡号', width: 180, fixed: 'left'}
+                {checkbox: true, fixed: true}
+                , {field: 'cardno', title: '银行卡号', width: 180, fixed: 'left'}
                 , {field: 'type', title: '所属银行', width: 180}
-                , {field: 'bktime', title: '创建时间', width: 180, sort: true, templet: '<div>{{ formatDate(d.createdTime)}}</div>'}
+                , {
+                    field: 'bktime',
+                    title: '创建时间',
+                    width: 180,
+                    sort: true,
+                    templet: '<div>{{ formatDate(d.createdTime)}}</div>'
+                }
                 , {field: 'status', title: '使用状态', width: 180, templet: '<div>{{ formatState(d.status)}}</div>'}
             ]]
             , id: 'idTest'
@@ -99,18 +108,31 @@
                 , dataName: 'rows'
             }
         });
-        table.on('tool(test)', function(obj){
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的DOM对象
-            if(layEvent === 'del'){ //删除
-                layer.confirm('真的删除行么', function(index){
-                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                    layer.close(index);
 
-                });
+        $('#del').on('click', function () {
+            var checkStatus = table.checkStatus('idTest')
+                , data = checkStatus.data;
+            if (data.length === 1) {
+                if (data[0].bcid !== null) {
+                    $.post('<%=path %>/data/bankCard/remove?bcid=' + data[0].bcid
+                        , function (res) {
+                            if (res.code == 0) {
+                                layer.msg('操作成功！', {time: 2000}, function () {
+                                    table.reload('idTest', {
+                                        page: {
+                                            curr: 1 //重新从第 1 页开始
+                                        }
+                                    });
+                                });
+                            } else {
+                                layer.msg('操作失败');
+                            }
+                        });
+                }
+            } else {
+                layer.msg('请选中一行！', {time: 1500});
             }
-        })
+        });
     });
     function formatState(status) {
         if (status === 0) {
@@ -119,6 +141,7 @@
             return "冻结";
         }
     }
+
 </script>
 
 </html>

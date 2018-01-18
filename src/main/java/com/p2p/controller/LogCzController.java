@@ -30,7 +30,8 @@ public class LogCzController {
     private UserMoneyService userMoneyService;
 
     @RequestMapping("save")
-    public ServerResponse addCard(LogCz logCz){
+    public ServerResponse save(LogCz logCz){
+        System.out.println(logCz);
         return logCzService.save(logCz);
     }
 
