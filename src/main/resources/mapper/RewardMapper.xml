@@ -27,8 +27,9 @@
   </select>
 
   <update id="batchUpdate"  parameterType="java.util.List">
-    <foreach collection="list" item="item" index="index" separator=";">
-      update reward set reward_time = now(), status = 1 where uid = #{item.uid}
+    update reward set reward_time = now(), status = 1 where uid in
+    <foreach collection="list" open="(" close=")" item="list" separator=",">
+      #{list.uid}
     </foreach>
   </update>
 
