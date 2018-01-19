@@ -170,14 +170,12 @@
     $(function () {
         var rname = '${user.rname}';
         var idno = '${user.idno}';
-        if(rname===null|| idno===null){
+        if(rname.length===0 || idno.length===0){
             utils.alert('请先进行身份认证！', function () {
-                window.location.href = '<%=path %>/page/user/account';
+                window.location.href = '<%=path %>/page/user/safe';
             });
-        }else{
-            addCard();
         }
-    })
+    });
     function addCard() {
         var cardtype = $('#type').val();
         var cardno = $('#cardno').val();

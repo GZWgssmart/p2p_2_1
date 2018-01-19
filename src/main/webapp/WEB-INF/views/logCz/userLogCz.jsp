@@ -34,7 +34,7 @@
                 <div class="layui-tab-item layui-show layui-row">
                     <div class="layui-col-md12" style="padding-top: 50px;">
                         <div class="account-content">
-                            <form class="layui-form" id="addForm">
+                            <form  id="addForm">
                                 <!-- 充值 -->
                                 <div class="ipay-pay">
                                     <p class="tips-title"><b>温馨提示：</b>凡是在普金资本充值未投标的用户，15天以内提现收取本金0.5%，15天以后提现免费
