@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<div style="text-align: center;width: 100%;">
+<div style="text-align: center;width: 100%; margin-top: 10px">
     <h2>平台数据每天凌晨2：00更新，每月数据每月第一天初始化。</h2>
 </div>
     <div class="layui-fluid main">
@@ -36,11 +36,11 @@
                         撮合交易总额（元）
                     </div>
                     <div class="moneyDiv" style="text-align:center;">
-                        <div class="item_Div">{{ d.tmoney }}.00</div>
+                        <div class="item_Div" style="padding-top: 20px">{{ d.tmoney }}.00</div>
                     </div>
                     <div class="btnDiv">平台数据总览</div>
                     <div class="sjList sjList-2">
-                        <div class="item-yh">
+                        <div class="item-yh" style="display: inline-block;">
                             <i class="icon-userTotal"></i>
                             <div class="itemText">总注册用户数（人）</div>
                             <div class="itemSJ color-b" id="userTotal">{{ d.tuser }}</div>
