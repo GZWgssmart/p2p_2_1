@@ -257,6 +257,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
+                <input type="hidden" name="sex" value=0 checked/>
                 <input type="radio" name="sex" value=1 title="男"/>
                 <input type="radio" name="sex" value=2 title="女"/>
             </div>
@@ -297,8 +298,10 @@
     </form>
 </div>
 
+<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
+    $("input[name='sex'][value=${admin.sex}]").attr("checked",true);
     var message;
     layui.config({
         base: '<%=path %>/static/js/home/'
@@ -314,7 +317,7 @@
             type: 'iframe'
         }).init();
 
-        $("input[name='sex'][value=${admin.sex}]").attr("checked",true);
+
         //信息
         $('#info').on('click', function () {
             layer.open({
