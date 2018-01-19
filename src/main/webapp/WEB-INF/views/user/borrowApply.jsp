@@ -112,7 +112,13 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">项目描述</label>
                 <div class="layui-input-block">
-                    <textarea name="xmdescrip" placeholder="请输入保障措施" class="layui-textarea"></textarea>
+                    <textarea name="xmdes" placeholder="请输入项目描述" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">保障措施</label>
+                <div class="layui-input-block">
+                    <textarea name="guarantee" placeholder="请输入保障措施" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">

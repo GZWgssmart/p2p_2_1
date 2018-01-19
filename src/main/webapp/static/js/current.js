@@ -24,7 +24,7 @@ function uploadImg(upload, elemId, url, imgEx, realImg, errorText) {
         , done: function (res) {
             //如果上传失败
             if (res > 0) {
-                return layer.msg('失败！');
+                return utils.alert('失败！');
             } else {
                 return $('#'+realImg).val(res.msg);
             }
