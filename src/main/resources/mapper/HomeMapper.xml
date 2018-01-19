@@ -11,7 +11,7 @@
     <![CDATA[
           select h.hid, h. pic1, h.pic2, h.pic3, h.ewm, h.phone, h.url1, h.url2, h.url3 from home h
         ]]>
-      limit #{pager.beginIndex}, #{pager.pageSize}
+      order by hid desc limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Home">

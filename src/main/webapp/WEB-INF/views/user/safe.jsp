@@ -321,21 +321,19 @@
             var two = data.field.upwd;
             if (one != two) {
                 layer.msg("密码不一致")
+            } else {
+                $.post('<%=path %>/data/user/edit',
+                    data.field,
+                    function (data) {
+                        if (data.code == 0) {
+                            layer.closeAll();
+                            layer.msg("修改成功！")
+                        } else {
+                            layer.msg("修改失败，请重新再试！")
+                        }
+                    }, 'json'
+                );
             }
-            $.post('<%=path %>/data/user/edit',
-                data.field,
-                function (data) {
-                    if (data.code == 0) {
-                        layer.closeAll();
-                        layer.alert('这里写内容', {
-                            title: ' ',
-                            btnAlign: 'c'
-                        });
-                    } else {
-                        layer.msg("修改失败，请重新再试！")
-                    }
-                }, 'json'
-            );
             return false;
         });
 
