@@ -332,7 +332,7 @@
                 <div class="layui-col-sm4"  style="background-color: white;height: 400px">
                     <div class="grid-demo" style="margin-left: 40px;margin-right: 20px; margin-top: 20px;">
                         <span style="font-size: 20px;">最新公告</span>
-                        <a href="<%=path %>/page/message/indexNotice" style="float: right">更多</a>
+                        <a href="<%=path %>/page/about/indexNotice" style="float: right">更多</a>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
                         </fieldset>
                         <div   id="notice">

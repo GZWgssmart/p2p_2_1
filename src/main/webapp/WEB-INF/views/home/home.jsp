@@ -114,7 +114,7 @@
                         <a href="javascript:;"><span>认证管理</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/vip/userVipPage',icon:'&#xe658;',title:'vip用户',id:'20'}"><i class="layui-icon">&#xe658;</i><span>vip用户</span></a>
+                                   data-options="{url:'<%=path %>/page/vip/userVipPage',icon:'&#xe658;',title:'用户',id:'20'}"><i class="layui-icon">&#xe658;</i><span>用户</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
                                    data-options="{url:'<%=path %>/page/vip/vip',icon:'&#xe658;',title:'认证审核',id:'21'}"><i class="layui-icon">&#xe658;</i><span>认证审核</span></a>
@@ -125,10 +125,10 @@
                         <a href="javascript:;"><span>奖励管理</span></a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/rewardSet/rewardSet',icon:'&#xe658;',title:'投资奖励',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励设置</span></a>
+                                   data-options="{url:'<%=path %>/page/rewardSet/rewardSet',icon:'&#xe658;',title:'投资奖励设置',id:'30'}"><i class="layui-icon">&#xe658;</i><span>投资奖励设置</span></a>
                             </dd>
                             <dd><a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/vip/quan',icon:'&#xe658;',title:'认证审核',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
+                                   data-options="{url:'<%=path %>/page/vip/quan',icon:'&#xe658;',title:'优惠券',id:'31'}"><i class="layui-icon">&#xe658;</i><span>优惠券</span></a>
                             </dd>
                         </dl>
                     </li>
@@ -197,8 +197,8 @@
                             </dd>
                             <dd>
                                 <a href="javascript:;" kit-target
-                                   data-options="{url:'<%=path %>/page/message/Dxmodel',icon:'&#xe61f;',title:'添加首页信息',id:'46'}">
-                                    <i class="layui-icon">&#xe61f;</i><span>添加短信模板</span></a>
+                                   data-options="{url:'<%=path %>/page/message/Dxmodel',icon:'&#xe61f;',title:'短信模板管理',id:'61'}">
+                                    <i class="layui-icon">&#xe61f;</i><span>短信模板管理</span></a>
                             </dd>
                         </dl>
                     </li>
@@ -209,10 +209,10 @@
                             <a href="javascript:;"><span>角色权限管理</span></a>
                             <dl class="layui-nav-child">
                                 <dd><a href="javascript:;" kit-target
-                                       data-options="{url:'<%=path%>/page/Jur/List',icon:'&#xe658;',title:'权限分页',id:'47'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a>
+                                       data-options="{url:'<%=path%>/page/Jur/List',icon:'&#xe658;',title:'权限管理',id:'47'}"><i class="layui-icon">&#xe658;</i><span>权限管理</span></a>
                                 </dd>
                                 <dd><a href="javascript:;" kit-target
-                                       data-options="{url:'<%=path%>/page/Role/List',icon:'&#xe658;',title:'角色分页',id:'49'}"><i class="layui-icon">&#xe658;</i><span>角色管理</span></a>
+                                       data-options="{url:'<%=path%>/page/Role/List',icon:'&#xe658;',title:'角色管理',id:'49'}"><i class="layui-icon">&#xe658;</i><span>角色管理</span></a>
                                 </dd>
                             </dl>
                         </li>
