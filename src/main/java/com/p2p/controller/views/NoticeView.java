@@ -9,7 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/page/message")
 public class NoticeView {
-
+    @RequestMapping("indexNotice")
+    public String pageNotice(){
+        return"index/aboutwe/notice";
+    }
+    @RequestMapping
+    public String noticeDetail(){
+        return"message/noticeDetail";
+    }
     @RequestMapping("allNotice")
     public String allNotice(){
         return "message/allNotice";
