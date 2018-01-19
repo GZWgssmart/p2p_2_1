@@ -1,4 +1,9 @@
 package com.p2p.bean;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 /**
  * Created by 7025 on 2017/12/19.
  * 对应前台用户
@@ -36,11 +41,11 @@ public class User {
 
     private Integer resint2;
 
-    private String resstr1;
+    private Date resstr1;
 
     private String resstr2;
 
-    public User(Integer uid, String uname, String upwd, String phone, Integer tzm, String zpwd, String idtype, String idno, String email, String rname, Integer tid, String face, Integer sex, Integer isvip, Integer resint1, Integer resint2, String resstr1, String resstr2) {
+    public User(Integer uid, String uname, String upwd, String phone, Integer tzm, String zpwd, String idtype, String idno, String email, String rname, Integer tid, String face, Integer sex, Integer isvip, Integer resint1, Integer resint2, Date resstr1, String resstr2) {
         this.uid = uid;
         this.uname = uname;
         this.upwd = upwd;
@@ -193,12 +198,13 @@ public class User {
         this.resint2 = resint2;
     }
 
-    public String getResstr1() {
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    public Date getResstr1() {
         return resstr1;
     }
 
-    public void setResstr1(String resstr1) {
-        this.resstr1 = resstr1 == null ? null : resstr1.trim();
+    public void setResstr1(Date resstr1) {
+        this.resstr1 = resstr1;
     }
 
     public String getResstr2() {

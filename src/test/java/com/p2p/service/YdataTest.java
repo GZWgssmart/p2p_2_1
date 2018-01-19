@@ -8,6 +8,7 @@ import com.p2p.utils.HttpUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -42,9 +43,10 @@ public class YdataTest extends BaseTest {
 //        //月贷款笔数
 //        ydata.setMdkbno(2);
 //        ydata.setYid(1);
-//        ydata.setYid(2);
-        ydata.setCreatedTime(new Date());
-        ydataService.save(ydata);
+        ydata.setYid(2);
+//        ydata.setCreatedTime(new Date());
+        ydataService.update(ydata);
+//        ydataService.save(ydata);
     }
 
     @Test
@@ -61,5 +63,11 @@ public class YdataTest extends BaseTest {
     @Test
     public void testSelect() {
         ydataService.selectEnd();
+    }
+
+    @Test
+    public void testTime() {
+        System.out.println("newDate:" + new Date());
+        System.out.println("CalendarTiem:" + Calendar.getInstance().getTime());
     }
 }

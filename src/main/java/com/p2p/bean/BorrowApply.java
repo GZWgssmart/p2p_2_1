@@ -37,11 +37,11 @@ public class BorrowApply {
 
     private Integer resint2;
 
-    private String resstr1;
+    private Date resstr1;
 
     private String resstr2;
 
-    public BorrowApply(Integer baid, String rname, BigDecimal money, Integer uid, Integer bzid, Date cktime, Integer ckstatus, Integer type, Integer term, Date deadline, Integer resint1, Integer resint2, String resstr1, String resstr2) {
+    public BorrowApply(Integer baid, String rname, BigDecimal money, Integer uid, Integer bzid, Date cktime, Integer ckstatus, Integer type, Integer term, Date deadline, Integer resint1, Integer resint2, Date resstr1, String resstr2) {
         this.baid = baid;
         this.rname = rname;
         this.money = money;
@@ -159,12 +159,13 @@ public class BorrowApply {
         this.resint2 = resint2;
     }
 
-    public String getResstr1() {
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    public Date getResstr1() {
         return resstr1;
     }
 
-    public void setResstr1(String resstr1) {
-        this.resstr1 = resstr1 == null ? null : resstr1.trim();
+    public void setResstr1(Date resstr1) {
+        this.resstr1 = resstr1;
     }
 
     public String getResstr2() {
