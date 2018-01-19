@@ -94,7 +94,7 @@
                     title: '创建时间',
                     width: 180,
                     sort: true,
-                    templet: '<div>{{ formatDate(d.createdTime)}}</div>'
+                    templet: '<div>{{ formatDate(d.bktime)}}</div>'
                 }
                 , {field: 'status', title: '使用状态', width: 180, templet: '<div>{{ formatState(d.status)}}</div>'}
             ]]
