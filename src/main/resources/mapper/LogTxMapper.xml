@@ -132,7 +132,7 @@
       select t.txid, t.uid,t.bankcard,t.banktype, t.money, t.created_time,t.status from log_tx t
     ]]>
     <include refid="logTx_query_criteria"/>
-      limit #{pager.beginIndex},#{pager.pageSize}
+      order by t.created_time desc limit #{pager.beginIndex},#{pager.pageSize}
   </select>
 
   <select id="countCriteria" resultType="long">

@@ -75,8 +75,8 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
                     LogMoney logMoney = new LogMoney();
                     logMoney.setCreatedTime(Calendar.getInstance().getTime());
                     logMoney.setUid(logTx.getUid());
-                    logMoney.setType(0);
-                    logMoney.setIncome(logTx.getMoney());
+                    logMoney.setType(1);
+                    logMoney.setOutlay(logTx.getMoney());
                     logMoneyMapper.save(logMoney);
                     UserMoney userMoney = userMoneyMapper.getUserMoney(logTx.getUid());
                     BigDecimal i = userMoney.getZmoney();
@@ -92,7 +92,7 @@ public class LogTxServiceImpl extends AbstractServiceImpl implements LogTxServic
                     }else {
                         logTx.setStatus(0);
                         logTxMapper.save(logTx);
-                        return ServerResponse.createByError("提现失败");
+                        return ServerResponse.createByError("提现失败,余额不足 !");
                     }
                 }
        return ServerResponse.createByError("请仔细查看所填信息!");

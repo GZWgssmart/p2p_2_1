@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>前台用户中心模板</title>
+    <title>用户中心</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
@@ -22,10 +22,7 @@
 <%@include file="../master/header.jsp" %>
 <div class="account cl">
     <%@include file="../master/left.jsp" %>
-    <%--信息披露里的左侧边栏--%>
-    <%--<%@include file="../master/aboutLeft.jsp"%>--%>
     <div class="account-right">
-        <%-- 在此处写用户后台模块代码--%>
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
                 <li class="layui-this">用户总览</li>

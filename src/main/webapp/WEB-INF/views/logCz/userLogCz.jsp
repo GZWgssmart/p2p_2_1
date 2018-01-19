@@ -101,7 +101,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/font/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script>
     $(function () {
         var user = "${user}";
@@ -147,17 +147,17 @@
                 , cols: [[
                     {field: 'bankcard', title: '银行卡号', width: 180, fixed: 'left'}
                     , {field: 'banktype', title: '所属银行', width: 180}
-                    , {field: 'money', title: '提现金额', width: 180}
+                    , {field: 'money', title: '充值金额', width: 180}
                     , {
                         field: 'created_time',
-                        title: '提现时间',
+                        title: '充值时间',
                         width: 180,
                         sort: true,
                         templet: '<div>{{ formatDate(d.createdTime)}}</div>'
                     }
                     , {
                         field: 'status',
-                        title: '提现状态',
+                        title: '充值状态',
                         width: 180,
                         templet: '<div>{{ formatState(d.status)}}</div>'
                     }
@@ -174,9 +174,7 @@
             });
         });
     })
-</script>
 
-<script>
     $("#uid").val('${user.uid}');
     layui.use(['element', 'form', 'laytpl'], function () {
         var form = layui.form;
@@ -188,11 +186,11 @@
                 $('#addForm').serialize(),
                 function (res) {
                     if (res.code == 0) {
-                        layer.alert('充值成功！', function () {
+                        utils.alert('充值成功！', function () {
                             window.location.href = '<%=path %>/page/user/account';
                         });
                     } else {
-                        layer.alert(res.message);
+                        utils.alert(res.message);
                     }
                 }, 'json'
             )

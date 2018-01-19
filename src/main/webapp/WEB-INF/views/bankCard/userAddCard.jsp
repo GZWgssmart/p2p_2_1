@@ -20,10 +20,12 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/bankCard/style.css">
     <link rel="shortcut icon" href="https://lab.chinapnr.com/muser/favicon.ico">
 </head>
 <body class="w960">
+<%@include file="../master/top.jsp" %>
 <%@include file="../master/header.jsp" %>
 <div class="wrapper">
     <div class="min-width-out">
@@ -110,7 +112,7 @@
                                         </dd>
                                     </dl>
                                     <div class="form-group form-btns">
-                                        <a href="javascript:void(0)" class="btn btn-primary" onclick="addCard();"><span>确定</span></a>
+                                        <a href="javascript:void(0)" class="btn btn-primary" style="width: 100px;" onclick="addCard();">确定</a>
                                         <input type="submit" class="btn-submit">
                                     </div>
                                 </div>
@@ -151,13 +153,7 @@
 
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.all.js"></script>
-<script>
-    $("#uid").val('${user.uid}');
-    $("#idno").html('${user.idno}');
-    $("#rname").html('${user.rname}');
-    $("#no").val('${user.idno}');
-    $("#name").val("${user.rname}");
-</script>
+<script type="text/javascript" src="<%=path%>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/plugins.min.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/main.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/jsencrypt.js"></script>
@@ -165,6 +161,23 @@
 <script type="text/javascript" src="<%=path%>/static/bankCard/jQuery.md5.js"></script>
 <script type="text/javascript" src="<%=path%>/static/bankCard/postbe.js"></script>
 <script>
+    $("#uid").val('${user.uid}');
+    $("#idno").html('${user.idno}');
+    $("#rname").html('${user.rname}');
+    $("#no").val('${user.idno}');
+    $("#name").val("${user.rname}");
+
+    $(function () {
+        var rname = '${user.rname}';
+        var idno = '${user.idno}';
+        if(rname===null|| idno===null){
+            utils.alert('请先进行身份认证！', function () {
+                window.location.href = '<%=path %>/page/user/account';
+            });
+        }else{
+            addCard();
+        }
+    })
     function addCard() {
         var cardtype = $('#type').val();
         var cardno = $('#cardno').val();
@@ -179,7 +192,7 @@
                             window.location.href = '<%=path %>/page/user/account';
                         })
                     } else {
-                        layer.alert(data.message);
+                        utils.alert(data.message);
                     }
                 }, 'json'
             )

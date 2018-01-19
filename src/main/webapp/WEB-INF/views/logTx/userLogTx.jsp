@@ -102,13 +102,13 @@
 <%@include file="../master/footer.jsp" %>
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
-<script type="text/javascript" src="<%=path %>/static/js/font/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script>
     $(function () {
         var user = "${user}";
         if (user === null || user === '') {
-            layer.msg("您未登录，请登录！",function () {
+            utils.alert("您未登录，请登录！",function () {
                 window.location = '/page/login';
             })
         }

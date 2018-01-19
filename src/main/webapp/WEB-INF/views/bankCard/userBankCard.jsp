@@ -117,7 +117,7 @@
                     $.post('<%=path %>/data/bankCard/remove?bcid=' + data[0].bcid
                         , function (res) {
                             if (res.code == 0) {
-                                layer.msg('操作成功！', {time: 2000}, function () {
+                                utils.alert('操作成功！', function () {
                                     table.reload('idTest', {
                                         page: {
                                             curr: 1 //重新从第 1 页开始
@@ -125,12 +125,12 @@
                                     });
                                 });
                             } else {
-                                layer.msg('操作失败');
+                                utils.alert('操作失败');
                             }
                         });
                 }
             } else {
-                layer.msg('请选中一行！', {time: 1500});
+                utils.alert('请选中一行！');
             }
         });
     });

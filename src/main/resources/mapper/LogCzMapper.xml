@@ -134,7 +134,7 @@
       select z.czid, z.money,z.banktype,z.bankcard,z.created_time , z.status from log_cz z
     ]]>
       <include refid="logCz_query_criteria" />
-       limit #{pager.beginIndex}, #{pager.pageSize}
+       order by z.created_time desc limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
   <select id="countCriteria" resultType="long">

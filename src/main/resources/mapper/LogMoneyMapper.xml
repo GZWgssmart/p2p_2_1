@@ -95,7 +95,7 @@
       select m.type,m.income,m.outlay,m. created_time from log_money m where type = #{query.type}
     ]]>
     <include refid="logMoney_query_criteria" />
-     limit #{pager.beginIndex}, #{pager.pageSize}
+     order by m.created_time DESC limit #{pager.beginIndex}, #{pager.pageSize}
   </select>
 
   <select id="countCriteria" resultType="long">
