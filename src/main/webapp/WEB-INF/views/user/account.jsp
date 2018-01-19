@@ -61,8 +61,6 @@
                             <div class="layui-col-md4">
                                 <p class="amt"><span id="earnSum" style="font-size: 36px;">{{d.symoney}}</span>元</p>
                                 <p class="text">收益总额</p>
-                                <p class="icon-quan" style="padding-top: 30px;">代金券 <b id="voucher" style="color: red">0</b>
-                                    张，现金券 <b id="cashMap" style="color: dodgerblue">0</b> 张</p>
                             </div>
                             <div class="layui-col-md7">
                                 <div class="center-data">

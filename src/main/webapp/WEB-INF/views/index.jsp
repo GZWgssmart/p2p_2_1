@@ -330,6 +330,7 @@
             </div>
 
                 <div class="layui-col-sm4"  style="background-color: white;height: 400px">
+                    <div class="grid-demo" style="margin-left: 40px;margin-right: 20px; margin-top: 20px;">
                         <span style="font-size: 20px;">最新公告</span>
                         <a href="<%=path %>/page/about/indexNotice" style="float: right">更多</a>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
@@ -343,12 +344,14 @@
                                             <a href="<%=path %>/page/about/noticeDetail?noticeId={{notice.nid}}" target="_blank" class="newsA">
                                                 {{notice.title}}
                                             </a>
-                                            <span style="float: right">{{ formatDateTime(notice.createdTime) }}</span>
+                                            <span class="newsS">{{ formatDateTime(notice.createdTime) }}</span>
                                         </li>
+                                        {{#  }); }}
                                     </ul>
                                 </div>
                         </script>
                     </div>
+
                     <div class="news-main-top ptop" style="margin-top: 10px;margin-right: 20px;">
                         <span style="font-size: 20px;">公司动态</span>
                         <a href="<%=path %>/page/dynamic/indexDynamic" style="float: right">更多</a>
