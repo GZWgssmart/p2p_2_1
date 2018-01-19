@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>前台用户中心模板</title>
+    <title>用户充值</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
@@ -101,6 +101,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/font/public.js"></script>
 <script>
     $(function () {
         var user = "${user}";
@@ -129,7 +130,7 @@
                     });
                     form.render('select');
                 }else{
-                    layer.alert('请绑定银行卡！', function () {
+                    utils.alert('请绑定银行卡！', function () {
                         window.location.href = '<%=path %>/page/bankCard/userAddCard';
                     });
                 }

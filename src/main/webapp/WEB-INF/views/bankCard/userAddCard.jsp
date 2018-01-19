@@ -15,7 +15,7 @@
     <style media="screen"></style>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>汇付天下</title>
+    <title>添加银行卡</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -169,13 +169,13 @@
         var cardtype = $('#type').val();
         var cardno = $('#cardno').val();
         if(cardtype.length===0||cardno.length===0){
-            layer.alert("银行卡类型或银行号不为空!")
+            utils.alert("银行卡类型或银行号不为空!")
         }else{
             $.post('<%=path%>/data/bankCard/save',
                 $('#addForm').serialize(),
                 function (data) {
                     if (data.code === 0) {
-                        layer.alert('添加成功！', function () {
+                        utils.alert('添加成功！', function () {
                             window.location.href = '<%=path %>/page/user/account';
                         })
                     } else {
