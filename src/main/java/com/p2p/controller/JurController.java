@@ -27,14 +27,8 @@ public class JurController {
      * @return
      */
     @RequestMapping("save")
-    public ServerResponse save(JurRoleVO jurRoleVO){
-        Jur jur = new Jur();
-        Rolejur rolejur = new Rolejur();
-        jur.setJurl(jurRoleVO.getJurl());
-        jur.setContent(jurRoleVO.getContent());
-        rolejur.setRid(jurRoleVO.getRid());
-        rolejur.setJid(jur.getJid());
-        return jurService.saveRolejur(jur ,rolejur);
+    public ServerResponse save(Jur jur){
+        return jurService.save(jur);
     }
 
     /**

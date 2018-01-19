@@ -34,18 +34,6 @@
                     </div>
                 </div>
                 <div class="layui-form-item" style="margin-top: 10px;">
-                    <label class="layui-form-label">选择角色</label>
-                    <div class="layui-input-block">
-                        <select name="rid" id="type">
-                            <script id="demo" type="text/html">
-                                {{#  layui.each(d, function(index, role){ }}
-                                <option value="{{ role.rid }}">{{ role.content }}</option>
-                                {{#  }); }}
-                            </script>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item" style="margin-top: 10px;">
                     <div class="layui-input-block">
                         <button class="layui-btn" lay-submit lay-filter="add">添加</button>
                     </div>
@@ -62,23 +50,12 @@
         var $ = layui.jquery;
         var laytpl = layui.laytpl;
 
-        // 获取类别
-        var getTpl = demo.innerHTML
-            , view = document.getElementById('type');
-        $.get('<%=path %>/data/Role/listAll', function (data) {
-            laytpl(getTpl).render(data, function (html) {
-                view.innerHTML = html;
-            });
-            form.render('select');
-        });
-
         //添加权限
         form.on('submit(add)', function (data) {
             $.post('<%=path %>/data/Jur/save',
                 {
                     jurl:$('#jurl').val()
                     ,content:$('#content').val()
-                    ,rid:$('#type').val()
                 },
                 function (res) {
                     if (res.code === 0) {

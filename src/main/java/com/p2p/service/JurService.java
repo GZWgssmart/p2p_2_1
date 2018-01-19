@@ -5,5 +5,4 @@ import com.p2p.bean.Rolejur;
 import com.p2p.common.ServerResponse;
 
 public interface JurService extends BaseService {
-    ServerResponse saveRolejur(Jur jur, Rolejur rolejur);
 }

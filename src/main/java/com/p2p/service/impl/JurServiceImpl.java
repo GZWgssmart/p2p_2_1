@@ -18,26 +18,6 @@ public class JurServiceImpl extends AbstractServiceImpl implements JurService {
     private JurMapper jurMapper;
     private RolejurMapper rolejurMapper;
 
-    @Override
-    public ServerResponse saveRolejur(Jur jur, Rolejur rolejur) {
-        ValidationResult validationResult = ValidationUtils.validateEntity(jur);
-        if(validationResult.isHasErrors()) {
-            return ServerResponse.createByError("保存失败");
-        }
-        validationResult = ValidationUtils.validateEntity(rolejur);
-        if(validationResult.isHasErrors()) {
-            return ServerResponse.createByError("保存失败");
-        }
-        if(jurMapper.save(jur) == 0) {
-            return ServerResponse.createByError("保存失败");
-        }
-        rolejur.setJid(jur.getJid());
-        if(rolejurMapper.save(rolejur) == 0){
-            return ServerResponse.createByError("保存失败");
-        }
-        return ServerResponse.createBySuccess("保存成功");
-    }
-
     @Autowired
     public void setJurMapper(JurMapper jurMapper){
         super.setBaseDAO(jurMapper);

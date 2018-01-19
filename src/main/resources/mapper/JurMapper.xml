@@ -34,9 +34,6 @@
   </select>
 
   <insert id="save" parameterType="com.p2p.bean.Jur">
-    <selectKey keyColumn="jid" keyProperty="jid" resultType="integer" order="AFTER">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into jur
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="jurl != null">
