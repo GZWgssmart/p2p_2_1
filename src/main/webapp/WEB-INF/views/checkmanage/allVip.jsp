@@ -26,7 +26,16 @@
     {{#  if(d.pic !== null && d.pic != ''){ }}
     <img src="<%=path %>/{{ d.face }}" alt="d.face" style="border-radius:50%;height: 30px;width: 30px;"/>
     {{#  } else { }}
-    <span>没有封面图</span>
+    <span>没有头像</span>
+    {{#  } }}
+</script>
+<script type="text/html" id="sex">
+    {{#  if(d.sex == 0){ }}
+        <span>保密</span>
+    {{#  } else if(d.sex == 1) { }}
+        <span>男</span>
+    {{#  } else if(d.sex == 2) { }}
+        <span>女</span>
     {{#  } }}
 </script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
@@ -43,8 +52,7 @@
                 ,{field:'face', title:'头像', width:60,templet: '#imgUtil'}
                 ,{field:'uname', title:'昵称', width:80}
                 ,{field:'rname', title:'真实姓名', width:100}
-                ,{field:'sex', title:'性别', width:80}
-                ,{field:'tzm', title:'推荐码', width:80}
+                ,{field:'sex', title:'性别', width:80,templet: '#sex'}
                 ,{field:'phone', title:'电话', width:120}
             ]]
             ,id: 'idTest'

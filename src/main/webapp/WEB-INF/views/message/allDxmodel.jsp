@@ -40,7 +40,6 @@
             ,url: '<%=path %>/data/message/dxmodelPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'dxid', title:'ID', width:50}
                 ,{field:'content', title:'内容', width:700}
             ]]
             ,id: 'idTest'

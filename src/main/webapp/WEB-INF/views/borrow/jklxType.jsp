@@ -45,7 +45,6 @@
             ,url: '<%=path %>/data/jklx/jklxPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'lxid', title:'ID', width:50}
                 ,{field:'lxname', title:'借款类型', width:150}
                 ,{field:'status', title:'状态', width:100,templet:'#statusID'}
 

@@ -45,7 +45,6 @@
             ,url: '<%=path %>/data/bz/bzPage'
             ,cols: [[
                 {checkbox: true, fixed: true}
-                ,{field:'bzid', title:'ID', width:50, fixed: 'left'}
                 ,{field:'bzname', title:'标种', width:150}
                 ,{field:'status', title:'状态', width:100,templet:'#statusID'}
 
