@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">年化收益率</label>
+                <label class="layui-form-label">年化收益(%)</label>
                 <div class="layui-input-inline" style="width: 100px">
                     <input type="text" lay-verify="required" name="nprofit" id="nprofit" placeholder="年化收益率" class="layui-input">
                 </div>
@@ -55,7 +55,6 @@
                 <div class="layui-input-inline" style="width: 120px">
                     <select name="month" id="month">
                         <option value="12" selected="">12月</option>
-                        <option value="9">9月</option>
                         <option value="6">6月</option>
                         <option value="3">3月</option>
                     </select>
@@ -68,7 +67,9 @@
             </div>
         </form>
 
-        <table id="List"></table>
+        <div style="height: 600px;">
+            <table id="List"></table>
+        </div>
     </div>
 </div>
 
@@ -76,6 +77,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
     layui.use(['table','form', 'layer'], function(){
@@ -85,35 +87,42 @@
         var $ = layui.jquery;
 
         $('#Calculation').on('click', function(){
-            table.render({
-                elem: '#List'
-                ,url: '<%=path %>/data/calc/calc'
-                ,where: {
-                    totalMoney : $('#totalMoney').val()
-                    ,nprofit : $('#nprofit').val()
-                    ,type : $('#type').val()
-                    ,month : $('#month').val()
-                }
-                ,cols: [[
-                    {field:'repayment', title:'本月还款金额', width:120, fixed: 'left'}
-                    ,{field:'payPrincipal', title:'支付本金', width:120}
-                    ,{field:'interest', title:'利息', width:120}
-                    ,{field:'remainTotal', title:'剩余本金', width:120}
-                    ,{field:'month', title:'还款期限', width:120}
-                ]]
-                ,id: 'checkId'
-                ,page: true
-                ,height: 500
-                ,response: {
-                    statusName: 'status'
-                    ,statusCode: 0
-                    ,msgName: 'message'
-                    ,countName: 'total'
-                    ,dataName: 'rows'
-                }
-            });
+            var money = $('#totalMoney').val();
+            var nprofit  = $('#nprofit').val();
+            if(money !== null && money.trim() !== '' && !isNaN(money)
+                && money >= 0 && nprofit !== null && nprofit.trim() !== ''
+                && !isNaN(nprofit) && nprofit > 0 && nprofit <= 100) {
+                table.render({
+                    elem: '#List'
+                    ,url: '<%=path %>/data/calc/calc'
+                    ,where: {
+                        totalMoney : money
+                        ,nprofit : nprofit
+                        ,type : $('#type').val()
+                        ,month : $('#month').val()
+                    }
+                    ,cols: [[
+                        {field:'repayment', title:'本月还款金额', width:120, fixed: 'left'}
+                        ,{field:'payPrincipal', title:'支付本金', width:120}
+                        ,{field:'interest', title:'利息', width:120}
+                        ,{field:'remainTotal', title:'剩余本金', width:120}
+                        ,{field:'month', title:'还款期限', width:120}
+                    ]]
+                    ,id: 'checkId'
+                    ,page: true
+                    ,height: 500
+                    ,response: {
+                        statusName: 'status'
+                        ,statusCode: 0
+                        ,msgName: 'message'
+                        ,countName: 'total'
+                        ,dataName: 'rows'
+                    }
+                });
+            } else {
+                utils.alert("请正确填写数据！");
+            }
         });
-
     });
 </script>
 </body>

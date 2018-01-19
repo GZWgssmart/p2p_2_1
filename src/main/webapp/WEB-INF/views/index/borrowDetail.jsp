@@ -85,7 +85,7 @@
                     <select name="type" id="selectQuan">
                         <option value="0">选择优惠券</option>
                     </select>
-                    <a href="<%=path %>/calc/calc" class="icon icon-cal" id="calculator">详细收益明细</a>
+                    <a href="<%=path %>/calc/calc" target="_blank" class="icon icon-cal" id="calculator">详细收益明细</a>
                 </div>
                 <input type="hidden" id="ckstatus" value="{{d.ckstatus}}">
                 {{# if((d.money-d.moneyCount)>0){ }}

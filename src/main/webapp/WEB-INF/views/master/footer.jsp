@@ -13,7 +13,7 @@
         <ul>
             <li><a target="_blank" href="tencent://message/?uin=1531952273&amp;Site=&amp;Menu=yes" class="sidebar-qq"></a></li>
             <li><a href="javascript:;" class="sidebar-wx"></a></li>
-            <li><a href="<%=path %>/calc/calc" class="sidebar-cl"></a></li>
+            <li><a href="<%=path %>/calc/calc" target="_blank" class="sidebar-cl"></a></li>
             <li><a href="javascript:;" class="sidebar-top"></a></li>
         </ul>
     </div>
