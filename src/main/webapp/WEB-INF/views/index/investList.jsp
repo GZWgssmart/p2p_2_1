@@ -77,11 +77,11 @@
                             <ul>
                                 <li class="row1"><p class="row-top">预期年化收益率</p><p class="row-bottom color">{{borrow.nprofit}}<span>%</span></p></li>
                                 <li class="row2"><p class="row-top">项目期限</p><p class="row-bottom">{{borrow.term}}个月</p></li>
-                                <li class="row3"><p class="row-top">还款方式</p><p class="row-bottom">按月付息，到期还本</p></li>
+                                <li class="row3"><p class="row-top">还款方式</p><p class="row-bottom">{{formatWay(borrow.way)}}</p></li>
                                 <li class="row4"><p class="row-top">可投金额 / 募集总额</p><p class="row-bottom">{{borrow.money-borrow.moneyCount}}元 / {{borrow.money}}元</p></li>
                                 <li class="row5">
                                     <div class="line">
-                                        <p class="progress"><em class="jindu"></em></p><p class="progress-text">{{borrow.moneyCount / borrow.money * 100}}%</p>
+                                        <p class="progress"><em class="jindu"></em></p><p class="progress-text jdVal"></p>
                                     </div>
                                     <p class="row-top">募集进度</p></li>
                                 <li class="row6">
@@ -108,6 +108,7 @@
 <script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
+<script type="text/javascript" src="<%=path %>/static/js/home/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
 <script>
     function borrowDetail(baid) {
@@ -152,8 +153,11 @@
                 fenye(data.rows);
                 pageTotal(data.total);
                 for(var i = 0; i < data.rows.length; i++) {
+                    var val = (data.rows[i].moneyCount / data.rows[i].money * 100).toFixed(2);
                     $('.jindu')[i].id = "jindu" + i;
-                    $('#jindu' + [i]).css({ "width": (data.rows[i].moneyCount / data.rows[i].money * 100) + "%"});
+                    $('#jindu' + [i]).css({ "width": val + "%"});
+                    $('.jdVal')[i].id = "jdVal" + i;
+                    $('#jdVal' + [i]).text(val + '%');
                 }
             });
         }

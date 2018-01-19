@@ -57,7 +57,7 @@
                     </div>
                     <div class="subject-submit-b-r">
                         <div class="line">
-                            <p>投资进度：</p><p class="progress"><em id="jindu"></em></p><p class="progress-text" id="baifenbi">{{d.moneyCount / d.money * 100}}%</p>
+                            <p>投资进度：</p><p class="progress"><em id="jindu"></em></p><p class="progress-text" id="baifenbi">{{d.moneyCount / d.money * 100}}</p>
                         </div>
                         <p>截止时间：<span id="publishTime">{{d.deadline}}</span></p>
                     </div>
@@ -384,7 +384,9 @@
                 laytpl(getTpl2).render(data, function (html) {
                     view2.innerHTML = html;
                 });
-                $('#jindu').css({ "width": $('#baifenbi').text()});
+                var jdVal = $('#baifenbi');
+                jdVal.text(Number(jdVal.text()).toFixed(2) + '%');
+                $('#jindu').css({ "width": jdVal.text()});
             },'json');
 
         // 获取类别
