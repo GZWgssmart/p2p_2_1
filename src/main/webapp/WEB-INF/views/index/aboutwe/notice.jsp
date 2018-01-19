@@ -38,15 +38,14 @@
                     <div id="allNotice">
                         <script type="text/html" id="demoNotice">
                             {{#  layui.each(d, function(index, notice){ }}
-                            <div class="layui-row" style="margin-top: 5px;width:890px;">
-                                    <div>
-                                        <h2>
-                                            <a href="<%=path %>/page/about/noticeDetail?noticeId={{notice.nid}}">
-                                                {{notice.title}}
-                                            </a>
-                                        </h2>
-
-                                        <div style="float:right">{{formatDate(notice.createdTime)}}</div>
+                            <div class="layui-row" style="margin-top: 5px;width:890px">
+                                <div>
+                                    <h2>
+                                        <a href="<%=path %>/page/about/noticeDetail?noticeId={{notice.nid}}">
+                                            {{notice.title}}
+                                        </a>
+                                    </h2>
+                                    <div style="float:right; color:#c1c1c1" >{{formatDateTime(notice.createdTime)}}</div>
                                 </div>
                             </div>
                             <div style="margin-top:25px;border:1px #ebebeb dotted;"></div>
@@ -63,12 +62,6 @@
 <!--[if lt IE 9]>
 <script src="js/json2.js"></script>
 <![endif]-->
-<script type="text/javascript" src="<%=path%>/static/js/ccf_js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/ccf_js/public.js"></script>
-<!-- 客服QQ -->
-<script charset="utf-8" type="text/javascript" src="<%=path%>/static/js/ccf_js/wpa.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/ccf_js/countup.min.js"></script>
-<script type="text/javascript" src="<%=path%>/static/js/ccf_js/about.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>

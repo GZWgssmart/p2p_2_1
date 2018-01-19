@@ -330,14 +330,16 @@
             </div>
 
                 <div class="layui-col-sm4"  style="background-color: white;height: 400px">
-                    <div class="grid-demo" style="margin-left: 40px;margin-right: 20px; margin-top: 20px;">
-                        <span style="font-size: 20px;">最新公告</span>
-                        <a href="<%=path %>/page/about/indexNotice" style="float: right">更多</a>
-                        <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
-                        </fieldset>
-                        <div   id="notice">
+                    <div class="grid-demo" style="margin-right: 20px; margin-top: 20px;">
+                        <div style="margin-right: 20px; margin-top: 20px;">
+                            <span style="font-size: 20px; margin-left: 15px">最新公告</span>
+                            <a href="<%=path %>/page/about/indexNotice" style="float: right">更多</a>
+                            <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
+                            </fieldset>
+                        </div>
+                        <div class="news-main-content" id="notice">
                             <script type="text/html" id="noticeDemo">
-                                <div class="news-main-content"  style="margin-top: 8px;">
+                                <div class="news-main-content"  style="margin-top: 10px">
                                     <ul class="news-main-list" id="newsContent">
                                         {{#layui.each(d, function(index, notice){ }}
                                         <li class="lione">
@@ -351,11 +353,9 @@
                                 </div>
                         </script>
                     </div>
-
-                    <div class="news-main-top ptop" style="margin-top: 10px;margin-right: 20px;">
-                        <span style="font-size: 20px;">公司动态</span>
+                    <div class="news-main-top ptop" style="margin-top: 20px;margin-right: 20px;">
+                        <span style="font-size: 20px; margin-left: 15px">公司动态</span>
                         <a href="<%=path %>/page/dynamic/indexDynamic" style="float: right">更多</a>
-                        <fieldset class="layui-elem-field layui-field-title" style="margin-top:15px;">
                         </fieldset>
                     </div>
                     <div class="news-main-content" id="dynamic">
