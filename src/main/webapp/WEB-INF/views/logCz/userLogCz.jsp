@@ -200,9 +200,9 @@
 
     function formatState(status) {
         if (status === 0) {
-            return "充值失败";
-        } else {
             return "充值成功";
+        } else {
+            return "充值失败";
         }
     }
 </script>
