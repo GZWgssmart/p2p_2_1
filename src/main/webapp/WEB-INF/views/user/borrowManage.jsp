@@ -180,7 +180,6 @@
                         shadeClose: true, //显示模态窗口
                         fixed:false,    //层是否固定在可视区域
                         offset: 't',//快捷设置顶部坐标
-                        move: false,//禁止拖拽
                         area: ['890px', '560px'], //宽高
                         content: $("#planListShow")  //弹窗内容
                     });

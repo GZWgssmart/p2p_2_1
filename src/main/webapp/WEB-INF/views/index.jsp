@@ -337,7 +337,7 @@
                         </fieldset>
                         <div   id="notice">
                             <script type="text/html" id="noticeDemo">
-                                <div class="news-main-content"  style="margin-top: 10px;">
+                                <div class="news-main-content"  style="margin-top: 8px;">
                                     <ul class="news-main-list" id="newsContent">
                                         {{#layui.each(d, function(index, notice){ }}
                                         <li class="lione">
@@ -351,15 +351,15 @@
                                 </div>
                         </script>
                     </div>
-                    <div class="news-main-top ptop" style="margin-top: 20px;margin-right: 20px;">
+                    <div class="news-main-top ptop" style="margin-top: 10px;margin-right: 20px;">
                         <span style="font-size: 20px;">公司动态</span>
                         <a href="<%=path %>/page/dynamic/indexDynamic" style="float: right">更多</a>
-                        <fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top:15px;">
                         </fieldset>
                     </div>
                     <div class="news-main-content" id="dynamic">
                         <script type="text/html" id="dynamicDemo">
-                            <ul class="news-main-list" id="news-part" style="margin-top: 10px;">
+                            <ul class="news-main-list" id="news-part" style="margin-top: 8px;">
                                 {{# layui.each(d, function(index, dynamic){ }}
                                     <li class="lione">
                                         <a href="<%=path %>/page/dynamic/dynamicDetail?dynamicId={{dynamic.dyid}}"target="_blank" class="newsA">
