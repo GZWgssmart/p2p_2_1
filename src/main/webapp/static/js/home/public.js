@@ -85,6 +85,11 @@ function cutString(str, len) {
 function formatType(type) {
     return type === 1 ? "个人" : "企业";
 }
+
+function formatRewardStatus(val) {
+    return val === '1' ? "已发放" : "未发放";
+}
+
 /**
  * 格式化还款方式
  * @param way

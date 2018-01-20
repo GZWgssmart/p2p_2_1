@@ -23,4 +23,9 @@ public class RewardSettingView {
     public String editRewardSet(){
         return "rewardSet/editRewardSet";
    }
+
+    @RequestMapping("rewardList")
+    public String rewardList(){
+        return "rewardSet/rewardList";
+    }
 }

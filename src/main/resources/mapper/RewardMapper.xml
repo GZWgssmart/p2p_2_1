@@ -22,6 +22,25 @@
     where rwid = #{rwid,jdbcType=INTEGER}
   </select>
 
+  <sql id="query_criteria">
+    <if test="query != null and query.status != null and query.status != ''">
+      and re.status = #{query.status}
+    </if>
+  </sql>
+
+  <select id="listPagerCriteria" resultType="com.p2p.vo.RewardVO">
+    <![CDATA[
+      select re.*, u.phone from reward re, t_user u where re.uid = u.uid
+    ]]>
+    <include refid="query_criteria" />
+    order by re.rwid desc limit #{pager.beginIndex}, #{pager.pageSize}
+  </select>
+
+  <select id="countCriteria" resultType="long" parameterType="com.p2p.query.BorrowQuery">
+    select count(re.rwid) from reward re, t_user u where re.uid = u.uid
+    <include refid="query_criteria" />
+  </select>
+
   <select id="getAllReward" resultType="com.p2p.bean.Reward">
     select * from reward where status = 0
   </select>
