@@ -95,7 +95,7 @@
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
                 if(data.length == 1) {
-                    window.open("<%=path %>/page/message/letterDetail?letterId="+data[0].lid)
+                    window.open("<%=path %>/page/message/letterDetailPage?letterId="+data[0].lid)
                 } else {
                     layer.msg('请选中一行！', {time:1500});
                 }
