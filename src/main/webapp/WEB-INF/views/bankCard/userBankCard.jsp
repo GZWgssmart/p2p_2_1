@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>用户银行卡</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/layui/css/layui.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">

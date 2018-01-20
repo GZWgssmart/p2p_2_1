@@ -48,8 +48,7 @@
             elem: '#allVIP'
             ,url: '<%=path %>/data/vip/userVip'
             ,cols: [[
-                {checkbox: true, fixed: true}
-                ,{field:'face', title:'头像', width:60,templet: '#imgUtil'}
+                {field:'face', title:'头像', width:60,templet: '#imgUtil'}
                 ,{field:'uname', title:'昵称', width:80}
                 ,{field:'rname', title:'真实姓名', width:100}
                 ,{field:'sex', title:'性别', width:80,templet: '#sex'}

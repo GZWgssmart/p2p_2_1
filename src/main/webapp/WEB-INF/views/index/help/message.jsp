@@ -11,7 +11,7 @@
 %>
 <html>
 <head>
-    <title>前台用户中心模板</title>
+    <title>前台用户中心</title>
     <link rel="stylesheet" href="<%=path%>/static/css/front/public.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/account.css">
     <link rel="stylesheet" href="<%=path%>/static/css/front/datepicker.css">
