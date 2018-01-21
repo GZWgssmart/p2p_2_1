@@ -32,7 +32,7 @@
       #{isok,jdbcType=INTEGER}, #{excuse,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.bean.RzCheck">
+  <insert id="save" parameterType="com.p2p.bean.RzCheck">
     insert into rz_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="rcid != null">

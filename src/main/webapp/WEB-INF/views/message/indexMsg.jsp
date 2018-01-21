@@ -61,14 +61,14 @@
 </script>
 <script type="text/html" id="urlUtil2">
     {{#  if(d.url2 !== null && d.url2 != ''){ }}
-    <a target="_blank" href="{{ d.url2 }}">{{ d.url2 }}</a>
+    <a target="_blank" href="http://localhost:8080/{{ d.url2 }}">{{ d.url2 }}</a>
     {{#  } else { }}
     <span>没有链接</span>
     {{#  } }}
 </script>
 <script type="text/html" id="urlUtil3">
     {{#  if(d.url3 !== null && d.url3 != ''){ }}
-    <a target="_blank" href="{{ d.url3 }}">{{ d.url3 }}</a>
+    <a target="_blank" href="http://localhost:8080/{{ d.url3 }}">{{ d.url3 }}</a>
     {{#  } else { }}
     <span>没有链接</span>
     {{#  } }}

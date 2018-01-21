@@ -22,11 +22,40 @@
 
 <table id="allRvip" lay-filter="demo"></table>
 
+<%--审核弹框--%>
+<div style="display: none;" id="checkFrame">
+    <form id="ckForm" name="shborrow" class="layui-form">
+        <input type="hidden" id="baid" name="uid">
+        <input type="hidden" name="huid" value="${admin.huid}">
+        <div class="layui-form-item layui-col-md11">
+            <label class="layui-form-label">审核状态</label>
+            <div class="layui-input-block ">
+                <select name="isok">
+                    <option value="1">通过</option>
+                    <option value="3">驳回</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text layui-col-md11">
+            <label class="layui-form-label">审核理由</label>
+            <div class="layui-input-block">
+                <textarea name="excuse" placeholder="请输入审核理由" class="layui-textarea" id="checkMsg"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+                <a href="javascript:void(0);" class="layui-btn" id="ckBorrow">提交审核</a>
+            </div>
+        </div>
+    </form>
+</div>
+
 <script type="text/html" id="isvip">
-    {{#  if(d.isvip == 0){ }}
-    <span style="color:red;">否</span>
-    {{#  } else { }}
-    <span style="color:red;">是</span>
+    {{#  if(d.isvip == 2){ }}
+    <span>未审核</span>
+    {{#  } else if(d.isvip == 3) { }}
+    <span style="color:red;">未通过</span>
     {{#  } }}
 </script>
 <script type="text/javascript" src="<%=path%>/static/layui/layui.js"></script>
@@ -71,30 +100,49 @@
             getCheckData: function(){ //获取选中数据
                 var checkStatus = table.checkStatus('idTest')
                     ,data = checkStatus.data;
-                var uid = '';
-                for(var i = 0; i < data.length; i++) {
-                    uid +=data[i].uid + ",";
-                }
-                if(uid !== null || uid.trim() !== '') {
-                    $.post('<%=path %>/data/user/vip',{uid:uid},
-                        function (res) {
-                            if(res.code == 0) {
-                                layer.msg('审核成功！',function () {
-                                    //执行重载
-                                    table.reload('idTest', {
-                                        page: {
-                                            curr: 1 //重新从第 1 页开始
-                                        }
-                                    });
-                                });
-                            } else {
-                                layer.msg('失败');
-                            }
-                        }
-                    );
+                if(data.length === 1) {
+                        layer.open({
+                            type: 1,                //弹窗类型
+                            title: 'vip审核',     //显示标题
+                            closeBtn: 1,         //是否显示关闭按钮
+                            shadeClose: true, //显示模态窗口
+                            fixed:false,    //层是否固定在可视区域
+                            move: true,//禁止拖拽
+                            area: ['400px', '270px'], //宽高
+                            content: $("#checkFrame")  //弹窗内容
+                        });
+                        $('#baid').val(data[0].uid);
+                } else {
+                    layer.msg('请选中一行！', {time:1500});
                 }
             }
         };
+
+        // 提交审核
+        $('#ckBorrow').on('click', function(){
+            $.post('<%=path %>/data/vip/checkVip',
+                $('#ckForm').serialize(),
+                function (res) {
+                    if(res.code == 0) {
+                        layer.msg('操作成功！',{time:1500},function () {
+                            layer.closeAll();
+                            $('#checkMsg').val('');
+                        });
+                    } else {
+                        layer.msg('操作失败！',{time:1500},function () {
+                            layer.closeAll();
+                            $('#checkMsg').val('');
+                        });
+                    }
+                    table.reload('idTest', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                }
+            );
+
+        });
 
     });
 </script>

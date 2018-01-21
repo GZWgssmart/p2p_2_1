@@ -178,13 +178,13 @@
 
   <select id="listPagerCriteria" resultType="com.p2p.vo.UserRzvipVO">
     <![CDATA[
-        select v.*, u.isvip, u.idtype, u.idno, u.rname from rzvip v, t_user u where v.uid = u.uid and u.isvip = 0 limit #{pager.beginIndex}, #{pager.pageSize}
+        select v.*, u.isvip, u.idtype, u.idno, u.rname from rzvip v, t_user u where v.uid = u.uid and u.isvip != 0 and u.isvip != 1 limit #{pager.beginIndex}, #{pager.pageSize}
     ]]>
   </select>
 
   <select id="countCriteria" resultType="long" parameterType="com.p2p.bean.Dynamic">
     <![CDATA[
-          select count(v.rzid) from rzvip v, t_user u where v.uid = u.uid and u.isvip = 0
+          select count(v.rzid) from rzvip v, t_user u where v.uid = u.uid and u.isvip != 0 and u.isvip != 1
         ]]>
   </select>
 

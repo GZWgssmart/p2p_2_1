@@ -63,6 +63,9 @@
             <if test="phone != null and phone != ''">
                 phone = #{phone},
             </if>
+            <if test="isvip != null and isvip != ''">
+                isvip = #{isvip},
+            </if>
         </set>
         where uid = #{uid}
     </update>

@@ -103,7 +103,7 @@
                 { uid:${user.uid},kid:url },
                 function (res) {
                     if (res.code === 0) {
-                        layer.msg('领取成功！',  function () {
+                        layer.msg('领取成功！',  {time:2000},function () {
                             window.location = '/page/user/account'
                         });
                     } else {

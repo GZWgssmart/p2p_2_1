@@ -71,27 +71,39 @@
                                     </li>
                                 </c:otherwise>
                             </c:choose>
-                            <c:choose>
-                                <c:when test="${user.idtype != null}">
-                                    <li>
-                                        <div class="safe-list-1">
-                                            <p class="icon icon-true">身份认证</p>
-                                        </div>
-                                        <div class="safe-list-2">${user.rname}&nbsp;${user.idno}</div>
-                                    </li>
-                                </c:when>
-                                <c:otherwise>
-                                    <li>
+                            <li id="view">
+                                <script id="demo" type="text/html">
+                                    {{#  if(d.isvip == 0){ }}
                                         <div class="safe-list-1">
                                             <p class="icon icon-wrong" id="realName-icon">身份认证</p>
                                         </div>
                                         <div class="safe-list-2" id="realName-text">一旦实名认证通过将不能修改</div>
                                         <div class="safe-list-3">
-                                            <a href="javascript:;" id="realName">去认证</a>
+                                            <form class="layui-form">
+                                                <a href="javascript:;" id="realName" lay-submit lay-filter="real">去认证</a>
+                                            </form>
                                         </div>
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
+                                    {{#  } else if(d.isvip == 1) { }}
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-true">身份认证</p>
+                                        </div>
+                                        <div class="safe-list-2">{{ d.rname }}&nbsp;{{ d.idno }}</div>
+                                    {{#  } else if(d.isvip == 2) { }}
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-wrong">身份认证</p>
+                                        </div>
+                                        <div class="safe-list-2">正在审核中......</div>
+                                    {{#  } else if(d.isvip == 3) { }}
+                                        <div class="safe-list-1">
+                                            <p class="icon icon-wrong">身份认证</p>
+                                        </div>
+                                        <div class="safe-list-2">您的身份认证被驳回！</div>
+                                        <div class="safe-list-3">
+                                            <a target="_blank" href="tencent://message/?uin=1531952273&amp;Site=&amp;Menu=yes">联系客服</a>
+                                        </div>
+                                    {{#  } }}
+                                </script>
+                            </li>
                             <li>
                                 <div class="safe-list-1">
                                     <p class="icon icon-true">登录密码</p>
@@ -229,6 +241,7 @@
                                                     class="layui-input" placeholder="输入年龄">
                         </div>
                         <input type="hidden" name="uid" value="${user.uid}"/>
+                        <input type="hidden" name="isvip" value="2"/>
                         <div class="layui-form-item">
                             <button type="button" class="btn layui-btn" lay-submit lay-filter="typeSubmit">添加认证信息
                             </button>
@@ -241,8 +254,6 @@
     </div>
 </div>
 <%@include file="../master/footer.jsp" %>
-
-<script type="text/javascript" src="<%=path %>/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path %>/static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/public.js"></script>
 <script type="text/javascript" src="<%=path %>/static/js/front/wenxin.js"></script>
@@ -250,11 +261,22 @@
     $('.sidebar-top').click(function () {
         $('body').scrollTop(0);
     });
-    layui.use(['element', 'layer', 'form'], function () {
+    layui.use(['element', 'layer', 'form','laytpl'], function () {
         var $ = layui.jquery
         var element = layui.element;
         var layer = layui.layer;
         var form = layui.form;
+        var laytpl = layui.laytpl;
+
+        var getTpl = demo.innerHTML
+            , view = document.getElementById('view');
+        $.get('<%=path %>/data/user/getById',{uid:${user.uid}},
+            function (data) {
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            }
+        );
 
         $('.email').on('click', function () {
             var myemail = $('#editEmail').html();
@@ -286,7 +308,7 @@
             });
         });
 
-        $('#realName').on('click', function () {
+        form.on('submit(real)', function (data) {
             var myIdType = $('#editIdType').html();
             layer.open({
                 title: ['认证信息', 'text-align:center;font:26px;'],
@@ -294,6 +316,7 @@
                 area: ['600px', '400px'],
                 content: myIdType,
             });
+            return false;
         });
 
         //添加邮箱
@@ -344,8 +367,9 @@
                 function (data) {
                     if (data.code == 0) {
                         layer.closeAll();
-                        layer.msg("正在审核中，请等待...");
-                        $('#realName').text('');
+                        layer.msg("正在审核中，请等待...",{time:1500},function () {
+                            window.location.reload(true);
+                        });
                     } else {
                         layer.msg("添加失败，请重新再试")
                     }
@@ -400,6 +424,10 @@
             obj.parent('.from').removeClass('error');
             $('.error-msg').removeClass('show');
         });
+    }
+
+    function check() {
+        alert(1);
     }
 </script>
 </body>

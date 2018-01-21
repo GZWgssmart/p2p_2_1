@@ -14,10 +14,7 @@ import com.p2p.utils.EncryptUtils;
 import com.p2p.vo.UserRzvipVO;
 import com.p2p.vo.UserTuijianVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -140,6 +137,12 @@ public class UserController {
         System.out.println("uid:" + uid);
         String[] strings = uid.split(",");
         return userService.updateVip(strings);
+    }
+
+    @GetMapping("getById")
+    @ResponseBody
+    public User getById(Integer uid) {
+        return (User) userService.getById(uid);
     }
 
     /**
