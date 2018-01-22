@@ -38,10 +38,6 @@ public class RewardJob implements Job {
                     userMoney.setKymoney(userMoney.getKymoney().add(reward.getMoney()));
                     userMoney.setJlmoney(userMoney.getJlmoney().add(reward.getMoney()));
                     userMoneyService.update(userMoney);
-                    // 插入新的奖励记录
-                    reward = new Reward();
-                    reward.setUid(userMoney.getUid());
-                    rewardService.save(reward);
                 }
             }
         }
