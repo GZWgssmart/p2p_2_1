@@ -111,7 +111,7 @@
                             , {field: 'rbx', title: '已收本息', width: 110}
                             ,{field:'rnum', title:'已还期数', width:90}
                             ,{field:'tnum', title:'总期数', width:90}
-                            , {field: 'sktime', title: '收款时间', width: 180, sort: true, templet:'<div>{{ formatDate(d.sktime)}}</div>'}
+                            , {field: 'sktime', title: '应收时间', width: 180, sort: true, templet:'<div>{{ formatDate(d.sktime)}}</div>'}
                         ]]
                         ,id: 'planId'
                         ,page: true
