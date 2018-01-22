@@ -45,7 +45,6 @@ public class UserController {
     @RequestMapping("regPhone")
     @ResponseBody
     public ServerResponse regPhone(String phone) {
-        System.out.println(phone);
         return userService.getByPhone(phone);
     }
 

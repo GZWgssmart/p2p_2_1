@@ -77,7 +77,6 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
      */
     @Override
     public ServerResponse saveRecommend(User user, Recommend recommend) {
-         user.setResstr1(Calendar.getInstance().getTime());
         UserTicket userTicket = new UserTicket();
         ValidationResult validationResult = ValidationUtils.validateEntity(user);
         if(validationResult.isHasErrors()) {
@@ -87,6 +86,7 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
         if(validationResult.isHasErrors()) {
             return ServerResponse.createByError("保存失败");
         }
+        user.setResstr1(Calendar.getInstance().getTime());
         if(userMapper.save(user) == 0) {
             return ServerResponse.createByError("保存失败");
         }
@@ -132,10 +132,10 @@ public class UserServiceImpl extends AbstractServiceImpl implements UserService{
     @Override
     public ServerResponse<Integer> save(Object obj) {
         User user = (User)obj;
-        user.setResstr1(Calendar.getInstance().getTime());
         super.save(user);
         UserMoney userMoney = new UserMoney();
         userMoney.setUid(user.getUid());
+        user.setResstr1(Calendar.getInstance().getTime());
         if(userMoneyMapper.save(userMoney) == 0) {
             return ServerResponse.createByError("保存失败");
         }
