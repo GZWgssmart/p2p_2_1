@@ -11,7 +11,7 @@
   <select id="listPagerCriteria" resultType="com.p2p.bean.Recommend">
     <![CDATA[
         select r.rmid, r.tname, r.uid, r.rname, r.created_time as createdTime from recommend r
-        where r.uid = #{recommend.uid}
+        where r.tid = #{recommend.tid}
      ]]>
      <if test="recommend.first != null and recommend.first != ''">
        and r.created_time between #{recommend.first}

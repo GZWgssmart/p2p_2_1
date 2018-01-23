@@ -118,7 +118,7 @@
 
         table.render({
             elem: '#allRecommend_table'
-            , url: '<%=path %>/data/recommend/pagerCriteria?uid=' +${user.uid}
+            , url: '<%=path %>/data/recommend/pagerCriteria?tid=' +${user.uid}
             , cols: [[
                  {field: 'rname', title: '被推荐人', width: 340}
                 , {

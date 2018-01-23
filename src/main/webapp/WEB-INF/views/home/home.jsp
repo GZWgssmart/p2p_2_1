@@ -340,7 +340,7 @@
             $.get('<%=path %>/data/admin/out',
               function (data) {
                   if(data.code == 0) {
-                      window.location = '/'
+                      window.location = '/page/admin/login'
                   } else {
                       layer.msg('注销失败！');
                   }

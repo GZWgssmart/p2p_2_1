@@ -21,11 +21,11 @@
     <link rel="stylesheet" href="<%=path %>/static/css/home/login.css" media="all"/>
 </head>
 <body class="beg-login-bg">
-<div class="nav-out">
-    <div class="wrap cl">
-        <p class="index"><a href="<%=path %>/" class="icon icon-home">普金资本首页</a></p>
-    </div>
-</div>
+<%--<div class="nav-out">--%>
+    <%--<div class="wrap cl">--%>
+        <%--<p class="index"><a href="<%=path %>/" class="icon icon-home">普金资本首页</a></p>--%>
+    <%--</div>--%>
+<%--</div>--%>
 <div class="beg-login-box">
     <header>
         <h1>后台登录</h1>

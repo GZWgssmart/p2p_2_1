@@ -90,7 +90,7 @@
                         ,uid:data[0].uid
                     }
                     , cols: [[
-                        ,{field: 'ylx', title: '应收利息', width: 80}
+                        {field: 'ylx', title: '应收利息', width: 80}
                         , {field: 'rlx', title: '已收利息', width: 80}
                         , {field: 'ybj', title: '应收本金', width: 150}
                         , {field: 'rbj', title: '已收本金', width: 120}

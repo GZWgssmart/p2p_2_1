@@ -39,7 +39,7 @@
                                 撮合交易总额（元）
                             </div>
                             <div class="moneyDiv" style="text-align:center;">
-                                <div class="item_Div">{{ d.tmoney }}.00</div>
+                                <div class="item_Div" style="padding-top: 20px">{{ d.tmoney }}.00</div>
                             </div>
                             <div class="btnDiv">平台数据总览</div>
                             <div class="sjList sjList-2">
